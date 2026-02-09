@@ -34,3 +34,11 @@ O marco regulatório é um conjunto de normas balizadoras para a construção e 
 **Portaria Setec/MEC nº 146/2021**: Define conceitos e estabelece fatores para uso na Plataforma Nilo Peçanha - PNP e para cálculo dos indicadores de gestão das Instituições da Rede Federal de Educação Profissional, Científica e Tecnológica.
 
 <https://www.in.gov.br/en/web/dou/-/portaria-n-146-de-25-de-marco-de-2021-310597431>{:target="_blank"}
+
+**Portaria Setec/MEC nº 40/2025**: Dispõe sobre a supervisão da Rede Federal de Educação Profissional, Científica e Tecnológica (RFEPCT) e reestruturação da Plataforma Nilo Peçanha (PNP). 
+
+<https://www.in.gov.br/en/web/dou/-/portaria-n-40-de-30-de-setembro-de-2025-659707255>{:target="_blank"}
+
+**Portaria Setec/MEC nº 41/2025**: Institui o Comitê de Governança de Dados e Informações da Rede Federal de Educação Profissional, Científica e Tecnológica (CGDI). 
+
+<https://www.in.gov.br/en/web/dou/-/portaria-n-41-de-30-de-setembro-de-2025-659705163>{:target="_blank"}

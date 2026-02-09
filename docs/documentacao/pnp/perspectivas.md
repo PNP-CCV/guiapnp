@@ -13,7 +13,7 @@ Veja qual é a o nome da próxima página e da anterior e adicione abaixo no for
 
 # {{ page.title }}
 
-No intuito de atender às demandas de controle social, o conjunto de indicadores historicamente monitorados na PNP foi revisado e ampliado para incluir as dimensões de Extensão, de Pesquisa e Inovação e de Polos de Inovação. Para que isso fosse possível, foi desenvolvida uma solução tecnológica que permite o acesso a dados consolidados sobre as atividades realizadas nas instituições que compõem a Rede Federal de Educação Profissional, Científica e Tecnológica.
+No intuito de atender às demandas de controle social, o conjunto de indicadores historicamente monitorados na PNP foi revisado e ampliado para incluir as dimensões Pesquisa e Inovação, Extensão, Polos de Inovação, Pessoal, Gastos e Acompanhamento Legal. Para que isso fosse possível, foi desenvolvida uma solução tecnológica que permite o acesso a dados consolidados sobre as atividades realizadas nas instituições que compõem a Rede Federal de Educação Profissional, Científica e Tecnológica.
 
 O estabelecimento de critérios claros de cadastro, coleta, cálculo e divulgação dos dados, associado à definição de estruturas de pessoal e previsão de um processo de revisão contínua dos indicadores, alinhado à maturidade dos processos analíticos e gerenciais decorrentes do seu uso, possibilita o monitoramento sistemático das atividades nas diversas dimensões.
 
