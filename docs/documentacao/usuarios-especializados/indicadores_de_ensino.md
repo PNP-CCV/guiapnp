@@ -830,7 +830,6 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
               <mi>ENIV</mi>
               <mo>=</mo>
               <mrow>
-              <mrow>
                 <mo>[</mo>
                 <mrow>
                   <mo>(</mo>
@@ -889,10 +888,7 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
                 </mrow>
                 <mo>]</mo>
               </mrow>
-              </mrow>
-              <mspace linebreak="newline"/>
-              <mrow>
-              <mo>+</mo>
+              <mo linebreak="goodbreak">+</mo>
               <mrow>
                 <mo>[</mo>
                 <mrow>
@@ -921,7 +917,6 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
                   <mn>0,026</mn>
                 </mrow>
                 <mo>]</mo>
-              </mrow>
               </mrow>
             </mrow>
         </math>
