@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Indicadores de Pesosal"
+title: "Indicadores de Pessoal"
 ---
 
 <!-- Parte de Navegação

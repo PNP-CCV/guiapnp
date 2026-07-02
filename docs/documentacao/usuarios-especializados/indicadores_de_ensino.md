@@ -791,7 +791,7 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
   </tr>
 </table>
 
-<br/><p>
+<br/>
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -829,6 +829,7 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
             <mrow>
               <mi>ENIV</mi>
               <mo>=</mo>
+              <mrow>
               <mrow>
                 <mo>[</mo>
                 <mrow>
@@ -888,7 +889,9 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
                 </mrow>
                 <mo>]</mo>
               </mrow>
+              </mrow>
               <mspace linebreak="newline"/>
+              <mrow>
               <mo>+</mo>
               <mrow>
                 <mo>[</mo>
@@ -918,6 +921,7 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
                   <mn>0,026</mn>
                 </mrow>
                 <mo>]</mo>
+              </mrow>
               </mrow>
             </mrow>
         </math>

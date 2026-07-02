@@ -171,7 +171,7 @@ itens:
       - title: "Indicadores dos Polos de Inovação"
         href: "/documentacao/usuarios-especializados/indicadores_dos_polos_de_inovacao"
         icon: "fas fa-table"
-      - title: "Indicadores de Pesosal"
+      - title: "Indicadores de Pessoal"
         href: "/documentacao/usuarios-especializados/indicadores_de_pessoal"
         icon: "fas fa-table"
       - title: "Indicadores de Gastos"
