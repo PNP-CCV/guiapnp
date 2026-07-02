@@ -825,7 +825,7 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
     <td colspan="2">
       <strong>Modelo matemático:</strong><br/>
       <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
+        <math style="font-size: 1.2rem;" xmlns="http://www.w3.org/1998/Math/MathML" display="block">
             <mrow>
               <mi>ENIV</mi>
               <mo>=</mo>
