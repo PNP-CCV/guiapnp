@@ -21,7 +21,7 @@ Como forma de proporcionar acesso constante a todas as informações e possibili
 
 A figura abaixo apresenta a tela inicial do ambiente de capacitação do PNP-CCV, disponível por meio de livre acesso ao clicar neste [endereço eletrônico](https://aberto.ava.ifrn.edu.br/course/search.php?areaids=core_course-course&q=Ambiente+de+Capacita%C3%A7%C3%A3o+PNP "Ambiente de Capacitação PNP-CCV"){:target="_blank"}.
 
-![Ambiente de capacitação do PNP-CCV]({{ site.baseurl }}/assets/img/docs/ccv_produto_de_formacao_01.png "Ambiente de capacitação do PNP-CCV")
+![Ambiente de capacitação do PNP-CCV]({{ site.baseurl }}/assets/img/docs/ccv_produto_de_formacao_defeso.png "Ambiente de capacitação do PNP-CCV")
 
 O curso foi desenvolvido para atender às necessidades de formação para operação da aplicação PNP-CCV por todos os atores institucionais, incluindo Registradores Acadêmicos (RA), Executores Acadêmicos (EA), Pesquisador Institucional (PI), Gestor de Pessoal, Gestor de Pesquisa e Inovação e Gestor de Extensão.
 
