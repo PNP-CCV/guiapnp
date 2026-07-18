@@ -15,7 +15,7 @@
                     </div>
                     <nav class="menu-body">
                         {% for item in site.data.menu.itens %}
-                            {% include render_menu_item.html item=item root_folder="true" %}
+                            {% include render_menu_item.html item=item root_folder="true" level=0 %}
                         {% endfor %}
                         <a class="menu-item divider" href="/guiapnp/assets/files/Guia_PNP.pdf" target="_blank">
                             <span class="icon">

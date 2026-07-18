@@ -65,3 +65,61 @@ p {
 #main .social-links a[href] {
     text-decoration: none;
 }
+
+/* Syntax highlighting for Rouge-rendered code blocks */
+.highlighter-rouge .highlight,
+.highlight {
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    overflow-x: auto;
+}
+
+.highlight pre,
+.highlighter-rouge pre {
+    margin: 0;
+    background: transparent;
+    border: 0;
+}
+
+.highlight code,
+.highlighter-rouge code {
+    color: #1f2328;
+}
+
+.highlight .na {
+    color: #0550ae;
+    font-weight: 600;
+}
+
+.highlight .s,
+.highlight .s1,
+.highlight .s2,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .se,
+.highlight .sh,
+.highlight .si,
+.highlight .sx {
+    color: #0a3069;
+}
+
+.highlight .c,
+.highlight .c1,
+.highlight .cm {
+    color: #6e7781;
+    font-style: italic;
+}
+
+.highlight .pi,
+.highlight .p {
+    color: #57606a;
+}
+
+.highlight .k,
+.highlight .kt,
+.highlight .o {
+    color: #cf222e;
+}
