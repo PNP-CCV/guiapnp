@@ -1,9 +1,13 @@
 ---
 layout: default
 title: "Tabelas de apoio"
+toc: true
 ---
-
+* TOC
+{:toc}
 # {{ page.title }}
+
+
 
 ## Duração dos ciclos
 
