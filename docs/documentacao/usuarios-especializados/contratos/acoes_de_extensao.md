@@ -1,14 +1,12 @@
 ---
 layout: default
-title: "Ações de Extensão"
+title: Ações de Extensão
 toc: true
 ---
-
 # Ações de Extensão
 
 * TOC
-{:toc}
-
+  {:toc}
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
@@ -18,7 +16,6 @@ toc: true
 
 **Área Temática:** Extensão
 
-
 ## Resumo de negócio
 
 Este Contrato de Dados descreve as **ações de extensão acadêmica** — programas, projetos, cursos, eventos e prestações de serviço — executadas pela instituição em interação com a comunidade externa.
@@ -27,9 +24,9 @@ A PNP coleta este contrato para mensurar o impacto social da extensão (alcance 
 
 ## Modelos contidos
 
-- **`acoes_extensao`** — ações de extensão (programa, projeto, curso, evento, prestação de serviço) com escopo, vigência, parceria, financiamento e área temática CNPq.
-- **`pessoas_atendidas_acoes_extensao`** — pessoas impactadas diretamente pelas ações (público-alvo). Contém PII (`cpf`, `nome`).
-- **`pessoas_envolvidas_acoes_extensao`** — pessoas formalmente envolvidas na execução (docentes, TAEs, estudantes, externos). Contém PII.
+* **`acoes_extensao`** — ações de extensão (programa, projeto, curso, evento, prestação de serviço) com escopo, vigência, parceria, financiamento e área temática CNPq.
+* **`pessoas_atendidas_acoes_extensao`** — pessoas impactadas diretamente pelas ações (público-alvo). Contém PII (`cpf`, `nome`).
+* **`pessoas_envolvidas_acoes_extensao`** — pessoas formalmente envolvidas na execução (docentes, TAEs, estudantes, externos). Contém PII.
 
 ## Modelo `acoes_extensao`
 
@@ -37,35 +34,33 @@ A PNP coleta este contrato para mensurar o impacto social da extensão (alcance 
 
 Tabela principal do contrato. Cada linha é uma ação de extensão única, identificada por `id_acao_extensao`. As tabelas `pessoas_atendidas_acoes_extensao` e `pessoas_envolvidas_acoes_extensao` referenciam-na por chave estrangeira.
 
-
 ### Tabela de campos
 
-| Campo | Tipo | Obrigatório | Constraints | Descrição |
-|---|---|---|---|---|
-| `id_acao_extensao` | `integer` | sim | `primaryKey` | ID ação de extensão |
-| `tipo` | `string` | sim | `enum: [Programa, Projeto, Curso, Evento, Prestação de serviços]` | Tipo |
-| `titulo_acao` | `string` | sim | — | Título da ação |
-| `resumo_acao` | `string` | não | — | Resumo da ação |
-| `estrutura` | `string` | não | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se as ações de extensão. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
-| `projeto_extensao_sustentavel` | `boolean` | não | — | Se projeto, aborda a temática da sustentabilidade? Aplicável quando `tipo = "Projeto"`. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
-| `parceria_institucional` | `boolean` | não | — | Ação com parceria institucional? |
-| `instrumento_parceria` | `string` | não | `enum: [Contrato, Convênio, Acordo, Nenhum]` | Instrumento de parceria |
-| `nome_coordenador` | `string` | não | — | Nome do Coordenador |
-| `data_inicio` | `date` | não | — | Data de início |
-| `data_termino` | `date` | não | — | Data de término |
-| `situacao_acao` | `string` | não | `enum: [Em andamento, Finalizado, Cancelado]` | Situação da ação |
-| `data_ultima_situacao` | `date` | não | — | Data da última situação |
-| `municipios_atendidos` | `array` (de `bigint`) | não | `referencia_pnp: municipios` (declarativo — ver nota) | Municípios atendidos, por código IBGE — lista de números, ex. `[2408102, 2403103]`. Ver a ressalva sobre o formato abaixo |
-| `entidade_financiadora` | `string` | não | — | Entidade financiadora |
-| `contrapartida_financeira` | `string` | não | — | Contrapartida financeira institucional |
-| `area_tematica_cnpq` | `string` | não | `referencia_pnp: areas_tematicas_cnpq` (declarativo — ver nota) | Área temática CNPq. Formato: `{codigo}` |
-| `subeixo_tecnologico` | `string` | não | `referencia_pnp: subeixos_tecnologicos` (declarativo — ver nota) | Subeixo tecnológico. Formato: `{codigo}` |
-| `populacao_vulneravel` | `boolean` | não | — | Destinado à população em vulnerabilidade? |
-| `tipo_vulnerabilidade` | `string` | não | — | Tipo de vulnerabilidade |
-| `produto` | `string` | não | — | Produto |
+| Campo                          | Tipo                  | Obrigatório | Constraints                                                       | Descrição                                                                                                                                                 |
+| ------------------------------ | --------------------- | ----------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id_acao_extensao`             | `integer`             | sim         | `primaryKey`                                                      | ID ação de extensão                                                                                                                                       |
+| `tipo`                         | `string`              | sim         | `enum: [Programa, Projeto, Curso, Evento, Prestação de serviços]` | Tipo                                                                                                                                                      |
+| `titulo_acao`                  | `string`              | sim         | —                                                                 | Título da ação                                                                                                                                            |
+| `resumo_acao`                  | `string`              | não         | —                                                                 | Resumo da ação                                                                                                                                            |
+| `estrutura`                    | `string`              | não         | `referencia_pnp: campi` (declarativo — ver nota)                  | Estrutura à qual vinculam-se as ações de extensão. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros)                 |
+| `projeto_extensao_sustentavel` | `boolean`             | não         | —                                                                 | Se projeto, aborda a temática da sustentabilidade? Aplicável quando `tipo = "Projeto"`. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `parceria_institucional`       | `boolean`             | não         | —                                                                 | Ação com parceria institucional?                                                                                                                          |
+| `instrumento_parceria`         | `string`              | não         | `enum: [Contrato, Convênio, Acordo, Nenhum]`                      | Instrumento de parceria                                                                                                                                   |
+| `nome_coordenador`             | `string`              | não         | —                                                                 | Nome do Coordenador                                                                                                                                       |
+| `data_inicio`                  | `date`                | não         | —                                                                 | Data de início                                                                                                                                            |
+| `data_termino`                 | `date`                | não         | —                                                                 | Data de término                                                                                                                                           |
+| `situacao_acao`                | `string`              | não         | `enum: [Em andamento, Finalizado, Cancelado]`                     | Situação da ação                                                                                                                                          |
+| `data_ultima_situacao`         | `date`                | não         | —                                                                 | Data da última situação                                                                                                                                   |
+| `municipios_atendidos`         | `array` (de `bigint`) | não         | `referencia_pnp: municipios` (declarativo — ver nota)             | Municípios atendidos, por código IBGE — lista de números, ex. `[2408102, 2403103]`. Ver a ressalva sobre o formato abaixo                                 |
+| `entidade_financiadora`        | `string`              | não         | —                                                                 | Entidade financiadora                                                                                                                                     |
+| `contrapartida_financeira`     | `string`              | não         | —                                                                 | Contrapartida financeira institucional                                                                                                                    |
+| `area_tematica_cnpq`           | `string`              | não         | `referencia_pnp: areas_tematicas_cnpq` (declarativo — ver nota)   | Área temática CNPq. Formato: `{codigo}`                                                                                                                   |
+| `subeixo_tecnologico`          | `string`              | não         | `referencia_pnp: subeixos_tecnologicos` (declarativo — ver nota)  | Subeixo tecnológico. Formato: `{codigo}`                                                                                                                  |
+| `populacao_vulneravel`         | `boolean`             | não         | —                                                                 | Destinado à população em vulnerabilidade?                                                                                                                 |
+| `tipo_vulnerabilidade`         | `string`              | não         | —                                                                 | Tipo de vulnerabilidade                                                                                                                                   |
+| `produto`                      | `string`              | não         | —                                                                 | Produto                                                                                                                                                   |
 
 > **`municipios_atendidos`:**  O que a validação de schema aceita é **uma lista de números** — `[2408102, 2403103]` —, não `"2408102; 2403103"`. A notação `{codigo; codigo}` ali é a taquigrafia do autor para "vários códigos", herdada dos campos que são mesmo string (`vigencia`, `objeto_acordo`). Mandar string aqui reprova por tipo.
-
 
 ### Exemplo válido
 
@@ -97,12 +92,12 @@ Tabela principal do contrato. Cada linha é uma ação de extensão única, iden
 
 ### Exemplos inválidos
 
-| Payload (resumido) | Erro |
-|---|---|
-| `{"tipo": "Projeto", "titulo_acao": "..."}` (sem `id_acao_extensao`) | `Required field 'id_acao_extensao' is missing` |
-| `{..., "tipo": "Workshop"}` (valor fora do `enum`) | `Value 'Workshop' for field 'tipo' not in enum [Programa, Projeto, Curso, Evento, Prestação de serviços]` |
-| `{..., "data_inicio": "01/03/2025"}` (formato errado, `date` espera ISO 8601) | `Type mismatch on 'data_inicio': expected date, got string '01/03/2025'` |
-| `{..., "observacoes": "qualquer coisa"}` (coluna não declarada) | `Field 'observacoes' not in schema (additionalFields: false)` |
+| Payload (resumido)                                                            | Erro                                                                                                      |
+| ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `{"tipo": "Projeto", "titulo_acao": "..."}` (sem `id_acao_extensao`)          | `Required field 'id_acao_extensao' is missing`                                                            |
+| `{..., "tipo": "Workshop"}` (valor fora do `enum`)                            | `Value 'Workshop' for field 'tipo' not in enum [Programa, Projeto, Curso, Evento, Prestação de serviços]` |
+| `{..., "data_inicio": "01/03/2025"}` (formato errado, `date` espera ISO 8601) | `Type mismatch on 'data_inicio': expected date, got string '01/03/2025'`                                  |
+| `{..., "observacoes": "qualquer coisa"}` (coluna não declarada)               | `Field 'observacoes' not in schema (additionalFields: false)`                                             |
 
 ## Modelo `pessoas_atendidas_acoes_extensao`
 
@@ -114,13 +109,13 @@ Pessoas impactadas diretamente por uma ação de extensão (público-alvo). Cada
 
 ### Tabela de campos
 
-| Campo | Tipo | Obrigatório | Constraints | Descrição |
-|---|---|---|---|---|
-| `id_atendido` | `integer` | sim | `primaryKey` | ID atendido |
-| `cpf` | `string` | não | `pii`, `classification: sensitive` | CPF |
-| `nome` | `string` | não | `pii`, `classification: sensitive` | Nome |
-| `id_acao_extensao` | `integer` | sim | `references acoes_extensao.id_acao_extensao` | ID ação de extensão |
-| `data_atendimento` | `date` | não | — | Data de atendimento |
+| Campo              | Tipo      | Obrigatório | Constraints                                  | Descrição           |
+| ------------------ | --------- | ----------- | -------------------------------------------- | ------------------- |
+| `id_atendido`      | `integer` | sim         | `primaryKey`                                 | ID atendido         |
+| `cpf`              | `string`  | não         | `pii`, `classification: sensitive`           | CPF                 |
+| `nome`             | `string`  | não         | `pii`, `classification: sensitive`           | Nome                |
+| `id_acao_extensao` | `integer` | sim         | `references acoes_extensao.id_acao_extensao` | ID ação de extensão |
+| `data_atendimento` | `date`    | não         | —                                            | Data de atendimento |
 
 ### Exemplo válido
 
@@ -136,11 +131,11 @@ Pessoas impactadas diretamente por uma ação de extensão (público-alvo). Cada
 
 ### Exemplos inválidos
 
-| Payload (resumido) | Erro |
-|---|---|
-| `{"cpf": "...", "id_acao_extensao": 1042}` (sem `id_atendido`) | `Required field 'id_atendido' is missing` |
-| `{"id_atendido": 87012, "cpf": "..."}` (sem `id_acao_extensao`) | `Required field 'id_acao_extensao' is missing` |
-| `{"id_atendido": "87012", ...}` (`string` em vez de `integer`) | `Type mismatch on 'id_atendido': expected integer, got string` |
+| Payload (resumido)                                              | Erro                                                           |
+| --------------------------------------------------------------- | -------------------------------------------------------------- |
+| `{"cpf": "...", "id_acao_extensao": 1042}` (sem `id_atendido`)  | `Required field 'id_atendido' is missing`                      |
+| `{"id_atendido": 87012, "cpf": "..."}` (sem `id_acao_extensao`) | `Required field 'id_acao_extensao' is missing`                 |
+| `{"id_atendido": "87012", ...}` (`string` em vez de `integer`)  | `Type mismatch on 'id_atendido': expected integer, got string` |
 
 ## Modelo `pessoas_envolvidas_acoes_extensao`
 
@@ -152,18 +147,17 @@ Pessoas formalmente envolvidas na execução de uma ação (docentes, TAEs, estu
 
 ### Tabela de campos
 
-| Campo | Tipo | Obrigatório | Constraints | Descrição |
-|---|---|---|---|---|
-| `id_envolvido` | `integer` | sim | `primaryKey` | ID envolvido |
-| `cpf` | `string` | não | `pii`, `classification: sensitive`, `referencia_pnp: pessoas` (declarativo — ver nota) | CPF |
-| `nome` | `string` | não | `pii`, `classification: sensitive` | Nome |
-| `categoria` | `string` | sim | `enum: [docente, TAE, externo, estudante]` | Categoria |
-| `id_acao_extensao` | `integer` | sim | `references acoes_extensao.id_acao_extensao` | ID ação de extensão |
-| `data_ingresso` | `date` | não | — | Data de ingresso na ação |
-| `data_saida` | `date` | não | — | Data de saída da ação |
-| `situacao_envolvido` | `string` | não | `enum: [Ativo, Inativo]` | Situação do envolvido |
-| `data_ultima_situacao` | `date` | não | — | Data da última situação |
-
+| Campo                  | Tipo      | Obrigatório | Constraints                                                                            | Descrição                |
+| ---------------------- | --------- | ----------- | -------------------------------------------------------------------------------------- | ------------------------ |
+| `id_envolvido`         | `integer` | sim         | `primaryKey`                                                                           | ID envolvido             |
+| `cpf`                  | `string`  | não         | `pii`, `classification: sensitive`, `referencia_pnp: pessoas` (declarativo — ver nota) | CPF                      |
+| `nome`                 | `string`  | não         | `pii`, `classification: sensitive`                                                     | Nome                     |
+| `categoria`            | `string`  | sim         | `enum: [docente, TAE, externo, estudante]`                                             | Categoria                |
+| `id_acao_extensao`     | `integer` | sim         | `references acoes_extensao.id_acao_extensao`                                           | ID ação de extensão      |
+| `data_ingresso`        | `date`    | não         | —                                                                                      | Data de ingresso na ação |
+| `data_saida`           | `date`    | não         | —                                                                                      | Data de saída da ação    |
+| `situacao_envolvido`   | `string`  | não         | `enum: [Ativo, Inativo]`                                                               | Situação do envolvido    |
+| `data_ultima_situacao` | `date`    | não         | —                                                                                      | Data da última situação  |
 
 ### Exemplo válido
 
@@ -183,31 +177,29 @@ Pessoas formalmente envolvidas na execução de uma ação (docentes, TAEs, estu
 
 ### Exemplos inválidos
 
-| Payload (resumido) | Erro |
-|---|---|
-| `{"id_envolvido": 50214, "id_acao_extensao": 1042}` (sem `categoria`) | `Required field 'categoria' is missing` |
-| `{..., "categoria": "professor"}` (valor fora do `enum`) | `Value 'professor' for field 'categoria' not in enum [docente, TAE, externo, estudante]` |
-| `{..., "extra_field": "x"}` (coluna não declarada) | `Field 'extra_field' not in schema (additionalFields: false)` |
+| Payload (resumido)                                                    | Erro                                                                                     |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `{"id_envolvido": 50214, "id_acao_extensao": 1042}` (sem `categoria`) | `Required field 'categoria' is missing`                                                  |
+| `{..., "categoria": "professor"}` (valor fora do `enum`)              | `Value 'professor' for field 'categoria' not in enum [docente, TAE, externo, estudante]` |
+| `{..., "extra_field": "x"}` (coluna não declarada)                    | `Field 'extra_field' not in schema (additionalFields: false)`                            |
 
-## `referencia_pnp` — metadado declarativo, não validação
+## `referencia_pnp` — metadado declarativo
 
 Este é o contrato que mais usa a chave `referencia_pnp`, e ela aponta para quatro recursos distintos da PNP:
 
-| Campo | Modelo | `recurso` | `tipo` | `severidade` |
-|---|---|---|---|---|
-| `estrutura` | `acoes_extensao` | `campi` | `codigo` | `erro` |
-| `municipios_atendidos` | `acoes_extensao` | `municipios` | `array_codigo` | `erro` |
-| `area_tematica_cnpq` | `acoes_extensao` | `areas_tematicas_cnpq` | `codigo` | `erro` |
-| `subeixo_tecnologico` | `acoes_extensao` | `subeixos_tecnologicos` | `codigo` | `erro` |
-| `cpf` | `pessoas_envolvidas_acoes_extensao` | `pessoas` | `chave_simples` | `erro` |
-
+| Campo                  | Modelo                              | `recurso`               | `tipo`          | `severidade` |
+| ---------------------- | ----------------------------------- | ----------------------- | --------------- | ------------ |
+| `estrutura`            | `acoes_extensao`                    | `campi`                 | `codigo`        | `erro`       |
+| `municipios_atendidos` | `acoes_extensao`                    | `municipios`            | `array_codigo`  | `erro`       |
+| `area_tematica_cnpq`   | `acoes_extensao`                    | `areas_tematicas_cnpq`  | `codigo`        | `erro`       |
+| `subeixo_tecnologico`  | `acoes_extensao`                    | `subeixos_tecnologicos` | `codigo`        | `erro`       |
+| `cpf`                  | `pessoas_envolvidas_acoes_extensao` | `pessoas`               | `chave_simples` | `erro`       |
 
 > **Consequência:** Apenas os dados que encontram referência na PNP são validados, ou seja, caso seja informado uma `area_tematica_cnpq` que não esteja dentro da Base da PNP, a respectiva ação de extensão será rejeitada, até que seja fornecido o dado correto.
 
 ## Contrato de Dados - Formato YAML
 
 ```yaml
-
 dataContractSpecification: "1.2.0"
 id: "acoes_extensao"
 info:
@@ -444,4 +436,3 @@ models:
         title: "Data da última situação"
     additionalFields: false
 ```
-

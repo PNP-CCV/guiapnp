@@ -1,0 +1,38 @@
+backend:
+  name: github
+  repo: PNP-CCV/guiapnp
+  branch: editoracao
+
+# Para producao com login GitHub, configure um provedor OAuth do Decap CMS
+# e descomente as linhas abaixo:
+# base_url: https://seu-oauth-provider.exemplo.com
+# auth_endpoint: auth
+
+# Permite testar o CMS localmente sem OAuth remoto.
+local_backend: true
+
+publish_mode: simple
+
+media_folder: docs/assets/img/uploads
+public_folder: /assets/img/uploads
+
+site_url: https://pnp-ccv.github.io/guiapnp
+display_url: https://pnp-ccv.github.io/guiapnp
+
+collections:
+  - name: documentacao
+    label: Documentacao
+    label_singular: Pagina
+    folder: docs/documentacao
+    create: false
+    extension: md
+    format: frontmatter
+    nested:
+      depth: 10
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown }
