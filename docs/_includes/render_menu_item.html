@@ -1,64 +1,168 @@
+{% assign menu_item = include.item | default: item %}
+{% capture current_url %}{{ page.url | relative_url | replace: ".html" "" }}{% endcapture %}
 {% assign is_active = false %}
-{% capture current_url %}{{ page.url | relative_url | replace: ".html" ""}}{% endcapture %}
 
-{% if item.href == current_url %}
-    {% assign is_active = true %}
+{% if menu_item.href %}
+    {% capture menu_item_url %}{{ menu_item.href | relative_url | replace: ".html" "" }}{% endcapture %}
+    {% if menu_item_url == current_url %}
+        {% assign is_active = true %}
+    {% endif %}
 {% endif %}
 
-{% if item.children %}
-    {% for child in item.children %}
-      {% if child.href == current_url %}
-        {% assign is_active = true %}
-      {% endif %}
+{% if menu_item.children %}
+    {% for child_item in menu_item.children %}
+        {% if child_item.href %}
+            {% capture child_item_url %}{{ child_item.href | relative_url | replace: ".html" "" }}{% endcapture %}
+            {% if child_item_url == current_url %}
+                {% assign is_active = true %}
+            {% endif %}
+        {% endif %}
+        {% if child_item.children %}
+            {% for grandchild_item in child_item.children %}
+                {% if grandchild_item.href %}
+                    {% capture grandchild_item_url %}{{ grandchild_item.href | relative_url | replace: ".html" "" }}{% endcapture %}
+                    {% if grandchild_item_url == current_url %}
+                        {% assign is_active = true %}
+                    {% endif %}
+                {% endif %}
+                {% if grandchild_item.children %}
+                    {% for great_grandchild_item in grandchild_item.children %}
+                        {% if great_grandchild_item.href %}
+                            {% capture great_grandchild_item_url %}{{ great_grandchild_item.href | relative_url | replace: ".html" "" }}{% endcapture %}
+                            {% if great_grandchild_item_url == current_url %}
+                                {% assign is_active = true %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     {% endfor %}
 {% endif %}
-    
-{% if item.children %}
-    {% if include.root_folder == "true" %}
-        <div class="menu-folder drop-menu {% if is_active %}active{% endif %}">
-    {% endif %}
-            <a class="menu-item divider" href="javascript: void(0)">
-                {% if item.icon %}
-                    <span class="icon">
-                        <i class="{{ item.icon }}" aria-hidden="true"></i>
-                    </span>
-                {% endif %}
-                <span class="content">{{ item.title }}</span>
-            </a>
-            <ul>
-                {% for child in item.children %}
-                    <li>
-                        {% if child.children %}
-                            <a class="menu-item {% if child.href == current_url %}active{% endif %}" href="javascript: void(0)">
-                                {% if item.icon %}
+
+{% if menu_item.children %}
+    <div class="menu-folder drop-menu {% if is_active %}active{% endif %}">
+        <a class="menu-item {% if include.root_folder == "true" %}divider{% endif %}" href="javascript: void(0)">
+            {% if menu_item.icon %}
+                <span class="icon">
+                    <i class="{{ menu_item.icon }}" aria-hidden="true"></i>
+                </span>
+            {% endif %}
+            <span class="content">{{ menu_item.title }}</span>
+        </a>
+        <ul>
+            {% for child_item in menu_item.children %}
+                <li>
+                    {% if child_item.children %}
+                        {% assign child_is_active = false %}
+                        {% if child_item.href %}
+                            {% capture child_item_url %}{{ child_item.href | relative_url | replace: ".html" "" }}{% endcapture %}
+                            {% if child_item_url == current_url %}
+                                {% assign child_is_active = true %}
+                            {% endif %}
+                        {% endif %}
+                        {% for grandchild_item in child_item.children %}
+                            {% if grandchild_item.href %}
+                                {% capture grandchild_item_url %}{{ grandchild_item.href | relative_url | replace: ".html" "" }}{% endcapture %}
+                                {% if grandchild_item_url == current_url %}
+                                    {% assign child_is_active = true %}
+                                {% endif %}
+                            {% endif %}
+                            {% if grandchild_item.children %}
+                                {% for great_grandchild_item in grandchild_item.children %}
+                                    {% if great_grandchild_item.href %}
+                                        {% capture great_grandchild_item_url %}{{ great_grandchild_item.href | relative_url | replace: ".html" "" }}{% endcapture %}
+                                        {% if great_grandchild_item_url == current_url %}
+                                            {% assign child_is_active = true %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="menu-folder drop-menu {% if child_is_active %}active{% endif %}">
+                            <a class="menu-item" href="javascript: void(0)">
+                                {% if child_item.icon %}
                                     <span class="icon">
-                                        <i class="{{ child.icon }}" aria-hidden="true"></i>
+                                        <i class="{{ child_item.icon }}" aria-hidden="true"></i>
                                     </span>
                                 {% endif %}
-                                <span class="content">{{ child.title }}</span>
+                                <span class="content">{{ child_item.title }}</span>
                             </a>
-                            {% include render_menu_item.html item=child root_folder="false" %}
-                        {% else %}
-                            <a class="menu-item {% if child.href == current_url %}active{% endif %}" href="{{ child.href | default: "javascript: void(0)" | relative_url }}">
-                                <span class="icon">
-                                    <i class="{{ child.icon }}" aria-hidden="true"></i>
-                                </span>
-                                <span class="content">{{ child.title }}</span>
-                            </a>
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
-    {% if include.root_folder == "true" %}
-        </div>
-    {% endif %}
+                            <ul>
+                                {% for grandchild_item in child_item.children %}
+                                    <li>
+                                        {% if grandchild_item.children %}
+                                            {% assign grandchild_is_active = false %}
+                                            {% if grandchild_item.href %}
+                                                {% capture grandchild_item_url %}{{ grandchild_item.href | relative_url | replace: ".html" "" }}{% endcapture %}
+                                                {% if grandchild_item_url == current_url %}
+                                                    {% assign grandchild_is_active = true %}
+                                                {% endif %}
+                                            {% endif %}
+                                            {% for great_grandchild_item in grandchild_item.children %}
+                                                {% if great_grandchild_item.href %}
+                                                    {% capture great_grandchild_item_url %}{{ great_grandchild_item.href | relative_url | replace: ".html" "" }}{% endcapture %}
+                                                    {% if great_grandchild_item_url == current_url %}
+                                                        {% assign grandchild_is_active = true %}
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            <div class="menu-folder drop-menu {% if grandchild_is_active %}active{% endif %}">
+                                                <a class="menu-item" href="javascript: void(0)">
+                                                    {% if grandchild_item.icon %}
+                                                        <span class="icon">
+                                                            <i class="{{ grandchild_item.icon }}" aria-hidden="true"></i>
+                                                        </span>
+                                                    {% endif %}
+                                                    <span class="content">{{ grandchild_item.title }}</span>
+                                                </a>
+                                                <ul>
+                                                    {% for great_grandchild_item in grandchild_item.children %}
+                                                        <li>
+                                                            {% capture great_grandchild_item_url %}{{ great_grandchild_item.href | relative_url | replace: ".html" "" }}{% endcapture %}
+                                                            <a class="menu-item {% if great_grandchild_item_url == current_url %}active{% endif %}" href="{{ great_grandchild_item.href | default: "javascript: void(0)" | relative_url }}">
+                                                                <span class="icon">
+                                                                    <i class="{{ great_grandchild_item.icon }}" aria-hidden="true"></i>
+                                                                </span>
+                                                                <span class="content">{{ great_grandchild_item.title }}</span>
+                                                            </a>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% else %}
+                                            {% capture grandchild_item_url %}{{ grandchild_item.href | relative_url | replace: ".html" "" }}{% endcapture %}
+                                            <a class="menu-item {% if grandchild_item_url == current_url %}active{% endif %}" href="{{ grandchild_item.href | default: "javascript: void(0)" | relative_url }}">
+                                                <span class="icon">
+                                                    <i class="{{ grandchild_item.icon }}" aria-hidden="true"></i>
+                                                </span>
+                                                <span class="content">{{ grandchild_item.title }}</span>
+                                            </a>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% else %}
+                        {% capture child_item_url %}{{ child_item.href | relative_url | replace: ".html" "" }}{% endcapture %}
+                        <a class="menu-item {% if child_item_url == current_url %}active{% endif %}" href="{{ child_item.href | default: "javascript: void(0)" | relative_url }}">
+                            <span class="icon">
+                                <i class="{{ child_item.icon }}" aria-hidden="true"></i>
+                            </span>
+                            <span class="content">{{ child_item.title }}</span>
+                        </a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% else %}
-    <a class="menu-item divider {% if is_active %}active{% endif %}" href="{{ item.href | relative_url }}">
-        {% if item.icon %}
+    <a class="menu-item divider {% if is_active %}active{% endif %}" href="{{ menu_item.href | relative_url }}">
+        {% if menu_item.icon %}
             <span class="icon">
-                <i class="{{ item.icon }}" aria-hidden="true"></i>
+                <i class="{{ menu_item.icon }}" aria-hidden="true"></i>
             </span>
         {% endif %}
-        <span class="content">{{ item.title }}</span>
+        <span class="content">{{ menu_item.title }}</span>
     </a>
 {% endif %}
