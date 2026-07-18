@@ -61,4 +61,48 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  // Fallback para ambientes onde o plugin jekyll-toc nao e executado (ex.: build padrao do GitHub Pages)
+  const mainContent = document.getElementById("main-content");
+  if (mainContent && !mainContent.querySelector(".section-nav")) {
+    const headings = Array.from(mainContent.querySelectorAll("h1, h2, h3, h4, h5, h6"));
+
+    if (headings.length > 0) {
+      const toc = document.createElement("ul");
+      toc.className = "section-nav";
+
+      headings.forEach((heading, index) => {
+        if (!heading.id) {
+          const baseId = heading.textContent
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9\s-]/g, "")
+            .trim()
+            .replace(/\s+/g, "-") || `secao-${index + 1}`;
+
+          let uniqueId = baseId;
+          let suffix = 2;
+          while (document.getElementById(uniqueId)) {
+            uniqueId = `${baseId}-${suffix}`;
+            suffix += 1;
+          }
+          heading.id = uniqueId;
+        }
+
+        const level = heading.tagName.toLowerCase();
+        const li = document.createElement("li");
+        li.className = `toc-entry toc-${level}`;
+
+        const a = document.createElement("a");
+        a.href = `#${heading.id}`;
+        a.textContent = heading.textContent.trim();
+
+        li.appendChild(a);
+        toc.appendChild(li);
+      });
+
+      mainContent.insertBefore(toc, mainContent.firstChild);
+    }
+  }
 });
