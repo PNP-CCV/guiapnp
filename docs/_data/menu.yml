@@ -186,6 +186,9 @@ itens:
             - title: "Sustentabilidade"
               href: "/documentacao/usuarios-especializados/contratos/sustentabilidade"
               icon: "fas fa-file-contract"
+            - title: "Pessoal Terceirizado"
+              href: "/documentacao/usuarios-especializados/contratos/pessoal_terceirizado"
+              icon: "fas fa-file-contract"
           - title: "Ensino"
             icon: "fas fa-graduation-cap"
             children:
