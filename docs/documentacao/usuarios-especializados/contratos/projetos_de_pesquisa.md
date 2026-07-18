@@ -5,6 +5,10 @@ toc: true
 ---
 # Projetos de Pesquisa
 
+* TOC
+{:toc}
+
+
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
 **Slug:** `projetos_de_pesquisa` · **Versão:** `1.0.0` · **Owner:** SETEC

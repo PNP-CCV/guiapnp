@@ -6,6 +6,10 @@ toc: true
 
 # Ações de Extensão
 
+* TOC
+{:toc}
+
+
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
 **Slug:** `acoes_extensao` · **Versão:** `1.0.0` · **Owner:** SETEC

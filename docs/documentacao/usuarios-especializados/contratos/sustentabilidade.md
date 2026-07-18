@@ -4,6 +4,10 @@ title: "Sustentabilidade"
 toc: true
 ---
 # Sustentabilidade
+
+* TOC
+{:toc}
+
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
 **Slug:** `sustentabilidade` · **Versão:** `1.0.0` · **Owner:** SETEC

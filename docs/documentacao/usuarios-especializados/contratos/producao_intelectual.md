@@ -5,6 +5,10 @@ toc: true
 ---
 # Produção Intelectual
 
+* TOC
+{:toc}
+
+
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
 **Slug:** `producao_intelectual` · **Versão:** `1.0.0` · **Owner:** SETEC

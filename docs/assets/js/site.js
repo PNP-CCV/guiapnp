@@ -64,7 +64,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Fallback para ambientes onde o plugin jekyll-toc nao e executado (ex.: build padrao do GitHub Pages)
   const mainContent = document.getElementById("main-content");
-  if (mainContent && !mainContent.querySelector(".section-nav")) {
+  const tocEnabled = mainContent && mainContent.dataset.tocEnabled === "true";
+  const hasRenderedToc = mainContent && mainContent.querySelector(".section-nav, #markdown-toc");
+  if (tocEnabled && !hasRenderedToc) {
     const headings = Array.from(mainContent.querySelectorAll("h1, h2, h3, h4, h5, h6"));
 
     if (headings.length > 0) {

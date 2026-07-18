@@ -5,6 +5,10 @@ toc: true
 ---
 # Projetos de Desenvolvimento Institucional
 
+* TOC
+{:toc}
+
+
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
 **Slug:** `projeto_desenvolvimento_institucional` · **Versão:** `1.0.0` · **Owner:** SETEC

@@ -6,6 +6,10 @@ toc: true
 
 # {{ page.title }}
 
+* TOC
+{:toc}
+
+
 
 <p>&nbsp;</p>
 <h3 style="color: #004080;">

@@ -5,6 +5,10 @@ toc: true
 ---
 # Acordos de Parceria
 
+* TOC
+{:toc}
+
+
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
 **Slug:** `acordos_parceria` · **Versão:** `1.0.0` · **Owner:** SETEC

@@ -24,12 +24,12 @@
         <div class="row">
           {% include menu.html %}
           <div class="col mb-5">
-            <div class="main-content pl-sm-3 mt-4" id="main-content">
+            <div class="main-content pl-sm-3 mt-4" id="main-content" data-toc-enabled="{{ page.toc | default: false }}">
               {% comment %} Adiciona botões para compartilhar página {% endcomment %}
               {% if site.share_buttons %}
                 {% include share_buttons.html %}
               {% endif %}
-              {{ content | toc }}
+              {{ content }}
               
               {% comment %} Normaliza a URL da página atual remove .html {% endcomment %}
               {% assign current_url_with_html = page.url %}

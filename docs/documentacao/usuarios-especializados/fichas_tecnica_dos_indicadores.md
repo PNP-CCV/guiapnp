@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Fichas técnicas dos indicadores"
+toc: false
+---
+
 ## Ficha Técnica do Indicador
 
 Cada indicador é descrito por uma ficha técnica composta por elementos descritivos e técnicos, sintetizados no quadro abaixo.
@@ -27,4 +33,4 @@ Cada indicador é descrito por uma ficha técnica composta por elementos descrit
   </tr>
 </table>
 <p>&nbsp;</p>
-O conceito de matrícula atendida, utilizada na maioria dos indicadores, está detalhado [aqui]({{site.baseUrl}}/guiapnp/documentacao/usuarios-especializados/situacoes_matriculas){:target="_blank"}.
+O conceito de matrícula atendida, utilizada na maioria dos indicadores, está detalhado [aqui]({{ site.baseurl }}/documentacao/usuarios-especializados/situacoes_matriculas){:target="_blank"}.
