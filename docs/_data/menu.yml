@@ -180,6 +180,12 @@ itens:
             - title: "Projetos de Pesquisa"
               href: "/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa"
               icon: "fas fa-file-contract"
+          - title: "Orçamento"
+            icon: "fas fa-money-bill-wave"
+            children:
+            - title: "Documentos de Orçamento"
+              href: "/documentacao/usuarios-especializados/contratos/orcamento"
+              icon: "fas fa-file-contract"
           - title: "Ações de Sustentabilidade"
             icon: "fas fa-leaf"
             children:
