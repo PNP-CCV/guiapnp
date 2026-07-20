@@ -19,7 +19,7 @@ toc: true
 
 Este **Contrato de Dados** descreve os **projetos de ensino** conduzidos pela instituição — monitoria, tutoria, intervenção pedagógica, material didático, tecnologia assistiva, eventos de ensino e ações de inclusão. É o terceiro pé do tripé acadêmico, ao lado de [Projetos de Pesquisa](projetos_de_pesquisa) e [Ações de Extensão](acoes_de_extensao). Nesse momento, será necessário enviar apenas projetos de ensino que tenham a temática de sustentabilidade
 
-A **[PNP](../../glossario.md#pnp)** coleta este contrato para,  via `projeto_ensino_sustentavel`, quanto desse investimento toca a temática da sustentabilidade.
+A **[PNP](/documentacao/coletor/glossario#pnp)** coleta este contrato para,  via `projeto_ensino_sustentavel`, quanto desse investimento toca a temática da sustentabilidade.
 
 
 ## Modelos contidos

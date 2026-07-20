@@ -37,13 +37,14 @@ Depois de instalado, o dashboard do Coletor guia a coleta por um *wizard* de 8 p
 
 ## Relação com o restante da documentação
 
-- Os **Contratos de Dados** que o Coletor valida e envia estão especificados, campo a campo, na seção [Usuários Especializados › Contratos de Dados](/documentacao/usuarios-especializados/contratos/acoes_de_extensao) deste guia.
-- A **documentação completa do Coletor** — conceitos funcionais, arquitetura técnica, catálogo de contratos e apresentações — está publicada em [pnp-ccv.github.io/coletor-pnp-microdados](https://pnp-ccv.github.io/coletor-pnp-microdados/).
-- Os **executáveis** do Coletor são distribuídos na [página de releases do repositório PNP-CCV/coletor](https://github.com/PNP-CCV/coletor/releases).
+- Os **conceitos** por trás de cada passo estão nas demais páginas desta seção: [Visão geral](/documentacao/coletor/visao_geral), [Fluxo de negócio](/documentacao/coletor/fluxo_de_negocio), [Ciclo de coleta](/documentacao/coletor/ciclo_de_coleta), [Operação corrente](/documentacao/coletor/operacao_corrente) e [Status do contrato](/documentacao/coletor/status_do_contrato) — além das [Perguntas frequentes](/documentacao/coletor/faq) e do [Glossário do Coletor](/documentacao/coletor/glossario).
+- Os **Contratos de Dados** que o Coletor valida e envia estão especificados, campo a campo, na seção [Usuários Especializados › Contratos de Dados](/documentacao/usuarios-especializados/contratos/conceito) deste guia.
+- Os **executáveis** do Coletor são distribuídos na [página de releases do repositório PNP-CCV/coletor](https://github.com/PNP-CCV/coletor/releases); a documentação técnica interna (arquitetura, código, extensão) está no [site de documentação do Coletor](https://pnp-ccv.github.io/coletor-pnp-microdados/).
 
 As capturas de tela usadas neste manual vêm de uma coleta real do ciclo 2026.
 
 ## Veja também
 
 - [Requisitos técnicos](/documentacao/coletor/requisitos_tecnicos) — a próxima página do roteiro
+- [Visão geral](/documentacao/coletor/visao_geral) — o que é o Coletor e seu papel na cadeia de coleta
 - [Processo CCV](/documentacao/ccv/processo_ccv) — o ciclo de coleta e validação no contexto metodológico da PNP

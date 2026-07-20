@@ -69,6 +69,8 @@ O banco Postgres fica no volume Docker `coletorpnp_db-data`.
 | Aguardando Aprovação do Reitor | Ação humana na PNP — sem botão no Coletor |
 | Sincronizado com Sucesso | Nada — estado terminal do ciclo |
 
+A máquina de estados completa, com a tabela de transições, está em [Status do contrato](/documentacao/coletor/status_do_contrato).
+
 ## Checklist do operador
 
 - URL de planilha é a de **export**, não a de edição nem link assinado temporário.
@@ -82,4 +84,4 @@ O banco Postgres fica no volume Docker `coletorpnp_db-data`.
 
 - [Operação passo a passo](/documentacao/coletor/operacao_passo_a_passo) — o contexto de cada item acima
 - [Quando algo falha](/documentacao/coletor/quando_algo_falha) — o roteiro de diagnóstico
-- [Lista de termos](/documentacao/termos/termos) — terminologia da PNP usada neste guia
+- [Glossário do Coletor](/documentacao/coletor/glossario) — terminologia do Coletor usada neste manual

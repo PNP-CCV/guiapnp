@@ -104,6 +104,6 @@ Coleta parada em "Aguardando Homologação da Área" ou "Aguardando Aprovação 
 
 ## Veja também
 
-- [Referência rápida](/documentacao/coletor/referencia_rapida) — todos os status e a ação esperada em cada um
-- [Operação passo a passo](/documentacao/coletor/operacao_passo_a_passo) — o fluxo completo sem falhas
-- [Contratos de Dados](/documentacao/usuarios-especializados/contratos/acoes_de_extensao) — as regras que os testes de qualidade aplicam
+- [Status do contrato](/documentacao/coletor/status_do_contrato) — todos os estados e suas transições
+- [Perguntas frequentes](/documentacao/coletor/faq) — casos típicos e como diagnosticá-los
+- [Validação e qualidade](/documentacao/usuarios-especializados/contratos/validacao_e_qualidade) — as regras que os testes aplicam

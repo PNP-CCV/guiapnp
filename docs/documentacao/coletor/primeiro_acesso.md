@@ -62,4 +62,4 @@ O primeiro usuário é o administrador. Para a operação cotidiana, crie contas
 
 - [Operação passo a passo](/documentacao/coletor/operacao_passo_a_passo) — a coleta do passo 2 em diante
 - [Requisitos técnicos](/documentacao/coletor/requisitos_tecnicos#credenciais-junto-a-pnp) — as credenciais que o setup exige
-- [Contratos de Dados](/documentacao/usuarios-especializados/contratos/acoes_de_extensao) — a especificação do que a PNP espera receber
+- [Sincronização com a PNP](/documentacao/usuarios-especializados/contratos/sincronizacao_pnp) — o que a importação traz, em detalhe

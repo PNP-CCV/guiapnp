@@ -19,7 +19,7 @@ O Dashboard exibe o funil de 8 passos calculado sobre **todos** os contratos do 
 
 ![Wizard de 8 passos no dashboard]({{ site.baseurl }}/assets/img/docs/coletor/02-dashboard-wizard-passo1.png)
 
-O badge de status de cada contrato é recalculado em tempo real e a tela se atualiza sozinha (10 s no contrato, 120 s no wizard) — não é preciso dar refresh. O significado de cada badge está resumido em [Referência rápida](/documentacao/coletor/referencia_rapida).
+O badge de status de cada contrato é recalculado em tempo real e a tela se atualiza sozinha (10 s no contrato, 120 s no wizard) — não é preciso dar refresh. O significado de cada badge está em [Status do contrato](/documentacao/coletor/status_do_contrato) (e resumido em [Referência rápida](/documentacao/coletor/referencia_rapida)).
 
 ## Passo 1 — Sincronizar com a PNP
 
@@ -134,7 +134,7 @@ Entre o disparo inicial e o fechamento, a operação é de acompanhamento diári
 - Enviar os contratos que chegaram a "Pronto para Sincronizar".
 - Nos já enviados, acompanhar a validação do lado da PNP.
 
-Re-extraia quando o provedor ou a configuração mudarem, quando o sistema marcar "Reextração Necessária" ou quando um problema na origem for corrigido. Evite disparar dezenas de extrações no mesmo minuto (a fila de tarefas é compartilhada) e não edite um contrato com extração em curso.
+Re-extraia quando o provedor ou a configuração mudarem, quando o sistema marcar "Reextração Necessária" ou quando um problema na origem for corrigido. Evite disparar dezenas de extrações no mesmo minuto (a fila de tarefas é compartilhada) e não edite um contrato com extração em curso. O detalhamento dessa rotina está em [Operação corrente](/documentacao/coletor/operacao_corrente).
 
 ## Janelas do ciclo
 
@@ -145,8 +145,10 @@ O **Ciclo de Coleta** delimita quando cada operação é aceita. Fora da janela,
 | Extrair / re-extrair | ✅ | ✅ | ❌ |
 | Enviar à PNP | ✅ | ✅ | ❌ |
 
+O calendário completo do ciclo está em [Ciclo de coleta](/documentacao/coletor/ciclo_de_coleta).
+
 ## Veja também
 
 - [Quando algo falha](/documentacao/coletor/quando_algo_falha) — diagnóstico de cada tipo de falha
-- [Referência rápida](/documentacao/coletor/referencia_rapida) — todos os status e o checklist do operador
-- [Processo CCV](/documentacao/ccv/processo_ccv) — o ciclo de coleta e validação no contexto metodológico da PNP
+- [Status do contrato](/documentacao/coletor/status_do_contrato) — a referência de todos os badges
+- [Sincronização com a PNP](/documentacao/usuarios-especializados/contratos/sincronizacao_pnp) — o protocolo de envio em detalhe

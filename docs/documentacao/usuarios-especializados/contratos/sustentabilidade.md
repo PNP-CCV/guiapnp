@@ -16,7 +16,7 @@ toc: true
 
 ## Resumo de negócio
 
-Este **[Contrato de Dados](../../glossario.md#contrato-de-dados)** descreve os **dados e ações de sustentabilidade**, organizados em três subconjuntos temáticos: consumo de água e energia, governança da política de sustentabilidade, e compras e contratações sustentáveis.
+Este **[Contrato de Dados](/documentacao/coletor/glossario#contrato-de-dados)** descreve os **dados e ações de sustentabilidade**, organizados em três subconjuntos temáticos: consumo de água e energia, governança da política de sustentabilidade, e compras e contratações sustentáveis.
 
 A **PNP** coleta este contrato para mensurar a agenda ambiental da Rede Federal — não só o consumo físico (m³, KWh), mas a **maturidade institucional**: existe instância de governança formalmente instituída? Existe normativo de compras sustentáveis? A política é divulgada, e por onde?
 
@@ -164,7 +164,7 @@ Volume de compras e contratações por estrutura, com o recorte de quantas aplic
 | `compras_geral` | `integer` | não | — | Número de compras efetivadas no ano de referência. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 | `contratacoes_geral` | `integer` | não | — | Número de contratações efetivadas no ano de referência. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 
-> **Os subconjuntos não são checados contra os totais.** `compras_sustentaveis` é, por definição, um subconjunto de `compras_geral` — mas **nenhuma regra declarada garante isso**. `compras_sustentaveis: 90` com `compras_geral: 12` passa na validação e produz um indicador de 750%. O mesmo vale para o par de contratações, e para `realiza_compras_contratacoes: false` acompanhado de contadores positivos. Este modelo é o candidato mais óbvio do catálogo a um bloco `quality` — ver [Validação e qualidade](../validacao-e-qualidade.md).
+> **Os subconjuntos não são checados contra os totais.** `compras_sustentaveis` é, por definição, um subconjunto de `compras_geral` — mas **nenhuma regra declarada garante isso**. `compras_sustentaveis: 90` com `compras_geral: 12` passa na validação e produz um indicador de 750%. O mesmo vale para o par de contratações, e para `realiza_compras_contratacoes: false` acompanhado de contadores positivos. Este modelo é o candidato mais óbvio do catálogo a um bloco `quality` — ver [Validação e qualidade](/documentacao/usuarios-especializados/contratos/validacao_e_qualidade).
 
 ### Exemplo válido
 
