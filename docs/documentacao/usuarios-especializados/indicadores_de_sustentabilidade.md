@@ -820,24 +820,8 @@ toc: true
         </math>
       </p>
       <strong>Onde:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mo>∑</mo>
-            <mi>PGS</mi>
-            <mo>=</mo>
-            <mi>Total de projetos de gestão institucional da sustentabilidade, formalizados e executados no ano de referência</mi>
-          </mrow>
-        </math>
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mo>∑</mo>
-            <mi>PEGDI</mi>
-            <mo>=</mo>
-            <mi>Total de projetos estratégicos de gestão e de desenvolvimento institucional, formalizados e executados no ano de referência</mi>
-          </mrow>
-        </math>
-      </p>
+      <strong>PGS =</strong> Somatório dos projetos de gestão institucional da sustentabilidade, formalizados e executados no ano de referência.<br/>
+      <strong>PEGDI =</strong> Somatório dos projetos estratégicos de gestão e de desenvolvimento institucional, formalizados e executados no ano de referência.
     </td>
   </tr>
   <tr>
