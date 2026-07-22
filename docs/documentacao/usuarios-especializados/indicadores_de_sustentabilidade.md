@@ -10,7 +10,7 @@ toc: true
 {:toc}
 
 
-## <div style="color: #004080;">Consumo de água per capita (SCAG)</div>
+### Consumo de água per capita (SCAG)
 <table>
   <tr>
     <th colspan="2"><strong><i>
