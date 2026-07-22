@@ -64,6 +64,7 @@ toc: true
 
 
 
+<br/>&nbsp;<br/>
 ### Consumo de energia elétrica per capita (SCEE)
 <table>
   <tr>
@@ -118,6 +119,7 @@ toc: true
 
 
 
+<br/>&nbsp;<br/>
 ### Geração de energia elétrica de fonte renovável per capita (SGER)
 <table>
   <tr>
@@ -171,7 +173,7 @@ toc: true
 </table>
 
 
-
+<br/>&nbsp;<br/>
 ### Índice de governança institucional da sustentabilidade (SIGS)
 <table>
   <tr>
@@ -207,7 +209,7 @@ toc: true
           </mrow>
         </math>
       </p>
-      <strong>Modelo matemático:</strong><br/>
+      <strong>Onde:</strong><br/>
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
@@ -303,7 +305,6 @@ toc: true
         <li>CMT – comitê</li>
         <li>OUT – outra repartição formalmente instituída</li>
       </ul>
-      <br/>&nbsp;<br/>
       <strong>EST – Somatório de estruturas.</strong><br/>
       <strong>Fonte:</strong> Plataforma Nilo Peçanha.<br/>
       <strong>Definição:</strong> Somatório de estruturas de uma instituição da Rede Federal de Educação Profissional, Científica e Tecnológica, sendo elas:
@@ -318,6 +319,533 @@ toc: true
         <li>SE – Sede (Cefet)</li>
         <li>UD – Unidade Descentralizada de Ensino</li>
       </ul>
+    </td>
+  </tr>
+</table>
+
+
+
+<br/>&nbsp;<br/>
+### Índice de implantação de gestão de resíduos sólidos (IGRS)
+<table>
+  <tr>
+    <td colspan="2">
+      <strong>Definição:</strong> Mede o nível de implementação da gestão de resíduos sólidos nas unidades, por meio do número médio de componentes de gestão existentes por unidade, refletindo o grau de estruturação das práticas adotadas.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Crescente (quanto maior, melhor).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação mínima:</strong> Estrutura.
+    </td>
+    <td>
+      <strong>Agregação máxima:</strong> RFEPCT.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>IGRS</mi>
+            <mo>=</mo>
+            <mfrac>
+              <mi>GRS</mi>
+              <mi>EST</mi>
+            </mfrac>
+          </mrow>
+        </math>
+      </p>
+      <strong>Onde:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>GRS</mi>
+            <mo>=</mo>
+            <mo>(</mo>
+            <mi>COL</mi>
+            <mo>x</mo>
+            <mi>1</mo>
+            <mo>)</mo>
+            <mo>+</mo>
+            <mo>(</mo>
+            <mi>SEN</mi>
+            <mo>x</mo>
+            <mi>2</mo>
+            <mo>)</mo>
+            <mo>+</mo>
+            <mo>(</mo>
+            <mi>PAR</mi>
+            <mo>x</mo>
+            <mi>3</mo>
+            <mo>)</mo>
+          </mrow>
+        </math>
+      </p>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>EST</mi>
+            <mo>=</mo>
+            <mo>∑</mo>
+            <mi>C</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>CA</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>CR</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>DG</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>ETV</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>PI</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>REI</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>SE</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>UD</mi>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>GRS – Gestão de resíduos sólidos.</strong><br/>
+      <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
+      <strong>Definição:</strong> Gestão de resíduos sólidos, entendida como o somatório dos pontos atribuídos à realização das seguintes etapas, no ano de referência:
+      <ul>
+        <li>Existência de coletores de resíduos sólidos identificados (COL): função indicadora (0 = não, 1 = sim);</li>
+        <li>Realização de ações de sensibilização da comunidade interna sobre a gestão dos resíduos sólidos* (SEN): função indicadora (0 = não, 1 = sim);</li>
+        <li>Formalização de parceria com cooperativa de coleta de resíduos recicláveis ou comprovação de que a prefeitura faz a coleta seletiva = 3. Atribui-se valor zero à etapa inexistente (PAR): função indicadora (0 = não, 1 = sim).</li>
+        <dd>* Entende como temas relacionados à gestão de resíduos sólidos: redução de consumo, reuso de materiais, destinação correta de resíduos, diferença dos materiais, tempo de decomposição, entre outros.</dd>
+      <strong>EST – Somatório de estruturas.</strong><br/>
+      <strong>Fonte:</strong> Plataforma Nilo Peçanha.<br/>
+      <strong>Definição:</strong> Somatório de estruturas de uma instituição da Rede Federal de Educação Profissional, Científica e Tecnológica, sendo elas:
+      <ul>
+        <li>C – Campus</li>
+        <li>CA – Campus Avançado</li>
+        <li>CR – Centro de Referência</li>
+        <li>DG – Direção-Geral (Cefet)</li>
+        <li>ETV – Escola Técnica Vinculada às Universidades Federais</li>
+        <li>PI – Polo de Inovação</li>
+        <li>REI – Reitoria</li>
+        <li>SE – Sede (Cefet)</li>
+        <li>UD – Unidade Descentralizada de Ensino</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+
+
+<br/>&nbsp;<br/>
+### Índice de intensidade de divulgação da política/ações institucionais de sustentabilidade (SIDS)
+<table>
+  <tr>
+    <td colspan="2">
+      <strong>Definição:</strong> Mede o nível de esforço institucional na divulgação da política de sustentabilidade, por meio do número médio de canais de divulgação existentes por unidade da Rede Federal de Educação Profissional, Científica e Tecnológica. Este indicador possibilita a publicidade e a transparência das ações.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Crescente (quanto maior, melhor).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação mínima:</strong> Estrutura.
+    </td>
+    <td>
+      <strong>Agregação máxima:</strong> RFEPCT.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>SIDS</mi>
+            <mo>=</mo>
+            <mfrac>
+              <mi>DIV</mi>
+              <mi>EST</mi>
+            </mfrac>
+          </mrow>
+        </math>
+      </p>
+      <strong>Onde:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>DIV</mi>
+            <mo>=</mo>
+            <mo>∑</mo>
+            <mi>PI</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>RS</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>ER</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>MD</mi>
+          </mrow>
+        </math>
+      </p>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>EST</mi>
+            <mo>=</mo>
+            <mo>∑</mo>
+            <mi>C</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>CA</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>CR</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>DG</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>ETV</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>PI</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>REI</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>SE</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>UD</mi>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>DIV – Canais de Divulgação.</strong><br/>
+      <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
+      <strong>Definição:</strong> Canais de Divulgação: compreende o somatório dos canais de divulgação específicos da política/ações de sustentabilidade institucionais, contabilizados por estrutura, sendo eles:
+      <ul>
+        <li>PI – páginas na internet
+        <li>RS –- redes sociais
+        <li>ER –- eventos realizados
+        <li>MD – materiais didáticos
+      </ul>
+      <p>Exemplo: caso a instituição possua uma página específica para as ações de sustentabilidade geral, esta página é contabilizada na estrutura Reitoria ou Direção Geral (Cefet). Caso a página seja específica de um campus, é contabilizada apenas para aquele campus. Esta analogia deve ser aplicada aos demais canais.</p>
+      <strong>EST – Somatório de estruturas.</strong><br/>
+      <strong>Fonte:</strong> Plataforma Nilo Peçanha.<br/>
+      <strong>Definição:</strong> Somatório de estruturas de uma instituição da Rede Federal de Educação Profissional, Científica e Tecnológica, sendo elas:
+      <ul>
+        <li>C – Campus</li>
+        <li>CA – Campus Avançado</li>
+        <li>CR – Centro de Referência</li>
+        <li>DG – Direção-Geral (Cefet)</li>
+        <li>ETV – Escola Técnica Vinculada às Universidades Federais</li>
+        <li>PI – Polo de Inovação</li>
+        <li>REI – Reitoria</li>
+        <li>SE – Sede (Cefet)</li>
+        <li>UD – Unidade Descentralizada de Ensino</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+
+
+<br/>&nbsp;<br/>
+### Institucionalização das compras sustentáveis (SICS)
+<table>
+  <tr>
+    <td colspan="2">
+      <strong>Definição:</strong> Este indicador é utilizado apenas para as estruturas que realizam compras e contratações, permitindo conhecer quais unidades regulamentam a prática de compras sustentáveis, por meio de ato normativo institucional que trate sobre a aplicação de critérios de sustentabilidade nas compras e contratações públicas.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Crescente (quanto maior, melhor).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação mínima:</strong> Estrutura.
+    </td>
+    <td>
+      <strong>Agregação máxima:</strong> RFEPCT.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        variável binária (função indicadora 0/1)<br/>
+        0 – Não há normativo institucional<br/>
+        1 – Há normativo institucional
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>Existência de normativo institucional que regulamente critérios de sustentabilidade nas compras e contratações públicas.</strong><br/>
+      <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
+    </td>
+  </tr>
+</table>
+
+
+
+<br/>&nbsp;<br/>
+### Percentual de compras sustentáveis (PCS)
+<table>
+  <tr>
+    <td colspan="2">
+      <strong>Definição:</strong> Este indicador é utilizado apenas para as estruturas que realizam compras e contratações, permitindo avaliar a proporção de compras e contratações institucionais que utiliza pelo menos um critério de sustentabilidade.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Crescente (quanto maior, melhor).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação mínima:</strong> Estrutura.
+    </td>
+    <td>
+      <strong>Agregação máxima:</strong> RFEPCT.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>PCS</mi>
+            <mo>=</mo>
+            <mo>(</mo>
+            <mfrac>
+              <mi>CCS</mi>
+              <mi>CSS</mi>
+            </mfrac>
+            <mo>*</mo>
+            <mi>100</mi>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>CCS – Total de compras e contratações efetivadas utilizando pelo menos um critério de sustentabilidade.</strong><br/>
+      <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
+      <strong>Definição:</strong> Total de compras e contratações efetivadas utilizando pelo menos um critério de sustentabilidade, no ano de referência.<br/>
+      <strong>Variável: CSS – Total de compras e contratações efetivadas.</strong><br/>
+      <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
+      <strong>Definição:</strong> Total de compras e contratações efetivadas, no ano de referência.
+    </td>
+  </tr>
+</table>
+
+
+
+<br/>&nbsp;<br/>
+### Percentual de projetos de cunho finalístico na área de sustentabilidade (SPRO)
+<table>
+  <tr>
+    <td colspan="2">
+      <strong>Definição:</strong> Permite avaliar a proporção de projetos de ensino, de pesquisa e inovação e de extensão na área de sustentabilidade em relação ao total de projetos de cunho finalístico na área de sustentabilidade iniciados, finalizados ou em desenvolvimento em uma estrutura da RFEPCT no ano de referência.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Crescente (quanto maior, melhor).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação mínima:</strong> Estrutura.
+    </td>
+    <td>
+      <strong>Agregação máxima:</strong> RFEPCT.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>SPRO</mi>
+            <mo>=</mo>
+            <mo>(</mo>
+            <mfrac>
+              <mi>PSUS</mi>
+              <mi>PEPE</mi>
+            </mfrac>
+            <mo>)</mo>
+            <mo>*</mo>
+            <mi>100</mi>
+          </mrow>
+        </math>
+      </p>
+      <strong>Onde:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>PSUS</mi>
+            <mo>=</mo>
+            <mo>∑</mo>
+            <mi>PES</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>PPS</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>PEXS</mi>
+          </mrow>
+        </math>
+      </p>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>PEPE</mi>
+            <mo>=</mo>
+            <mo>∑</mo>
+            <mi>PE</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>PP</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>PEX</mi>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>PSUS - Projetos que abordem a temática da sustentabilidade.</strong><br/>
+      <strong>Fonte:</strong> Rede Integra.<br/>
+      <strong>Definição:</strong> Projetos que abordem a temática da sustentabilidade, desenvolvidos em uma estrutura da RFEPCT no ano de referência, entendido como o somatório dos:
+      <ul>
+        <li>PES – projetos de ensino</li>
+        <li>PPS – projetos de pesquisa e inovação</li>
+        <li>PEXS – projetos de extensão</li>
+      </ul>
+      <strong>PEPE – Projetos em qualquer área do conhecimento.</strong><br/>
+      <strong>Fonte:</strong> Rede Integra.<br/>
+      <strong>Definição:</strong> Projetos em qualquer área do conhecimento, inclusive a sustentabilidade, desenvolvidos em uma estrutura da RFEPCT no ano de referência, entendido como o somatório dos:
+      <ul>
+        <li>PE – projetos de ensino</li>
+        <li>PP – projetos de pesquisa e inovação</li>
+        <li>PEX –  projetos de extensão</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+
+
+<br/>&nbsp;<br/>
+### Percentual de projetos percentual de projetos de gestão institucional da sustentabilidade (SPGIS)
+<table>
+  <tr>
+    <td colspan="2">
+      <strong>Definição:</strong> Permite avaliar a proporção de projetos de gestão institucional relacionados à sustentabilidade em relação ao total de projetos estratégicos de gestão e desenvolvimento institucional executados em uma unidade da RFEPCT, no ano de referência.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Crescente (quanto maior, melhor).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação mínima:</strong> Estrutura.
+    </td>
+    <td>
+      <strong>Agregação máxima:</strong> RFEPCT.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>SPGIS</mi>
+            <mo>=</mo>
+            <mo>(</mo>
+            <mfrac>
+              <mi>PGS</mi>
+              <mi>PEGDI</mi>
+            </mfrac>
+            <mo>)</mo>
+            <mo>*</mo>
+            <mi>100</mi>
+          </mrow>
+        </math>
+      </p>
+      <strong>Onde:</strong><br/>
+      <p style="text-align:center">
+        ∑PGS = Total de projetos de gestão institucional da sustentabilidade, formalizados e executados no ano de referência.</br>
+        ∑PEGDI = Total de projetos estratégicos de gestão e de desenvolvimento institucional, formalizados e executados no ano de referência.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>PGS – Projetos de Gestão Institucional da Sustentabilidade.</strong><br/>
+      <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
+      <strong>Definição:</strong> Projetos de Gestão Institucional da Sustentabilidade, entendido como o somatório dos projetos institucionais relacionados à sustentabilidade administrativa, operacional, patrimonial, estratégica e de governança formalizados e executados na unidade da RFEPCT no ano de referência, incluindo, entre outros:
+      <ul>
+        <li>projetos de construções sustentáveis;</li>
+        <li>projetos de transformação digital e redução do uso de papel;</li>
+        <li>projetos de acessibilidade e inclusão sustentável;</li>
+        <li>projetos de mobilidade sustentável;</li>
+        <li>projetos relacionados à Agenda Ambiental na Administração Pública (A3P);</li>
+        <li>projetos relacionados ao Plano de Logística Sustentável (PLS);</li>
+        <li>projetos de mitigação e adaptação às mudanças climáticas;</li>
+        <li>projetos institucionais vinculados aos Objetivos de Desenvolvimento Sustentável (ODS);</li>
+        <li>projetos institucionais de mapeamento de projetos e ações institucionais de sustentabilidade no âmbito da instituição;</li>
+        <li>projetos de respostas institucionais a situações de calamidade pública;</li>
+        <li>outros projetos de institucionalização da sustentabilidade não mensurados pelos demais indicadores.</li>
+      </ul>
+      <strong>PEGDI – Projetos estratégicos de gestão e de desenvolvimento institucional.</strong><br/>
+      <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
+      <strong>Definição:</strong> Projetos estratégicos de gestão e de desenvolvimento institucional, entendido como o somatório dos projetos estratégicos de gestão e de desenvolvimento institucional formalizados e executados pela unidade da RFEPCT no ano de referência.
     </td>
   </tr>
 </table>
