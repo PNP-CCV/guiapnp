@@ -554,12 +554,12 @@ toc: true
       <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
       <strong>Definição:</strong> Canais de Divulgação: compreende o somatório dos canais de divulgação específicos da política/ações de sustentabilidade institucionais, contabilizados por estrutura, sendo eles:
       <ul>
-        <li>PI – páginas na internet
-        <li>RS –- redes sociais
-        <li>ER –- eventos realizados
-        <li>MD – materiais didáticos
+        <li>PI - páginas na internet</li>
+        <li>RS - redes sociais</li>
+        <li>ER - eventos realizados</li>
+        <li>MD – materiais didáticos</li>
       </ul>
-      <p>Exemplo: caso a instituição possua uma página específica para as ações de sustentabilidade geral, esta página é contabilizada na estrutura Reitoria ou Direção Geral (Cefet). Caso a página seja específica de um campus, é contabilizada apenas para aquele campus. Esta analogia deve ser aplicada aos demais canais.</p>
+      Exemplo: caso a instituição possua uma página específica para as ações de sustentabilidade geral, esta página é contabilizada na estrutura Reitoria ou Direção Geral (Cefet). Caso a página seja específica de um campus, é contabilizada apenas para aquele campus. Esta analogia deve ser aplicada aos demais canais.<br/>
       <strong>EST – Somatório de estruturas.</strong><br/>
       <strong>Fonte:</strong> Plataforma Nilo Peçanha.<br/>
       <strong>Definição:</strong> Somatório de estruturas de uma instituição da Rede Federal de Educação Profissional, Científica e Tecnológica, sendo elas:
