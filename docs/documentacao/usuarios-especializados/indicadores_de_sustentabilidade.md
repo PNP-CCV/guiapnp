@@ -13,9 +13,9 @@ toc: true
 ### Consumo de água per capita (SCAG)
 <table>
   <tr>
-    <td colspan="2">
+    <th colspan="2">
       <strong>Definição:</strong> Permite avaliar o consumo periódico de água por indivíduo da comunidade interna, cujo resultado é demonstrado anualmente.
-    </td>
+    </th>
   </tr>
   <tr>
     <td colspan="2">
@@ -54,7 +54,7 @@ toc: true
       <strong>Fonte:</strong> Faturas de água da unidade.<br/>
       <strong>Definição:</strong> Consumo mensal de água da unidade da RFEPCT, medido em m3.
       <br/>&nbsp;<br/>
-      <strong>CI - Comunidade interna</strong><br/>
+      <strong>CI - Comunidade interna.</strong><br/>
       <strong>Fonte:</strong> Matrícula equivalente, professores equivalentes e técnicos administrativos: Plataforma Nilo Peçanha<br/>
       Colaboradores terceirizados: Registros realizados pelas instituições.<br/>
       <strong>Definição:</strong> Somatório de matrículas equivalentes, professores equivalentes, técnicos administrativos e colaboradores terceirizados de uma unidade da Rede Federal de Educação Profissional, Científica e Tecnológica, no ano de referência.
@@ -68,9 +68,9 @@ toc: true
 ### Consumo de energia elétrica per capita (SCEE)
 <table>
   <tr>
-    <td colspan="2">
+    <th colspan="2">
       <strong>Definição:</strong> Permite avaliar o consumo periódico de energia elétrica por indivíduo da comunidade interna, cujo resultado é demonstrado anualmente.
-    </td>
+    </th>
   </tr>
   <tr>
     <td colspan="2">
@@ -109,7 +109,7 @@ toc: true
       <strong>Fonte:</strong> Faturas de energia elétrica da unidade.<br/>
       <strong>Definição:</strong> Consumo mensal de energia elétrica da unidade da Rede Federal de Educação Profissional, Científica e Tecnológica, medido em kwh.
       <br/>&nbsp;<br/>
-      <strong>CI - Comunidade interna</strong><br/>
+      <strong>CI - Comunidade interna.</strong><br/>
       <strong>Fonte:</strong> Matrícula equivalente, professores equivalentes e técnicos administrativos: Plataforma Nilo Peçanha<br/>
       Colaboradores terceirizados: Registros realizados pelas instituições.<br/>
       <strong>Definição:</strong> Somatório de matrículas equivalentes, professores equivalentes, técnicos administrativos e colaboradores terceirizados de uma unidade da Rede Federal de Educação Profissional, Científica e Tecnológica, no ano de referência.
@@ -123,9 +123,9 @@ toc: true
 ### Geração de energia elétrica de fonte renovável per capita (SGER)
 <table>
   <tr>
-    <td colspan="2">
+    <th colspan="2">
       <strong>Definição:</strong> Permite avaliar a produção periódica de energia elétrica de fonte renovável por indivíduo da comunidade interna. O resultado pode ser demonstrado por período mínimo de um mês ou acumulado por ano.
-    </td>
+    </th>
   </tr>
   <tr>
     <td colspan="2">
@@ -164,7 +164,7 @@ toc: true
       <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
       <strong>Definição:</strong> Produção mensal de energia elétrica de fonte renovável por unidade da RFEPCT, medida em kwh.
       <br/>&nbsp;<br/>
-      <strong>CI - Comunidade interna</strong><br/>
+      <strong>CI - Comunidade interna.</strong><br/>
       <strong>Fonte:</strong> Matrícula equivalente, professores equivalentes e técnicos administrativos: Plataforma Nilo Peçanha<br/>
       Colaboradores terceirizados: Registros realizados pelas instituições.<br/>
       <strong>Definição:</strong> Somatório de matrículas equivalentes, professores equivalentes, técnicos administrativos e colaboradores terceirizados de uma unidade da Rede Federal de Educação Profissional, Científica e Tecnológica, no ano de referência.
@@ -177,9 +177,9 @@ toc: true
 ### Índice de governança institucional da sustentabilidade (SIGS)
 <table>
   <tr>
-    <td colspan="2">
+    <th colspan="2">
       <strong>Definição:</strong> Mede o nível de institucionalização e capilaridade da governança da sustentabilidade institucional, por meio do número médio de instâncias formalmente instituídas responsáveis por coordenar e/ou executar a política de sustentabilidade em cada estrutura da Rede Federal de Educação Profissional, Científica e Tecnológica.
-    </td>
+    </th>
   </tr>
   <tr>
     <td colspan="2">
@@ -329,9 +329,9 @@ toc: true
 ### Índice de implantação de gestão de resíduos sólidos (IGRS)
 <table>
   <tr>
-    <td colspan="2">
+    <th colspan="2">
       <strong>Definição:</strong> Mede o nível de implementação da gestão de resíduos sólidos nas unidades, por meio do número médio de componentes de gestão existentes por unidade, refletindo o grau de estruturação das práticas adotadas.
-    </td>
+    </th>
   </tr>
   <tr>
     <td colspan="2">
@@ -434,7 +434,7 @@ toc: true
         <li>Realização de ações de sensibilização da comunidade interna sobre a gestão dos resíduos sólidos* (SEN): função indicadora (0 = não, 1 = sim);</li>
         <li>Formalização de parceria com cooperativa de coleta de resíduos recicláveis ou comprovação de que a prefeitura faz a coleta seletiva = 3. Atribui-se valor zero à etapa inexistente (PAR): função indicadora (0 = não, 1 = sim).</li>
       </ul>
-      <p>* Entende como temas relacionados à gestão de resíduos sólidos: redução de consumo, reuso de materiais, destinação correta de resíduos, diferença dos materiais, tempo de decomposição, entre outros.</p>
+      <strong>*</strong> Entende como temas relacionados à gestão de resíduos sólidos: redução de consumo, reuso de materiais, destinação correta de resíduos, diferença dos materiais, tempo de decomposição, entre outros.<br/>&nbsp;<br/>
       <strong>EST – Somatório de estruturas.</strong><br/>
       <strong>Fonte:</strong> Plataforma Nilo Peçanha.<br/>
       <strong>Definição:</strong> Somatório de estruturas de uma instituição da Rede Federal de Educação Profissional, Científica e Tecnológica, sendo elas:
@@ -459,9 +459,9 @@ toc: true
 ### Índice de intensidade de divulgação da política/ações institucionais de sustentabilidade (SIDS)
 <table>
   <tr>
-    <td colspan="2">
+    <th colspan="2">
       <strong>Definição:</strong> Mede o nível de esforço institucional na divulgação da política de sustentabilidade, por meio do número médio de canais de divulgação existentes por unidade da Rede Federal de Educação Profissional, Científica e Tecnológica. Este indicador possibilita a publicidade e a transparência das ações.
-    </td>
+    </th>
   </tr>
   <tr>
     <td colspan="2">
@@ -559,7 +559,7 @@ toc: true
         <li>ER - eventos realizados</li>
         <li>MD – materiais didáticos</li>
       </ul>
-      Exemplo: caso a instituição possua uma página específica para as ações de sustentabilidade geral, esta página é contabilizada na estrutura Reitoria ou Direção Geral (Cefet). Caso a página seja específica de um campus, é contabilizada apenas para aquele campus. Esta analogia deve ser aplicada aos demais canais.<p/>
+      <strong>Exemplo</strong>: caso a instituição possua uma página específica para as ações de sustentabilidade geral, esta página é contabilizada na estrutura Reitoria ou Direção Geral (Cefet). Caso a página seja específica de um campus, é contabilizada apenas para aquele campus. Esta analogia deve ser aplicada aos demais canais.<br/>&nbsp;<br/>
       <strong>EST – Somatório de estruturas.</strong><br/>
       <strong>Fonte:</strong> Plataforma Nilo Peçanha.<br/>
       <strong>Definição:</strong> Somatório de estruturas de uma instituição da Rede Federal de Educação Profissional, Científica e Tecnológica, sendo elas:
@@ -584,9 +584,9 @@ toc: true
 ### Institucionalização das compras sustentáveis (SICS)
 <table>
   <tr>
-    <td colspan="2">
+    <th colspan="2">
       <strong>Definição:</strong> Este indicador é utilizado apenas para as estruturas que realizam compras e contratações, permitindo conhecer quais unidades regulamentam a prática de compras sustentáveis, por meio de ato normativo institucional que trate sobre a aplicação de critérios de sustentabilidade nas compras e contratações públicas.
-    </td>
+    </th>
   </tr>
   <tr>
     <td colspan="2">
@@ -626,9 +626,9 @@ toc: true
 ### Percentual de compras sustentáveis (SPCS)
 <table>
   <tr>
-    <td colspan="2">
+    <th colspan="2">
       <strong>Definição:</strong> Este indicador é utilizado apenas para as estruturas que realizam compras e contratações, permitindo avaliar a proporção de compras e contratações institucionais que utiliza pelo menos um critério de sustentabilidade.
-    </td>
+    </th>
   </tr>
   <tr>
     <td colspan="2">
@@ -669,7 +669,7 @@ toc: true
       <p style="text-align:center"><strong>Variáveis</strong></p>
       <strong>CCS – Total de compras e contratações efetivadas utilizando pelo menos um critério de sustentabilidade.</strong><br/>
       <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
-      <strong>Definição:</strong> Total de compras e contratações efetivadas utilizando pelo menos um critério de sustentabilidade, no ano de referência.<br/>
+      <strong>Definição:</strong> Total de compras e contratações efetivadas utilizando pelo menos um critério de sustentabilidade, no ano de referência.<br/>&nbsp;<br/>
       <strong>Variável: CSS – Total de compras e contratações efetivadas.</strong><br/>
       <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
       <strong>Definição:</strong> Total de compras e contratações efetivadas, no ano de referência.
@@ -683,9 +683,9 @@ toc: true
 ### Percentual de projetos de cunho finalístico na área de sustentabilidade (SPRO)
 <table>
   <tr>
-    <td colspan="2">
+    <th colspan="2">
       <strong>Definição:</strong> Permite avaliar a proporção de projetos de ensino, de pesquisa e inovação e de extensão na área de sustentabilidade em relação ao total de projetos de cunho finalístico na área de sustentabilidade iniciados, finalizados ou em desenvolvimento em uma estrutura da RFEPCT no ano de referência.
-    </td>
+    </th>
   </tr>
   <tr>
     <td colspan="2">
@@ -783,9 +783,9 @@ toc: true
 ### Percentual de projetos percentual de projetos de gestão institucional da sustentabilidade (SPGIS)
 <table>
   <tr>
-    <td colspan="2">
+    <th colspan="2">
       <strong>Definição:</strong> Permite avaliar a proporção de projetos de gestão institucional relacionados à sustentabilidade em relação ao total de projetos estratégicos de gestão e desenvolvimento institucional executados em uma unidade da RFEPCT, no ano de referência.
-    </td>
+    </th>
   </tr>
   <tr>
     <td colspan="2">
@@ -821,8 +821,20 @@ toc: true
       </p>
       <strong>Onde:</strong><br/>
       <p style="text-align:center">
-        ∑PGS = Total de projetos de gestão institucional da sustentabilidade, formalizados e executados no ano de referência.</br>
-        ∑PEGDI = Total de projetos estratégicos de gestão e de desenvolvimento institucional, formalizados e executados no ano de referência.
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mo>∑</mo>
+            <mi>PGS</mi>
+          </mrow>
+        </math>
+        <strong>= </strong>Total de projetos de gestão institucional da sustentabilidade, formalizados e executados no ano de referência.</br>
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mo>∑</mo>
+            <mi>PEGDI</mi>
+          </mrow>
+        </math>
+        <strong>= </strong>Total de projetos estratégicos de gestão e de desenvolvimento institucional, formalizados e executados no ano de referência.
       </p>
     </td>
   </tr>
