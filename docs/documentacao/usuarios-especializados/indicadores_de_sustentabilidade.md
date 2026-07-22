@@ -238,6 +238,10 @@ toc: true
             <mo>+</mo>
             <mo>∑</mo>
             <mi>CAM</mi>
+          </mrow>
+        </math>
+         <math style="font-size: 1.2rem;" display="block">
+          <mrow>
             <mo>+</mo>
             <mo>∑</mo>
             <mi>CON</mi>
