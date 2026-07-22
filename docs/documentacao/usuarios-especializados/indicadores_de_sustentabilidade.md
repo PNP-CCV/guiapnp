@@ -433,7 +433,8 @@ toc: true
         <li>Existência de coletores de resíduos sólidos identificados (COL): função indicadora (0 = não, 1 = sim);</li>
         <li>Realização de ações de sensibilização da comunidade interna sobre a gestão dos resíduos sólidos* (SEN): função indicadora (0 = não, 1 = sim);</li>
         <li>Formalização de parceria com cooperativa de coleta de resíduos recicláveis ou comprovação de que a prefeitura faz a coleta seletiva = 3. Atribui-se valor zero à etapa inexistente (PAR): função indicadora (0 = não, 1 = sim).</li>
-        <dd>* Entende como temas relacionados à gestão de resíduos sólidos: redução de consumo, reuso de materiais, destinação correta de resíduos, diferença dos materiais, tempo de decomposição, entre outros.</dd>
+      </ul>
+      <p>* Entende como temas relacionados à gestão de resíduos sólidos: redução de consumo, reuso de materiais, destinação correta de resíduos, diferença dos materiais, tempo de decomposição, entre outros.</p>
       <strong>EST – Somatório de estruturas.</strong><br/>
       <strong>Fonte:</strong> Plataforma Nilo Peçanha.<br/>
       <strong>Definição:</strong> Somatório de estruturas de uma instituição da Rede Federal de Educação Profissional, Científica e Tecnológica, sendo elas:
