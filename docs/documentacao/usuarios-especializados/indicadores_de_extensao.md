@@ -11,10 +11,7 @@ toc: true
 
 
 
-<p>&nbsp;</p>
-<h3 style="color: #004080;">
-Percentual de recursos financeiros do orçamento anual público aplicados em extensão (EXREC)
-</h3>
+### Percentual de recursos financeiros do orçamento anual público aplicados em extensão (EXREC)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -83,12 +80,11 @@ Percentual de recursos financeiros do orçamento anual público aplicados em ext
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Percentual de pessoas estudantes envolvidas em ações de extensão (EXEAE)
-</h3>
+
+
+
+### Percentual de pessoas estudantes envolvidas em ações de extensão (EXEAE)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -157,12 +153,11 @@ Percentual de pessoas estudantes envolvidas em ações de extensão (EXEAE)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Percentual de pessoas estudantes matriculadas por meio de cotas envolvidos em ações de extensão (EXCOT)
-</h3>
+
+
+
+### Percentual de pessoas estudantes matriculadas por meio de cotas envolvidos em ações de extensão (EXCOT)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -231,12 +226,11 @@ Percentual de pessoas estudantes matriculadas por meio de cotas envolvidos em a�
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Percentual de pessoas servidoras envolvidos em ações de extensão (EXSERV)
-</h3>
+
+
+
+### Percentual de pessoas servidoras envolvidos em ações de extensão (EXSERV)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -313,9 +307,7 @@ Percentual de pessoas servidoras envolvidos em ações de extensão (EXSERV)
 
 
 
-<h3 style="color: #004080;">
-Número de pessoas atendidas pelas ações de extensão (EXPAE)
-</h3>
+### Número de pessoas atendidas pelas ações de extensão (EXPAE)
 
 Para fins de contabilização do indicador consideram-se pessoas atendidas os indivíduos cuja participação nas ações de extensão possa ser comprovada por meio de registros formais. Esses registros incluem, mas não se limitam a:
 *	Certificados de participação emitidos pelas instituições responsáveis;
@@ -402,13 +394,11 @@ Para fins de contabilização do indicador, não serão consideradas como pessoa
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Percentual de ações de extensão destinadas à inclusão de população vulnerável (EXVUL)
-</h3>
+
+
+
+### Percentual de ações de extensão destinadas à inclusão de população vulnerável (EXVUL)
 
 Para fins de contabilização do indicador consideram-se ações de extensão voltadas para população vulnerável aquelas que têm como foco atender diretamente grupos em situação de vulnerabilidade, com objetivos específicos que promovam melhorias concretas em suas condições sociais, educacionais, econômicas, de saúde ou de acesso a direitos básicos. Não serão contabilizadas ações genéricas que apenas tratem da temática da vulnerabilidade sem direcionamento ou impacto direto no público-alvo em risco.
 
@@ -514,12 +504,11 @@ Ações que apenas abordam temas relacionados à vulnerabilidade, de forma ampla
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Percentual de ações de extensão com parcerias institucionais vigentes (EXPAR)
-</h3>
+
+
+
+### Percentual de ações de extensão com parcerias institucionais vigentes (EXPAR)
 <table>
   <tr>
     <th colspan="2"><strong><i>
