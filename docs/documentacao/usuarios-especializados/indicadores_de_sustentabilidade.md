@@ -369,20 +369,20 @@ toc: true
             <mo>=</mo>
             <mo>(</mo>
             <mi>COL</mi>
-            <mo>x</mo>
-            <mi>1</mo>
+            <mo>*</mo>
+            <mi>1</mi>
             <mo>)</mo>
             <mo>+</mo>
             <mo>(</mo>
             <mi>SEN</mi>
-            <mo>x</mo>
-            <mi>2</mo>
+            <mo>*</mo>
+            <mi>2</mi>
             <mo>)</mo>
             <mo>+</mo>
             <mo>(</mo>
             <mi>PAR</mi>
-            <mo>x</mo>
-            <mi>3</mo>
+            <mo>*</mo>
+            <mi>3</mi>
             <mo>)</mo>
           </mrow>
         </math>
