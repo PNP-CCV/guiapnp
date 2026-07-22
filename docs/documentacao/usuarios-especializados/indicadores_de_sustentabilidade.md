@@ -670,7 +670,7 @@ toc: true
       <strong>CCS – Total de compras e contratações efetivadas utilizando pelo menos um critério de sustentabilidade.</strong><br/>
       <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
       <strong>Definição:</strong> Total de compras e contratações efetivadas utilizando pelo menos um critério de sustentabilidade, no ano de referência.<br/>&nbsp;<br/>
-      <strong>Variável: CSS – Total de compras e contratações efetivadas.</strong><br/>
+      <strong>CSS – Total de compras e contratações efetivadas.</strong><br/>
       <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
       <strong>Definição:</strong> Total de compras e contratações efetivadas, no ano de referência.
     </td>
@@ -825,16 +825,18 @@ toc: true
           <mrow>
             <mo>∑</mo>
             <mi>PGS</mi>
+            <mo>=</mo>
+            <mi>Total de projetos de gestão institucional da sustentabilidade, formalizados e executados no ano de referência</mi>
           </mrow>
         </math>
-        <strong>= </strong>Total de projetos de gestão institucional da sustentabilidade, formalizados e executados no ano de referência.</br>
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
             <mo>∑</mo>
             <mi>PEGDI</mi>
+            <mo>=</mo>
+            <mi>Total de projetos estratégicos de gestão e de desenvolvimento institucional, formalizados e executados no ano de referência</mi>
           </mrow>
         </math>
-        <strong>= </strong>Total de projetos estratégicos de gestão e de desenvolvimento institucional, formalizados e executados no ano de referência.
       </p>
     </td>
   </tr>
