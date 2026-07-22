@@ -10,9 +10,7 @@ toc: true
 {:toc}
 
 
-<h3 style="color: #004080;">
-Número de concluintes (ENCT)
-</h3>
+### Número de concluintes (ENCT)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -64,12 +62,11 @@ Número de concluintes (ENCT)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de cursos (ENC)
-</h3>
+
+
+
+### Número de cursos (ENC)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -140,12 +137,11 @@ Número de cursos (ENC)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de evadidos (ENEV)
-</h3>
+
+
+
+### Número de evadidos (ENEV)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -197,12 +193,11 @@ Número de evadidos (ENEV)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de estruturas com matrícula (ENEMA)
-</h3>
+
+
+
+### Número de estruturas com matrícula (ENEMA)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -264,12 +259,11 @@ Número de estruturas com matrícula (ENEMA)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de ingressantes (ENING)
-</h3>
+
+
+
+### Número de ingressantes (ENING)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -321,12 +315,11 @@ Número de ingressantes (ENING)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de inscritos (ENIC)
-</h3>
+
+
+
+### Número de inscritos (ENIC)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -378,12 +371,10 @@ Número de inscritos (ENIC)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de matrículas (ENM) 
-</h3>
+
+
+### Número de matrículas (ENM) 
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -435,12 +426,11 @@ Número de matrículas (ENM)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de matrículas equivalentes (ENME)
-</h3>
+
+
+
+### Número de matrículas equivalentes (ENME)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -507,12 +497,11 @@ Número de matrículas equivalentes (ENME)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de unidades acadêmicas (ENUND)
-</h3>
+
+
+
+### Número de unidades acadêmicas (ENUND)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -567,12 +556,11 @@ Número de unidades acadêmicas (ENUND)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de vagas (ENV)
-</h3>
+
+
+
+### Número de vagas (ENV)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -624,12 +612,11 @@ Número de vagas (ENV)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Índice de eficiência acadêmica (ENIEA)
-</h3>
+
+
+
+### Índice de eficiência acadêmica (ENIEA)
 
 As matrículas para o cálculo do indicador Índice de Eficiência Acadêmica diferem das matrículas utilizadas em outros indicadores, pois não são considerados apenas os dados do ano-base, mas sim os dados reunidos por “ciclos de matrícula”. Um ciclo de matrícula envolve a oferta de um curso com uma carga horária definida, com mesma data de início e mesma previsão de término, visando englobar um conjunto de matrículas para obtenção de uma mesma certificação ou diploma. A análise dos indicadores “por ciclo” será realizada considerando a situação de matrícula com fim de ciclo previsto para o ano anterior ao de referência.
 
@@ -741,12 +728,11 @@ O cálculo do indicador de Eficiência Acadêmica deve avaliar a capacidade de a
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Índice de verticalização (ENIV)
-</h3>
+
+
+
+### Índice de verticalização (ENIV)
 
 O indicador é calculado em nível de Eixo Tecnológico, com seu modelo matemático expresso na ficha a seguir de acordo com essa configuração. A representação do Índice de Verticalização em formas agregadas superiores (Unidade, Instituição) na PNP é baseada no cálculo da média das formas agregadas imediatamente inferiores.
 
@@ -952,12 +938,11 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Reserva de vagas (RV)
-</h3>
+
+
+
+### Reserva de vagas (RV)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -1027,12 +1012,11 @@ Reserva de vagas (RV)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Formas de Ingresso (FIng)
-</h3>
+
+
+
+### Formas de Ingresso (FIng)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -1120,12 +1104,11 @@ Formas de Ingresso (FIng)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Matrículas Equivalentes em Cursos Técnicos (Técnicos)
-</h3>
+
+
+
+### Matrículas Equivalentes em Cursos Técnicos (Técnicos)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -1189,12 +1172,11 @@ Matrículas Equivalentes em Cursos Técnicos (Técnicos)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Percentual de matrículas equivalentes em cursos de formação de professores (ALMPROF)
-</h3>
+
+
+
+### Percentual de matrículas equivalentes em cursos de formação de professores (ALMPROF)
 
 Os cursos de formação de professores incluídos neste indicador são aqueles classificados no eixo tecnológico “Desenvolvimento Educacional e Social”, que abrange áreas relacionadas à educação e ao desenvolvimento humano. O indicador considera apenas matrículas sem financiamento externo. Como tipos de cursos, são considerados licenciatura, qualificação profissional e pós-graduação.
 
@@ -1261,13 +1243,11 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Percentual de matrículas equivalentes em cursos de educação de jovens e adultos articulada à educação profissional e tecnológica (ALMEJA)
-</h3>
+
+
+
+### Percentual de matrículas equivalentes em cursos de educação de jovens e adultos articulada à educação profissional e tecnológica (ALMEJA)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -1331,13 +1311,12 @@ Percentual de matrículas equivalentes em cursos de educação de jovens e adult
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Percentual de oferta de vagas em cursos de graduação noturna presencial (ALVGN)
-</h3>
+
+
+
+
+### Percentual de oferta de vagas em cursos de graduação noturna presencial (ALVGN)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -1401,13 +1380,12 @@ Percentual de oferta de vagas em cursos de graduação noturna presencial (ALVGN
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Relação de inscritos por vagas (ENRIV)
-</h3>
+
+
+
+
+### Relação de inscritos por vagas (ENRIV)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -1469,12 +1447,11 @@ Relação de inscritos por vagas (ENRIV)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Percentual de evasão anual (ENEVA)
-</h3>
+
+
+
+### Percentual de evasão anual (ENEVA)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -1538,13 +1515,12 @@ Percentual de evasão anual (ENEVA)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Percentual de conclusão por ciclo (ENCC)
-</h3>
+
+
+
+
+### Percentual de conclusão por ciclo (ENCC)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -1608,13 +1584,12 @@ Percentual de conclusão por ciclo (ENCC)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Percentual de evasão por ciclo (ENEC)
-</h3>
+
+
+
+
+### Percentual de evasão por ciclo (ENEC)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -1678,12 +1653,11 @@ Percentual de evasão por ciclo (ENEC)
     </td>
   </tr>
 </table>
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Percentual de retenção por ciclo (ENREC)
-</h3>
+
+
+
+### Percentual de retenção por ciclo (ENREC)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -1747,13 +1721,12 @@ Percentual de retenção por ciclo (ENREC)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Taxa de Ocupação
-</h3>
+
+
+
+
+### Taxa de Ocupação
 <table>
   <tr>
     <th colspan="2"><strong><i>
