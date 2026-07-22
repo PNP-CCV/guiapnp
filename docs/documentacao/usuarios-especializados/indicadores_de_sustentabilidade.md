@@ -559,7 +559,7 @@ toc: true
         <li>ER - eventos realizados</li>
         <li>MD – materiais didáticos</li>
       </ul>
-      Exemplo: caso a instituição possua uma página específica para as ações de sustentabilidade geral, esta página é contabilizada na estrutura Reitoria ou Direção Geral (Cefet). Caso a página seja específica de um campus, é contabilizada apenas para aquele campus. Esta analogia deve ser aplicada aos demais canais.<br/>
+      Exemplo: caso a instituição possua uma página específica para as ações de sustentabilidade geral, esta página é contabilizada na estrutura Reitoria ou Direção Geral (Cefet). Caso a página seja específica de um campus, é contabilizada apenas para aquele campus. Esta analogia deve ser aplicada aos demais canais.<p/>
       <strong>EST – Somatório de estruturas.</strong><br/>
       <strong>Fonte:</strong> Plataforma Nilo Peçanha.<br/>
       <strong>Definição:</strong> Somatório de estruturas de uma instituição da Rede Federal de Educação Profissional, Científica e Tecnológica, sendo elas:
@@ -623,7 +623,7 @@ toc: true
 
 
 <br/>&nbsp;<br/>
-### Percentual de compras sustentáveis (PCS)
+### Percentual de compras sustentáveis (SPCS)
 <table>
   <tr>
     <td colspan="2">
@@ -649,13 +649,14 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>PCS</mi>
+            <mi>SPCS</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mfrac>
               <mi>CCS</mi>
               <mi>CSS</mi>
             </mfrac>
+            <mo>)</mo>
             <mo>*</mo>
             <mi>100</mi>
           </mrow>
@@ -830,7 +831,7 @@ toc: true
       <p style="text-align:center"><strong>Variáveis</strong></p>
       <strong>PGS – Projetos de Gestão Institucional da Sustentabilidade.</strong><br/>
       <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
-      <strong>Definição:</strong> Projetos de Gestão Institucional da Sustentabilidade, entendido como o somatório dos projetos institucionais relacionados à sustentabilidade administrativa, operacional, patrimonial, estratégica e de governança formalizados e executados na unidade da RFEPCT no ano de referência, incluindo, entre outros:
+      <strong>Definição:</strong> Somatório dos projetos institucionais relacionados à sustentabilidade administrativa, operacional, patrimonial, estratégica e de governança formalizados e executados na unidade da RFEPCT no ano de referência, incluindo, entre outros:
       <ul>
         <li>projetos de construções sustentáveis;</li>
         <li>projetos de transformação digital e redução do uso de papel;</li>
@@ -846,7 +847,7 @@ toc: true
       </ul>
       <strong>PEGDI – Projetos estratégicos de gestão e de desenvolvimento institucional.</strong><br/>
       <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
-      <strong>Definição:</strong> Projetos estratégicos de gestão e de desenvolvimento institucional, entendido como o somatório dos projetos estratégicos de gestão e de desenvolvimento institucional formalizados e executados pela unidade da RFEPCT no ano de referência.
+      <strong>Definição:</strong> Somatório dos projetos estratégicos de gestão e de desenvolvimento institucional formalizados e executados pela unidade da RFEPCT no ano de referência.
     </td>
   </tr>
 </table>
