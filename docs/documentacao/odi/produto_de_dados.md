@@ -24,7 +24,7 @@ O Extrator PNP é uma ferramenta que permite a obtenção de informações estru
 
 A ferramenta disponibiliza um dicionário de dados em cada contexto, garantindo clareza sobre a estrutura e o significado dos campos extraídos. Fornece subsídios para quem deseja realizar análises em outras ferramentas, já tendo os indicadores calculados, em conformidade com o exibido no produto visual. Além disso, traz uma documentação com as fórmulas utilizadas para o cálculo, a partir do modelo de dados, facilitando a compreensão da lógica dos cálculos dos indicadores ao permitir que os usuários repliquem ou ajustem essas métricas em suas próprias análises, assegurando a consistência e precisão nos resultados. A figura abaixo apresenta a página inicial do Extrator PNP, que pode ser acessado [aqui](https://moduloextratorpnp.mec.gov.br/){:target="_blank"}.
 
-![Fluxo geral de dados da PNP]({{ site.baseurl }}/assets/img/docs/ode_produto_dados_01.png)
+![Fluxo geral de dados da PNP](/guiapnp/assets/img/docs/ode_produto_dados_01.png)
 
 ## Microdados PNP
 

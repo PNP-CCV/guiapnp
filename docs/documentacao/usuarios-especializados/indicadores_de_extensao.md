@@ -1,17 +1,15 @@
 ---
 layout: default
-title: "Indicadores de Extensão"
+title: Indicadores de Extensão
 toc: true
 ---
-
 # {{ page.title }}
 
 * TOC
 {:toc}
 
-
-
 ### Percentual de recursos financeiros do orçamento anual público aplicados em extensão (EXREC)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -82,9 +80,8 @@ toc: true
 </table>
 <p>&nbsp;</p>
 
-
-
 ### Percentual de pessoas estudantes envolvidas em ações de extensão (EXEAE)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -155,9 +152,8 @@ toc: true
 </table>
 <p>&nbsp;</p>
 
-
-
 ### Percentual de pessoas estudantes matriculadas por meio de cotas envolvidos em ações de extensão (EXCOT)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -166,7 +162,7 @@ toc: true
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Mensura o percentual de estudantes ingressantes por meio de cotas e envolvidos em ações de extensão, independente da modalidade (Projeto, Programa, Evento, Curso e Prestação de Serviço), dentre o total de estudantes envolvidos em ações de extensão.
+      <strong>Definição:</strong> Mensura o percentual de estudantes ingressantes por meio de cotas e envolvidos em ações de extensão, independentemente da modalidade (Projeto, Programa, Evento, Curso e Prestação de Serviço), dentre o total de estudantes envolvidos em ações de extensão.
     </td>
   </tr>
   <tr>
@@ -228,9 +224,8 @@ toc: true
 </table>
 <p>&nbsp;</p>
 
-
-
 ### Percentual de pessoas servidoras envolvidos em ações de extensão (EXSERV)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -305,28 +300,32 @@ toc: true
   </tr>
 </table>
 
-
-
 ### Número de pessoas atendidas pelas ações de extensão (EXPAE)
 
 Para fins de contabilização do indicador consideram-se pessoas atendidas os indivíduos cuja participação nas ações de extensão possa ser comprovada por meio de registros formais. Esses registros incluem, mas não se limitam a:
-*	Certificados de participação emitidos pelas instituições responsáveis;
-*	Cadastros individuais realizados previamente ou durante a ação;
-*	Listas de presença, assinadas de forma manual ou digital;
-*	Registros em sistemas institucionais, como inscrições em eventos, cursos ou programas;
-*	Relatórios de execução de ações, que contenham dados detalhados sobre os participantes.
+
+* Certificados de participação emitidos pelas instituições responsáveis;
+* Cadastros individuais realizados previamente ou durante a ação;
+* Listas de presença, assinadas de forma manual ou digital;
+* Registros em sistemas institucionais, como inscrições em eventos, cursos ou programas;
+* Relatórios de execução de ações, que contenham dados detalhados sobre os participantes.
 
 Essa definição assegura a rastreabilidade e a confiabilidade dos dados reportados, permitindo que o indicador reflita, de maneira objetiva e padronizada, o alcance efetivo das ações de extensão realizadas pela instituição. Assim, evita-se subjetividade na interpretação do conceito de pessoas atendidas e promove-se maior transparência e consistência no monitoramento das atividades extensionistas.
 
 Para fins de contabilização do indicador, não serão consideradas como pessoas atendidas aquelas que participam de ações cujo alcance seja genérico ou de difícil comprovação, incluindo:
-1. **Ações de Comunicação Massiva**:
-  *	Programas de rádio, televisão ou podcasts que não possuam meios de registrar e comprovar os participantes alcançados diretamente;
-  *	Postagens em redes sociais, transmissões ao vivo ou vídeos em plataformas como YouTube, permitem alcançar grandes audiências sem mecanismos de registro formal.
-2. **Participação Indireta**:
-  *	Públicos que apenas tiveram acesso à ação de forma passiva, sem qualquer interação registrada, como ouvir um programa ou assistir a um vídeo sem cadastro, certificação ou presença em registros formais.
-3. **Estimativas Não Comprovadas**:
-  *	Alegações de atendimento baseadas em estimativas genéricas (por exemplo: “atendemos toda a população de um município” ou “atingimos um milhão de pessoas”).
 
+1. **Ações de Comunicação Massiva**:
+
+* Programas de rádio, televisão ou podcasts que não possuam meios de registrar e comprovar os participantes alcançados diretamente;
+* Postagens em redes sociais, transmissões ao vivo ou vídeos em plataformas como YouTube, permitem alcançar grandes audiências sem mecanismos de registro formal.
+
+2. **Participação Indireta**:
+
+* Públicos que apenas tiveram acesso à ação de forma passiva, sem qualquer interação registrada, como ouvir um programa ou assistir a um vídeo sem cadastro, certificação ou presença em registros formais.
+
+3. **Estimativas Não Comprovadas**:
+
+* Alegações de atendimento baseadas em estimativas genéricas (por exemplo: “atendemos toda a população de um município” ou “atingimos um milhão de pessoas”).
 
 <table>
   <tr>
@@ -396,8 +395,6 @@ Para fins de contabilização do indicador, não serão consideradas como pessoa
 </table>
 <p>&nbsp;</p>
 
-
-
 ### Percentual de ações de extensão destinadas à inclusão de população vulnerável (EXVUL)
 
 Para fins de contabilização do indicador consideram-se ações de extensão voltadas para população vulnerável aquelas que têm como foco atender diretamente grupos em situação de vulnerabilidade, com objetivos específicos que promovam melhorias concretas em suas condições sociais, educacionais, econômicas, de saúde ou de acesso a direitos básicos. Não serão contabilizadas ações genéricas que apenas tratem da temática da vulnerabilidade sem direcionamento ou impacto direto no público-alvo em risco.
@@ -406,38 +403,50 @@ A contabilização será feita, portanto, se a ação for estruturada para atend
 
 **Critérios de Público-Alvo**:
 As ações devem ser direcionadas exclusivamente para os seguintes grupos
+
 1. Vulnerabilidade Socioeconômica:
-  *	Famílias com renda per capita de até meio salário mínimo, conforme critérios do Cadastro Único para Programas Sociais (CadÚnico);
-  *	Pessoas desempregadas, subempregadas ou em situação de rua.
+
+* Famílias com renda per capita de até meio salário mínimo, conforme critérios do Cadastro Único para Programas Sociais (CadÚnico);
+* Pessoas desempregadas, subempregadas ou em situação de rua.
+
 2. Vulnerabilidade Educacional:
-  *	Indivíduos com baixa escolaridade ou em situação de evasão escolar;
-  *	Estudantes de programas de ações afirmativas (negros, indígenas, quilombolas e pessoas de baixa renda).
+
+* Indivíduos com baixa escolaridade ou em situação de evasão escolar;
+* Estudantes de programas de ações afirmativas (negros, indígenas, quilombolas e pessoas de baixa renda).
+
 3. Vulnerabilidade de Gênero e Raça:
-  *	Mulheres em situação de risco (violência doméstica, chefia de família em vulnerabilidade econômica);
-  *	População LGBTQIA+ em situação de exclusão social;
-  *	População negra, indígena e quilombola.
+
+* Mulheres em situação de risco (violência doméstica, chefia de família em vulnerabilidade econômica);
+* População LGBTQIA+ em situação de exclusão social;
+* População negra, indígena e quilombola.
+
 4. Vulnerabilidade por Deficiência ou Condição de Saúde:
-  *	Pessoas com deficiência física, mental, intelectual ou sensorial;
-  *	Indivíduos com doenças crônicas que enfrentam barreiras de acesso à saúde e ao mercado de trabalho.
+
+* Pessoas com deficiência física, mental, intelectual ou sensorial;
+* Indivíduos com doenças crônicas que enfrentam barreiras de acesso à saúde e ao mercado de trabalho.
+
 5. Vulnerabilidade Geracional:
-  *	Crianças e adolescentes em risco social (abandono, violência, trabalho infantil);
-  *	Idosos em situação de risco (abandono, dependência financeira, saúde debilitada).
+
+* Crianças e adolescentes em risco social (abandono, violência, trabalho infantil);
+* Idosos em situação de risco (abandono, dependência financeira, saúde debilitada).
+
 6. Vulnerabilidade Territorial:
-  *	Comunidades em áreas de risco (favelas, periferias, regiões de alta violência ou risco ambiental);
-  *	Povos tradicionais e comunidades rurais isoladas com acesso limitado a infraestrutura básica;
-  *	Migrantes em decorrência de crise humanitária (Lei 13.684/2018).
+
+* Comunidades em áreas de risco (favelas, periferias, regiões de alta violência ou risco ambiental);
+* Povos tradicionais e comunidades rurais isoladas com acesso limitado a infraestrutura básica;
+* Migrantes em decorrência de crise humanitária (Lei 13.684/2018).
 
 **Critérios de Registro e Comprovação**:
 
 Para serem contabilizadas, as ações devem
-*	ter um público-alvo claramente identificado como vulnerável, com comprovação documental (cadastros, relatórios específicos ou outros registros formais);
-*	demonstrar impacto direto, seja por meio de atividades, serviços ou intervenções que beneficiem diretamente os indivíduos ou grupos vulneráveis;
-*	ser registradas formalmente com listas de presença, formulários de inscrição, certificados de participação ou outras evidências que confirmem o atendimento.
+
+* ter um público-alvo claramente identificado como vulnerável, com comprovação documental (cadastros, relatórios específicos ou outros registros formais);
+* demonstrar impacto direto, seja por meio de atividades, serviços ou intervenções que beneficiem diretamente os indivíduos ou grupos vulneráveis;
+* ser registradas formalmente com listas de presença, formulários de inscrição, certificados de participação ou outras evidências que confirmem o atendimento.
 
 **Exclusões**:
 
 Ações que apenas abordam temas relacionados à vulnerabilidade, de forma ampla ou genérica, sem direcionamento direto e específico ao público em risco, não serão contabilizadas neste indicador.
-
 
 <table>
   <tr>
@@ -506,9 +515,8 @@ Ações que apenas abordam temas relacionados à vulnerabilidade, de forma ampla
 </table>
 <p>&nbsp;</p>
 
-
-
 ### Percentual de ações de extensão com parcerias institucionais vigentes (EXPAR)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>

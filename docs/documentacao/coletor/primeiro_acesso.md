@@ -17,7 +17,7 @@ Esta página descreve o que acontece na primeira vez que o painel é aberto: a t
 
 Com a stack no ar, acesse `http://<servidor>:8000/painel/`. Enquanto **não existir nenhum usuário**, o painel apresenta a tela de configuração inicial em vez do login — uma única tela, preenchida uma única vez:
 
-![Tela de setup inicial]({{ site.baseurl }}/assets/img/docs/coletor/01-setup-inicial.png)
+![Tela de setup inicial](/guiapnp/assets/img/docs/coletor/01-setup-inicial.png)
 
 | Campo | O que informar |
 |---|---|
@@ -50,7 +50,7 @@ No primeiro registro, a PNP vincula o secret da instituição ao hostname da má
 
 Concluído o setup, o painel abre direto no **Dashboard**, com o *wizard* de 8 passos posicionado no passo 1. A primeira ação é o botão **"Sincronizar com a PNP"**, que importa os **Ciclos de Coleta**, os **Contratos de Dados** e os **Modelos de Dados** definidos pela PNP para o ciclo vigente:
 
-![Modelos de dados importados da PNP]({{ site.baseurl }}/assets/img/docs/coletor/22-modelos-lista.png)
+![Modelos de dados importados da PNP](/guiapnp/assets/img/docs/coletor/22-modelos-lista.png)
 
 Nada disso é digitado à mão: a instituição **não cria** contrato nem modelo. Eles chegam prontos da PNP — o trabalho da instituição, nos passos seguintes, é dizer **de onde vem** cada dado. A [Operação passo a passo]({{ site.baseurl }}/documentacao/coletor/operacao_passo_a_passo) continua a partir daqui.
 

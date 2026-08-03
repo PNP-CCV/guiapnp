@@ -25,7 +25,7 @@ O Coletor registra tudo. Cinco telas respondem a praticamente qualquer "por que 
 | **Tarefas Agendadas** | O que roda sozinho e quando |
 | **Ver resultados de teste** (no contrato) | Qual regra do contrato reprovou |
 
-![Histórico de extrações]({{ site.baseurl }}/assets/img/docs/coletor/25-extracoes-historico.png)
+![Histórico de extrações](/guiapnp/assets/img/docs/coletor/25-extracoes-historico.png)
 
 Para extrações grandes, espere alguns minutos antes de concluir que algo travou — a execução é assíncrona e a tela se atualiza sozinha.
 
@@ -47,17 +47,17 @@ Colunas a mais também reprovam. A causa é quase sempre uma destas três: **aba
 
 O bloco **Detalhes** do Registro de Extração mostra exatamente de onde o sistema tentou ler (aba, URL, query) — é por ali que se descobre o erro em segundos:
 
-![Registro de extração com falha por colunas ausentes]({{ site.baseurl }}/assets/img/docs/coletor/15-registro-extracao-falha.png)
+![Registro de extração com falha por colunas ausentes](/guiapnp/assets/img/docs/coletor/15-registro-extracao-falha.png)
 
 O ciclo de correção é sempre o mesmo — corrigir, testar, re-extrair:
 
 1. Corrija a configuração e rode "Testar extração" até ver as colunas certas.
 
-   ![Teste OK após correção]({{ site.baseurl }}/assets/img/docs/coletor/17-config-corrigida-teste-ok.png)
+   ![Teste OK após correção](/guiapnp/assets/img/docs/coletor/17-config-corrigida-teste-ok.png)
 
 2. O contrato muda para **"Reextração Necessária"** — o sistema detecta que a configuração mudou depois da última extração. Dispare a nova extração; nenhuma etapa anterior é perdida.
 
-   ![Contrato pedindo reextração]({{ site.baseurl }}/assets/img/docs/coletor/18-contrato-reextracao-necessaria.png)
+   ![Contrato pedindo reextração](/guiapnp/assets/img/docs/coletor/18-contrato-reextracao-necessaria.png)
 
 ## Falha na extração: modelo sem configuração
 
@@ -85,7 +85,7 @@ Os testes do contrato rodam **dentro** da extração, então uma reprovação ta
 
 Passar no contrato não garante passar na PNP: ela ainda roda a **validação referencial** — campus, área temática e município citados precisam existir no cadastro da Rede.
 
-![Dashboard com validação rejeitada]({{ site.baseurl }}/assets/img/docs/coletor/19-dashboard-validacao-rejeitada.png)
+![Dashboard com validação rejeitada](/guiapnp/assets/img/docs/coletor/19-dashboard-validacao-rejeitada.png)
 
 ```text
 Validação referencial PNP reprovada — (campi, campo 'estrutura'):

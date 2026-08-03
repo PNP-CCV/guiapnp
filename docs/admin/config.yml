@@ -13,8 +13,8 @@ local_backend: true
 
 publish_mode: simple
 
-media_folder: docs/assets/img/uploads
-public_folder: /assets/img/uploads
+media_folder: docs/assets/img
+public_folder: /guiapnp/assets/img/uploads
 
 site_url: https://pnp-ccv.github.io/guiapnp
 display_url: https://pnp-ccv.github.io/guiapnp
