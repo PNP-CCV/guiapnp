@@ -93,12 +93,28 @@ próprio diretório não precisam de nada disso.
 > `relative_url`). O plugin foi removido justamente para que o build local
 > reproduza o de produção. Se um link funciona no seu ambiente, funciona no ar.
 
-Para conferir antes de abrir PR, gere o site e procure links sem o prefixo:
+### Conferindo antes do PR
+
+O repositório tem um verificador em `scripts/verificar_links.py`, que é o mesmo
+executado pelo CI (workflow **Verificar links internos**). Ele roda em duas
+camadas:
 
 ```bash
-cd docs && bundle exec jekyll build
-grep -rno 'href="/[^g][^"]*"' _site | grep -v '://' | head
+# Rápido, não precisa do site construído: aponta arquivo e linha do fonte
+python3 scripts/verificar_links.py --fonte
+
+# Completo: confere links, âncoras e imagens no HTML gerado
+cd docs && bundle exec jekyll build && cd ..
+python3 scripts/verificar_links.py --site docs/_site
 ```
+
+A primeira camada pega os dois padrões que já quebraram o site (caminho cru e
+prefixo escrito à mão). A segunda pega o que só aparece depois do build: link
+montado por template, âncora que deixou de existir, imagem renomeada.
+
+O CI roda as duas em todo pull request que toque `docs/`, e também recusa a
+recriação de `docs/_plugins/` — plugins personalizados fazem o build local
+divergir do site publicado, que foi a origem do problema descrito acima.
 
 ## Estrutura do projeto
 

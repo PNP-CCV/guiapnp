@@ -1,0 +1,75 @@
+name: Verificar links internos
+
+# O site é publicado num subcaminho (baseurl "/guiapnp"), então todo link
+# interno precisa carregar esse prefixo. Este check existe porque o problema já
+# aconteceu: um plugin personalizado injetava o prefixo no build local, mas o
+# GitHub Pages ignora plugins, e os links das páginas quebravam só em produção.
+# Roda no pull request, para barrar antes do merge — e não depois, quando já não
+# resta o que evitar.
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'scripts/verificar_links.py'
+      - '.github/workflows/verificar-links.yml'
+  push:
+    branches: [main, deploy]
+    paths:
+      - 'docs/**'
+      - 'scripts/verificar_links.py'
+      - '.github/workflows/verificar-links.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Camada 1: não depende do build. Roda primeiro porque é rápida e a
+      # mensagem aponta arquivo e linha do fonte, que é onde se corrige.
+      - name: Conferir os arquivos versionados
+        run: python3 scripts/verificar_links.py --fonte
+
+      - name: Configurar Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+          working-directory: docs
+
+      # Sem plugins personalizados, igual ao GitHub Pages. Se algum dia alguém
+      # recriar docs/_plugins/, este passo denuncia — o build local passaria a
+      # divergir do site publicado outra vez.
+      - name: Recusar plugins personalizados
+        run: |
+          if [ -d docs/_plugins ] && [ -n "$(ls -A docs/_plugins 2>/dev/null)" ]; then
+            echo "::error::docs/_plugins/ voltou a existir. O GitHub Pages ignora"
+            echo "::error::plugins personalizados, então o build local deixaria de"
+            echo "::error::refletir o site publicado. Veja a seção 'Links internos' do README."
+            ls -la docs/_plugins
+            exit 1
+          fi
+          echo "OK: sem plugins personalizados."
+
+      - name: Construir o site
+        working-directory: docs
+        run: bundle exec jekyll build
+
+      # Camada 2: pega o que a checagem de fonte não vê — link montado por
+      # template, âncora que deixou de existir, imagem renomeada.
+      - name: Conferir o site gerado
+        run: python3 scripts/verificar_links.py --site docs/_site
