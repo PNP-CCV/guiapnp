@@ -73,7 +73,7 @@ __Matrícula atendida:__ são as matrículas que estiveram ativas em pelo menos 
 
 __Microdados:__ conjuntos de dados desagregados que contêm informações detalhadas sobre unidades individuais, como vínculos de matrícula, servidores e gastos. São disponibilizados para permitir análises aprofundadas e personalizadas às informações contidas na Plataforma Nilo Peçanha. Diferem dos dados agregados (Extrator PNP), ao preservar características individuais das observações, passando por técnicas de anonimização.
 
-__Modalidade de ensino:__ modo de desenvolvimento do curso quanto ao acompanhamento das atividades acadêmicas, podendo ser presencial, semipresencial ou a distância.
+__Modalidade de ensino:__ modo de desenvolvimento do curso quanto ao acompanhamento das atividades acadêmicas, podendo ser presencial ou a distância.
 
 __Polos de Inovação:__ unidade vinculada administrativamente a um campus ou a uma Reitoria e destinado ao atendimento de demandas das cadeias produtivas por Pesquisa, Desenvolvimento e Inovação - PD&I e à formação profissional para os setores de base tecnológica (Portaria MEC nº 713/2021).
 
@@ -83,7 +83,7 @@ __Rede Integra:__ rede composta por Instituições de Ciência e Tecnologia que 
 
 __Retidos:__ corresponde às matrículas que permaneceram em curso por um período superior ao tempo previsto para integralização de um curso.
 
-__Tipo de curso:__ categorização utilizada para diferenciar os cursos da Educação Profissional, Científica e Tecnológica em seus diversos níveis e graus. Estão previstas as seguintes categorias: Educação Infantil, Ensino Fundamental I, Ensino Fundamental II, Ensino Médio, Qualificação Profissional (FIC), Técnico, Especialização Técnica, Tecnologia, Licenciatura, Bacharelado, Especialização (_Lato Sensu_), Mestrado Profissional, Mestrado, Doutorado Profissional e Doutorado.
+__Tipo de curso:__ categorização utilizada para diferenciar os cursos da Educação Profissional, Científica e Tecnológica em seus diversos níveis e graus. Estão previstas as seguintes categorias: Educação Infantil, Ensino Fundamental I, Ensino Fundamental II, Ensino Médio, Qualificação Profissional (FIC), Técnico, Especialização Técnica, Tecnologia, ABI, Licenciatura, Bacharelado, Especialização (_Lato Sensu_), Mestrado Profissional, Mestrado, Doutorado Profissional e Doutorado.
 
 __Tipo de Oferta:__ categorização utilizada para diferenciar as formas de ofertas dos Cursos Técnicos e de Qualificação Profissional (FIC). Estão previstas as seguintes categorias: Integrado, Subsequente, Concomitante, PROEJA - Concomitante e PROEJA - Integrado.
 
