@@ -75,7 +75,7 @@ toc: true
 
   <tr>
     <td>1</td>
-    <td>Ensino a Distância</td>
+    <td>Educação a Distância</td>
     <td>Tecnologia</td>
     <td>UAB (Universidade Aberta do Brasil)<br/> E-TEC<br/> Sem Programa Associado<br/> Outros Programas<br/></td>
   </tr>
