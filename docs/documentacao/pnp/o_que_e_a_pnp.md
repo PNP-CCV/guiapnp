@@ -8,8 +8,8 @@ title: "O que é a PNP?"
 
 Veja qual é a o nome da próxima página e da anterior e adicione abaixo no formato:
 
-[Anterior: Nome da páginas](/documentacao/caminho_do_arquivo)
-[Próximo: Nome da páginas »](/documentacao/caminho_do_arquivo) 
+[Anterior: Nome da páginas]({{ site.baseurl }}/documentacao/caminho_do_arquivo)
+[Próximo: Nome da páginas »]({{ site.baseurl }}/documentacao/caminho_do_arquivo) 
 -->
 
 # {{ page.title }}
