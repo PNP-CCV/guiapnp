@@ -27,9 +27,15 @@ A **PNP** coleta este contrato para mensurar o esforço de desenvolvimento inter
 
 ## Modelos contidos
 
-- **`projetos_gestao_di`** — projetos de gestão e desenvolvimento institucional, com natureza, vigência, fomento, orçamento e produto final.
+- **`projetos_gestao_di`** *(opcional no fluxo)* — projetos de gestão e desenvolvimento institucional, com natureza, vigência, fomento, orçamento e produto final.
+
+> ℹ️ **Atenção ao vocabulário.** *Obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** da tabela de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) e [Modelos obrigatórios, opcionais e desabilitados]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
+
+> ℹ️ **Este contrato nasce em "Somente Modelos Opcionais".** Como o único modelo é opcional, logo depois da primeira sincronização o contrato aparece no painel com o badge **Somente Modelos Opcionais** e fica fora do progresso do assistente e das ações em lote — não é erro nem falha de sincronização, é o esperado. Ele entra no fluxo assim que alguém cadastrar uma **[Configuração de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#configuracao-de-extracao)** para `projetos_gestao_di`.
 
 ## Modelo `projetos_gestao_di`
+
+> ℹ️ **No fluxo do Coletor:** modelo **opcional** (`meta.required: false`) e **habilitado** (`meta.disabled: false`). Enquanto ninguém cadastrar uma Configuração de Extração para ele, o Coletor não o cobra: não vira pendência, não segura o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) e é pulado pela extração em lote. Assim que ganha uma configuração, passa a contar como qualquer outro modelo — o contrato volta para *Aguardando Extração* e só fecha quando este modelo for extraído, testado, enviado e aprovado. Para desistir dele, basta remover a(s) configuração(ões) de extração.
 
 ### Resumo do modelo
 
@@ -138,6 +144,9 @@ models:
     type: table
     title: "Projetos de Gestão e Desenvolvimento Institucional"
     description: "Informações estruturadas sobre projetos de gestão e desenvolvimento institucional."
+    meta:
+      required: false
+      disabled: false
     fields:
       id_projeto_gestao_di:
         type: integer

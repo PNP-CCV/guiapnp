@@ -7,8 +7,8 @@ title: "Produto de Dados"
 
 Veja qual é a o nome da próxima página e da anterior e adicione abaixo no formato:
 
-[Anterior: Nome da páginas](/documentacao/caminho_do_arquivo)
-[Próximo: Nome da páginas »](/documentacao/caminho_do_arquivo) 
+[Anterior: Nome da páginas]({{ site.baseurl }}/documentacao/caminho_do_arquivo)
+[Próximo: Nome da páginas »]({{ site.baseurl }}/documentacao/caminho_do_arquivo) 
 -->
 
 # {{ page.title }}
@@ -39,7 +39,7 @@ Com os dados processados, é realizada a etapa de *merge* dos dados, que consist
 
 ![Fluxo da etapa de merge]({{ site.baseurl }}/assets/img/docs/ccv_produto_de_dados_01.png "Fluxo da etapa de merge")
 
-Por exemplo, matrículas que tiveram o status corrigido para integralizada, abandono, desligamento, transferências ou reprovadas ficam armazenadas com esse novo status no banco de dados. Por isso, mesmo que no Sistec a Instituição tenha esquecido de atualizá-las, nas edições subsequentes da PNP as matrículas não serão mais consideradas nas inconsistências, pois já foram corrigidas para estados terminativos durante o ciclo da PNP.
+Por exemplo, matrículas que tiveram o status corrigido para integralizada, abandono, desligamento ou transferências ficam armazenadas com esse novo status no banco de dados. Por isso, mesmo que no Sistec a Instituição tenha esquecido de atualizá-las, nas edições subsequentes da PNP as matrículas não serão mais consideradas nas inconsistências, pois já foram corrigidas para estados terminativos durante o ciclo da PNP.
 
 ## Conferência, ajuste e validação de dados
 

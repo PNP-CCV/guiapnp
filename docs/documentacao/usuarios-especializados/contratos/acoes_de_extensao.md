@@ -24,11 +24,15 @@ A PNP coleta este contrato para mensurar o impacto social da extensão (alcance 
 
 ## Modelos contidos
 
-* **`acoes_extensao`** — ações de extensão (programa, projeto, curso, evento, prestação de serviço) com escopo, vigência, parceria, financiamento e área temática CNPq.
-* **`pessoas_atendidas_acoes_extensao`** — pessoas impactadas diretamente pelas ações (público-alvo). Contém PII (`cpf`, `nome`).
-* **`pessoas_envolvidas_acoes_extensao`** — pessoas formalmente envolvidas na execução (docentes, TAEs, estudantes, externos). Contém PII.
+- **`acoes_extensao`** *(obrigatório no fluxo)* — ações de extensão (programa, projeto, curso, evento, prestação de serviço) com escopo, vigência, parceria, financiamento e área temática CNPq.
+- **`pessoas_atendidas_acoes_extensao`** *(opcional no fluxo)* — pessoas impactadas diretamente pelas ações (público-alvo). Contém PII (`cpf`, `nome`).
+- **`pessoas_envolvidas_acoes_extensao`** *(obrigatório no fluxo)* — pessoas formalmente envolvidas na execução (docentes, TAEs, estudantes, externos). Contém PII.
+
+> ℹ️ **Atenção ao vocabulário.** *Obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** das tabelas de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) e [Modelos obrigatórios, opcionais e desabilitados]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
 
 ## Modelo `acoes_extensao`
+
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
@@ -36,29 +40,31 @@ Tabela principal do contrato. Cada linha é uma ação de extensão única, iden
 
 ### Tabela de campos
 
-| Campo                          | Tipo                  | Obrigatório | Constraints                                                       | Descrição                                                                                                                                                 |
-| ------------------------------ | --------------------- | ----------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id_acao_extensao`             | `integer`             | sim         | `primaryKey`                                                      | ID ação de extensão                                                                                                                                       |
-| `tipo`                         | `string`              | sim         | `enum: [Programa, Projeto, Curso, Evento, Prestação de serviços]` | Tipo                                                                                                                                                      |
-| `titulo_acao`                  | `string`              | sim         | —                                                                 | Título da ação                                                                                                                                            |
-| `resumo_acao`                  | `string`              | não         | —                                                                 | Resumo da ação                                                                                                                                            |
-| `estrutura`                    | `string`              | não         | `referencia_pnp: campi` (declarativo — ver nota)                  | Estrutura à qual vinculam-se as ações de extensão. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros)                 |
-| `projeto_extensao_sustentavel` | `boolean`             | não         | —                                                                 | Se projeto, aborda a temática da sustentabilidade? Aplicável quando `tipo = "Projeto"`. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
-| `parceria_institucional`       | `boolean`             | não         | —                                                                 | Ação com parceria institucional?                                                                                                                          |
-| `instrumento_parceria`         | `string`              | não         | `enum: [Contrato, Convênio, Acordo, Nenhum]`                      | Instrumento de parceria                                                                                                                                   |
-| `nome_coordenador`             | `string`              | não         | —                                                                 | Nome do Coordenador                                                                                                                                       |
-| `data_inicio`                  | `date`                | não         | —                                                                 | Data de início                                                                                                                                            |
-| `data_termino`                 | `date`                | não         | —                                                                 | Data de término                                                                                                                                           |
-| `situacao_acao`                | `string`              | não         | `enum: [Em andamento, Finalizado, Cancelado]`                     | Situação da ação                                                                                                                                          |
-| `data_ultima_situacao`         | `date`                | não         | —                                                                 | Data da última situação                                                                                                                                   |
-| `municipios_atendidos`         | `array` (de `bigint`) | não         | `referencia_pnp: municipios` (declarativo — ver nota)             | Municípios atendidos, por código IBGE — lista de números, ex. `[2408102, 2403103]`. Ver a ressalva sobre o formato abaixo                                 |
-| `entidade_financiadora`        | `string`              | não         | —                                                                 | Entidade financiadora                                                                                                                                     |
-| `contrapartida_financeira`     | `string`              | não         | —                                                                 | Contrapartida financeira institucional                                                                                                                    |
-| `area_tematica_cnpq`           | `string`              | não         | `referencia_pnp: areas_tematicas_cnpq` (declarativo — ver nota)   | Área temática CNPq. Formato: `{codigo}`                                                                                                                   |
-| `subeixo_tecnologico`          | `string`              | não         | `referencia_pnp: subeixos_tecnologicos` (declarativo — ver nota)  | Subeixo tecnológico. Formato: `{codigo}`                                                                                                                  |
-| `populacao_vulneravel`         | `boolean`             | não         | —                                                                 | Destinado à população em vulnerabilidade?                                                                                                                 |
-| `tipo_vulnerabilidade`         | `string`              | não         | —                                                                 | Tipo de vulnerabilidade                                                                                                                                   |
-| `produto`                      | `string`              | não         | —                                                                 | Produto                                                                                                                                                   |
+| Campo | Tipo | Obrigatório | Constraints | Descrição |
+|---|---|---|---|---|
+| `id_acao_extensao` | `integer` | sim | `primaryKey` | ID da Ação de Extensão fornecido pela Instituição |
+| `tipo` | `string` | sim | `enum: [Programa, Projeto, Curso, Evento, Prestação de serviços]` | Tipo |
+| `titulo_acao` | `string` | sim | — | Título da ação |
+| `resumo_acao` | `string` | não | — | Resumo da ação |
+| `estrutura` | `string` | não | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se as ações de extensão. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `projeto_extensao_sustentavel` | `boolean` | não | — | Se projeto, aborda a temática da sustentabilidade? Aplicável quando `tipo = "Projeto"`. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `parceria_institucional` | `boolean` | não | — | Ação com parceria institucional? |
+| `instrumento_parceria` | `string` | não | `enum: [Contrato, Convênio, Acordo, Nenhum]` | Instrumento de parceria |
+| `nome_coordenador` | `string` | não | — | Nome do Coordenador |
+| `data_inicio` | `date` | não | — | Data de início |
+| `data_termino` | `date` | não | — | Data de término |
+| `situacao_acao` | `string` | não | `enum: [Em andamento, Finalizado, Cancelado]` | Situação da ação |
+| `data_ultima_situacao` | `date` | não | — | Data da última situação |
+| `municipios_atendidos` | `array` (de `bigint`) | não | `referencia_pnp: municipios` (declarativo — ver nota) | Municípios atendidos, por código IBGE — lista de números, ex. `[2408102, 2403103]`. Ver a ressalva sobre o formato abaixo |
+| `entidade_financiadora` | `string` | não | — | Entidade financiadora |
+| `contrapartida_financeira` | `string` | não | — | Contrapartida financeira institucional |
+| `area_tematica_cnpq` | `string` | não | `referencia_pnp: areas_tematicas_cnpq` (declarativo — ver nota) | Área temática CNPq. Formato: `{codigo}` |
+| `subeixo_tecnologico` | `string` | não | `referencia_pnp: subeixos_tecnologicos` (declarativo — ver nota) | Subeixo tecnológico. Formato: `{codigo}` |
+| `populacao_vulneravel` | `boolean` | não | — | Destinado à população em vulnerabilidade? |
+| `tipo_vulnerabilidade` | `string` | não | `enum: [Socioeconômica, Educacional, Gênero e Raça, Deficiência ou Condição de Saúde, Geracional, Territorial]` | Tipo de vulnerabilidade |
+| `produto` | `string` | não | — | Produto |
+
+> ⚠️ **`tipo_vulnerabilidade` deixou de ser texto livre.** O campo passou a ter domínio fechado com seis valores. Descrições em prosa que funcionavam antes (por exemplo, "Idosos em situação de vulnerabilidade socioeconômica") agora reprovam a validação — é preciso mapear a informação da origem para um dos seis valores do `enum`.
 
 > **`municipios_atendidos`:**  O que a validação de schema aceita é **uma lista de números** — `[2408102, 2403103]` —, não `"2408102; 2403103"`. A notação `{codigo; codigo}` ali é a taquigrafia do autor para "vários códigos", herdada dos campos que são mesmo string (`vigencia`, `objeto_acordo`). Mandar string aqui reprova por tipo.
 
@@ -85,21 +91,24 @@ Tabela principal do contrato. Cada linha é uma ação de extensão única, iden
   "area_tematica_cnpq": "60900007",
   "subeixo_tecnologico": "08",
   "populacao_vulneravel": true,
-  "tipo_vulnerabilidade": "Idosos em situação de vulnerabilidade socioeconômica",
+  "tipo_vulnerabilidade": "Socioeconômica",
   "produto": "Cartilha de letramento digital"
 }
 ```
 
 ### Exemplos inválidos
 
-| Payload (resumido)                                                            | Erro                                                                                                      |
-| ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `{"tipo": "Projeto", "titulo_acao": "..."}` (sem `id_acao_extensao`)          | `Required field 'id_acao_extensao' is missing`                                                            |
-| `{..., "tipo": "Workshop"}` (valor fora do `enum`)                            | `Value 'Workshop' for field 'tipo' not in enum [Programa, Projeto, Curso, Evento, Prestação de serviços]` |
-| `{..., "data_inicio": "01/03/2025"}` (formato errado, `date` espera ISO 8601) | `Type mismatch on 'data_inicio': expected date, got string '01/03/2025'`                                  |
-| `{..., "observacoes": "qualquer coisa"}` (coluna não declarada)               | `Field 'observacoes' not in schema (additionalFields: false)`                                             |
+| Payload (resumido) | Erro |
+|---|---|
+| `{"tipo": "Projeto", "titulo_acao": "..."}` (sem `id_acao_extensao`) | `Required field 'id_acao_extensao' is missing` |
+| `{..., "tipo": "Workshop"}` (valor fora do `enum`) | `Value 'Workshop' for field 'tipo' not in enum [Programa, Projeto, Curso, Evento, Prestação de serviços]` |
+| `{..., "data_inicio": "01/03/2025"}` (formato errado, `date` espera ISO 8601) | `Type mismatch on 'data_inicio': expected date, got string '01/03/2025'` |
+| `{..., "tipo_vulnerabilidade": "Idosos em situação de vulnerabilidade socioeconômica"}` (texto livre, fora do `enum`) | `Value 'Idosos em situação de vulnerabilidade socioeconômica' for field 'tipo_vulnerabilidade' not in enum` |
+| `{..., "observacoes": "qualquer coisa"}` (coluna não declarada) | `Field 'observacoes' not in schema (additionalFields: false)` |
 
 ## Modelo `pessoas_atendidas_acoes_extensao`
+
+> ℹ️ **No fluxo do Coletor:** modelo **opcional** (`meta.required: false`) e **habilitado** (`meta.disabled: false`) — o único modelo opcional deste contrato. Enquanto ninguém cadastrar uma **[Configuração de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#configuracao-de-extracao)** para ele, o Coletor não o cobra: não vira pendência, não segura o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) e é pulado pela extração em lote. Assim que ganha uma configuração, passa a contar como qualquer outro modelo — o contrato volta para *Aguardando Extração* e só fecha quando este modelo for extraído, testado, enviado e aprovado. Para desistir dele, basta remover a(s) configuração(ões) de extração.
 
 ### Resumo do modelo
 
@@ -139,6 +148,8 @@ Pessoas impactadas diretamente por uma ação de extensão (público-alvo). Cada
 
 ## Modelo `pessoas_envolvidas_acoes_extensao`
 
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
+
 ### Resumo do modelo
 
 Pessoas formalmente envolvidas na execução de uma ação (docentes, TAEs, estudantes ou externos), com período de participação e situação. Contém (`cpf`, `nome`).
@@ -147,17 +158,19 @@ Pessoas formalmente envolvidas na execução de uma ação (docentes, TAEs, estu
 
 ### Tabela de campos
 
-| Campo                  | Tipo      | Obrigatório | Constraints                                                                            | Descrição                |
-| ---------------------- | --------- | ----------- | -------------------------------------------------------------------------------------- | ------------------------ |
-| `id_envolvido`         | `integer` | sim         | `primaryKey`                                                                           | ID envolvido             |
-| `cpf`                  | `string`  | não         | `pii`, `classification: sensitive`, `referencia_pnp: pessoas` (declarativo — ver nota) | CPF                      |
-| `nome`                 | `string`  | não         | `pii`, `classification: sensitive`                                                     | Nome                     |
-| `categoria`            | `string`  | sim         | `enum: [docente, TAE, externo, estudante]`                                             | Categoria                |
-| `id_acao_extensao`     | `integer` | sim         | `references acoes_extensao.id_acao_extensao`                                           | ID ação de extensão      |
-| `data_ingresso`        | `date`    | não         | —                                                                                      | Data de ingresso na ação |
-| `data_saida`           | `date`    | não         | —                                                                                      | Data de saída da ação    |
-| `situacao_envolvido`   | `string`  | não         | `enum: [Ativo, Inativo]`                                                               | Situação do envolvido    |
-| `data_ultima_situacao` | `date`    | não         | —                                                                                      | Data da última situação  |
+| Campo | Tipo | Obrigatório | Constraints | Descrição |
+|---|---|---|---|---|
+| `id_envolvido` | `integer` | sim | `primaryKey` | ID envolvido |
+| `cpf` | `string` | não | `pii`, `classification: sensitive`, `referencia_pnp: pessoas` (declarativo — ver nota) | CPF |
+| `nome` | `string` | não | `pii`, `classification: sensitive` | Nome |
+| `categoria` | `string` | sim | `enum: [docente, TAE, externo, estudante]` | Categoria |
+| `id_acao_extensao` | `integer` | sim | `references acoes_extensao.id_acao_extensao` | ID ação de extensão |
+| `data_ingresso` | `date` | não | — | Data de ingresso na ação |
+| `data_saida` | `date` | não | — | Data de saída da ação |
+| `situacao_envolvido` | `string` | não | `enum: [Ativo, Inativo]` | Situação do envolvido |
+| `data_ultima_situacao` | `date` | não | — | Data da última situação |
+| `matricula` | `string` | não | — | Matrícula |
+
 
 ### Exemplo válido
 
@@ -171,7 +184,8 @@ Pessoas formalmente envolvidas na execução de uma ação (docentes, TAEs, estu
   "data_ingresso": "2025-03-01",
   "data_saida": null,
   "situacao_envolvido": "Ativo",
-  "data_ultima_situacao": "2025-03-01"
+  "data_ultima_situacao": "2025-03-01",
+  "matricula": "1548923"
 }
 ```
 
@@ -222,10 +236,15 @@ models:
     type: table
     title: "Ações de Extensão"
     description: "Informações estruturadas sobre as ações de extensão desenvolvidas institucionalmente."
+    meta:
+      required: true
+      disabled: false
     fields:
       id_acao_extensao:
         type: integer
         title: "ID ação de extensão"
+        description: >
+          ID da Ação de Extensão fornecido pela Instituição
         primaryKey: true
         required: true
 
@@ -336,6 +355,7 @@ models:
       tipo_vulnerabilidade:
         type: string
         title: "Tipo de vulnerabilidade"
+        enum: ["Socioeconômica", "Educacional", "Gênero e Raça", "Deficiência ou Condição de Saúde", "Geracional", "Territorial"]
 
       produto:
         type: string
@@ -346,6 +366,9 @@ models:
     type: table
     title: "Pessoas Atendidas em Ações de Extensão"
     description: "Registros de pessoas impactadas diretamente por ações de extensão."
+    meta:
+      required: false
+      disabled: false
     fields:
       id_atendido:
         type: integer
@@ -380,6 +403,9 @@ models:
     type: table
     title: "Pessoas Envolvidas em Ações de Extensão"
     description: "Registros de participantes formalmente envolvidos na execução das ações."
+    meta:
+      required: true
+      disabled: false
     fields:
       id_envolvido:
         type: integer
@@ -434,5 +460,9 @@ models:
       data_ultima_situacao:
         type: date
         title: "Data da última situação"
+
+      matricula:
+        type: string
+        title: "Matrícula"
     additionalFields: false
 ```

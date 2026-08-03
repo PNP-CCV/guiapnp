@@ -62,6 +62,60 @@ O site estará disponível em: **http://127.0.0.1:4000/**
 
 Pressione `Ctrl+C` no terminal onde o servidor está rodando.
 
+## Links internos: sempre com `site.baseurl`
+
+O site é publicado num subcaminho (`baseurl: "/guiapnp"` no `_config.yml`), então
+**todo link ou imagem interna precisa carregar esse prefixo explicitamente**.
+
+Em Markdown, use `{{ site.baseurl }}`:
+
+```markdown
+[Ciclo de coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta)
+![Dashboard]({{ site.baseurl }}/assets/img/docs/coletor/02-dashboard.png)
+```
+
+Em HTML e nos templates (`_includes/`, `_layouts/`), use o filtro `relative_url`:
+
+```liquid
+<a href="{{ '/assets/files/Guia_PNP.pdf' | relative_url }}">Versão PDF</a>
+```
+
+Nunca escreva o caminho cru (`](/documentacao/...)`) nem o prefixo na mão
+(`href="/guiapnp/..."`): o primeiro quebra em produção, o segundo quebra se o
+`baseurl` mudar. Links externos, âncoras (`#secao`) e caminhos relativos ao
+próprio diretório não precisam de nada disso.
+
+> **Por que isso importa.** O repositório já teve um plugin
+> (`docs/_plugins/relative_links.rb`) que injetava o prefixo no HTML gerado.
+> O GitHub Pages **ignora plugins personalizados** — só executa uma lista fixa —,
+> então o plugin funcionava no `jekyll serve` local e não em produção: os links
+> das páginas quebravam, enquanto o menu continuava certo (os templates já usavam
+> `relative_url`). O plugin foi removido justamente para que o build local
+> reproduza o de produção. Se um link funciona no seu ambiente, funciona no ar.
+
+### Conferindo antes do PR
+
+O repositório tem um verificador em `scripts/verificar_links.py`, que é o mesmo
+executado pelo CI (workflow **Verificar links internos**). Ele roda em duas
+camadas:
+
+```bash
+# Rápido, não precisa do site construído: aponta arquivo e linha do fonte
+python3 scripts/verificar_links.py --fonte
+
+# Completo: confere links, âncoras e imagens no HTML gerado
+cd docs && bundle exec jekyll build && cd ..
+python3 scripts/verificar_links.py --site docs/_site
+```
+
+A primeira camada pega os dois padrões que já quebraram o site (caminho cru e
+prefixo escrito à mão). A segunda pega o que só aparece depois do build: link
+montado por template, âncora que deixou de existir, imagem renomeada.
+
+O CI roda as duas em todo pull request que toque `docs/`, e também recusa a
+recriação de `docs/_plugins/` — plugins personalizados fazem o build local
+divergir do site publicado, que foi a origem do problema descrito acima.
+
 ## Estrutura do projeto
 
 ```
@@ -70,7 +124,6 @@ docs/
 ├── _data/                # Dados do site (menu, header)
 ├── _includes/            # Componentes reutilizáveis
 ├── _layouts/             # Layouts de páginas
-├── _plugins/             # Plugins personalizados
 ├── assets/               # CSS, JS, imagens
 ├── documentacao/         # Conteúdo Markdown
 └── Gemfile              # Dependências Ruby

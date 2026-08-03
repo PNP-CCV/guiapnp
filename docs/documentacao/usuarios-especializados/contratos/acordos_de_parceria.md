@@ -25,9 +25,15 @@ Este é o único contrato do catálogo composto por **um único Modelo de Dados*
 
 ## Modelos contidos
 
-- **`acordos_parceria`** — instrumentos jurídicos formais (acordo/parceria) firmados com instituições externas, com vigência, contrapartida e referência ao projeto de pesquisa associado.
+- **`acordos_parceria`** *(opcional no fluxo)* — instrumentos jurídicos formais (acordo/parceria) firmados com instituições externas, com vigência, contrapartida e referência ao projeto de pesquisa associado.
+
+> ℹ️ **Atenção ao vocabulário.** *Obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** da tabela de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) e [Modelos obrigatórios, opcionais e desabilitados]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
+
+> ℹ️ **Este contrato nasce em "Somente Modelos Opcionais".** Como o único modelo é opcional, logo depois da primeira sincronização o contrato aparece no painel com o badge **Somente Modelos Opcionais** e fica fora do progresso do assistente e das ações em lote — não é erro nem falha de sincronização, é o esperado. Ele entra no fluxo assim que alguém cadastrar uma **[Configuração de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#configuracao-de-extracao)** para `acordos_parceria`.
 
 ## Modelo `acordos_parceria`
+
+> ℹ️ **No fluxo do Coletor:** modelo **opcional** (`meta.required: false`) e **habilitado** (`meta.disabled: false`). Enquanto ninguém cadastrar uma Configuração de Extração para ele, o Coletor não o cobra: não vira pendência, não segura o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) e é pulado pela extração em lote. Assim que ganha uma configuração, passa a contar como qualquer outro modelo — o contrato volta para *Aguardando Extração* e só fecha quando este modelo for extraído, testado, enviado e aprovado. Para desistir dele, basta remover a(s) configuração(ões) de extração.
 
 ### Resumo do modelo
 
@@ -105,6 +111,9 @@ models:
     type: table
     title: "Acordos de Parceria"
     description: "Registros formais de parcerias com instituições externas vinculadas a projetos de pesquisa."
+    meta:
+      required: false
+      disabled: false
     fields:
       id_acordo:
         type: integer

@@ -7,19 +7,17 @@ title: "Referências"
 
 Veja qual é a o nome da próxima página e da anterior e adicione abaixo no formato:
 
-[Anterior: Nome da páginas](/documentacao/caminho_do_arquivo)
-[Próximo: Nome da páginas »](/documentacao/caminho_do_arquivo) 
+[Anterior: Nome da páginas]({{ site.baseurl }}/documentacao/caminho_do_arquivo)
+[Próximo: Nome da páginas »]({{ site.baseurl }}/documentacao/caminho_do_arquivo) 
 -->
 
-<!--[Anterior: "Lista de termos"](/documentacao/termos/termos)-->
+<!--[Anterior: "Lista de termos"]({{ site.baseurl }}/documentacao/termos/termos)-->
 
 # {{ page.title }}
 
+
 <p style="text-indent: 40px;">
-  <a target="_blank" href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12711.htm">Lei 11.711, de 29 de agosto de 2012</a>
-</p>
-<p style="text-indent: 40px;">
-  <a target="_blank" href="https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11892.htm">Lei 11.892, de 20 de dezembro de 2008</a>
+  <a target="_blank" href="https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11892.htm">Lei 11.892, de 29 de dezembro de 2008</a>
 </p>
 <p style="text-indent: 40px;">
   <a target="_blank" href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13005.htm">Lei 13.005, de 25 de junho de 2014</a>
@@ -52,7 +50,7 @@ Veja qual é a o nome da próxima página e da anterior e adicione abaixo no for
   Portaria MEC nº 2.027, de 16 de novembro de 2023
 </p>
 <p style="text-indent: 40px;">
-  Portaria Setec/MEC nº 09, de 05 de maio de 2017
+  Portaria Setec/MEC nº 09, de 22 de março de 2017
 </p>
 <p style="text-indent: 40px;">
   Portaria Setec/MEC nº 1, de 03 de janeiro de 2018: 

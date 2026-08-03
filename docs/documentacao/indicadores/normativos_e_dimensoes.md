@@ -7,13 +7,13 @@ title: "Normativos e dimensões"
 
 Veja qual é a o nome da próxima página e da anterior e adicione abaixo no formato:
 
-[Anterior: Nome da páginas](/documentacao/caminho_do_arquivo)
-[Próximo: Nome da páginas »](/documentacao/caminho_do_arquivo) 
+[Anterior: Nome da páginas]({{ site.baseurl }}/documentacao/caminho_do_arquivo)
+[Próximo: Nome da páginas »]({{ site.baseurl }}/documentacao/caminho_do_arquivo) 
 -->
 
 # {{ page.title }}
 
-Todos os indicadores que constam na PNP foram normatizados no âmbito da Secretaria de Educação Profissional e Tecnológica do Ministério da Educação (Setec/MEC), por meio da Portaria Setec/MEC nº 146/2021, onde estão organizados nas seguintes dimensões: **Ensino**, **Pesquisa e Inovação**, **Extensão**, **Polos de Inovação**, **Pessoal**, **Gastos e Acompanhamento Legal**. As dimensões Ensino e Acompanhamento Legal e são subdividas em categorias, a saber: 
+Todos os indicadores que constam na PNP foram normatizados no âmbito da Secretaria de Educação Profissional e Tecnológica do Ministério da Educação (Setec/MEC), por meio da Portaria Setec/MEC nº 146/2021, onde estão organizados nas seguintes dimensões: **Ensino**, **Pesquisa e Inovação**, **Extensão**, **Polos de Inovação**, **Pessoal**, **Gastos e Acompanhamento Legal** e **Sustentabilidade**. As dimensões Ensino e Acompanhamento Legal e são subdividas em categorias, a saber: 
 * Os indicadores de Ensino são organizados em três categorias: “Geral” e “Acadêmicos”. 
 * Os indicadores de Acompanhamento Legal estão organizados em três categorias, cada qual associada ao instrumento normativo que os institui: Lei nº 11.892/2008; Lei nº 13.005/2014; e Lei nº 14.723/2023.
 
