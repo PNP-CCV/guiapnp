@@ -20,17 +20,319 @@ site_url: https://pnp-ccv.github.io/guiapnp
 display_url: https://pnp-ccv.github.io/guiapnp
 
 collections:
-  - name: documentacao
-    label: Documentacao
+  - name: ccv
+    label: Documentacao - CCV
     label_singular: Pagina
-    folder: docs/documentacao
+    folder: docs/documentacao/ccv
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown }
+
+  - name: metodologia
+    label: Documentacao - Metodologia
+    label_singular: Pagina
+    folder: docs/documentacao/metodologia
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown }
+
+  - name: odi
+    label: Documentacao - ODI
+    label_singular: Pagina
+    folder: docs/documentacao/odi
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown }
+
+  - name: pnp
+    label: Documentacao - PNP
+    label_singular: Pagina
+    folder: docs/documentacao/pnp
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown }
+
+  - name: indicadores
+    label: Documentacao - Indicadores
+    label_singular: Pagina
+    folder: docs/documentacao/indicadores
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown }
+
+  - name: usuarios_especializados
+    label: Documentacao - Usuarios Especializados
+    label_singular: Pagina
+    folder: docs/documentacao/usuarios-especializados
     create: false
     extension: md
     format: frontmatter
     nested:
-      depth: 10
+      depth: 1
     slug: '{{slug}}'
     summary: '{{title}}'
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown }
+
+  - name: contratos_base
+    label: Contratos - Base e Processo
+    label_singular: Pagina
+    files:
+      - label: Conceito
+        name: conceito
+        file: docs/documentacao/usuarios-especializados/contratos/conceito.md
+        fields:
+          - { label: Layout, name: layout, widget: string, required: false, default: default }
+          - { label: Titulo, name: title, widget: string, required: false }
+          - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+          - { label: Conteudo, name: body, widget: markdown }
+      - label: Anatomia YAML
+        name: anatomia_yaml
+        file: docs/documentacao/usuarios-especializados/contratos/anatomia_yaml.md
+        fields:
+          - { label: Layout, name: layout, widget: string, required: false, default: default }
+          - { label: Titulo, name: title, widget: string, required: false }
+          - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+          - { label: Conteudo, name: body, widget: markdown }
+      - label: Validacao e Qualidade
+        name: validacao_e_qualidade
+        file: docs/documentacao/usuarios-especializados/contratos/validacao_e_qualidade.md
+        fields:
+          - { label: Layout, name: layout, widget: string, required: false, default: default }
+          - { label: Titulo, name: title, widget: string, required: false }
+          - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+          - { label: Conteudo, name: body, widget: markdown }
+      - label: Ciclo de Vida
+        name: ciclo_de_vida
+        file: docs/documentacao/usuarios-especializados/contratos/ciclo_de_vida.md
+        fields:
+          - { label: Layout, name: layout, widget: string, required: false, default: default }
+          - { label: Titulo, name: title, widget: string, required: false }
+          - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+          - { label: Conteudo, name: body, widget: markdown }
+      - label: Sincronizacao PNP
+        name: sincronizacao_pnp
+        file: docs/documentacao/usuarios-especializados/contratos/sincronizacao_pnp.md
+        fields:
+          - { label: Layout, name: layout, widget: string, required: false, default: default }
+          - { label: Titulo, name: title, widget: string, required: false }
+          - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+          - { label: Conteudo, name: body, widget: markdown }
+
+  - name: contratos_extensao
+    label: Contratos - Extensao
+    label_singular: Pagina
+    files:
+      - label: Acoes de Extensao
+        name: acoes_de_extensao
+        file: docs/documentacao/usuarios-especializados/contratos/acoes_de_extensao.md
+        fields:
+          - { label: Layout, name: layout, widget: string, required: false, default: default }
+          - { label: Titulo, name: title, widget: string, required: false }
+          - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+          - { label: Conteudo, name: body, widget: markdown }
+
+  - name: contratos_pesquisa_inovacao
+    label: Contratos - Pesquisa e Inovacao
+    label_singular: Pagina
+    files:
+      - label: Acordos de Parceria
+        name: acordos_de_parceria
+        file: docs/documentacao/usuarios-especializados/contratos/acordos_de_parceria.md
+        fields:
+          - { label: Layout, name: layout, widget: string, required: false, default: default }
+          - { label: Titulo, name: title, widget: string, required: false }
+          - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+          - { label: Conteudo, name: body, widget: markdown }
+      - label: Producao Intelectual
+        name: producao_intelectual
+        file: docs/documentacao/usuarios-especializados/contratos/producao_intelectual.md
+        fields:
+          - { label: Layout, name: layout, widget: string, required: false, default: default }
+          - { label: Titulo, name: title, widget: string, required: false }
+          - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+          - { label: Conteudo, name: body, widget: markdown }
+      - label: Projetos de Pesquisa
+        name: projetos_de_pesquisa
+        file: docs/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa.md
+        fields:
+          - { label: Layout, name: layout, widget: string, required: false, default: default }
+          - { label: Titulo, name: title, widget: string, required: false }
+          - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+          - { label: Conteudo, name: body, widget: markdown }
+
+  - name: contratos_ensino
+    label: Contratos - Ensino
+    label_singular: Pagina
+    files:
+      - label: Projetos de Ensino
+        name: projetos_de_ensino
+        file: docs/documentacao/usuarios-especializados/contratos/projetos_de_ensino.md
+        fields:
+          - { label: Layout, name: layout, widget: string, required: false, default: default }
+          - { label: Titulo, name: title, widget: string, required: false }
+          - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+          - { label: Conteudo, name: body, widget: markdown }
+
+  - name: contratos_desenvolvimento_institucional
+    label: Contratos - Desenvolvimento Institucional
+    label_singular: Pagina
+    files:
+      - label: Projetos de Desenvolvimento Institucional
+        name: projetos_de_desenvolvimento_institucional
+        file: docs/documentacao/usuarios-especializados/contratos/projetos_de_desenvolvimento_institucional.md
+        fields:
+          - { label: Layout, name: layout, widget: string, required: false, default: default }
+          - { label: Titulo, name: title, widget: string, required: false }
+          - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+          - { label: Conteudo, name: body, widget: markdown }
+
+  - name: contratos_sustentabilidade
+    label: Contratos - Sustentabilidade
+    label_singular: Pagina
+    files:
+      - label: Sustentabilidade
+        name: sustentabilidade
+        file: docs/documentacao/usuarios-especializados/contratos/sustentabilidade.md
+        fields:
+          - { label: Layout, name: layout, widget: string, required: false, default: default }
+          - { label: Titulo, name: title, widget: string, required: false }
+          - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+          - { label: Conteudo, name: body, widget: markdown }
+
+  - name: contratos_orcamento
+    label: Contratos - Orcamento
+    label_singular: Pagina
+    files:
+      - label: Orcamento
+        name: orcamento
+        file: docs/documentacao/usuarios-especializados/contratos/orcamento.md
+        fields:
+          - { label: Layout, name: layout, widget: string, required: false, default: default }
+          - { label: Titulo, name: title, widget: string, required: false }
+          - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+          - { label: Conteudo, name: body, widget: markdown }
+
+  - name: contratos_pessoal_terceirizado
+    label: Contratos - Pessoal Terceirizado
+    label_singular: Pagina
+    files:
+      - label: Pessoal Terceirizado
+        name: pessoal_terceirizado
+        file: docs/documentacao/usuarios-especializados/contratos/pessoal_terceirizado.md
+        fields:
+          - { label: Layout, name: layout, widget: string, required: false, default: default }
+          - { label: Titulo, name: title, widget: string, required: false }
+          - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+          - { label: Conteudo, name: body, widget: markdown }
+
+  - name: contratos_academico
+    label: Contratos - Academico
+    label_singular: Pagina
+    files:
+      - label: Academico
+        name: academico
+        file: docs/documentacao/usuarios-especializados/contratos/academico.md
+        fields:
+          - { label: Layout, name: layout, widget: string, required: false, default: default }
+          - { label: Titulo, name: title, widget: string, required: false }
+          - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+          - { label: Conteudo, name: body, widget: markdown }
+
+  - name: referencias
+    label: Documentacao - Referencias
+    label_singular: Pagina
+    folder: docs/documentacao/referencias
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown }
+
+  - name: termos
+    label: Documentacao - Termos
+    label_singular: Pagina
+    folder: docs/documentacao/termos
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
     fields:
       - { label: Layout, name: layout, widget: string, required: false, default: default }
       - { label: Titulo, name: title, widget: string, required: false }
