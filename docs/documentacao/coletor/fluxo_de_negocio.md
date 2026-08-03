@@ -11,7 +11,7 @@ toc: true
 
 > **Para quem é:** 👔 gestores · 🔌 integradores
 
-Esta página percorre o fluxo de ponta a ponta — do cadastro do **[Provedor de Dados](/documentacao/coletor/glossario#provedor-de-dados)** até a **[Aprovação do Reitor](/documentacao/coletor/glossario#aprovacao-do-reitor)** na PNP — em linguagem de negócio. Antes de ler, recomenda-se passar pela [Visão geral](/documentacao/coletor/visao_geral) para entender o papel do sistema na cadeia de coleta.
+Esta página percorre o fluxo de ponta a ponta — do cadastro do **[Provedor de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#provedor-de-dados)** até a **[Aprovação do Reitor]({{ site.baseurl }}/documentacao/coletor/glossario#aprovacao-do-reitor)** na PNP — em linguagem de negócio. Antes de ler, recomenda-se passar pela [Visão geral]({{ site.baseurl }}/documentacao/coletor/visao_geral) para entender o papel do sistema na cadeia de coleta.
 
 ## Visão macro do fluxo
 
@@ -34,19 +34,23 @@ O Provedor de Dados representa uma fonte concreta de microdados — uma API, um 
 
 ### Configuração de Extração
 
-A **[Configuração de Extração](/documentacao/coletor/glossario#configuracao-de-extracao)** liga um Provedor a um Modelo, dizendo *como* aquele dado é obtido daquela fonte: endpoint da API, query SQL, nome da aba da planilha. É a unidade que o operador edita com mais frequência.
+A **[Configuração de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#configuracao-de-extracao)** liga um Provedor a um Modelo, dizendo *como* aquele dado é obtido daquela fonte: endpoint da API, query SQL, nome da aba da planilha. É a unidade que o operador edita com mais frequência.
 
 ### Modelo de Dados
 
-O **[Modelo de Dados](/documentacao/coletor/glossario#modelo-de-dados)** é uma tabela lógica única dentro de um contrato — por exemplo, `acoes_extensao` ou `projetos_de_pesquisa`. Cada modelo tem um schema próprio (colunas, tipos, restrições) e uma ou mais Configurações de Extração apontando para os Provedores que o alimentam.
+O **[Modelo de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-de-dados)** é uma tabela lógica única dentro de um contrato — por exemplo, `acoes_extensao` ou `projetos_de_pesquisa`. Cada modelo tem um schema próprio (colunas, tipos, restrições) e uma ou mais Configurações de Extração apontando para os Provedores que o alimentam.
+
+O contrato também diz **se cada modelo é cobrado**: modelos [obrigatórios]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-obrigatorio) sempre seguram o fluxo; modelos [opcionais]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-opcional) só passam a segurar depois que alguém configura a extração deles; e modelos [desabilitados]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-desabilitado) pela PNP nem chegam a ser importados. Quem decide é a PNP, no YAML do contrato — a instituição não altera isso no painel. Detalhes em [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
 
 ### Contrato de Dados
 
-O **[Contrato de Dados](/documentacao/coletor/glossario#contrato-de-dados)** agrupa um conjunto coerente de Modelos relacionados, com schema, regras de qualidade e metadados de governança expressos em um arquivo YAML. Cada contrato pertence a um **[Ciclo de Coleta](/documentacao/coletor/glossario#ciclo-de-coleta)** e tem uma versão.
+O **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** agrupa um conjunto coerente de Modelos relacionados, com schema, regras de qualidade e metadados de governança expressos em um arquivo YAML. Cada contrato pertence a um **[Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/glossario#ciclo-de-coleta)** e tem uma versão.
+
+> ℹ️ **Nem todo contrato do catálogo chega ao painel.** Se a PNP desabilitou **todos** os modelos de um contrato nesta versão, o contrato não é criado no Coletor — e, se já existia, sai de vista na sincronização seguinte. Não é erro nem falha de sincronização: é o contrato dizendo que não há o que coletar. A remoção é lógica, o histórico continua guardado.
 
 ### Extração
 
-A extração lê os dados do Provedor segundo a Configuração de Extração, normaliza colunas e tipos para o schema do contrato, e grava um arquivo **[Parquet](/documentacao/coletor/glossario#parquet)** local. Cada execução, bem-sucedida ou não, gera um **[Registro de Extração](/documentacao/coletor/glossario#registro-de-extracao)** com motivo do erro e detalhes técnicos.
+A extração lê os dados do Provedor segundo a Configuração de Extração, normaliza colunas e tipos para o schema do contrato, e grava um arquivo **[Parquet]({{ site.baseurl }}/documentacao/coletor/glossario#parquet)** local. Cada execução, bem-sucedida ou não, gera um **[Registro de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#registro-de-extracao)** com motivo do erro e detalhes técnicos.
 
 ### Teste do Contrato
 
@@ -54,9 +58,9 @@ Os testes de qualidade rodam **dentro da extração**: a ferramenta de validaç�
 
 ### Sincronização com a PNP
 
-Com o teste aprovado, a sincronização envia cada Parquet à API da **[PNP](/documentacao/coletor/glossario#pnp)** mantida pelo **[MEC](/documentacao/coletor/glossario#mec)**. Cada tentativa é registrada em um Registro de Sincronização, com status HTTP, resposta da API e timestamps, garantindo a rastreabilidade do que foi efetivamente entregue.
+Com o teste aprovado, a sincronização envia cada Parquet à API da **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** mantida pelo **[MEC]({{ site.baseurl }}/documentacao/coletor/glossario#mec)**. Cada tentativa é registrada em um Registro de Sincronização, com status HTTP, resposta da API e timestamps, garantindo a rastreabilidade do que foi efetivamente entregue.
 
-Enviar não encerra o fluxo: o contrato entra em "Aguardando Validação PNP" e o Coletor passa a acompanhar o que acontece do outro lado, gravando cada mudança em um **[Registro de Validação de Modelo](/documentacao/coletor/glossario#registro-de-validacao-de-modelo)**.
+Enviar não encerra o fluxo: o contrato entra em "Aguardando Validação PNP" e o Coletor passa a acompanhar o que acontece do outro lado, gravando cada mudança em um **[Registro de Validação de Modelo]({{ site.baseurl }}/documentacao/coletor/glossario#registro-de-validacao-de-modelo)**.
 
 ### Validação estrutural (na PNP)
 
@@ -68,7 +72,7 @@ O **Gestor de Área Temática** revisa o que a sua área enviou e decide. Cada �
 
 ### Aprovação do Reitor (na PNP)
 
-Só chega ao Reitor o que a área já homologou. A decisão é institucional, cobre todas as áreas de uma vez, e é **terminal**: aqui só existe aprovar. Depois do aceite, o Coletor reflete o estado final e passa a **bloquear a reextração** daquele modelo — substituir dado já aceito exige um novo [Ciclo de Coleta](/documentacao/coletor/ciclo_de_coleta).
+Só chega ao Reitor o que a área já homologou. A decisão é institucional, cobre todas as áreas de uma vez, e é **terminal**: aqui só existe aprovar. Depois do aceite, o Coletor reflete o estado final e passa a **bloquear a reextração** daquele modelo — substituir dado já aceito exige um novo [Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta).
 
 ## Onde isso acontece na interface
 
@@ -92,7 +96,7 @@ Só chega ao Reitor o que a área já homologou. A decisão é institucional, co
 
 **Validação de schema.** A fonte respondeu, mas as colunas não batem com o contrato (faltam colunas obrigatórias, sobram colunas, tipos divergentes). A extração rejeita o conjunto de dados antes de gerar Parquet, e o motivo descreve a divergência. A correção pode estar tanto na Configuração de Extração (ex.: query incompleta) quanto no schema do contrato.
 
-**Teste de qualidade.** O Parquet foi gerado, mas as regras declarativas do contrato (unicidade, intervalo de valores, completude) reprovaram. Como o teste roda **dentro** da extração, o contrato vai para **"Falha na Extração"** — não existe um estado "Testes com Falha". Exige investigação do dado de origem antes de uma nova extração. Para detalhes da máquina de estados, veja [Status do contrato](/documentacao/coletor/status_do_contrato); para casos típicos, consulte as [Perguntas frequentes](/documentacao/coletor/faq).
+**Teste de qualidade.** O Parquet foi gerado, mas as regras declarativas do contrato (unicidade, intervalo de valores, completude) reprovaram. Como o teste roda **dentro** da extração, o contrato vai para **"Falha na Extração"** — não existe um estado "Testes com Falha". Exige investigação do dado de origem antes de uma nova extração. Para detalhes da máquina de estados, veja [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato); para casos típicos, consulte as [Perguntas frequentes]({{ site.baseurl }}/documentacao/coletor/faq).
 
 **Validação rejeitada pela PNP.** O envio foi aceito, mas a PNP reprovou o parquet — tipicamente na validação referencial (um campus, área ou município que não existe no cadastro da Rede). O contrato vai para "Validação Rejeitada" e o motivo fica no Registro de Validação. A correção é no **dado de origem**, não na configuração.
 
@@ -102,6 +106,6 @@ Só chega ao Reitor o que a área já homologou. A decisão é institucional, co
 
 ## Veja também
 
-- [Ciclo de coleta](/documentacao/coletor/ciclo_de_coleta)
-- [Status do contrato](/documentacao/coletor/status_do_contrato)
-- [Operação passo a passo](/documentacao/coletor/operacao_passo_a_passo) — o mesmo fluxo, com as telas reais
+- [Ciclo de coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta)
+- [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato)
+- [Operação passo a passo]({{ site.baseurl }}/documentacao/coletor/operacao_passo_a_passo) — o mesmo fluxo, com as telas reais

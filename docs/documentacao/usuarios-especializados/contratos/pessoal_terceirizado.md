@@ -25,10 +25,18 @@ A **PNP** coleta este contrato para ter a relação de pessoal terceirazado vinc
 
 ## Modelos contidos
 
-- **`servidor_terceirizado`** — trabalhadores terceirizados vinculados à instituição, nominais.
+- **`servidor_terceirizado`** *(obrigatório no fluxo)* — trabalhadores terceirizados vinculados à instituição, nominais.
+
+O contrato Pessoal declara ainda dois outros modelos — **`servidor_nao_docente`** (servidores técnico-administrativos) e **`prof_equivalente`** (indicador de professor equivalente) —, ambos com `meta.disabled: true`. Eles **não são coletados hoje** e por isso não são documentados aqui.
+
+> ℹ️ **Atenção ao vocabulário.** *Obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** da tabela de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) e [Modelos obrigatórios, opcionais e desabilitados]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
+
+> ⚠️ **`servidor_nao_docente` e `prof_equivalente` não aparecem no painel.** A sincronização com a PNP não os importa: não há como configurar extração para eles, e o contrato Pessoal aparece com **um único modelo**. Se eles existiam de sincronizações anteriores, foram recolhidos por **exclusão lógica** — o histórico de extrações e os arquivos já gerados não são apagados, e continuam listados nas telas de **Extrações** e **Envios**, que mostram o histórico por conta própria; o que sai de vista são as listagens de **Contratos** e **Modelos de Dados**. Se a PNP reabilitá-los um dia, voltam **zerados**: a configuração de extração anterior precisa ser refeita.
 
 
 ## Modelo `servidor_terceirizado`
+
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`) — hoje, o único modelo coletável deste contrato. O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
@@ -94,10 +102,16 @@ servers:
 
 models:
 
+  # O contrato declara ainda servidor_nao_docente e prof_equivalente,
+  # ambos com meta.disabled: true — omitidos aqui por não serem coletados.
+
   servidor_terceirizado:
     type: table
     title: "Servidor Terceirizado"
     description: "Indicadores relativos aos servidores terceirizados vinculados à instituição."
+    meta:
+      required: true
+      disabled: false
     fields:
       id:
         type: integer

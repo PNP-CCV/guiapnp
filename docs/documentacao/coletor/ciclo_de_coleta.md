@@ -11,11 +11,11 @@ toc: true
 
 > **Para quem é:** 👔 gestores · 🔌 integradores
 
-Esta página descreve como o calendário anual da coleta é organizado dentro do Coletor, com ênfase na janela de correção. Para ver onde o ciclo se encaixa no fluxo de ponta a ponta, leia antes a [Visão geral](/documentacao/coletor/visao_geral) e o [Fluxo de negócio](/documentacao/coletor/fluxo_de_negocio).
+Esta página descreve como o calendário anual da coleta é organizado dentro do Coletor, com ênfase na janela de correção. Para ver onde o ciclo se encaixa no fluxo de ponta a ponta, leia antes a [Visão geral]({{ site.baseurl }}/documentacao/coletor/visao_geral) e o [Fluxo de negócio]({{ site.baseurl }}/documentacao/coletor/fluxo_de_negocio).
 
 ## O que é um Ciclo de Coleta
 
-Um **[Ciclo de Coleta](/documentacao/coletor/glossario#ciclo-de-coleta)** é o período anual em que a **[PNP](/documentacao/coletor/glossario#pnp)** consolida os microdados das instituições da Rede Federal. No Coletor, cada ciclo agrupa um ou mais **Contratos de Dados**, e cada contrato pertence a exatamente um ciclo. O ciclo também delimita quando uma **[Sincronização](/documentacao/coletor/glossario#sincronizacao)** com a PNP é aceita: fora da janela, o envio é bloqueado.
+Um **[Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/glossario#ciclo-de-coleta)** é o período anual em que a **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** consolida os microdados das instituições da Rede Federal. No Coletor, cada ciclo agrupa um ou mais **Contratos de Dados**, e cada contrato pertence a exatamente um ciclo. O ciclo também delimita quando uma **[Sincronização]({{ site.baseurl }}/documentacao/coletor/glossario#sincronizacao)** com a PNP é aceita: fora da janela, o envio é bloqueado.
 
 ## Anatomia do ciclo
 
@@ -26,7 +26,7 @@ Cada ciclo é caracterizado por seis marcos de calendário, expressos em linguag
 - **Fim da janela principal.** Data em que a coleta normal se encerra. A partir desse momento, só correções pontuais são esperadas.
 - **Início da janela de correção.** Data em que a fase de correção começa. Permite reabrir o ciclo para ajustes localizados sem precisar reabrir tudo.
 - **Fim da janela de correção.** Data em que a fase de correção termina e o ciclo se torna efetivamente inalterável do lado do Coletor.
-- **Data de envio final ao MEC.** Prazo administrativo em que os dados consolidados precisam estar entregues ao **[MEC](/documentacao/coletor/glossario#mec)**.
+- **Data de envio final ao MEC.** Prazo administrativo em que os dados consolidados precisam estar entregues ao **[MEC]({{ site.baseurl }}/documentacao/coletor/glossario#mec)**.
 
 ## Linha do tempo
 
@@ -37,7 +37,7 @@ Abertura ──▶ Janela normal de coleta ──▶ Fechamento ──▶ Janela
 
 ## Período de Correção: o que muda
 
-O **[Período de Correção](/documentacao/coletor/glossario#periodo-de-correcao)** é a fase em que o ciclo já fechou para coleta nova, mas continua aberto para ajustes pontuais antes da entrega final. As regras operacionais mudam dependendo de onde o calendário está hoje:
+O **[Período de Correção]({{ site.baseurl }}/documentacao/coletor/glossario#periodo-de-correcao)** é a fase em que o ciclo já fechou para coleta nova, mas continua aberto para ajustes pontuais antes da entrega final. As regras operacionais mudam dependendo de onde o calendário está hoje:
 
 | Operação | Janela normal | Período de correção | Fora de qualquer janela |
 |---|---|---|---|
@@ -50,10 +50,10 @@ Não há "Editar Contrato" no painel: contratos, modelos e ciclos chegam da PNP 
 
 ## Múltiplos ciclos
 
-O Coletor mantém o histórico completo dos ciclos passados. Cada Contrato pertence a um ciclo específico, então ao navegar pelo painel é normal ver contratos de ciclos diferentes lado a lado — o mais recente costuma estar em coleta ativa, enquanto os anteriores aparecem como referência. O ciclo "ativo" para fins operacionais é aquele cuja data de hoje cai dentro da janela principal ou da janela de correção; um ciclo encerrado preserva contratos, **[Registros de Extração](/documentacao/coletor/glossario#registro-de-extracao)** e Registros de Sincronização para auditoria, mas não aceita novas operações de envio.
+O Coletor mantém o histórico completo dos ciclos passados. Cada Contrato pertence a um ciclo específico, então ao navegar pelo painel é normal ver contratos de ciclos diferentes lado a lado — o mais recente costuma estar em coleta ativa, enquanto os anteriores aparecem como referência. O ciclo "ativo" para fins operacionais é aquele cuja data de hoje cai dentro da janela principal ou da janela de correção; um ciclo encerrado preserva contratos, **[Registros de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#registro-de-extracao)** e Registros de Sincronização para auditoria, mas não aceita novas operações de envio.
 
 ## Veja também
 
-- [Operação corrente](/documentacao/coletor/operacao_corrente)
-- [Status do contrato](/documentacao/coletor/status_do_contrato)
-- [Ciclo de vida do contrato](/documentacao/usuarios-especializados/contratos/ciclo_de_vida)
+- [Operação corrente]({{ site.baseurl }}/documentacao/coletor/operacao_corrente)
+- [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato)
+- [Ciclo de vida do contrato]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/ciclo_de_vida)

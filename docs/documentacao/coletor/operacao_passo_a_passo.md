@@ -15,15 +15,17 @@ Esta página conduz uma coleta completa pelo painel, na ordem dos 8 passos do *w
 
 ## O wizard é o seu checklist
 
-O Dashboard exibe o funil de 8 passos calculado sobre **todos** os contratos do ciclo ativo. Um passo só é dado como concluído quando todos os contratos passam daquele estágio — um único contrato parado segura o passo inteiro, e o progresso parcial aparece como `7/9`.
+O Dashboard exibe o funil de 8 passos calculado sobre os contratos do ciclo ativo **que têm algo a coletar**. Um passo só é dado como concluído quando todos esses contratos passam daquele estágio — um único contrato parado segura o passo inteiro, e o progresso parcial aparece como `7/9`.
+
+Ficam **fora da conta** os contratos com o ciclo bloqueado ("Ciclo de Coleta inativo") e os que só têm [modelos opcionais]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-opcional) não configurados ("Somente Modelos Opcionais"). Por isso o wizard pode marcar `1/1` e 100% mesmo havendo mais contratos visíveis na lista — e as ações em lote somem quando o que resta é só isso.
 
 ![Wizard de 8 passos no dashboard]({{ site.baseurl }}/assets/img/docs/coletor/02-dashboard-wizard-passo1.png)
 
-O badge de status de cada contrato é recalculado em tempo real e a tela se atualiza sozinha (10 s no contrato, 120 s no wizard) — não é preciso dar refresh. O significado de cada badge está em [Status do contrato](/documentacao/coletor/status_do_contrato) (e resumido em [Referência rápida](/documentacao/coletor/referencia_rapida)).
+O badge de status de cada contrato é recalculado em tempo real e a tela se atualiza sozinha (10 s no contrato, 120 s no wizard) — não é preciso dar refresh. O significado de cada badge está em [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) (e resumido em [Referência rápida]({{ site.baseurl }}/documentacao/coletor/referencia_rapida)).
 
 ## Passo 1 — Sincronizar com a PNP
 
-Já descrito em [Primeiro acesso](/documentacao/coletor/primeiro_acesso#importar-os-contratos-da-pnp): o botão **"Sincronizar com a PNP"** importa ciclos, **Contratos de Dados** e **Modelos de Dados**. A instituição não cria nada disso à mão — os contratos chegam prontos da PNP, e o restante da coleta consiste em dizer de onde vem cada dado.
+Já descrito em [Primeiro acesso]({{ site.baseurl }}/documentacao/coletor/primeiro_acesso#importar-os-contratos-da-pnp): o botão **"Sincronizar com a PNP"** importa ciclos, **Contratos de Dados** e **Modelos de Dados**. A instituição não cria nada disso à mão — os contratos chegam prontos da PNP, e o restante da coleta consiste em dizer de onde vem cada dado.
 
 ## Passo 2 — Cadastrar os provedores
 
@@ -65,9 +67,23 @@ Antes de salvar, use **"Testar extração"**: o Coletor lê a fonte de verdade, 
 
 > 💡 **O botão mais barato do sistema.** Um teste de segundos evita uma extração falha, uma ida ao histórico e um diagnóstico. Errar aqui não custa nada — é o momento mais seguro para descobrir que a fonte não é a que se pensava.
 
+### Nem todo modelo precisa ser configurado {#modelos-opcionais-no-passo-3}
+
+O contrato publicado pela PNP diz, modelo a modelo, se ele é [obrigatório]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-obrigatorio) ou [opcional]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-opcional). O contador deste passo conta **os modelos que o Coletor cobra de você** — não necessariamente todos os que aparecem na lista:
+
+- **Modelo obrigatório** precisa de configuração. Enquanto faltar, o contrato fica em "Modelos Não Configurados" e o passo 3 não fecha.
+- **Modelo opcional sem configuração** não entra na conta: o passo 3 pode marcar `1/1` num contrato que tem dois modelos listados. Se *todos* os modelos do contrato forem opcionais e nenhum for configurado, o contrato aparece com o badge **"Somente Modelos Opcionais"** e sai do progresso — é o comportamento esperado, não uma falha.
+- **Modelo opcional que você configurar** passa a ser cobrado como qualquer outro: o contrato volta a "Aguardando Extração" e só fecha quando aquele modelo for extraído, enviado e aprovado. Para desistir dele depois, remova a Configuração de Extração — não existe botão de "desativar modelo".
+
+> ℹ️ **A tela não marca quais modelos são opcionais.** Essa informação vem do YAML do contrato (`meta.required`), consultável na [especificação de cada contrato]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/conceito). Os sinais visíveis no painel são indiretos: o badge "Somente Modelos Opcionais", o contador do card do contrato e o contador deste passo. Modelos que a PNP **desabilitou** (`meta.disabled`) nem chegam a ser importados — se um modelo do catálogo não aparece na lista, é provavelmente esse o motivo.
+
 ## Passo 4 — Extrair os dados
 
-**"Extrair todos"** (no Dashboard) dispara a extração de todos os contratos do ciclo ativo; cada contrato e cada modelo também têm seu botão individual **"Extrair Dados"**. A execução roda em background — o navegador não trava e a tela se atualiza conforme os resultados chegam.
+**"Extrair todos"** (no Dashboard) dispara a extração dos contratos do ciclo ativo que têm alguma configuração de extração; cada contrato e cada modelo também têm seu botão individual **"Extrair Dados"**. A execução roda em background — o navegador não trava e a tela se atualiza conforme os resultados chegam.
+
+Dois detalhes evitam sustos na contagem: **"Extrair todos"** pode informar um número de contratos enfileirados **menor** que a lista visível, porque pula os que não têm nada a coletar; e o **"Extrair Dados"** de um contrato pula, de propósito, os [modelos opcionais]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-opcional) sem configuração — sem isso a extração inteira falharia e o teste de qualidade do contrato não chegaria a rodar.
+
+> ⚠️ **Não dispare "Extrair" num modelo sem Configuração de Extração.** O botão individual do modelo não faz essa checagem: a execução vai até o fim e falha com *"Nenhum dataset foi gerado para o modelo …"*. Fica um registro de falha no histórico daquele modelo (que, sendo opcional e não configurado, não muda o status do contrato) — mas é ruído desnecessário.
 
 ![Dashboard com extração em andamento]({{ site.baseurl }}/assets/img/docs/coletor/14-dashboard-configs-completas.png)
 
@@ -79,11 +95,11 @@ Os **testes de qualidade do contrato rodam dentro da própria extração** — n
 
 ![Resultados dos testes por campo]({{ site.baseurl }}/assets/img/docs/coletor/28-resultados-testes-contrato.png)
 
-Cada tentativa — sucesso ou falha — gera um **Registro de Extração** com motivo do erro e detalhes técnicos, consultável na tela **Extrações**. Se algo falhar, o roteiro de diagnóstico está em [Quando algo falha](/documentacao/coletor/quando_algo_falha).
+Cada tentativa — sucesso ou falha — gera um **Registro de Extração** com motivo do erro e detalhes técnicos, consultável na tela **Extrações**. Se algo falhar, o roteiro de diagnóstico está em [Quando algo falha]({{ site.baseurl }}/documentacao/coletor/quando_algo_falha).
 
 ## Passo 5 — Enviar à PNP
 
-Com os contratos em "Pronto para Sincronizar", **"Enviar todos"** (ou o botão "Enviar" de cada contrato) sobe os Parquets à PNP. Cada tentativa gera um **Registro de Sincronização** com status HTTP e resposta da API — a trilha de auditoria do que foi efetivamente entregue.
+Com os contratos em "Pronto para Sincronizar", **"Enviar todos"** (ou o botão "Enviar" de cada contrato) sobe os Parquets à PNP. **Sobe só o que foi extraído com sucesso**: modelo sem extração — o caso típico do modelo opcional que a instituição não coleta — é simplesmente omitido do envio, sem erro. Cada tentativa gera um **Registro de Sincronização** com status HTTP e resposta da API — a trilha de auditoria do que foi efetivamente entregue.
 
 ![Contrato pronto para sincronizar]({{ site.baseurl }}/assets/img/docs/coletor/06-contrato-pronto-sincronizar.png)
 
@@ -95,7 +111,7 @@ A PNP confere cada Parquet recebido por conta própria: além do schema, roda um
 
 ![Modelo validado aguardando aprovação]({{ site.baseurl }}/assets/img/docs/coletor/23-modelo-detalhe.png)
 
-O acompanhamento é automático: com o Dashboard aberto, o Coletor consulta a PNP a cada 2 minutos; sem ninguém olhando, uma tarefa agendada serve de rede de segurança. O botão **"Verificar agora"** força a consulta imediata. Se a PNP rejeitar, o caminho de correção está em [Quando algo falha](/documentacao/coletor/quando_algo_falha#validacao-rejeitada-pela-pnp).
+O acompanhamento é automático: com o Dashboard aberto, o Coletor consulta a PNP a cada 2 minutos; sem ninguém olhando, uma tarefa agendada serve de rede de segurança. O botão **"Verificar agora"** força a consulta imediata. Se a PNP rejeitar, o caminho de correção está em [Quando algo falha]({{ site.baseurl }}/documentacao/coletor/quando_algo_falha#validacao-rejeitada-pela-pnp).
 
 ## Passos 7 e 8 — Homologação da Área e Aprovação do Reitor {#passos-7-e-8}
 
@@ -134,7 +150,7 @@ Entre o disparo inicial e o fechamento, a operação é de acompanhamento diári
 - Enviar os contratos que chegaram a "Pronto para Sincronizar".
 - Nos já enviados, acompanhar a validação do lado da PNP.
 
-Re-extraia quando o provedor ou a configuração mudarem, quando o sistema marcar "Reextração Necessária" ou quando um problema na origem for corrigido. Evite disparar dezenas de extrações no mesmo minuto (a fila de tarefas é compartilhada) e não edite um contrato com extração em curso. O detalhamento dessa rotina está em [Operação corrente](/documentacao/coletor/operacao_corrente).
+Re-extraia quando o provedor ou a configuração mudarem, quando o sistema marcar "Reextração Necessária" ou quando um problema na origem for corrigido. Evite disparar dezenas de extrações no mesmo minuto (a fila de tarefas é compartilhada) e não edite um contrato com extração em curso. O detalhamento dessa rotina está em [Operação corrente]({{ site.baseurl }}/documentacao/coletor/operacao_corrente).
 
 ## Janelas do ciclo
 
@@ -145,10 +161,10 @@ O **Ciclo de Coleta** delimita quando cada operação é aceita. Fora da janela,
 | Extrair / re-extrair | ✅ | ✅ | ❌ |
 | Enviar à PNP | ✅ | ✅ | ❌ |
 
-O calendário completo do ciclo está em [Ciclo de coleta](/documentacao/coletor/ciclo_de_coleta).
+O calendário completo do ciclo está em [Ciclo de coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta).
 
 ## Veja também
 
-- [Quando algo falha](/documentacao/coletor/quando_algo_falha) — diagnóstico de cada tipo de falha
-- [Status do contrato](/documentacao/coletor/status_do_contrato) — a referência de todos os badges
-- [Sincronização com a PNP](/documentacao/usuarios-especializados/contratos/sincronizacao_pnp) — o protocolo de envio em detalhe
+- [Quando algo falha]({{ site.baseurl }}/documentacao/coletor/quando_algo_falha) — diagnóstico de cada tipo de falha
+- [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) — a referência de todos os badges
+- [Sincronização com a PNP]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/sincronizacao_pnp) — o protocolo de envio em detalhe

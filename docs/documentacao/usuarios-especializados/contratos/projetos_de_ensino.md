@@ -17,16 +17,22 @@ toc: true
 
 ## Resumo de negócio
 
-Este **Contrato de Dados** descreve os **projetos de ensino** conduzidos pela instituição — monitoria, tutoria, intervenção pedagógica, material didático, tecnologia assistiva, eventos de ensino e ações de inclusão. É o terceiro pé do tripé acadêmico, ao lado de [Projetos de Pesquisa](projetos_de_pesquisa) e [Ações de Extensão](acoes_de_extensao). Nesse momento, será necessário enviar apenas projetos de ensino que tenham a temática de sustentabilidade
+Este **Contrato de Dados** descreve os **projetos de ensino** conduzidos pela instituição — monitoria, tutoria, intervenção pedagógica, material didático, tecnologia assistiva, eventos de ensino e ações de inclusão. É o terceiro pé do tripé acadêmico, ao lado de [Projetos de Pesquisa]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa) e [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao). Nesse momento, será necessário enviar apenas projetos de ensino que tenham a temática de sustentabilidade
 
-A **[PNP](/documentacao/coletor/glossario#pnp)** coleta este contrato para,  via `projeto_ensino_sustentavel`, quanto desse investimento toca a temática da sustentabilidade.
+A **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** coleta este contrato para,  via `projeto_ensino_sustentavel`, quanto desse investimento toca a temática da sustentabilidade.
 
 
 ## Modelos contidos
 
-- **`projetos_ensino`** — projetos de ensino, com natureza, vigência, financiamento, orçamento e produto final.
+- **`projetos_ensino`** *(opcional no fluxo)* — projetos de ensino, com natureza, vigência, financiamento, orçamento e produto final.
+
+> ℹ️ **Atenção ao vocabulário.** *Obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** da tabela de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) e [Modelos obrigatórios, opcionais e desabilitados]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
+
+> ℹ️ **Este contrato nasce em "Somente Modelos Opcionais".** Como o único modelo é opcional, logo depois da primeira sincronização o contrato aparece no painel com o badge **Somente Modelos Opcionais** e fica fora do progresso do assistente e das ações em lote — não é erro nem falha de sincronização, é o esperado. Ele entra no fluxo assim que alguém cadastrar uma **[Configuração de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#configuracao-de-extracao)** para `projetos_ensino`.
 
 ## Modelo `projetos_ensino`
+
+> ℹ️ **No fluxo do Coletor:** modelo **opcional** (`meta.required: false`) e **habilitado** (`meta.disabled: false`). Enquanto ninguém cadastrar uma Configuração de Extração para ele, o Coletor não o cobra: não vira pendência, não segura o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) e é pulado pela extração em lote. Assim que ganha uma configuração, passa a contar como qualquer outro modelo — o contrato volta para *Aguardando Extração* e só fecha quando este modelo for extraído, testado, enviado e aprovado. Para desistir dele, basta remover a(s) configuração(ões) de extração.
 
 ### Resumo do modelo
 
@@ -133,6 +139,9 @@ models:
     type: table
     title: "Projetos de Ensino"
     description: "Informações estruturadas sobre projetos de ensino institucional."
+    meta:
+      required: false
+      disabled: false
     fields:
       id_projeto_ensino:
         type: integer

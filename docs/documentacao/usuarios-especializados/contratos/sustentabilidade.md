@@ -16,23 +16,27 @@ toc: true
 
 ## Resumo de negócio
 
-Este **[Contrato de Dados](/documentacao/coletor/glossario#contrato-de-dados)** descreve os **dados e ações de sustentabilidade**, organizados em três subconjuntos temáticos: consumo de água e energia, governança da política de sustentabilidade, e compras e contratações sustentáveis.
+Este **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** descreve os **dados e ações de sustentabilidade**, organizados em três subconjuntos temáticos: consumo de água e energia, governança da política de sustentabilidade, e compras e contratações sustentáveis.
 
 A **PNP** coleta este contrato para mensurar a agenda ambiental da Rede Federal — não só o consumo físico (m³, KWh), mas a **maturidade institucional**: existe instância de governança formalmente instituída? Existe normativo de compras sustentáveis? A política é divulgada, e por onde?
 
-É o contrato mais amplo do catálogo em número de campos declarativos, e o que mais usa campos do tipo `array` — os dois de `governanca_gestao_sustentabilidade`. O único outro `array` do catálogo é `municipios_atendidos`, em [Ações de Extensão](acoes_de_extensao).
+É o contrato mais amplo do catálogo em número de campos declarativos, e o que mais usa campos do tipo `array` — os dois de `governanca_gestao_sustentabilidade`. O único outro `array` do catálogo é `municipios_atendidos`, em [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao).
 
-> **Sustentabilidade também aparece fora deste contrato.** Os contratos de [Projetos de Ensino](projetos_de_ensino), [Projetos de Pesquisa](projetos_de_pesquisa.md), [Ações de Extensão](acoes_de_extensao.md) e [Desenvolvimento Institucional](projetos_desenvolvimento_institucional) carregam, cada um, uma flag `projeto_<domínio>_sustentavel`. Este contrato mede a **estrutura** de sustentabilidade; aqueles medem os **projetos** que a tocam.
+> **Sustentabilidade também aparece fora deste contrato.** Os contratos de [Projetos de Ensino]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_ensino), [Projetos de Pesquisa]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa), [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao) e [Desenvolvimento Institucional]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_desenvolvimento_institucional) carregam, cada um, uma flag `projeto_<domínio>_sustentavel`. Este contrato mede a **estrutura** de sustentabilidade; aqueles medem os **projetos** que a tocam.
 
 ## Modelos contidos
 
-- **`agua_energia`** — consumo de água e energia e produção de energia renovável, por estrutura.
-- **`governanca_gestao_sustentabilidade`** — instâncias de governança, gestão de resíduos sólidos e canais de divulgação da política.
-- **`compras_contratacoes`** — volume de compras e contratações, total e com critério de sustentabilidade.
+- **`agua_energia`** *(obrigatório no fluxo)* — consumo de água e energia e produção de energia renovável, por estrutura.
+- **`governanca_gestao_sustentabilidade`** *(obrigatório no fluxo)* — instâncias de governança, gestão de resíduos sólidos e canais de divulgação da política.
+- **`compras_contratacoes`** *(obrigatório no fluxo)* — volume de compras e contratações, total e com critério de sustentabilidade.
+
+> ℹ️ **Atenção ao vocabulário.** *Obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** das tabelas de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) e [Modelos obrigatórios, opcionais e desabilitados]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
 
 > **Os três modelos são independentes.**  Todos se organizam pela mesma granularidade — uma linha por `estrutura` (campus) —, mas essa correspondência é convenção, não constraint.
 
 ## Modelo `agua_energia`
+
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
@@ -74,6 +78,8 @@ Indicadores físicos de consumo e geração por estrutura. Os três valores são
 | `{..., "gas_consumo": 120.0}` (coluna não declarada) | `Field 'gas_consumo' not in schema (additionalFields: false)` |
 
 ## Modelo `governanca_gestao_sustentabilidade`
+
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
@@ -145,6 +151,8 @@ Maturidade institucional da política de sustentabilidade por estrutura: que ins
 
 ## Modelo `compras_contratacoes`
 
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
+
 ### Resumo do modelo
 
 Volume de compras e contratações por estrutura, com o recorte de quantas aplicaram pelo menos um critério de sustentabilidade. Os quatro contadores são do **ano de referência** do ciclo de coleta.
@@ -164,7 +172,7 @@ Volume de compras e contratações por estrutura, com o recorte de quantas aplic
 | `compras_geral` | `integer` | não | — | Número de compras efetivadas no ano de referência. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 | `contratacoes_geral` | `integer` | não | — | Número de contratações efetivadas no ano de referência. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 
-> **Os subconjuntos não são checados contra os totais.** `compras_sustentaveis` é, por definição, um subconjunto de `compras_geral` — mas **nenhuma regra declarada garante isso**. `compras_sustentaveis: 90` com `compras_geral: 12` passa na validação e produz um indicador de 750%. O mesmo vale para o par de contratações, e para `realiza_compras_contratacoes: false` acompanhado de contadores positivos. Este modelo é o candidato mais óbvio do catálogo a um bloco `quality` — ver [Validação e qualidade](/documentacao/usuarios-especializados/contratos/validacao_e_qualidade).
+> **Os subconjuntos não são checados contra os totais.** `compras_sustentaveis` é, por definição, um subconjunto de `compras_geral` — mas **nenhuma regra declarada garante isso**. `compras_sustentaveis: 90` com `compras_geral: 12` passa na validação e produz um indicador de 750%. O mesmo vale para o par de contratações, e para `realiza_compras_contratacoes: false` acompanhado de contadores positivos. Este modelo é o candidato mais óbvio do catálogo a um bloco `quality` — ver [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade).
 
 ### Exemplo válido
 
@@ -221,6 +229,9 @@ models:
     type: table
     title: "Água e Energia"
     description: "Indicadores de consumo de água e energia e de produção de energia renovável."
+    meta:
+      required: true
+      disabled: false
     fields:
       id:
         type: integer
@@ -259,6 +270,9 @@ models:
     type: table
     title: "Governança e Gestão da Sustentabilidade"
     description: "Indicadores de governança, implantação e divulgação da política de sustentabilidade institucional."
+    meta:
+      required: true
+      disabled: false
     fields:
       id:
         type: integer
@@ -330,6 +344,9 @@ models:
     type: table
     title: "Compras e Contratações"
     description: "Indicadores sobre compras e contratações institucionais com aplicação de critérios de sustentabilidade."
+    meta:
+      required: true
+      disabled: false
     fields:
       id:
         type: integer

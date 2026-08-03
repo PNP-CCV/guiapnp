@@ -59,6 +59,24 @@ O ciclo de correção é sempre o mesmo — corrigir, testar, re-extrair:
 
    ![Contrato pedindo reextração]({{ site.baseurl }}/assets/img/docs/coletor/18-contrato-reextracao-necessaria.png)
 
+## Falha na extração: modelo sem configuração
+
+```text
+Nenhum dataset foi gerado para o modelo <slug do modelo>
+```
+
+Esse erro significa que o modelo não tem nenhuma **Configuração de Extração** — o Coletor foi buscar o dado e não sabia de onde. Acontece quando alguém dispara o "Extrair Dados" **do modelo** (o botão individual não faz essa checagem) num modelo que ainda não foi configurado, tipicamente um [modelo opcional]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-opcional). A extração em lote, do contrato ou do dashboard, pula esses modelos de propósito.
+
+A correção é criar a Configuração de Extração — ou simplesmente não disparar a extração daquele modelo, se a instituição não vai coletá-lo. O registro de falha fica no histórico, mas não muda o status do contrato quando o modelo é opcional e não configurado.
+
+## Contrato ou modelo sumiu do painel
+
+Não é falha. A PNP pode **desabilitar** um modelo numa versão do contrato (`meta.disabled: true` no YAML): modelo desabilitado não é importado e, se já existia, sai de vista na sincronização seguinte. Contrato que fica sem nenhum modelo habilitado desaparece inteiro, pelo mesmo mecanismo — o motivo fica registrado nos logs do serviço de tarefas em background (`coletor logs celery-worker`).
+
+A remoção é **lógica**: extrações, envios e arquivos Parquet já produzidos continuam guardados, e continuam listados nas telas de **Extrações** e **Envios**, que mostram o histórico por conta própria; o que sai de vista são as listagens de **Contratos** e **Modelos de Dados**. Não há botão de restauração no painel; recuperar exige intervenção técnica, como qualquer exclusão lógica no Coletor.
+
+> ℹ️ **Modelo reabilitado volta zerado.** Se a PNP reativar um modelo desabilitado, ele é recriado como um registro novo e **vazio** — a Configuração de Extração anterior não volta junto e precisa ser refeita.
+
 ## Teste de qualidade reprovado
 
 Os testes do contrato rodam **dentro** da extração, então uma reprovação também leva o contrato a "Falha na Extração" — não existe um estado separado "Testes com Falha". A diferença está no diagnóstico: o Parquet chegou a ser avaliado e **"Ver resultados de teste"** mostra qual regra reprovou (enum, unicidade, faixa, completude). A correção é no **dado de origem**, seguida de nova extração.
@@ -88,7 +106,7 @@ O executável `coletor` verifica o ambiente antes de agir e reporta mensagens cl
 
 | Mensagem | O que fazer |
 |---|---|
-| `Docker não encontrado` | Instalar o Docker — ver [Instalação](/documentacao/coletor/instalacao#instalar-o-docker) |
+| `Docker não encontrado` | Instalar o Docker — ver [Instalação]({{ site.baseurl }}/documentacao/coletor/instalacao#instalar-o-docker) |
 | `Docker daemon não está rodando` | Linux: `sudo systemctl start docker`. Windows/macOS: abrir o Docker Desktop |
 | `permission denied` ao falar com o Docker | Adicionar o usuário ao grupo `docker` e reabrir a sessão. **Não** contornar com `sudo` |
 | `plugin docker compose ausente` | Linux: reinstalar pelo script oficial. Windows/macOS: atualizar o Docker Desktop |
@@ -100,10 +118,10 @@ Para problemas dentro da stack, `coletor status` mostra a saúde de cada serviç
 
 ## Quando o problema não é técnico
 
-Coleta parada em "Aguardando Homologação da Área" ou "Aguardando Aprovação do Reitor" não tem solução no sistema: são decisões humanas pendentes **na PNP**. O caminho é falar com o gestor da área ou com a reitoria — antes disso, confira se quem vai decidir está com o **papel ativo** correto na PNP (ver [Operação passo a passo](/documentacao/coletor/operacao_passo_a_passo#passos-7-e-8)).
+Coleta parada em "Aguardando Homologação da Área" ou "Aguardando Aprovação do Reitor" não tem solução no sistema: são decisões humanas pendentes **na PNP**. O caminho é falar com o gestor da área ou com a reitoria — antes disso, confira se quem vai decidir está com o **papel ativo** correto na PNP (ver [Operação passo a passo]({{ site.baseurl }}/documentacao/coletor/operacao_passo_a_passo#passos-7-e-8)).
 
 ## Veja também
 
-- [Status do contrato](/documentacao/coletor/status_do_contrato) — todos os estados e suas transições
-- [Perguntas frequentes](/documentacao/coletor/faq) — casos típicos e como diagnosticá-los
-- [Validação e qualidade](/documentacao/usuarios-especializados/contratos/validacao_e_qualidade) — as regras que os testes aplicam
+- [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) — todos os estados e suas transições
+- [Perguntas frequentes]({{ site.baseurl }}/documentacao/coletor/faq) — casos típicos e como diagnosticá-los
+- [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade) — as regras que os testes aplicam

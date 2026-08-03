@@ -44,7 +44,7 @@ No primeiro registro, a PNP vincula o secret da instituição ao hostname da má
 409 — Secret already bound to another instance
 ```
 
-> ⚠️ **Trocar o Coletor de servidor não é só copiar os arquivos.** Em outra máquina o hostname muda, o secret deixa de conferir e a ativação falha com o erro acima. Migrar a instância exige contato com a equipe da PNP para desvincular o secret. Planeje o servidor definitivo **antes** de rodar o setup — ver [Requisitos técnicos](/documentacao/coletor/requisitos_tecnicos#servidor).
+> ⚠️ **Trocar o Coletor de servidor não é só copiar os arquivos.** Em outra máquina o hostname muda, o secret deixa de conferir e a ativação falha com o erro acima. Migrar a instância exige contato com a equipe da PNP para desvincular o secret. Planeje o servidor definitivo **antes** de rodar o setup — ver [Requisitos técnicos]({{ site.baseurl }}/documentacao/coletor/requisitos_tecnicos#servidor).
 
 ## Importar os contratos da PNP {#importar-os-contratos-da-pnp}
 
@@ -52,7 +52,9 @@ Concluído o setup, o painel abre direto no **Dashboard**, com o *wizard* de 8 p
 
 ![Modelos de dados importados da PNP]({{ site.baseurl }}/assets/img/docs/coletor/22-modelos-lista.png)
 
-Nada disso é digitado à mão: a instituição **não cria** contrato nem modelo. Eles chegam prontos da PNP — o trabalho da instituição, nos passos seguintes, é dizer **de onde vem** cada dado. A [Operação passo a passo](/documentacao/coletor/operacao_passo_a_passo) continua a partir daqui.
+Nada disso é digitado à mão: a instituição **não cria** contrato nem modelo. Eles chegam prontos da PNP — o trabalho da instituição, nos passos seguintes, é dizer **de onde vem** cada dado. A [Operação passo a passo]({{ site.baseurl }}/documentacao/coletor/operacao_passo_a_passo) continua a partir daqui.
+
+> ℹ️ **A lista importada pode ser menor que o catálogo.** Cada contrato diz quais modelos estão habilitados nesta edição: modelos **desabilitados** pela PNP não são importados, e um contrato cujos modelos estão todos desabilitados não chega a aparecer. Também é normal ver, logo na primeira sincronização, contratos com o badge **"Somente Modelos Opcionais"** — são os que só têm [modelos opcionais]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-opcional), sem nada a coletar até que alguém configure uma extração. Ver [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
 
 ## Usuários adicionais
 
@@ -60,6 +62,6 @@ O primeiro usuário é o administrador. Para a operação cotidiana, crie contas
 
 ## Veja também
 
-- [Operação passo a passo](/documentacao/coletor/operacao_passo_a_passo) — a coleta do passo 2 em diante
-- [Requisitos técnicos](/documentacao/coletor/requisitos_tecnicos#credenciais-junto-a-pnp) — as credenciais que o setup exige
-- [Sincronização com a PNP](/documentacao/usuarios-especializados/contratos/sincronizacao_pnp) — o que a importação traz, em detalhe
+- [Operação passo a passo]({{ site.baseurl }}/documentacao/coletor/operacao_passo_a_passo) — a coleta do passo 2 em diante
+- [Requisitos técnicos]({{ site.baseurl }}/documentacao/coletor/requisitos_tecnicos#credenciais-junto-a-pnp) — as credenciais que o setup exige
+- [Sincronização com a PNP]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/sincronizacao_pnp) — o que a importação traz, em detalhe

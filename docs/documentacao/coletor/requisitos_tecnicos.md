@@ -31,7 +31,7 @@ Apenas o serviço `web` é publicado para fora do servidor (porta 8000 por padr�
 ## Servidor {#servidor}
 
 - **Sistema operacional:** Linux é o alvo de produção. A imagem da aplicação é publicada **somente para `linux/amd64`** (x86-64) — inclusive porque o driver IBM Db2 usado em produção só existe para essa arquitetura. Windows e macOS (via Docker Desktop) funcionam para avaliação e testes, não para a instância definitiva.
-- **Hostname estável:** o secret fornecido pela PNP é **vinculado ao hostname** da máquina no primeiro registro (detalhes em [Primeiro acesso](/documentacao/coletor/primeiro_acesso#secret-casado-com-hostname)). Escolha o servidor definitivo antes de ativar a instância — trocar de máquina depois exige contato com a equipe da PNP.
+- **Hostname estável:** o secret fornecido pela PNP é **vinculado ao hostname** da máquina no primeiro registro (detalhes em [Primeiro acesso]({{ site.baseurl }}/documentacao/coletor/primeiro_acesso#secret-casado-com-hostname)). Escolha o servidor definitivo antes de ativar a instância — trocar de máquina depois exige contato com a equipe da PNP.
 - **Dimensionamento de referência** (a stack completa, para uma instituição):
 
 | Recurso | Mínimo | Recomendado |
@@ -104,5 +104,5 @@ O banco Postgres vive no volume Docker nomeado `coletorpnp_db-data`. Um plano de
 
 ## Veja também
 
-- [Instalação](/documentacao/coletor/instalacao) — o próximo passo do roteiro
-- [Primeiro acesso](/documentacao/coletor/primeiro_acesso) — onde a URL e o secret da PNP são usados
+- [Instalação]({{ site.baseurl }}/documentacao/coletor/instalacao) — o próximo passo do roteiro
+- [Primeiro acesso]({{ site.baseurl }}/documentacao/coletor/primeiro_acesso) — onde a URL e o secret da PNP são usados

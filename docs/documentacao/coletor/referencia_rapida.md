@@ -58,7 +58,9 @@ O banco Postgres fica no volume Docker `coletorpnp_db-data`.
 | Status | Ação do operador |
 |---|---|
 | Ciclo de Coleta inativo | Aguardar a janela do ciclo abrir |
-| Sem Modelos / Modelos Não Configurados | Sincronizar com a PNP / criar a Configuração de Extração |
+| Sem Modelos | Sincronizar com a PNP para trazer os modelos |
+| Somente Modelos Opcionais | Nada — o contrato só tem [modelos opcionais]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-opcional) e nenhum foi configurado. Configure um só se a instituição for coletá-lo |
+| Modelos Não Configurados | Criar a Configuração de Extração do modelo que conta no fluxo |
 | Aguardando Extração | Disparar "Extrair Dados" |
 | Falha na Extração | Ler o motivo no registro, corrigir, re-extrair |
 | Reextração Necessária | Disparar nova extração |
@@ -69,7 +71,7 @@ O banco Postgres fica no volume Docker `coletorpnp_db-data`.
 | Aguardando Aprovação do Reitor | Ação humana na PNP — sem botão no Coletor |
 | Sincronizado com Sucesso | Nada — estado terminal do ciclo |
 
-A máquina de estados completa, com a tabela de transições, está em [Status do contrato](/documentacao/coletor/status_do_contrato).
+A máquina de estados completa, com a tabela de transições, está em [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato).
 
 ## Checklist do operador
 
@@ -78,10 +80,12 @@ A máquina de estados completa, com a tabela de transições, está em [Status d
 - Códigos de estrutura/campus são **da sua instituição**.
 - Falhou? Leia o bloco **Detalhes** do Registro de Extração antes de mexer em qualquer coisa.
 - Lembre que reenvio com dado idêntico **não muda nada** na PNP.
+- Não clique em "Extrair" num modelo **sem Configuração de Extração** — a execução falha com "Nenhum dataset foi gerado".
+- Configurou um **modelo opcional**? A partir daí ele é cobrado como qualquer outro até ser aprovado.
 - Travado no passo 7 ou 8? O problema não é técnico — falar com a área ou a reitoria.
 
 ## Veja também
 
-- [Operação passo a passo](/documentacao/coletor/operacao_passo_a_passo) — o contexto de cada item acima
-- [Quando algo falha](/documentacao/coletor/quando_algo_falha) — o roteiro de diagnóstico
-- [Glossário do Coletor](/documentacao/coletor/glossario) — terminologia do Coletor usada neste manual
+- [Operação passo a passo]({{ site.baseurl }}/documentacao/coletor/operacao_passo_a_passo) — o contexto de cada item acima
+- [Quando algo falha]({{ site.baseurl }}/documentacao/coletor/quando_algo_falha) — o roteiro de diagnóstico
+- [Glossário do Coletor]({{ site.baseurl }}/documentacao/coletor/glossario) — terminologia do Coletor usada neste manual

@@ -14,19 +14,31 @@ toc: true
 **Status:** `active` · **Spec:** `dataContractSpecification: "1.2.0"`
 **Área Temática:** Acadêmico
 
+> ⚠️ **Este contrato não é coletado hoje.** O único modelo do contrato, `comunidade_interna_mat_equiv`, está declarado no YAML com `meta.disabled: true`. Um contrato cujo schema não tem nenhum modelo habilitado **não é criado no Coletor**: "Acadêmico" não aparece no painel, não tem modelo para configurar e não entra em nenhuma contagem. Se ele já existia de sincronizações anteriores, a sincronização com a PNP o remove — junto com seus modelos — por **exclusão lógica**: nada é apagado, nem os registros de extração e envio, nem os arquivos já gerados; eles continuam listados nas telas de **Extrações** e **Envios**, que mostram o histórico por conta própria; o que sai de vista são as listagens de **Contratos** e **Modelos de Dados**.
+>
+> Não é erro nem falha de sincronização. Se você sincronizou e o contrato não apareceu, é exatamente este o motivo — e não há nada a fazer.
+>
+> **A página continua aqui como referência do contrato.** A PNP pode reabilitar o modelo numa versão futura do schema, e nesse dia tudo o que está descrito abaixo volta a valer.
+
 ## Resumo de negócio
 
-Este **[Contrato de Dados](/documentacao/coletor/glossario#contrato-de-dados)** descreve os **indicadores acadêmicos institucionais**, organizados por subconjuntos temáticos. Hoje o contrato carrega um único subconjunto: a **matrícula equivalente** da comunidade interna.
+Este **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** descreve os **indicadores acadêmicos institucionais**, organizados por subconjuntos temáticos. Hoje o contrato carrega um único subconjunto: a **matrícula equivalente** da comunidade interna.
 
-Matrícula equivalente não é contagem de alunos. É a matrícula **ponderada** por FECH (Fator de Equiparação de Carga Horária) e pelo Fator de Esforço — a métrica que a **[PNP](/documentacao/coletor/glossario#pnp)** usa para comparar cursos de durações e cargas horárias diferentes numa base única, alimentando indicadores legais e o cálculo de orçamento da Rede Federal.
+Matrícula equivalente não é contagem de alunos. É a matrícula **ponderada** por FECH (Fator de Equiparação de Carga Horária) e pelo Fator de Esforço — a métrica que a **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** usa para comparar cursos de durações e cargas horárias diferentes numa base única, alimentando indicadores legais e o cálculo de orçamento da Rede Federal.
 
 A origem do dado é a própria PNP (PBIP), não um sistema acadêmico da instituição: ele volta para o Coletor como insumo já calculado.
 
 ## Modelos contidos
 
-- **`comunidade_interna_mat_equiv`** — matrícula equivalente por estrutura (campus), ponderada por FECH e Fator de Esforço.
+- **`comunidade_interna_mat_equiv`** *(desabilitado — não é coletado)* — matrícula equivalente por estrutura (campus), ponderada por FECH e Fator de Esforço.
+
+> ℹ️ **Atenção ao vocabulário.** *Obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** da tabela de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) e [Modelos obrigatórios, opcionais e desabilitados]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
 
 ## Modelo `comunidade_interna_mat_equiv`
+
+> ⚠️ **Modelo desabilitado — não é coletado hoje.** O contrato declara `meta.required: false` e `meta.disabled: true` para este modelo. A sincronização com a PNP **não o importa**: ele não aparece na lista de modelos do painel e não há como configurar extração para ele. Como é o único modelo do contrato, é ele que faz o contrato "Acadêmico" inteiro deixar de existir no Coletor — ver o aviso no topo desta página.
+>
+> Se um dia a PNP reabilitar o modelo, ele volta **zerado**: a configuração de extração anterior não volta junto e precisa ser refeita.
 
 ### Resumo do modelo
 
@@ -98,6 +110,9 @@ models:
     type: table
     title: "Comunidade Interna - Matrículas Equivalentes"
     description: "Indicadores de matrícula equivalente da comunidade interna, ponderados por FECH e Fator de Esforço."
+    meta:
+      required: false
+      disabled: true
     fields:
       id:
         type: integer
@@ -128,6 +143,6 @@ models:
 
 ## Veja também
 
-- [Conceito de Contrato de Dados](/documentacao/usuarios-especializados/contratos/conceito)
-- [Anatomia do YAML](/documentacao/usuarios-especializados/contratos/anatomia_yaml)
-- [Validação e qualidade](/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)
+- [Conceito de Contrato de Dados]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/conceito)
+- [Anatomia do YAML]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml)
+- [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)

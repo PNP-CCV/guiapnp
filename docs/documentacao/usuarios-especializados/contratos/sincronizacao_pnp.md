@@ -10,24 +10,24 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-Esta página descreve o fluxo de envio dos **[Parquets](/documentacao/coletor/glossario#parquet)** locais para a **[PNP](/documentacao/coletor/glossario#pnp)** — o que sai do Coletor, com qual autenticação, e o que acontece **depois** do envio, que é metade da história. Cobre também a direção inversa: o que "Sincronizar com a PNP" traz para dentro do Coletor.
+Esta página descreve o fluxo de envio dos **[Parquets]({{ site.baseurl }}/documentacao/coletor/glossario#parquet)** locais para a **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** — o que sai do Coletor, com qual autenticação, e o que acontece **depois** do envio, que é metade da história. Cobre também a direção inversa: o que "Sincronizar com a PNP" traz para dentro do Coletor.
 
 > ⚠️ **Enviar não encerra o fluxo.** O envio bem-sucedido não significa "dado aceito". Ele coloca o Parquet numa fila de validação **do lado da PNP**, que passa por validação estrutural, homologação da área e aprovação do Reitor — todas ações fora do Coletor.
 
 ## Fluxo de envio
 
-Começa quando o operador clica **Enviar** no contrato (status "Pronto para Sincronizar") e termina com um **[Registro de Sincronização](/documentacao/coletor/glossario#registro-de-sincronizacao)** consultável na tela **Envios**:
+Começa quando o operador clica **Enviar** no contrato (status "Pronto para Sincronizar") e termina com um **[Registro de Sincronização]({{ site.baseurl }}/documentacao/coletor/glossario#registro-de-sincronizacao)** consultável na tela **Envios**:
 
 1. O clique dispara uma tarefa em background — o navegador não trava.
 2. A tarefa localiza, para cada modelo do contrato, o Parquet da última extração bem-sucedida.
 3. Modelos sem extração bem-sucedida ou sem arquivo em disco são pulados. Se nenhum for elegível, o envio é abortado.
 4. Cada modelo é enviado em uma requisição separada à PNP — não há lote. O tempo limite é de 5 minutos por arquivo.
-5. Para cada modelo aceito, a PNP devolve um identificador de dataset, que o Coletor guarda em um **[Registro de Validação de Modelo](/documentacao/coletor/glossario#registro-de-validacao-de-modelo)** — é por ele que a validação será acompanhada.
+5. Para cada modelo aceito, a PNP devolve um identificador de dataset, que o Coletor guarda em um **[Registro de Validação de Modelo]({{ site.baseurl }}/documentacao/coletor/glossario#registro-de-validacao-de-modelo)** — é por ele que a validação será acompanhada.
 6. Falhas individuais não interrompem o restante: a tarefa tenta todos os modelos e agrega o resultado no Registro de Sincronização (total, sucessos, erros e a resposta completa da PNP por modelo).
 
 ## Autenticação
 
-Não há "chave de ativação" manual. A autenticação da instância com a PNP é **automática, entre servidores**, com tokens de vida curta renovados pelo próprio Coletor. O vínculo foi estabelecido uma única vez no [Primeiro acesso](/documentacao/coletor/primeiro_acesso), quando o secret da instituição foi casado com o hostname do servidor. Se a instância perder a autenticação (respostas 401/403 em todos os envios), reiniciar a stack (`coletor down` e `coletor up`) refaz a ativação.
+Não há "chave de ativação" manual. A autenticação da instância com a PNP é **automática, entre servidores**, com tokens de vida curta renovados pelo próprio Coletor. O vínculo foi estabelecido uma única vez no [Primeiro acesso]({{ site.baseurl }}/documentacao/coletor/primeiro_acesso), quando o secret da instituição foi casado com o hostname do servidor. Se a instância perder a autenticação (respostas 401/403 em todos os envios), reiniciar a stack (`coletor down` e `coletor up`) refaz a ativação.
 
 ## A cadeia de validação do lado da PNP
 
@@ -75,13 +75,18 @@ O botão **Sincronizar com a PNP** no dashboard puxa os metadados da PNP para o 
 1. Os **Ciclos de Coleta** vigentes, com suas janelas.
 2. Os **schemas** dos contratos (o YAML de cada um).
 3. Os **Contratos de Dados**, apontando para os schemas.
-4. Um **Modelo de Dados** por entrada de `models` de cada contrato. Modelo que deixou de existir no contrato é removido (exclusão lógica, recuperável).
-5. As tabelas de apoio (estruturas/campi, áreas temáticas, subeixos, municípios) e os dados de referência de matrículas e servidores.
+4. Um **Modelo de Dados** por entrada de `models` de cada contrato — exceto os modelos marcados com `meta.disabled: true`, que **não são importados**. Modelo que deixou de existir no contrato (ou que passou a ser `disabled`) é removido por exclusão lógica, recuperável.
+5. A marcação de **obrigatório/opcional** de cada modelo, lida de `meta.required`. É aqui que ela é atualizada quando a PNP publica uma nova versão do schema.
+6. As tabelas de apoio (estruturas/campi, áreas temáticas, subeixos, municípios) e os dados de referência de matrículas e servidores.
 
 É por aqui que contratos, modelos e ciclos entram no Coletor — **não** há cadastro manual deles no painel.
 
+> ⚠️ **Contrato que não aparece depois de sincronizar.** Um contrato cujos modelos estão **todos desabilitados** não é criado; se já existia, é removido (também por exclusão lógica) e o motivo fica registrado no log. Não é falha de sincronização. Ver [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) — e, no catálogo, o contrato [Acadêmico]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/academico), que é exatamente esse caso hoje.
+
+> ℹ️ **Depois de atualizar o Coletor, sincronize uma vez.** As marcações de modelo obrigatório/opcional só passam a valer depois de uma sincronização com a PNP. Numa instalação recém-atualizada, e antes dessa sincronização, todos os modelos são tratados como obrigatórios — o comportamento anterior.
+
 ## Veja também
 
-- [Operação corrente](/documentacao/coletor/operacao_corrente)
-- [Status do contrato](/documentacao/coletor/status_do_contrato)
-- [Perguntas frequentes](/documentacao/coletor/faq)
+- [Operação corrente]({{ site.baseurl }}/documentacao/coletor/operacao_corrente)
+- [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato)
+- [Perguntas frequentes]({{ site.baseurl }}/documentacao/coletor/faq)

@@ -28,10 +28,14 @@ Este contrato é também o destino lógico do vínculo declarado textualmente em
 
 ## Modelos contidos
 
-- **`projetos_pesquisa`** — projetos de pesquisa institucionais, com natureza, vigência, situação, orçamento, entidade financiadora e área temática CNPq.
-- **`pessoas_envolvidas_projeto_pesquisa`** — pessoas vinculadas a cada projeto (docentes, TAEs, estudantes, externos). Contém PII (`cpf`, `nome`).
+- **`projetos_pesquisa`** *(obrigatório no fluxo)* — projetos de pesquisa institucionais, com natureza, vigência, situação, orçamento, entidade financiadora e área temática CNPq.
+- **`pessoas_envolvidas_projeto_pesquisa`** *(obrigatório no fluxo)* — pessoas vinculadas a cada projeto (docentes, TAEs, estudantes, externos). Contém PII (`cpf`, `nome`).
+
+> ℹ️ **Atenção ao vocabulário.** *Obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** das tabelas de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) e [Modelos obrigatórios, opcionais e desabilitados]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
 
 ## Modelo `projetos_pesquisa`
+
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
@@ -93,6 +97,8 @@ Tabela principal do contrato. Cada linha é um projeto de pesquisa identificado 
 
 ## Modelo `pessoas_envolvidas_projeto_pesquisa`
 
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
+
 ### Resumo do modelo
 
 Pessoas diretamente vinculadas a um projeto de pesquisa (docentes, TAEs, estudantes ou externos), com período de participação e situação. Contém PII (`cpf`, `nome`) classificados como `sensitive`.
@@ -111,6 +117,7 @@ Pessoas diretamente vinculadas a um projeto de pesquisa (docentes, TAEs, estudan
 | `data_ingresso` | `date` | não | — | Data de ingresso no projeto |
 | `data_saida` | `date` | não | — | Data de saída do projeto |
 | `situacao_envolvido` | `string` | não | `enum: [Ativo, Inativo]` | Situação do envolvido |
+| `matricula` | `string` | não | — | Matrícula |
 
 
 ### Exemplo válido
@@ -124,7 +131,8 @@ Pessoas diretamente vinculadas a um projeto de pesquisa (docentes, TAEs, estudan
   "id_projeto_pesquisa": 3147,
   "data_ingresso": "2024-09-01",
   "data_saida": null,
-  "situacao_envolvido": "Ativo"
+  "situacao_envolvido": "Ativo",
+  "matricula": "20241012345"
 }
 ```
 
@@ -147,7 +155,7 @@ Pessoas diretamente vinculadas a um projeto de pesquisa (docentes, TAEs, estudan
 | `cpf` | `pessoas_envolvidas_projeto_pesquisa` | `pessoas` | `chave_simples` | `erro` |
 
 
-> **`area_tematica_cnpq` é o único `aviso` deste contrato — e a severidade do mesmo campo diverge entre contratos.** Aqui e em [Produção Intelectual](producao_intelectual) ele é `aviso`; em [Ações de Extensão](acoes_de_extensao), o mesmo `area_tematica_cnpq` apontando para o mesmo `recurso: areas_tematicas_cnpq` é `erro`.
+> **`area_tematica_cnpq` é o único `aviso` deste contrato — e a severidade do mesmo campo diverge entre contratos.** Aqui e em [Produção Intelectual]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/producao_intelectual) ele é `aviso`; em [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao), o mesmo `area_tematica_cnpq` apontando para o mesmo `recurso: areas_tematicas_cnpq` é `erro`.
 
 
 
@@ -177,6 +185,9 @@ models:
     type: table
     title: "Projetos de Pesquisa"
     description: "Informações estruturadas sobre projetos de pesquisa acadêmica institucional."
+    meta:
+      required: true
+      disabled: false
     fields:
       id_projeto_pesquisa:
         type: integer
@@ -260,6 +271,9 @@ models:
     type: table
     title: "Pessoas Envolvidas em Projetos de Pesquisa"
     description: "Subconjunto de dados contendo as pessoas diretamente vinculadas aos projetos de pesquisa."
+    meta:
+      required: true
+      disabled: false
     fields:
       id_envolvido:
         type: integer
@@ -310,6 +324,10 @@ models:
         type: string
         title: "Situação do envolvido"
         enum: ["Ativo", "Inativo"]
+
+      matricula:
+        type: string
+        title: "Matrícula"
     additionalFields: false
 ```
 
