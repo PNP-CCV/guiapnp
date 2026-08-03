@@ -39,6 +39,6 @@ O marco regulatório é um conjunto de normas balizadoras para a construção e 
 
 <https://www.in.gov.br/en/web/dou/-/portaria-n-40-de-30-de-setembro-de-2025-659707255>{:target="_blank"}
 
-**Portaria Setec/MEC nº 41/2025**: Institui o Comitê de Governança de Dados e Informações da Rede Federal de Educação Profissional, Científica e Tecnológica (CGDI). 
+**Portaria Setec/MEC nº 11/2026**: Institui o Comitê de Governança de Dados e Informações da Rede Federal de Educação Profissional, Científica e Tecnológica (CGDI). 
 
-<https://www.in.gov.br/en/web/dou/-/portaria-n-41-de-30-de-setembro-de-2025-659705163>{:target="_blank"}
+<https://www.in.gov.br/web/dou/-/portaria-n-11-de-18-de-marco-de-2026-694448364>{:target="_blank"}

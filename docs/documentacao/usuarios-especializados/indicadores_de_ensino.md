@@ -160,7 +160,7 @@ toc: true
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Polaridade:</strong> Crescente (quanto maior, melhor).
+      <strong>Polaridade:</strong> Crescente (quanto menor, melhor).
     </td>
   </tr>
   <tr>
@@ -247,12 +247,8 @@ toc: true
       <p style="text-align:center"><strong>Variáveis</strong></p>
       <strong>Tipos de estrutura com matrícula (TEMA):</strong><br/>
       <ul>
-        <li>Institutos Federais</li>
-        <li>Colégio Pedro II</li>
-        <li>Cefets</li>
         <li>Campi</li>
         <li>Centros de Referência</li>
-        <li>Polo de Inovação</li>
        <li>Escolas Técnicas vinculadas às universidades</li>
       </ul>
       <strong>Fonte:</strong> PNP (CCV).<br/>
@@ -510,7 +506,7 @@ toc: true
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador apresenta o número total de unidades acadêmicas, que possuam matrículas no ano base.
+      <strong>Definição:</strong> Este indicador apresenta o número total de unidades acadêmicas.
     </td>
   </tr>
   <tr>
@@ -642,6 +638,8 @@ Com base neste exemplo, a PNP apresentaria os seguintes resultados no ano base 2
 <p/>
 
 O cálculo do indicador de Eficiência Acadêmica deve avaliar a capacidade de a Rede Federal de Educação Profissional, Científica e Tecnológica (RFEPCT) atingir os resultados previstos em termos de “estudantes certificados” ou “com potencial de certificação” em relação à quantidade total de matrículas, considerando um determinado ciclo de matrículas. Para fazer esta projeção, a PNP identificou o quanto representam os “concluintes (50%)” no total de “concluintes mais evadidos (50% + 20%)”, criando um ponderador que busca projetar o percentual de retidos que provavelmente concluirão seu curso em algum momento posterior ao ano base, multiplicando pela quantidade de retidos.
+
+Dessa forma, com base nos dados do exemplo, o indicador teria como resultado 50 + [(50/(50+20))x30] = 71.42%
 
 <table>
   <tr>
@@ -874,7 +872,7 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
                   </mfrac>
                   <mo>)</mo>
                   <mo>&#xD7;</mo>
-                  <mn>0,089</mn>
+                  <mn>0,028</mn>
                 </mrow>
                 <mo>]</mo>
               </mrow>
@@ -893,7 +891,7 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
                   </mfrac>
                   <mo>)</mo>
                   <mo>&#xD7;</mo>
-                  <mn>0,028</mn>
+                  <mn>0,089</mn>
                 </mrow>
                 <mo>]</mo>
               </mrow>
@@ -951,12 +949,12 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador apresenta o percentual de vagas ofertadas por cotas nos cursos técnicos e de graduação, conforme classificações definidas na Lei das Cotas (Lei 11.711/2012) e alterações. 
+      <strong>Definição:</strong> Este indicador apresenta o percentual de vagas ofertadas por cotas nos cursos técnicos e de graduação, conforme classificações definidas na Lei das Cotas (Lei 12.711/2012) e alterações. 
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> 50% - Art. 1º da Lei 11.711/2012, com redação dada pelas Leis 14.723/2023 e 14.945/2024.
+      <strong>Meta:</strong> 50% - Art. 1º da Lei 12.711/2012, com redação dada pelas Leis 14.723/2023 e 14.945/2024.
     </td>
   </tr>
   <tr>
@@ -1004,7 +1002,7 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
       <p style="text-align:center"><strong>Variáveis</strong></p>
       <strong>VC - Vagas de Cotas</strong><br/>
       <strong>Fonte:</strong> PNP (CCV).<br/>
-      <strong>Definição:</strong> Número de vagas disponibilizadas para a fase inicial dos cursos e reservadas para que estudantes de escolas públicas, estudantes negros, pardos, indígenas, quilombolas, pessoas com deficiência e estudantes oriundos de famílias com renda per capita inferior a 1 salário mínimo tenham acesso ao ensino técnico e de graduação, conforme disposto na Lei 11.711/2012 e alterações.
+      <strong>Definição:</strong> Número de vagas disponibilizadas para a fase inicial dos cursos e reservadas para que estudantes de escolas públicas, estudantes negros, pardos, indígenas, quilombolas, pessoas com deficiência e estudantes oriundos de famílias com renda per capita inferior a 1 salário mínimo tenham acesso ao ensino técnico e de graduação, conforme disposto na Lei 12.711/2012 e alterações.
       <br/>&nbsp;<br/>
       <strong>VAC - Vagas de Ampla Concorrência</strong><br/>
       <strong>Fonte:</strong> PNP (CCV).<br/>
@@ -1025,12 +1023,12 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador apresenta o número de matrículas classificadas por forma de ingresso, conforme categorias definidas na Lei das Cotas (Lei 11.711/2012) e alterações. 
+      <strong>Definição:</strong> Este indicador apresenta o número de matrículas classificadas por forma de ingresso, conforme categorias definidas na Lei das Cotas (Lei 12.711/2012) e alterações. 
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> 50% - Art. 1º da Lei 11.711/2012, com redação dada pela Lei 14.723/2023.
+      <strong>Meta:</strong> 50% - Art. 1º da Lei 12.711/2012, com redação dada pela Lei 14.723/2023.
     </td>
   </tr>
   <tr>
@@ -1100,7 +1098,7 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
       </ul>
       <strong>Fonte:</strong> PNP (CCV).<br/>
       <strong>Definição:</strong> A classificação segundo formas de ingresso desdobra-se em dez categorias, conforme informado nos registros de ingresso dos estudantes.<br/>
-      * Para alunos ingressantes até o ano base 2023, será utilizada a classificação descrita na Lei 11.711/2012, antes das alterações.
+      * Para alunos ingressantes até o ano base 2023, será utilizada a classificação descrita na Lei 12.711/2012, antes das alterações.
     </td>
   </tr>
 </table>
@@ -1122,7 +1120,7 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> Mínimo de 50% - Art. 8º da Lei 11.892/2.008.
+      <strong>Meta:</strong> Mínimo de 50% - Art. 8º da Lei 11.892/2008.
     </td>
   </tr>
   <tr>
@@ -1193,7 +1191,7 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> Mínimo de 20% - Art. 8º da Lei 11.892/2.008.
+      <strong>Meta:</strong> Mínimo de 20% - Art. 8º da Lei 11.892/2008.
     </td>
   </tr>
   <tr>
@@ -1749,12 +1747,12 @@ Número de matrículas oriundas de ampla concorrência em cursos técnicos e de 
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador apresenta o número total de matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por ampla concorrência, conforme estabelecido na Lei das Cotas (Lei 11.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> Este indicador apresenta o número total de matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por ampla concorrência, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> 50% - Art. 1º da Lei 11.711/2012, com redação dada pela Lei 14.723/2023.
+      <strong>Meta:</strong> 50% - Art. 1º da Lei 12.711/2012, com redação dada pela Lei 14.723/2023.
     </td>
   </tr>
   <tr>
@@ -1791,7 +1789,7 @@ Número de matrículas oriundas de ampla concorrência em cursos técnicos e de 
       <p style="text-align:center"><strong>Variáveis</strong></p>
       <strong>MACTG - matrículas oriundas de vagas de ampla concorrência em cursos técnicos e de graduação</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por ampla concorrência, conforme estabelecido na Lei das Cotas (Lei 11.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por ampla concorrência, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
     </td>
   </tr>
 </table>
@@ -1810,7 +1808,7 @@ Número de matrículas em cursos técnicos e de graduação (ALM)
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador apresenta o número total de matrículas em cursos técnicos e de graduação, considerando as formas de ingresso “ampla concorrência” e “vagas reservadas”, conforme estabelecido na Lei das Cotas (Lei 11.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> Este indicador apresenta o número total de matrículas em cursos técnicos e de graduação, considerando as formas de ingresso “ampla concorrência” e “vagas reservadas”, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
     </td>
   </tr>
   <tr>
@@ -1857,11 +1855,11 @@ Número de matrículas em cursos técnicos e de graduação (ALM)
       <p style="text-align:center"><strong>Variáveis</strong></p>
       <strong>MACTG - matrículas oriundas de vagas de ampla concorrência em cursos técnicos e de graduação.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por ampla concorrência, conforme estabelecido na Lei das Cotas (Lei 11.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por ampla concorrência, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
       <br/>&nbsp;<br/>
       <strong>MRTG - matrículas oriundas de vagas reservadas em cursos técnicos e de graduação</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por vagas reservadas, conforme estabelecido na Lei das Cotas (Lei 11.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por vagas reservadas, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
     </td>
   </tr>
 </table>
@@ -1879,12 +1877,12 @@ Número de matrículas oriundas de vagas reservadas em cursos técnicos e de gra
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador apresenta o número total de matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por cotas (reserva de vagas), conforme estabelecido na Lei das Cotas (Lei 11.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> Este indicador apresenta o número total de matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por cotas (reserva de vagas), conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> 50% - Art. 1º da Lei 11.711/2012, com redação dada pela Lei 14.723/2023.
+      <strong>Meta:</strong> 50% - Art. 1º da Lei 12.711/2012, com redação dada pela Lei 14.723/2023.
     </td>
   </tr>
   <tr>
@@ -1921,7 +1919,7 @@ Número de matrículas oriundas de vagas reservadas em cursos técnicos e de gra
       <p style="text-align:center"><strong>Variáveis</strong></p>
       <strong>MRTG - matrículas oriundas de vagas reservadas em cursos técnicos e de graduação presenciais.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por vagas reservadas, conforme estabelecido na Lei das Cotas (Lei 11.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por vagas reservadas, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
     </td>
   </tr>
 </table>
@@ -1939,12 +1937,12 @@ Número de vagas de ampla concorrência em cursos técnicos e de graduação (AL
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador apresenta o número total de vagas ofertadas por ampla concorrência em cursos técnicos e de graduação, conforme estabelecido na Lei das Cotas (Lei 11.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> Este indicador apresenta o número total de vagas ofertadas por ampla concorrência em cursos técnicos e de graduação, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> 50% - Art. 1º da Lei 11.711/2012, com redação dada pela Lei 14.723/2023.
+      <strong>Meta:</strong> 50% - Art. 1º da Lei 12.711/2012, com redação dada pela Lei 14.723/2023.
     </td>
   </tr>
   <tr>
@@ -1981,7 +1979,7 @@ Número de vagas de ampla concorrência em cursos técnicos e de graduação (AL
       <p style="text-align:center"><strong>Variáveis</strong></p>
       <strong>ENVACTG - vagas de ampla concorrência em cursos técnicos e de graduação.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> vagas ofertadas por ampla concorrência em cursos técnicos e de graduação, conforme estabelecido na Lei das Cotas (Lei 11.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> vagas ofertadas por ampla concorrência em cursos técnicos e de graduação, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
     </td>
   </tr>
 </table>
@@ -2000,7 +1998,7 @@ Número de vagas em cursos técnicos e de graduação (ALV)
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador apresenta o número total de vagas ofertadas em cursos técnicos e de graduação, considerando as formas de ingresso “ampla concorrência” e “vagas reservadas”, conforme estabelecido na Lei das Cotas (Lei 11.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> Este indicador apresenta o número total de vagas ofertadas em cursos técnicos e de graduação, considerando as formas de ingresso “ampla concorrência” e “vagas reservadas”, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
     </td>
   </tr>
   <tr>
@@ -2047,11 +2045,11 @@ Número de vagas em cursos técnicos e de graduação (ALV)
       <p style="text-align:center"><strong>Variáveis</strong></p>
       <strong>ENVACTG - vagas de ampla concorrência em cursos técnicos e de graduação presenciais.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> vagas ofertadas por ampla concorrência em cursos técnicos e de graduação, conforme estabelecido na Lei das Cotas (Lei 11.711/2012) e Lei nº 14.723/2023 .
+      <strong>Definição:</strong> vagas ofertadas por ampla concorrência em cursos técnicos e de graduação, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023 .
       <br/>&nbsp;<br/>
       <strong>ENVRTG - vagas reservadas em cursos técnicos e de graduação presenciais.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> vagas ofertadas por cotas (reserva de vagas), em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por vagas reservadas, conforme estabelecido na Lei das Cotas (Lei 11.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> vagas ofertadas por cotas (reserva de vagas), em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por vagas reservadas, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
     </td>
   </tr>
 </table>
@@ -2069,12 +2067,12 @@ Número de vagas reservadas em cursos técnicos e de graduação (ALVR)
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador apresenta o número total de vagas ofertadas por cotas (reserva de vagas), em cursos técnicos e de graduação, conforme estabelecido na Lei das Cotas (Lei 11.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> Este indicador apresenta o número total de vagas ofertadas por cotas (reserva de vagas), em cursos técnicos e de graduação, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> 50% - Art. 1º da Lei 11.711/2012, com redação dada pela Lei 14.723/2023.
+      <strong>Meta:</strong> 50% - Art. 1º da Lei 12.711/2012, com redação dada pela Lei 14.723/2023.
     </td>
   </tr>
   <tr>
@@ -2111,7 +2109,7 @@ Número de vagas reservadas em cursos técnicos e de graduação (ALVR)
       <p style="text-align:center"><strong>Variáveis</strong></p>
       <strong>ENVRTG - vagas reservadas em cursos técnicos e de graduação.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> vagas ofertadas por cotas (reserva de vagas), em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por vagas reservadas, conforme estabelecido na Lei das Cotas (Lei 11.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> vagas ofertadas por cotas (reserva de vagas), em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por vagas reservadas, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
     </td>
   </tr>
 </table>
@@ -2274,7 +2272,7 @@ Percentual de matrículas equivalentes em cursos de educação profissional téc
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> Mínimo de 50% - Art. 8º da Lei 11.892/2.008.
+      <strong>Meta:</strong> Mínimo de 50% - Art. 8º da Lei 11.892/2008.
     </td>
   </tr>
   <tr>
@@ -2483,7 +2481,7 @@ Percentual de oferta de vagas em cursos de educação profissional técnica de n
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> Mínimo de 50% - Art. 8º da Lei 11.892/2.008.
+      <strong>Meta:</strong> Mínimo de 50% - Art. 8º da Lei 11.892/2008.
     </td>
   </tr>
   <tr>
@@ -2552,7 +2550,7 @@ Percentual de oferta de vagas em cursos de formação de professores (ALVFP)
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> Mínimo de 20% - Art. 8º da Lei 11.892/2.008.
+      <strong>Meta:</strong> Mínimo de 20% - Art. 8º da Lei 11.892/2008.
     </td>
   </tr>
   <tr>

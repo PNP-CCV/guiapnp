@@ -570,7 +570,7 @@ title: "Regras de consistência"
     <tr>
         <td colspan="3">
             <b>Regra</b><br>
-            Informar ou justificar a forma de ingresso de cada matrícula, conforme listas/categorias definidas na Lei das Cotas (Lei 11.711/2012) e alterações.
+            Informar ou justificar a forma de ingresso de cada matrícula, conforme listas/categorias definidas na Lei das Cotas (Lei 12.711/2012) e alterações.
         </td>
     </tr>
     <tr>
