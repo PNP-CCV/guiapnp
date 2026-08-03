@@ -333,11 +333,18 @@ toc: true
       <td>Ensino Médio</td>
     </tr>
     <tr>
-      <td>Técnico</td>
+      <td>Qualificação Profissional (FIC)</td>
+      <td>Qualificação Profissional (FIC)</td>
+    </tr>
+    <tr>
+      <td rowspan="2">Técnico</td>
       <td>Técnico</td>
     </tr>
     <tr>
-      <td rowspan="3">Graduação</td>
+      <td>Especialização Técnica</td>
+    </tr>
+    <tr>
+      <td rowspan="4">Graduação</td>
       <td>Bacharelado</td>
     </tr>
     <tr>
@@ -345,6 +352,9 @@ toc: true
     </tr>
     <tr>
       <td>Tecnologia</td>
+    </tr>
+    <tr>
+      <td>ABI</td>
     </tr>
     <tr>
       <td rowspan="5">Pós-Graduação</td>

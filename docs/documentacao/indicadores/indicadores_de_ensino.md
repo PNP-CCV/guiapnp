@@ -24,8 +24,8 @@ Veja qual é a o nome da próxima página e da anterior e adicione abaixo no for
     <tr>
       <th colspan="2" style="text-align: center">Indicadores de acompanhamento obrigatório</th>
     </tr>
-    <tr><td>Reserva de Vagas (RV)</td><td>Meta estabelecida pela Lei 11.711/2012 e suas alterações.</td></tr>
-    <tr><td>Formas de Ingresso (FIng)</td><td>Meta estabelecida pela Lei 11.711/2012 e suas alterações.</td></tr>
+    <tr><td>Reserva de Vagas (RV)</td><td>Meta estabelecida pela Lei 12.711/2012 e suas alterações.</td></tr>
+    <tr><td>Formas de Ingresso (FIng)</td><td>Meta estabelecida pela Lei 12.711/2012 e suas alterações.</td></tr>
     <tr><td>Matrículas Equivalentes (Meq)</td><td>Monitoramento estabelecido pela Portaria Setec/MEC nº 146/2021.</td></tr>
     <tr><td>Matrículas Equivalentes em Cursos Técnicos (Técnicos)</td><td>Meta estabelecida pelo Art. 8º da Lei 11.892/2008.</td></tr>
     <tr><td>Matrículas Equivalentes em Formação de Professores (Formação de Professores)</td><td>Meta estabelecida pelo Art. 8º da Lei 11.892/2008.</td></tr>
