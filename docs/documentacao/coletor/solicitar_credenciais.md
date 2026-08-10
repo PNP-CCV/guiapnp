@@ -9,9 +9,14 @@ title: "Solicitação de Credenciais"
 
 Esta seção descreve como deve ser realizada a solicitação de credenciais para o ambiente de desenvolvimento do coletor PNP.
 
+> [!IMPORTANT]  
+> Para o ciclo de 2026, referente ao ano-base de 2025, os chamados começaram a ser atendidos a partir do dia **17/08/2026**.
+
 ## Abertura de Chamado
 
 Para solicitar as credenciais do ambiente de desenvolvimento/testes, o responsável pela área de TI, usando o e-mail institucional da área (ex.: dti@ifrn.edu.br), deverá abrir um chamado pelo e-mail pnp.suporte@mec.gov.br, colocando em cópia o responsável pela área de Desenvolvimento Institucional.
+
+
 
 ### Modelo do Chamado
 

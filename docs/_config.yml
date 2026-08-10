@@ -10,6 +10,7 @@ share_buttons: true
 
 plugins:
   - jekyll-sitemap
+  - jekyll-gfm-admonitions
 
 toc:
   min_level: 1        # Mínimo: <h1>
