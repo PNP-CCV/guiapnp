@@ -81,7 +81,7 @@ O botão **Sincronizar com a PNP** no dashboard puxa os metadados da PNP para o 
 
 É por aqui que contratos, modelos e ciclos entram no Coletor — **não** há cadastro manual deles no painel.
 
-> ⚠️ **Contrato que não aparece depois de sincronizar.** Um contrato cujos modelos estão **todos desabilitados** não é criado; se já existia, é removido (também por exclusão lógica) e o motivo fica registrado no log. Não é falha de sincronização. Ver [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) — e, no catálogo, o contrato [Acadêmico]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/academico), que é exatamente esse caso hoje.
+> ⚠️ **Contrato que não aparece depois de sincronizar.** Um contrato cujos modelos estão **todos desabilitados** não é criado; se já existia, é removido (também por exclusão lógica) e o motivo fica registrado no log. Não é falha de sincronização.
 
 > ℹ️ **Depois de atualizar o Coletor, sincronize uma vez.** As marcações de modelo obrigatório/opcional só passam a valer depois de uma sincronização com a PNP. Numa instalação recém-atualizada, e antes dessa sincronização, todos os modelos são tratados como obrigatórios — o comportamento anterior.
 

@@ -132,7 +132,6 @@ Um contrato cujos modelos são **todos opcionais e nenhum configurado** aparece 
 
 `meta.disabled: true` significa "a PNP desligou este modelo nesta versão do contrato". Ele **nunca é importado**: não aparece na lista de modelos e não há o que configurar. Um modelo já importado que passe a ser `disabled` é recolhido na sincronização seguinte por **exclusão lógica** — o histórico de extrações e os arquivos já gerados não são apagados, e continuam listados nas telas de **Extrações** e **Envios**, que mostram o histórico por conta própria; o que sai de vista são as listagens de **Contratos** e **Modelos de Dados**.
 
-Se **todos** os modelos de um contrato estiverem desabilitados (ou se o contrato não declarar nenhum modelo), o contrato inteiro não é criado no Coletor; e, se já existia, é removido do painel — também por exclusão lógica. É o caso do contrato [Acadêmico]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/academico).
 
 > ⚠️ **Reabilitar um modelo não devolve a configuração.** Se a PNP reabilitar um modelo antes desabilitado, ele volta **zerado**: a configuração de extração anterior não volta junto e precisa ser refeita.
 

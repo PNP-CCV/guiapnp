@@ -33,7 +33,6 @@ A instituição **não escreve** contratos: eles são definidos pela equipe da P
 
 | Contrato | Página no catálogo | Como aparece no painel |
 |---|---|---|
-| Acadêmico | [Acadêmico]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/academico) | **Não aparece** — único modelo desabilitado |
 | Ações de Extensão | [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao) | Normal (um dos três modelos é opcional) |
 | Acordos de Parceria | [Acordos de Parceria]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acordos_de_parceria) | Somente Modelos Opcionais |
 | Desenvolvimento Institucional | [Projetos de Desenvolvimento Institucional]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_desenvolvimento_institucional) | Somente Modelos Opcionais |
