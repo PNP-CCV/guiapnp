@@ -177,12 +177,6 @@ itens:
           - title: "Sincronização com a PNP"
             href: "/documentacao/usuarios-especializados/contratos/sincronizacao_pnp"
             icon: "fas fa-sync-alt"
-          - title: "Acadêmico"
-            icon: "fas fa-graduation-cap"
-            children:
-            - title: "Acadêmico"
-              href: "/documentacao/usuarios-especializados/contratos/academico"
-              icon: "fas fa-file-contract"
           - title: "Extensão"
             icon: "fas fa-handshake"
             children:
