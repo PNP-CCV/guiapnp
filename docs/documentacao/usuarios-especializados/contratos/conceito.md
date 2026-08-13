@@ -29,12 +29,13 @@ Quatro motivos práticos:
 
 ## De onde os contratos vêm
 
-A instituição **não escreve** contratos: eles são definidos pela equipe da PNP e chegam ao Coletor pelo botão **"Sincronizar com a PNP"**, que importa os ciclos, contratos, schemas e modelos do ciclo vigente. Os contratos canônicos da PNP hoje são dez:
+A instituição **não escreve** contratos: eles são definidos pela equipe da PNP e chegam ao Coletor pelo botão **"Sincronizar com a PNP"**, que importa os ciclos, contratos, schemas e modelos do ciclo vigente. Os contratos canônicos da PNP hoje são **onze, com 19 modelos** no total:
 
 | Contrato | Página no catálogo | Como aparece no painel |
 |---|---|---|
 | Ações de Extensão | [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao) | Normal (um dos três modelos é opcional) |
 | Acordos de Parceria | [Acordos de Parceria]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acordos_de_parceria) | Somente Modelos Opcionais |
+| Ativos de Pesquisa | [Ativos de Pesquisa]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/ativos_pesquisa) | Normal |
 | Desenvolvimento Institucional | [Projetos de Desenvolvimento Institucional]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_desenvolvimento_institucional) | Somente Modelos Opcionais |
 | Orçamento | [Documentos de Orçamento]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/orcamento) | Somente Modelos Opcionais |
 | Pessoal | [Pessoal Terceirizado]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/pessoal_terceirizado) | Normal, com um único modelo (dois desabilitados) |
@@ -43,7 +44,7 @@ A instituição **não escreve** contratos: eles são definidos pela equipe da P
 | Projetos de Pesquisa | [Projetos de Pesquisa]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa) | Normal |
 | Sustentabilidade | [Sustentabilidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/sustentabilidade) | Normal |
 
-> ℹ️ **Dez contratos publicados, nove no painel.** Cada modelo do contrato traz dois metadados — `meta.required` e `meta.disabled` — que dizem se o Coletor cobra aquele dataset e se ele é sequer importado. Um contrato cujos modelos estão **todos desabilitados** não é criado: é o caso do **Acadêmico**, que por isso não aparece no painel. E quatro contratos, cujo único modelo é **opcional**, aparecem com o badge *Somente Modelos Opcionais* até que alguém configure a extração deles. Nada disso é erro de sincronização. Detalhes em [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) e em [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
+> ℹ️ **Onze contratos publicados, dez no painel.** Cada modelo do contrato traz dois metadados — `meta.required` e `meta.disabled` — que dizem se o Coletor cobra aquele dataset e se ele é sequer importado. Um contrato cujos modelos estão **todos desabilitados** não é criado: é o caso do **Acadêmico**, que por isso não aparece no painel e não tem página neste catálogo. Dos 19 modelos declarados, **16 são importados** (três estão desabilitados: o único do Acadêmico e dois dos três de Pessoal). E quatro contratos, cujo único modelo é **opcional**, aparecem com o badge *Somente Modelos Opcionais* até que alguém configure a extração deles. Nada disso é erro de sincronização. Detalhes em [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) e em [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
 
 A referência versionada dos YAMLs vive no [repositório do Coletor](https://github.com/PNP-CCV/coletor-pnp-microdados/tree/master/base/fixtures/contratos), e uma verificação automática impede que as páginas do catálogo divirjam do YAML.
 

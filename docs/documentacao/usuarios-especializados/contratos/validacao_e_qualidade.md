@@ -23,7 +23,7 @@ A primeira camada é **bloqueante**: se a extração rejeitar, nenhum Parquet é
 
 A segunda **não é disparada pelo operador** — não existe botão "Executar Testes" no painel. Ela roda sozinha ao final da extração, e só quando *todos* os modelos cobrados do contrato foram extraídos com sucesso (não faz sentido testar um contrato incompleto). Modelos **opcionais** sem Configuração de Extração não entram nessa conta: a extração em lote os pula de propósito, porque tentar extrair um modelo sem provedor derrubaria a tarefa inteira e o teste de qualidade nem chegaria a rodar. Como consequência, um teste de qualidade reprovado aparece no fluxo como **"Falha na Extração"**, e não como um estado próprio.
 
-> ℹ️ **Bloco `quality` ausente em todos os contratos hoje.** Nenhum dos dez contratos da PNP populou o bloco [`quality`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-quality). Logo, o teste verifica hoje apenas a estrutura básica: que o Parquet exista, seja legível e não esteja corrompido. Quando os checks SodaCL forem adicionados, a validação ganha conteúdo de domínio (chave única, valores em enum, frescor temporal, etc.).
+> ℹ️ **Bloco `quality` ausente em todos os contratos hoje.** Nenhum dos onze contratos da PNP populou o bloco [`quality`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-quality). Logo, o teste verifica hoje apenas a estrutura básica: que o Parquet exista, seja legível e não esteja corrompido. Quando os checks SodaCL forem adicionados, a validação ganha conteúdo de domínio (chave única, valores em enum, frescor temporal, etc.).
 
 ## Como o teste roda
 

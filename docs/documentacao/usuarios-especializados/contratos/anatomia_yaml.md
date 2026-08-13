@@ -10,11 +10,11 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-Esta página é a referência chave-a-chave do YAML usado nos **[Contratos de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** da PNP. Os exemplos vêm dos dez contratos reais do catálogo. Use-a junto com [Conceito]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/conceito) (visão geral) e [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade) (como os checks rodam).
+Esta página é a referência chave-a-chave do YAML usado nos **[Contratos de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** da PNP. Os exemplos vêm dos onze contratos reais do catálogo. Use-a junto com [Conceito]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/conceito) (visão geral) e [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade) (como os checks rodam).
 
 ## Estrutura de alto nível
 
-Os dez contratos compartilham o mesmo esqueleto:
+Os onze contratos compartilham o mesmo esqueleto:
 
 ```yaml
 dataContractSpecification: "1.2.0"     # versão da spec datacontract.com
@@ -50,11 +50,11 @@ models:
     additionalFields: false
 ```
 
-A spec aceita também blocos `terms`, `quality`, `examples`, `links`, `tags` etc. Os dez contratos atuais não populam nenhum deles — a seção [Bloco `quality`](#bloco-quality) abaixo descreve a sintaxe para quando esses checks forem adicionados. O bloco [`meta`](#bloco-meta), por outro lado, **é populado hoje em todos os modelos dos dez contratos** — mas ele não vem da spec: é uma extensão da PNP, descrita mais adiante.
+A spec aceita também blocos `terms`, `quality`, `examples`, `links`, `tags` etc. Os onze contratos atuais não populam nenhum deles — a seção [Bloco `quality`](#bloco-quality) abaixo descreve a sintaxe para quando esses checks forem adicionados. O bloco [`meta`](#bloco-meta), por outro lado, **é populado hoje em todos os modelos dos onze contratos** — mas ele não vem da spec: é uma extensão da PNP, descrita mais adiante.
 
 ## `dataContractSpecification`
 
-Versão da especificação [datacontract.com](https://datacontract.com/). Os dez contratos usam `"1.2.0"`.
+Versão da especificação [datacontract.com](https://datacontract.com/). Os onze contratos usam `"1.2.0"`.
 
 ## `id`
 
@@ -66,18 +66,18 @@ Metadados de descoberta:
 
 - `title` — nome humano. É o que aparece no painel do Coletor.
 - `version` — SemVer (ex.: `"1.0.0"`). Deve subir junto com mudanças no schema; ver [Ciclo de vida do contrato]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/ciclo_de_vida).
-- `status` — `"active"` nos dez contratos atuais. Outros valores comuns na spec: `draft`, `proposed`, `deprecated`, `retired`.
+- `status` — `"active"` nos onze contratos atuais. Outros valores comuns na spec: `draft`, `proposed`, `deprecated`, `retired`.
 - `description` — texto livre, multilinha. Renderizado nas páginas do catálogo.
 
 A spec aceita também `owner`, `contact`, `tags` — úteis quando o contrato for compartilhado entre múltiplas instituições.
 
 ## `terms`
 
-Condições de uso, finalidade e limitações. Importante para integradores quando o contrato envolve dados sensíveis ou compartilhamento entre instituições. Os dez contratos atuais **não populam** este bloco — a relação contratual entre instituição e PNP é regida fora do YAML.
+Condições de uso, finalidade e limitações. Importante para integradores quando o contrato envolve dados sensíveis ou compartilhamento entre instituições. Os onze contratos atuais **não populam** este bloco — a relação contratual entre instituição e PNP é regida fora do YAML.
 
 ## `servers`
 
-Configuração de onde os dados ficam. Nos dez contratos, declara-se um server `local` apontando para uma pasta de arquivos **[Parquet]({{ site.baseurl }}/documentacao/coletor/glossario#parquet)**.
+Configuração de onde os dados ficam. Nos onze contratos, declara-se um server `local` apontando para uma pasta de arquivos **[Parquet]({{ site.baseurl }}/documentacao/coletor/glossario#parquet)**.
 
 > ⚠️ **O server `local` é gerenciado pelo Coletor em tempo de execução.** Ao rodar os testes, o Coletor substitui o `local` declarado no YAML por um caminho montado dinamicamente a partir do slug do contrato. Declarar `servers.local` no YAML é tolerado (e necessário para rodar a `datacontract-cli` standalone, fora do Coletor), mas o que está lá **não** é honrado quando o Coletor executa os testes.
 
@@ -94,7 +94,7 @@ Cada entrada representa um dataset (tabela lógica) e vira um **[Modelo de Dados
 
 ## Bloco `meta` {#bloco-meta}
 
-`meta` é um bloco de **nível de modelo** — irmão de `title`, `description` e `fields`, dentro de cada entrada de `models`. Ele **não faz parte da `dataContractSpecification` 1.2.0**: passa pelo leitor porque a spec tolera chaves extras, e quem o interpreta é o Coletor. Hoje **todos os modelos dos dez contratos** declaram o bloco.
+`meta` é um bloco de **nível de modelo** — irmão de `title`, `description` e `fields`, dentro de cada entrada de `models`. Ele **não faz parte da `dataContractSpecification` 1.2.0**: passa pelo leitor porque a spec tolera chaves extras, e quem o interpreta é o Coletor. Hoje **todos os modelos dos onze contratos** declaram o bloco.
 
 ```yaml
 models:
@@ -146,7 +146,7 @@ Quando o bloco `meta` está ausente, incompleto, ou traz um valor que não é um
 
 ## Tipos de campo
 
-Tipos efetivamente usados nos dez contratos da PNP:
+Tipos efetivamente usados nos onze contratos da PNP:
 
 | Tipo no contrato | O que representa | Onde aparece |
 |---|---|---|
@@ -161,7 +161,7 @@ A spec aceita também `decimal`, `timestamp`, `numeric`, `text`, `varchar`, `big
 
 ## Constraints de campo
 
-Constraints **efetivamente usadas** nos dez contratos:
+Constraints **efetivamente usadas** nos onze contratos:
 
 - `primaryKey: true` — chave primária do modelo. Único campo com essa flag por modelo. Exemplo: `id_acao_extensao`.
 - `required: true` — coluna obrigatória. Se a fonte não devolver a coluna, a extração é rejeitada antes de gravar qualquer arquivo.
@@ -176,7 +176,7 @@ Constraints **suportadas pela spec mas não usadas hoje**: `unique`, `pattern` (
 
 ## Bloco `quality` {#bloco-quality}
 
-Sintaxe **[SodaCL]({{ site.baseurl }}/documentacao/coletor/glossario#sodacl)** aceita pela `datacontract-cli`. Os dez contratos atuais **não populam** este bloco — quando populado, o Coletor executa os checks contra o Parquet local na hora do teste de qualidade.
+Sintaxe **[SodaCL]({{ site.baseurl }}/documentacao/coletor/glossario#sodacl)** aceita pela `datacontract-cli`. Os onze contratos atuais **não populam** este bloco — quando populado, o Coletor executa os checks contra o Parquet local na hora do teste de qualidade.
 
 Esqueleto típico:
 
