@@ -46,13 +46,13 @@ Tabela única do contrato. Cada linha é um instrumento jurídico (acordo, conv�
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id_acordo` | `integer` | sim | `primaryKey` | ID acordo/parceria |
-| `data_formalizacao` | `date` | não | — | Data em que o acordo foi oficialmente firmado |
-| `instituicao_parceira` | `string` | não | — | Nome da organização parceira |
+| `data_formalizacao` | `date` | sim | — | Data em que o acordo foi oficialmente firmado |
+| `instituicao_parceira` | `string` | sim | — | Nome da organização parceira |
 | `objeto_acordo` | `string` | sim | — | Descrição do projeto de pesquisa vinculado. Formato: `id_projeto_pesq; título_projetopesq` |
-| `vigencia` | `string` | não | — | Período de validade do acordo. Formato: `Ano de início; Ano de fim` |
-| `numero_acordo` | `string` | não | — | Número identificador do instrumento jurídico |
+| `vigencia` | `string` | sim | — | Período de validade do acordo. Formato: `Ano de início; Ano de fim` |
+| `numero_acordo` | `string` | sim | — | Número identificador do instrumento jurídico |
 | `contrapartida_financeira` | `string` | não | — | Valor em R$ ou indicação de que não há |
-| `estrutura` | `string` | não | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os acordos de parceria. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os acordos de parceria. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
 | `fundacao_interveniente` | `string` | não | — | Nome da fundação responsável pela gestão |
 
 > **referencia_pnp:** Apenas os dados que encontram referência na PNP são validados, ou seja, caso seja informado uma `estrutura` que não esteja dentro da Base da PNP, a respectiva ação de extensão será rejeitada, até que seja fornecido o dado correto.

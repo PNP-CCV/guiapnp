@@ -48,12 +48,12 @@ Tabela única do contrato. Cada linha é um projeto de ensino identificado por `
 | `natureza_projeto` | `string` | sim | `enum` (7 valores — ver abaixo) | Natureza do projeto |
 | `titulo_projeto` | `string` | sim | — | Título do Projeto |
 | `resumo_projeto` | `string` | não | — | Resumo do Projeto |
-| `estrutura` | `string` | não | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os projetos de ensino. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
-| `projeto_ensino_sustentavel` | `boolean` | não | — | Aborda a temática da sustentabilidade? Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
-| `nome_coordenador` | `string` | não | — | Nome do Coordenador |
-| `data_inicio` | `date` | não | — | Data de início |
-| `data_termino` | `date` | não | — | Data de término |
-| `situacao_projeto` | `string` | não | `enum: [Em andamento, Finalizado, Cancelado]` | Situação do projeto |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os projetos de ensino. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `projeto_ensino_sustentavel` | `boolean` | sim | — | Aborda a temática da sustentabilidade? Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `nome_coordenador` | `string` | sim | — | Nome do Coordenador |
+| `data_inicio` | `date` | sim | — | Data de início |
+| `data_termino` | `date` | sim | — | Data de término |
+| `situacao_projeto` | `string` | sim | `enum: [Em andamento, Finalizado, Cancelado]` | Situação do projeto |
 | `entidade_financiadora` | `string` | não | `enum` (7 valores — ver abaixo) | Entidade financiadora |
 | `orcamento_projeto` | `double` | não | — | Orçamento do projeto. Valor numérico em reais (R$) |
 | `produto` | `string` | não | — | Produto final |

@@ -19,6 +19,8 @@ Aceite final e oficial dos microdados de uma instituição, dado pelo Reitor **n
 
 É um estado **terminal**: o Coletor o reflete via [Registro de Validação de Modelo](#registro-de-validacao-de-modelo) e passa a bloquear a reextração do [Modelo de Dados](#modelo-de-dados), porque substituir dado já aceito exige abrir um novo [Ciclo de Coleta](#ciclo-de-coleta). Veja [Fluxo de negócio]({{ site.baseurl }}/documentacao/coletor/fluxo_de_negocio).
 
+É também o **único** estágio terminal da cadeia: enquanto o dado está aguardando validação, validado ou apenas homologado pela área, uma reextração ainda destrava o reenvio. Ver [Só a Aprovação do Reitor é definitiva]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#so-a-aprovacao-do-reitor-e-definitiva).
+
 ## Ciclo de Coleta {#ciclo-de-coleta}
 
 Período anual em que os microdados de uma edição da PNP são coletados, delimitado por uma janela principal e uma janela de correção. Um ciclo agrega um ou mais [Contratos de Dados](#contrato-de-dados), e apenas um ciclo é considerado ativo por vez. Veja [Ciclo de coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta).

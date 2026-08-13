@@ -70,6 +70,8 @@ A PNP confere o parquet recebido por conta própria. Além do schema, roda uma *
 
 O **Gestor de Área Temática** revisa o que a sua área enviou e decide. Cada área responde pelos seus dados — Extensão homologa Extensão, Pesquisa homologa Pesquisa. Neste nível existe rejeição: a área pode devolver o dataset com uma justificativa, que volta ao Coletor para a instituição corrigir e reenviar.
 
+Homologar **não tranca** o modelo. Se a área homologou um dado que depois se revelou errado, a instituição corrige na origem e re-extrai: a validação anterior fica obsoleta e o envio volta a ser oferecido, reiniciando a cadeia. Ver [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#so-a-aprovacao-do-reitor-e-definitiva).
+
 ### Aprovação do Reitor (na PNP)
 
 Só chega ao Reitor o que a área já homologou. A decisão é institucional, cobre todas as áreas de uma vez, e é **terminal**: aqui só existe aprovar. Depois do aceite, o Coletor reflete o estado final e passa a **bloquear a reextração** daquele modelo — substituir dado já aceito exige um novo [Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta).

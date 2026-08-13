@@ -35,6 +35,26 @@ São **12 códigos de status** e **13 rótulos** — o código `1` cobre dois ca
 
 > ⚠️ **Metade do fluxo acontece do lado da PNP.** Os estados 10 a 13 espelham o que está acontecendo **na PNP**, não no Coletor. Homologação da Área e Aprovação do Reitor são ações humanas lá — o Coletor apenas consulta o status e reflete o resultado. Não existe botão para avançá-las aqui. Ver [Sincronização com a PNP]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/sincronizacao_pnp).
 
+## Só a Aprovação do Reitor é definitiva {#so-a-aprovacao-do-reitor-e-definitiva}
+
+Dos estados espelhados da PNP, só o **Sincronizado com Sucesso** é irreversível. Os estágios intermediários **não prendem o modelo**:
+
+| Estado do modelo na PNP | Reextração destrava o reenvio? |
+|---|---|
+| Aguardando Validação PNP | Sim |
+| Validado (aguardando homologação) | Sim |
+| Homologado pela Área | Sim |
+| Rejeitado (pela validação ou pela área) | Sim |
+| **Aprovado pelo Reitor** | **Não — reextração bloqueada** |
+
+Na prática: se a área homologou um dado que depois se revelou errado, há saída dentro do Coletor. Corrija na origem e re-extraia — a validação anterior fica obsoleta, o botão de envio reaparece e o modelo volta a "Pronto para Sincronizar", reiniciando a cadeia de validação na PNP.
+
+Depois da aprovação do Reitor, não: substituir dado oficialmente aceito exige um novo [Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta).
+
+> ℹ️ **O dado precisa mudar de fato.** A PNP identifica cada dataset pelo conteúdo. Re-extrair sem que o dado tenha mudado devolve o mesmo dataset com o status que ele já tinha: o botão volta, mas o reenvio não muda nada do outro lado.
+
+Um contrato com **todos** os modelos aprovados pelo Reitor exibe "Sincronizado com Sucesso" mesmo que houvesse uma falha de extração ou de teste registrada antes — o estado terminal tem prioridade. Antes disso, um contrato aprovado podia ficar preso em "Falha na Extração", oferecendo um botão "Re-extrair" que não tinha como funcionar.
+
 ## Modelos obrigatórios, opcionais e desabilitados {#modelos-obrigatorios-opcionais-e-desabilitados}
 
 O status de um contrato **não olha todos os modelos** — olha os que "contam no fluxo". Quem decide isso é o próprio contrato: para cada modelo, o YAML publicado pela PNP traz dois metadados, `meta.required` e `meta.disabled`. A instituição não edita essa marcação no painel.

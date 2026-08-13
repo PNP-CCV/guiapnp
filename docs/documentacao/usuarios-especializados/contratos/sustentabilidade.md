@@ -49,10 +49,10 @@ Indicadores físicos de consumo e geração por estrutura. Os três valores são
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id` | `integer` | sim | `primaryKey` | Identificador |
-| `estrutura` | `string` | não | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os consumos e produções de água/energia. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
-| `agua_consumo` | `double` | não | — | Soma dos consumos mensais de água, em m³. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
-| `energia_consumo` | `double` | não | — | Soma dos consumos mensais de energia elétrica, em KWh. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
-| `prod_energia_renovavel` | `double` | não | — | Produção anual de energia elétrica de fonte renovável, em KWh. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os consumos e produções de água/energia. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `agua_consumo` | `double` | sim | — | Soma dos consumos mensais de água, em m³. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `energia_consumo` | `double` | sim | — | Soma dos consumos mensais de energia elétrica, em KWh. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `prod_energia_renovavel` | `double` | sim | — | Produção anual de energia elétrica de fonte renovável, em KWh. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 
 > **As unidades de medida são usadas só no título do campo.** m³ para água, KWh para energia — nada no schema impede o envio em litros ou MWh. Um campus que reporte energia em MWh passa na validação e entra no indicador mil vezes menor. Confira a unidade na origem.
 
@@ -92,12 +92,12 @@ Maturidade institucional da política de sustentabilidade por estrutura: que ins
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id` | `integer` | sim | `primaryKey` | Identificador |
-| `estrutura` | `string` | não | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se a governança, implantação e divulgação da sustentabilidade. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
-| `instancia_governanca` | `array` (de `string`) | não | `enum` por item (11 códigos — ver legenda) | Instâncias de governança formalmente instituídas para coordenar e/ou executar a política de sustentabilidade institucional |
-| `col_res_solidos` | `boolean` | não | — | Existência de coletores de resíduos sólidos identificados na estrutura. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
-| `sen_com_interna` | `boolean` | não | — | Realização de ações de sensibilização da comunidade interna sobre a gestão dos resíduos sólidos na estrutura. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
-| `par_coop_col_seletiva` | `boolean` | não | — | Formalização de parceria com cooperativa de coleta seletiva ou comprovação de coleta seletiva pela prefeitura na estrutura. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
-| `canais_divulgacao` | `array` (de `string`) | não | `enum` por item (4 códigos — ver legenda) | Canais de divulgação específicos da política/ações de sustentabilidade institucionais na estrutura. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se a governança, implantação e divulgação da sustentabilidade. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `instancia_governanca` | `array` (de `string`) | sim | `enum` por item (11 códigos — ver legenda) | Instâncias de governança formalmente instituídas para coordenar e/ou executar a política de sustentabilidade institucional |
+| `col_res_solidos` | `boolean` | sim | — | Existência de coletores de resíduos sólidos identificados na estrutura. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `sen_com_interna` | `boolean` | sim | — | Realização de ações de sensibilização da comunidade interna sobre a gestão dos resíduos sólidos na estrutura. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `par_coop_col_seletiva` | `boolean` | sim | — | Formalização de parceria com cooperativa de coleta seletiva ou comprovação de coleta seletiva pela prefeitura na estrutura. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `canais_divulgacao` | `array` (de `string`) | sim | `enum` por item (4 códigos — ver legenda) | Canais de divulgação específicos da política/ações de sustentabilidade institucionais na estrutura. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 
 #### Legenda de `instancia_governanca`
 
@@ -164,13 +164,13 @@ Volume de compras e contratações por estrutura, com o recorte de quantas aplic
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id` | `integer` | sim | `primaryKey` | Identificador |
-| `estrutura` | `string` | não | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se as compras e contratações. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
-| `realiza_compras_contratacoes` | `boolean` | não | — | A estrutura realiza compras e/ou contratações? Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
-| `normativo_compras_sustentaveis` | `boolean` | não | — | Possui normativo que regulamenta compras e contratações com aplicação de critérios de sustentabilidade? Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
-| `compras_sustentaveis` | `integer` | não | — | Número de compras efetivadas utilizando pelo menos um critério de sustentabilidade, no ano de referência. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
-| `contratacoes_sustentaveis` | `integer` | não | — | Número de contratações efetivadas utilizando pelo menos um critério de sustentabilidade, no ano de referência. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
-| `compras_geral` | `integer` | não | — | Número de compras efetivadas no ano de referência. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
-| `contratacoes_geral` | `integer` | não | — | Número de contratações efetivadas no ano de referência. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se as compras e contratações. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `realiza_compras_contratacoes` | `boolean` | sim | — | A estrutura realiza compras e/ou contratações? Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `normativo_compras_sustentaveis` | `boolean` | sim | — | Possui normativo que regulamenta compras e contratações com aplicação de critérios de sustentabilidade? Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `compras_sustentaveis` | `integer` | sim | — | Número de compras efetivadas utilizando pelo menos um critério de sustentabilidade, no ano de referência. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `contratacoes_sustentaveis` | `integer` | sim | — | Número de contratações efetivadas utilizando pelo menos um critério de sustentabilidade, no ano de referência. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `compras_geral` | `integer` | sim | — | Número de compras efetivadas no ano de referência. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `contratacoes_geral` | `integer` | sim | — | Número de contratações efetivadas no ano de referência. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 
 > **Os subconjuntos não são checados contra os totais.** `compras_sustentaveis` é, por definição, um subconjunto de `compras_geral` — mas **nenhuma regra declarada garante isso**. `compras_sustentaveis: 90` com `compras_geral: 12` passa na validação e produz um indicador de 750%. O mesmo vale para o par de contratações, e para `realiza_compras_contratacoes: false` acompanhado de contadores positivos. Este modelo é o candidato mais óbvio do catálogo a um bloco `quality` — ver [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade).
 

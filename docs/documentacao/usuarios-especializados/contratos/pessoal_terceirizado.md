@@ -49,10 +49,10 @@ Trabalhadores terceirizados atuando na instituição, um por linha. Contém PII 
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id` | `integer` | sim | `primaryKey` | Identificador |
-| `cpf` | `string` | não | `pii`, `classification: sensitive` | Cadastro de pessoa física do servidor terceirizado |
-| `estrutura` | `string` | não | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os servidores terceirizados. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
-| `situacao` | `string` | não | `enum: [Ativo, Inativo]` | Permanece atuando ou deixou de atuar na estrutura |
-| `data_ingresso` | `date` | não | — | Data que iniciou atividades na estrutura |
+| `cpf` | `string` | sim | `pii`, `classification: sensitive` | Cadastro de pessoa física do servidor terceirizado |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os servidores terceirizados. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `situacao` | `string` | sim | `enum: [Ativo, Inativo]` | Permanece atuando ou deixou de atuar na estrutura |
+| `data_ingresso` | `date` | sim | — | Data que iniciou atividades na estrutura |
 | `data_exclusao` | `date` | não | — | Data que encerrou atividades na estrutura |
 
 > **`situacao` e `data_exclusao` podem se contradizer.** Nada no schema garante que `situacao: "Inativo"` venha com `data_exclusao` preenchida, nem que `situacao: "Ativo"` venha sem ela. Não há regra de qualidade declarada — a coerência é responsabilidade da origem.

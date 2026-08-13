@@ -44,16 +44,16 @@ Tabela única do contrato. Cada linha é uma combinação de classificação or�
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id` | `integer` | sim | `primaryKey` | Identificador do registro |
-| `orgao_superior_cod` | `integer` | não | — | Órgão Superior (Cód)(UO). Origem: (Siafi) |
-| `uo_cod` | `string` | não | — | Unidade Orçamentária (Cód). Origem: (Siafi) |
-| `acao_cod` | `string` | não | — | Ação (Cód). Origem: (Siafi) |
-| `ptres` | `string` | não | — | Programa de Trabalho Resumido. Origem: (Siafi) |
-| `origem_despesa` | `string` | não | `enum` (ver legenda) | Origem da Despesa. Origem: (Siafi) |
+| `orgao_superior_cod` | `integer` | sim | — | Órgão Superior (Cód)(UO). Origem: (Siafi) |
+| `uo_cod` | `string` | sim | — | Unidade Orçamentária (Cód). Origem: (Siafi) |
+| `acao_cod` | `string` | sim | — | Ação (Cód). Origem: (Siafi) |
+| `ptres` | `string` | sim | — | Programa de Trabalho Resumido. Origem: (Siafi) |
+| `origem_despesa` | `string` | sim | `enum` (ver legenda) | Origem da Despesa. Origem: (Siafi) |
 | `emenda_impositiva_tipo` | `string` | não | — | Emenda Impositiva (Tipo). Origem: (Siafi) |
 | `emenda_impositiva_numero_ano` | `string` | não | — | Emenda Impositiva (Número/Ano). Origem: (Siafi) |
-| `programa_interno_cod` | `string` | não | `enum` (ver legenda) | Programa Interno (Cód). Origem: (Siafi) |
-| `programa_interno_desc` | `string` | não | — | Programa Interno (Desc). Origem: (Siafi) |
-| `gnd_cod` | `string` | não | `enum` (ver legenda) | Grupo de Natureza da Despesa (Cód). Origem: (Siafi) |
+| `programa_interno_cod` | `string` | sim | `enum` (ver legenda) | Programa Interno (Cód). Origem: (Siafi) |
+| `programa_interno_desc` | `string` | sim | — | Programa Interno (Desc). Origem: (Siafi) |
+| `gnd_cod` | `string` | sim | `enum` (ver legenda) | Grupo de Natureza da Despesa (Cód). Origem: (Siafi) |
 | `esfera_cod` | `string` | não | — | Esfera (Cód). Origem: (Siafi) |
 | `fonte_cod` | `string` | não | — | Fonte (Cód). Origem: (Siafi) |
 | `fonte_grupo_cod` | `string` | não | — | Fonte Grupo (Cód). Origem: (Siafi) |
@@ -61,10 +61,10 @@ Tabela única do contrato. Cada linha é uma combinação de classificação or�
 | `orgao_gestor_superior_cod` | `string` | não | — | Órgão Gestor Superior (Cód). Origem:  (Siafi) |
 | `orgao_gestor_cod` | `string` | não | — | Órgão Gestor (Cód). Origem: (Siafi) |
 | `ug_cod` | `string` | não | — | Unidade Gestora (Cód). Origem:  (Siafi) |
-| `ugr_cod` | `string` | não | — | Unidade Gestora Responsável (Cód). Origem: (Siafi) |
-| `estrutura_vinculada` | `string` | não | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os orçamentos. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
-| `liquidado_valor` | `double` | não | — | Liquidado (R$). Origem:  (Siafi) |
-| `rp_pago_valor` | `double` | não | — | Restos a Pagar pagos (R$). Origem: (Siafi) |
+| `ugr_cod` | `string` | sim | — | Unidade Gestora Responsável (Cód). Origem: (Siafi) |
+| `estrutura_vinculada` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os orçamentos. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `liquidado_valor` | `double` | sim | — | Liquidado (R$). Origem:  (Siafi) |
+| `rp_pago_valor` | `double` | sim | — | Restos a Pagar pagos (R$). Origem: (Siafi) |
 
 ### Legenda dos enums
 

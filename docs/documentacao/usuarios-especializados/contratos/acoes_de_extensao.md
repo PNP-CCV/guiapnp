@@ -50,22 +50,22 @@ Tabela principal do contrato. Cada linha é uma ação de extensão única, iden
 | `tipo` | `string` | sim | `enum: [Programa, Projeto, Curso, Evento, Prestação de serviços]` | Tipo |
 | `titulo_acao` | `string` | sim | — | Título da ação |
 | `resumo_acao` | `string` | não | — | Resumo da ação |
-| `estrutura` | `string` | não | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se as ações de extensão. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
-| `projeto_extensao_sustentavel` | `boolean` | não | — | Se projeto, aborda a temática da sustentabilidade? Aplicável quando `tipo = "Projeto"`. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
-| `parceria_institucional` | `boolean` | não | — | Ação com parceria institucional? |
-| `instrumento_parceria` | `string` | não | `enum: [Contrato, Convênio, Acordo, Nenhum]` | Instrumento de parceria |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se as ações de extensão. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `projeto_extensao_sustentavel` | `boolean` | sim | — | Se projeto, aborda a temática da sustentabilidade? Aplicável quando `tipo = "Projeto"`. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `parceria_institucional` | `boolean` | sim | — | Ação com parceria institucional? |
+| `instrumento_parceria` | `string` | sim | `enum: [Contrato, Convênio, Acordo, Nenhum]` | Instrumento de parceria |
 | `nome_coordenador` | `string` | não | — | Nome do Coordenador |
-| `data_inicio` | `date` | não | — | Data de início |
-| `data_termino` | `date` | não | — | Data de término |
-| `situacao_acao` | `string` | não | `enum: [Em andamento, Finalizado, Cancelado]` | Situação da ação |
+| `data_inicio` | `date` | sim | — | Data de início |
+| `data_termino` | `date` | sim | — | Data de término |
+| `situacao_acao` | `string` | sim | `enum: [Em andamento, Finalizado, Cancelado]` | Situação da ação |
 | `data_ultima_situacao` | `date` | não | — | Data da última situação |
 | `municipios_atendidos` | `array` (de `bigint`) | não | `referencia_pnp: municipios` (declarativo — ver nota) | Municípios atendidos, por código IBGE — lista de números, ex. `[2408102, 2403103]`. Ver a ressalva sobre o formato abaixo |
 | `entidade_financiadora` | `string` | não | — | Entidade financiadora |
 | `contrapartida_financeira` | `string` | não | — | Contrapartida financeira institucional |
 | `area_tematica_cnpq` | `string` | não | `referencia_pnp: areas_tematicas_cnpq` (declarativo — ver nota) | Área temática CNPq. Formato: `{codigo}` |
-| `subeixo_tecnologico` | `string` | não | `referencia_pnp: subeixos_tecnologicos` (declarativo — ver nota) | Subeixo tecnológico. Formato: `{codigo}` |
-| `populacao_vulneravel` | `boolean` | não | — | Destinado à população em vulnerabilidade? |
-| `tipo_vulnerabilidade` | `string` | não | `enum: [Socioeconômica, Educacional, Gênero e Raça, Deficiência ou Condição de Saúde, Geracional, Territorial]` | Tipo de vulnerabilidade |
+| `subeixo_tecnologico` | `string` | sim | `referencia_pnp: subeixos_tecnologicos` (declarativo — ver nota) | Subeixo tecnológico. Formato: `{codigo}` |
+| `populacao_vulneravel` | `boolean` | sim | — | Destinado à população em vulnerabilidade? |
+| `tipo_vulnerabilidade` | `string` | sim | `enum: [Socioeconômica, Educacional, Gênero e Raça, Deficiência ou Condição de Saúde, Geracional, Territorial]` | Tipo de vulnerabilidade |
 | `produto` | `string` | não | — | Produto |
 
 > ⚠️ **`tipo_vulnerabilidade` deixou de ser texto livre.** O campo passou a ter domínio fechado com seis valores. Descrições em prosa que funcionavam antes (por exemplo, "Idosos em situação de vulnerabilidade socioeconômica") agora reprovam a validação — é preciso mapear a informação da origem para um dos seis valores do `enum`.
@@ -126,10 +126,10 @@ Pessoas impactadas diretamente por uma ação de extensão (público-alvo). Cada
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id_atendido` | `integer` | sim | `primaryKey` | ID atendido |
-| `cpf` | `string` | não | `pii`, `classification: sensitive` | CPF |
-| `nome` | `string` | não | `pii`, `classification: sensitive` | Nome |
+| `cpf` | `string` | sim | `pii`, `classification: sensitive` | CPF |
+| `nome` | `string` | sim | `pii`, `classification: sensitive` | Nome |
 | `id_acao_extensao` | `integer` | sim | `references acoes_extensao.id_acao_extensao` | ID ação de extensão |
-| `data_atendimento` | `date` | não | — | Data de atendimento |
+| `data_atendimento` | `date` | sim | — | Data de atendimento |
 
 ### Exemplo válido
 
@@ -166,15 +166,15 @@ Pessoas formalmente envolvidas na execução de uma ação (docentes, TAEs, estu
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id_envolvido` | `integer` | sim | `primaryKey` | ID envolvido |
-| `cpf` | `string` | não | `pii`, `classification: sensitive`, `referencia_pnp: pessoas` (declarativo — ver nota) | CPF |
-| `nome` | `string` | não | `pii`, `classification: sensitive` | Nome |
+| `cpf` | `string` | sim | `pii`, `classification: sensitive`, `referencia_pnp: pessoas` (declarativo — ver nota) | CPF |
+| `nome` | `string` | sim | `pii`, `classification: sensitive` | Nome |
 | `categoria` | `string` | sim | `enum: [docente, TAE, externo, estudante]` | Categoria |
 | `id_acao_extensao` | `integer` | sim | `references acoes_extensao.id_acao_extensao` | ID ação de extensão |
-| `data_ingresso` | `date` | não | — | Data de ingresso na ação |
+| `data_ingresso` | `date` | sim | — | Data de ingresso na ação |
 | `data_saida` | `date` | não | — | Data de saída da ação |
-| `situacao_envolvido` | `string` | não | `enum: [Ativo, Inativo]` | Situação do envolvido |
-| `data_ultima_situacao` | `date` | não | — | Data da última situação |
-| `matricula` | `string` | não | — | Matrícula |
+| `situacao_envolvido` | `string` | sim | `enum: [Ativo, Inativo]` | Situação do envolvido |
+| `data_ultima_situacao` | `date` | sim | — | Data da última situação |
+| `matricula` | `string` | sim | — | Matrícula |
 
 
 ### Exemplo válido

@@ -46,11 +46,11 @@ Tabela principal do contrato. Cada linha é uma produção intelectual única, i
 |---|---|---|---|---|
 | `id_producao` | `integer` | sim | `primaryKey` | ID produção |
 | `tipo_producao` | `string` | sim | `enum: [Acadêmica, Técnica]` | Tipo de produção |
-| `classificacao_producao` | `string` | não | `enum` (28 valores — ver legenda) | Categoria de produção conforme taxonomia da base Lattes (técnico-tecnológica, artístico-cultural, etc.) |
+| `classificacao_producao` | `string` | sim | `enum` (28 valores — ver legenda) | Categoria de produção conforme taxonomia da base Lattes (técnico-tecnológica, artístico-cultural, etc.) |
 | `titulo_producao` | `string` | sim | — | Título da produção |
-| `ano_publicacao` | `integer` | não | — | Ano de publicação. Formato: `AAAA` |
+| `ano_publicacao` | `integer` | sim | — | Ano de publicação. Formato: `AAAA` |
 | `avaliacao_capes` | `string` | não | `enum: [Qualis, NA]` | Avaliação Capes |
-| `area_tematica_cnpq` | `string` | não | `referencia_pnp: areas_tematicas_cnpq` (declarativo) | Área Temática CNPq. Formato: `{codigo}` |
+| `area_tematica_cnpq` | `string` | sim | `referencia_pnp: areas_tematicas_cnpq` (declarativo) | Área Temática CNPq. Formato: `{codigo}` |
 
 #### Valores de `classificacao_producao`
 
@@ -105,9 +105,9 @@ Pessoas envolvidas em cada produção intelectual (autoria, coautoria, orientaç
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id_participante` | `integer` | sim | `primaryKey` | ID participante |
-| `cpf` | `string` | não | `pii`, `classification: sensitive` | CPF do participante da produção intelectual |
-| `nome` | `string` | não | `pii`, `classification: sensitive` | Nome completo do participante da produção |
-| `categoria` | `string` | não | `enum: [docente, TAE]` | Tipo de vínculo com a produção (ex.: docente, TAE) |
+| `cpf` | `string` | sim | `pii`, `classification: sensitive` | CPF do participante da produção intelectual |
+| `nome` | `string` | sim | `pii`, `classification: sensitive` | Nome completo do participante da produção |
+| `categoria` | `string` | sim | `enum: [docente, TAE]` | Tipo de vínculo com a produção (ex.: docente, TAE) |
 | `id_producao` | `integer` | sim | `references producao_intelectual.id_producao` | Referência à produção intelectual cadastrada |
 | `data_ingresso` | `date` | não | — | Data de início da participação na produção |
 | `data_saida` | `date` | não | — | Data de encerramento da participação, se aplicável |

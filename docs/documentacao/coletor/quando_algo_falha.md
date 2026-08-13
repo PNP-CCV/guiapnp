@@ -100,6 +100,16 @@ Caso real da coleta 2026: duas abas da planilha haviam sido copiadas do arquivo 
 
 O Gestor de Área Temática pode devolver o dataset com uma justificativa. Aqui não há defeito técnico: é uma discordância sobre o conteúdo. A justificativa fica registrada no Coletor e orienta a correção — que, de novo, é no dado de origem.
 
+## O dado errado já foi homologado pela área
+
+Acontece: a área homologa, e só depois se descobre que o dado estava errado. Esse caso tem saída dentro do Coletor — **só a Aprovação do Reitor é definitiva**.
+
+Corrija na origem e **re-extraia**. Uma reextração bem-sucedida torna obsoleta a validação anterior daquele modelo, seja ela "Aguardando", "Validado" ou "Homologado pela Área", e o botão de envio volta a aparecer. O modelo retoma o fluxo a partir de "Pronto para Sincronizar", e o novo envio recomeça a cadeia de validação na PNP.
+
+A única exceção é o modelo **aprovado pelo Reitor**: aí a reextração continua bloqueada, porque substituir dado oficialmente aceito exige um novo [Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta).
+
+> ℹ️ **O dado precisa mudar de fato.** Vale aqui a mesma regra do bloco acima: a PNP identifica cada dataset pelo conteúdo. Re-extrair sem que o dado tenha mudado devolve o mesmo dataset com o status que ele já tinha — o botão volta, mas o reenvio não muda nada do outro lado.
+
 ## Problemas de infraestrutura
 
 O executável `coletor` verifica o ambiente antes de agir e reporta mensagens claras:

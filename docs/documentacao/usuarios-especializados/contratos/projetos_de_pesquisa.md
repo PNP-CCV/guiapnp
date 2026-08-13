@@ -51,15 +51,15 @@ Tabela principal do contrato. Cada linha é um projeto de pesquisa identificado 
 | `natureza_projeto` | `string` | sim | `enum: [Básica, Aplicada]` | Natureza do projeto |
 | `titulo_projeto` | `string` | sim | — | Título do Projeto |
 | `resumo_projeto` | `string` | não | — | Resumo do Projeto |
-| `estrutura` | `string` | não | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os projetos de pesquisa. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
-| `projeto_pesquisa_sustentavel` | `boolean` | não | — | Aborda a temática da sustentabilidade? Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os projetos de pesquisa. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `projeto_pesquisa_sustentavel` | `boolean` | sim | — | Aborda a temática da sustentabilidade? Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 | `nome_orientador` | `string` | não | — | Nome do Orientador |
-| `data_inicio` | `date` | não | — | Data de início |
-| `data_termino` | `date` | não | — | Data de término |
-| `situacao_projeto` | `string` | não | `enum: [Em andamento, Finalizado, Cancelado]` | Situação do projeto |
+| `data_inicio` | `date` | sim | — | Data de início |
+| `data_termino` | `date` | sim | — | Data de término |
+| `situacao_projeto` | `string` | sim | `enum: [Em andamento, Finalizado, Cancelado]` | Situação do projeto |
 | `entidade_financiadora` | `string` | não | `enum: [Capes, CNPq, FINEP, sem fomento externo, outras]` | Entidade financiadora |
 | `orcamento_projeto` | `double` | não | — | Valor numérico em reais (R$) |
-| `area_tematica_cnpq` | `string` | não | `referencia_pnp: areas_tematicas_cnpq` (declarativo — ver nota) | Área Temática CNPq. Formato: `{codigo}` |
+| `area_tematica_cnpq` | `string` | sim | `referencia_pnp: areas_tematicas_cnpq` (declarativo — ver nota) | Área Temática CNPq. Formato: `{codigo}` |
 | `produto` | `string` | não | — | Produto final |
 
 
@@ -110,14 +110,14 @@ Pessoas diretamente vinculadas a um projeto de pesquisa (docentes, TAEs, estudan
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id_envolvido` | `integer` | sim | `primaryKey` | ID envolvido |
-| `cpf` | `string` | não | `pii`, `classification: sensitive`, `referencia_pnp: pessoas` (declarativo — ver nota) | CPF |
-| `nome` | `string` | não | `pii`, `classification: sensitive` | Nome |
+| `cpf` | `string` | sim | `pii`, `classification: sensitive`, `referencia_pnp: pessoas` (declarativo — ver nota) | CPF |
+| `nome` | `string` | sim | `pii`, `classification: sensitive` | Nome |
 | `categoria` | `string` | sim | `enum: [docente, TAE, externo, estudante]` | Categoria |
 | `id_projeto_pesquisa` | `integer` | sim | `references projetos_pesquisa.id_projeto_pesquisa` | ID projeto de pesquisa |
-| `data_ingresso` | `date` | não | — | Data de ingresso no projeto |
+| `data_ingresso` | `date` | sim | — | Data de ingresso no projeto |
 | `data_saida` | `date` | não | — | Data de saída do projeto |
-| `situacao_envolvido` | `string` | não | `enum: [Ativo, Inativo]` | Situação do envolvido |
-| `matricula` | `string` | não | — | Matrícula |
+| `situacao_envolvido` | `string` | sim | `enum: [Ativo, Inativo]` | Situação do envolvido |
+| `matricula` | `string` | sim | — | Matrícula |
 
 
 ### Exemplo válido
