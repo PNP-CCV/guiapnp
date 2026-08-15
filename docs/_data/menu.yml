@@ -246,6 +246,9 @@ itens:
       - title: "Indicadores de Gastos"
         href: "/documentacao/usuarios-especializados/indicadores_de_gastos"
         icon: "fas fa-table"
+      - title: "Indicadores de Acompanhamento Legal"
+        href: "/documentacao/usuarios-especializados/indicadores_de_acompanhamento_legal"
+        icon: "fas fa-table"
   - title: "Outros Indicadores"
     icon: "fas fa-poll"
     children:

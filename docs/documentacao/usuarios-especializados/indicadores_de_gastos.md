@@ -10,10 +10,271 @@ toc: true
 {:toc}
 
 
-
-<h3 style="color: #004080;">
-Gasto com precatórios (GPRE)
+### Gastos correntes por matrícula equivalente (GACM)
 </h3>
+<table>
+  <tr>
+    <th colspan="2"><strong><i>
+      Gastos correntes por matrícula equivalente (GACM)
+    </i></strong></th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      Este indicador apresenta o valor médio investido para cada matrícula equivalente na RFEPCT. Em virtude da impossibilidade de segregar os dados financeiros das Escolas Técnicas Vinculadas às Universidades Federais (ETV-UF), este indicador não considera os dados das ETV-UF.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Quanto menor, melhor.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação máxima:</strong> Rede Federal.
+    </td>
+    <td>
+      <strong>Agregação Mínima:</strong> Instituição.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>GCMeq</mi>
+            <mo>=</mo>            
+            <mfrac>
+                <mi>GC</mi>
+                <mi>Meq</mi>
+            </mfrac>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>GC - Gasto Corrente.</strong><br/>
+      <strong>Fonte:</strong> SIAFI.<br/>
+      <strong>Definição:</strong> Valor do Gasto Total com as Instituições que compõem a RFEPCT no ano base, excetuando-se gastos com:<ul>
+      <li>Inativos e Pensionistas;</li> 
+      <li>Investimentos;</li> 
+      <li>Inversões Financeiras; e</li> 
+      <li>Precatórios.</li></ul>
+      <strong>Meq - Matrículas Equivalentes.</strong><br/>
+      <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
+      <strong>Definição:</strong> Número de matrículas que estiveram ativas em pelo menos um dia no ano base, ponderada pelos fatores de equivalência previstos, exceto as matrículas das Escolas Técnicas Vinculadas às Universidades Federais.
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+
+
+### Investimentos e inversões (GAIV)
+
+<table>
+  <tr>
+    <th colspan="2"><strong><i>
+      Investimentos e inversões (GAIV)
+    </i></strong></th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      Este indicador apresenta o valor dos gastos com grupos de natureza de despesa de investimentos e inversões das Instituições. Tais gastos se relacionam com aquisição de máquinas e equipamentos, realização de obras, aquisição de participações acionárias de empresas, aquisição e imóveis e concessão de empréstimos para investimento. Em virtude da impossibilidade de segregar os dados financeiros das Escolas Técnicas Vinculadas às Universidades Federais (ETV-UF), este indicador não considera os dados das ETV-UF.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Quanto maior, melhor.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação máxima:</strong> Rede Federal.
+    </td>
+    <td>
+      <strong>Agregação Mínima:</strong> Instituição.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>GIV</mi>
+            <mo>=</mo>            
+            <mo>(</mo>
+            <mi>GInv</mi>
+            <mo>+</mo>
+            <mi>GIF</mi>
+            <mo>)</mo>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>GInv – Gastos com Investimentos.</strong><br/>
+      <strong>Fonte:</strong> SIAFI.<br/>
+      <strong>Definição:</strong> Gasto do grupo de natureza de despesa “Investimentos” da Unidade Orçamentária no ano base.
+      <br/>&nbsp;<br/>
+      <strong>GIF – Gastos com Inversões Financeiras.</strong><br/>
+      <strong>Fonte:</strong> SIAFI.<br/>
+      <strong>Definição:</strong> Gasto do grupo de natureza de despesa “Investimentos” da Unidade Orçamentária no ano base.
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+
+
+### Outros Custeios (GAOC)
+
+<table>
+  <tr>
+    <th colspan="2"><strong><i>
+      Outros Custeios (GOC)
+    </i></strong></th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      Este indicador apresenta o valor dos gastos com outros custeios das Instituições, entendido como os gastos totais liquidados no exercício, deduzindo-se gastos com pessoal, benefícios, Pis/Pasep, investimentos e inversões financeiras. Em virtude da impossibilidade de segregar os dados financeiros das Escolas Técnicas Vinculadas às Universidades Federais (ETV-UF), este indicador não considera os dados das ETV-UF. 
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Quanto maior, melhor.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação máxima:</strong> Rede Federal.
+    </td>
+    <td>
+      <strong>Agregação Mínima:</strong> Instituição.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>GOC</mi>
+            <mo>=</mo>
+            <mo>(</mo>
+            <msub>
+              <mi>G</mi>
+              <mi>OC</mi>
+            </msub>
+            <mo>)</mo>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>G<sub>OC</sub> - Gasto com Outros Custeios.</strong><br/>
+      <strong>Fonte:</strong> SIAFI.<br/>
+      <strong>Definição:</strong>  Gasto no grupo de natureza de despesas “Outras despesas correntes” no ano base, com as Instituições que compõem a RFEPCT, deduzindo-se gastos com benefícios pagos aos servidores. 
+      </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+
+
+### Gastos de Pessoal (GPE)
+
+<table>
+  <tr>
+    <th colspan="2"><strong><i>
+      Gastos de Pessoal (GPE)
+    </i></strong></th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      Este indicador diz respeito ao total de gastos com pessoal na RFEPCT. Apresenta o valor dos gastos com o grupo de natureza de despesa “pessoal” e as naturezas de despesa relativas a auxílios e congêneres. Em virtude da impossibilidade de segregar os dados financeiros das Escolas Técnicas Vinculadas às Universidades Federais (ETV-UF), este indicador não considera os dados das ETV-UF.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Quanto menor, melhor.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação máxima:</strong> Rede Federal.
+    </td>
+    <td>
+      <strong>Agregação Mínima:</strong> Instituição.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>GPE</mi>
+            <mo>=</mo>            
+            <mo>(</mo>
+            <mi>GFP</mi>
+            <mo>+</mo>
+            <mi>GaB</mi>
+            <mo>)</mo>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>GFP - Gasto com remuneração de servidores.</strong><br/>
+      <strong>Fonte:</strong> SIAFI.<br/>
+      <strong>Definição:</strong> Gasto com remuneração de ativos e aposentados no ano base, com as Instituições que compõem a RFEPCT. 
+      <br/>&nbsp;<br/>
+      <strong>GaB – Gastos com benefícios pagos aos servidores.</strong><br/>
+      <strong>Fonte:</strong> SIAFI.<br/>
+      <strong>Definição:</strong> Gasto com pagamento de benefícios de ativos e aposentados no ano base, com as Instituições que compõem a RFEPCT.
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+
+
+### Gasto com precatórios (GPRE)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -67,13 +328,12 @@ Gasto com precatórios (GPRE)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Gastos com inativos e pensionistas (GIP)
-</h3>
+
+
+
+### Gastos com inativos e pensionistas (GIP)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -127,13 +387,12 @@ Gastos com inativos e pensionistas (GIP)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Gastos correntes (GC)
-</h3>
+
+
+
+### Gastos correntes (GC)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -191,149 +450,12 @@ Gastos correntes (GC)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Gastos correntes por matrícula equivalente (GCM)
-</h3>
-<table>
-  <tr>
-    <th colspan="2"><strong><i>
-      Gastos correntes por matrícula equivalente (GCM)
-    </i></strong></th>
-  </tr>
-  <tr>
-    <td colspan="2">
-      Este indicador apresenta o valor médio investido para cada matrícula equivalente na RFEPCT. Em virtude da impossibilidade de segregar os dados financeiros das Escolas Técnicas Vinculadas às Universidades Federais (ETV-UF), este indicador não considera os dados das ETV-UF.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Polaridade:</strong> Quanto menor, melhor.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Instituição.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Modelo matemático:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mi>GCM</mi>
-            <mo>=</mo>            
-            <mfrac>
-                <mi>GC</mi>
-                <mi>ENME</mi>
-            </mfrac>
-          </mrow>
-        </math>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>GC - Gasto Corrente.</strong><br/>
-      <strong>Fonte:</strong> SIAFI.<br/>
-      <strong>Definição:</strong> Valor do Gasto Total com as Instituições que compõem a RFEPCT no ano base, excetuando-se gastos com:<ul>
-      <li>Inativos e Pensionistas;</li> 
-      <li>Investimentos;</li> 
-      <li>Inversões Financeiras; e</li> 
-      <li>Precatórios.</li></ul>
-      <strong>ENME - Matrículas Equivalentes.</strong><br/>
-      <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> Número de matrículas que estiveram ativas em pelo menos um dia no ano base, ponderada pelos fatores de equivalência previstos, exceto as matrículas das Escolas Técnicas Vinculadas às Universidades Federais.
-    </td>
-  </tr>
-</table>
 
 
 
-<p>&nbsp;</p>
-<h3 style="color: #004080;">
-Gastos de Pessoal (GPE)
-</h3>
-<table>
-  <tr>
-    <th colspan="2"><strong><i>
-      Gastos de Pessoal (GPE)
-    </i></strong></th>
-  </tr>
-  <tr>
-    <td colspan="2">
-      Este indicador diz respeito ao total de gastos com pessoal na RFEPCT. Apresenta o valor dos gastos com o grupo de natureza de despesa “pessoal” e as naturezas de despesa relativas a auxílios e congêneres. Em virtude da impossibilidade de segregar os dados financeiros das Escolas Técnicas Vinculadas às Universidades Federais (ETV-UF), este indicador não considera os dados das ETV-UF.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Polaridade:</strong> Quanto menor, melhor.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Instituição.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Modelo matemático:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mi>GPE</mi>
-            <mo>=</mo>            
-            <mo>(</mo>
-            <mi>GFP</mi>
-            <mo>+</mo>
-            <mi>GaB</mi>
-            <mo>)</mo>
-          </mrow>
-        </math>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>GFP - Gasto com remuneração de servidores.</strong><br/>
-      <strong>Fonte:</strong> SIAFI.<br/>
-      <strong>Definição:</strong> Gasto com remuneração de ativos e aposentados no ano base, com as Instituições que compõem a RFEPCT. 
-      <br/>&nbsp;<br/>
-      <strong>GaB – Gastos com benefícios pagos aos servidores.</strong><br/>
-      <strong>Fonte:</strong> SIAFI.<br/>
-      <strong>Definição:</strong> Gasto com pagamento de benefícios de ativos e aposentados no ano base, com as Instituições que compõem a RFEPCT.
-    </td>
-  </tr>
-</table>
+### Gastos totais (GT)
 
-
-
-<p>&nbsp;</p>
-<h3 style="color: #004080;">
-Gastos totais (GT)
-</h3>
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -385,135 +507,5 @@ Gastos totais (GT)
       <strong>Fonte:</strong> SIAFI.<br/>
       <strong>Definição:</strong>  Valor total de liquidações de gastos correntes, excluindo valores relacionados ao Pis-Pasep.
     </td>
-  </tr>
-</table>
-
-
-
-<p>&nbsp;</p>
-<h3 style="color: #004080;">
-Investimentos e Inversões (GIV)
-</h3>
-<table>
-  <tr>
-    <th colspan="2"><strong><i>
-      Investimentos e Inversões (GIV)
-    </i></strong></th>
-  </tr>
-  <tr>
-    <td colspan="2">
-      Este indicador apresenta o valor dos gastos com grupos de natureza de despesa de investimentos e inversões das Instituições. Tais gastos se relacionam com aquisição de máquinas e equipamentos, realização de obras, aquisição de participações acionárias de empresas, aquisição e imóveis e concessão de empréstimos para investimento. Em virtude da impossibilidade de segregar os dados financeiros das Escolas Técnicas Vinculadas às Universidades Federais (ETV-UF), este indicador não considera os dados das ETV-UF. 
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Polaridade:</strong> Quanto maior, melhor.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Instituição.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Modelo matemático:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mi>GIV</mi>
-            <mo>=</mo>            
-            <mo>(</mo>
-            <mi>GInv</mi>
-            <mo>+</mo>
-            <mi>GIF</mi>
-            <mo>)</mo>
-          </mrow>
-        </math>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>GInv – Gastos com Investimentos.</strong><br/>
-      <strong>Fonte:</strong> SIAFI.<br/>
-      <strong>Definição:</strong> Gasto do grupo de natureza de despesa “Investimentos” da Unidade Orçamentária no ano base.
-      <br/>&nbsp;<br/>
-      <strong>GIF – Gastos com Inversões Financeiras.</strong><br/>
-      <strong>Fonte:</strong> SIAFI.<br/>
-      <strong>Definição:</strong> Gasto do grupo de natureza de despesa “Investimentos” da Unidade Orçamentária no ano base.
-    </td>
-  </tr>
-</table>
-
-
-
-<p>&nbsp;</p>
-<h3 style="color: #004080;">
-Outros Custeios (GOC)
-<table>
-  <tr>
-    <th colspan="2"><strong><i>
-      Outros Custeios (GOC)
-    </i></strong></th>
-  </tr>
-  <tr>
-    <td colspan="2">
-      Este indicador apresenta o valor dos gastos com outros custeios das Instituições, entendido como os gastos totais liquidados no exercício, deduzindo-se gastos com pessoal, benefícios, Pis/Pasep, investimentos e inversões financeiras. Em virtude da impossibilidade de segregar os dados financeiros das Escolas Técnicas Vinculadas às Universidades Federais (ETV-UF), este indicador não considera os dados das ETV-UF. 
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Polaridade:</strong> Quanto maior, melhor.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Instituição.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Modelo matemático:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mi>GOC</mi>
-            <mo>=</mo>
-            <mo>(</mo>
-            <msub>
-              <mi>G</mi>
-              <mi>OC</mi>
-            </msub>
-            <mo>)</mo>
-          </mrow>
-        </math>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>G<sub>OC</sub> - Gasto com Outros Custeios.</strong><br/>
-      <strong>Fonte:</strong> SIAFI.<br/>
-      <strong>Definição:</strong>  Gasto no grupo de natureza de despesas “Outras despesas correntes” no ano base, com as Instituições que compõem a RFEPCT, deduzindo-se gastos com benefícios pagos aos servidores. 
-      </td>
   </tr>
 </table>
