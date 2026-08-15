@@ -11,7 +11,7 @@ toc: true
 
 
 ### Gastos correntes por matrícula equivalente (GACM)
-</h3>
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -207,12 +207,12 @@ toc: true
 
 
 
-### Gastos de Pessoal (GPE)
+### Gastos de Pessoal (GAPE)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Gastos de Pessoal (GPE)
+      Gastos de Pessoal (GAPE)
     </i></strong></th>
   </tr>
   <tr>

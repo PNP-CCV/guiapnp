@@ -425,7 +425,7 @@ toc: true
       <strong>DOB – Número total de servidores e servidoras docentes participantes de projetos iniciados no ano base.</strong><br/>
       <strong>Fonte:</strong> Integra.<br/>
       <strong>Definição:</strong> Os docentes devem constar como membros da equipe de projetos de contratos, convênios ou acordos de parceria com estrutura vinculada ao “Polo de Inovação”, em situação “Em execução” ou “Encerrada ”, com data de início do projeto no ano base, e serem classificados como “Acordo de Parceria para PD&I com Aporte de Recurso”; “Acordo de Parceria para PD&I sem Aporte de Recurso”; “Acordo de Parceria Internacional”; “Prestação Institucional de Serviços”; “Atendimento de Prestação de Serviço”; “Convênio”; ou “Contrato – Transferência de Tecnologia”.
-      <p>&nbsp;</p>
+      <br/>&nbsp;<br/>
       <strong>TAEB – Número total de servidores e servidoras técnico-administrativos participantes de projetos iniciados no ano base.</strong><br/>
       <strong>Fonte:</strong> Integra.<br/>
       <strong>Definição:</strong> Os servidores e servidoras técnico-administrativos em educação devem constar como membros da equipe de projetos de contratos, convênios ou acordos de parceria com estrutura vinculada ao “Polo de Inovação”, em situação “Em execução” ou “Encerrada ”, com data de início do projeto no ano base, e serem classificados como “Acordo de Parceria para PD&I com Aporte de Recurso”; “Acordo de Parceria para PD&I sem Aporte de Recurso”; “Acordo de Parceria Internacional”; “Prestação Institucional de Serviços”; “Atendimento de Prestação de Serviço”; “Convênio”; ou “Contrato – Transferência de Tecnologia”.
@@ -548,11 +548,11 @@ toc: true
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>PO.</strong><br/>
+      <strong>PO - Polos de Inovação.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
       <strong>Definição:</strong> Polos de inovação
-      <p>&nbsp;</p>
-      <strong>UI.</strong><br/>
+      <br/>&nbsp;<br/>
+      <strong>UI - Unidades de Pesquisa e Inovação.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
       <strong>Definição:</strong> Unidades destinadas exclusivamente para desenvolvimento de projetos de pesquisa e inovação e que não tenham matrículas vinculadas.
     </td>
