@@ -120,13 +120,12 @@ Conceito Preliminar de Curso (CPC - INEP)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Índice Geral de Cursos (IGC - INEP)
-</h3>
+
+
+
+### Índice Geral de Cursos (IGC - INEP)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -210,13 +209,12 @@ Conceito Preliminar de Curso (CPC - INEP)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Conceito Enade (Enade – INEP)
-</h3>
+
+
+
+### Conceito Enade (Enade – INEP)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -235,13 +233,12 @@ Conceito Enade (Enade – INEP)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Indicador de Diferença entre os Desempenhos Observado e Esperado (IDD – INEP)
-</h3>
+
+
+
+### Indicador de Diferença entre os Desempenhos Observado e Esperado (IDD – INEP)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
