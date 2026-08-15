@@ -478,7 +478,7 @@ Entende-se por pesquisa aplicada a investigação realizada com o objetivo de po
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Número de ativos de propriedade industrial, programas de computador e proteções <i>sui generis<i> (PIPROT)
+      Número de ativos de propriedade industrial, programas de computador e proteções sui generis (PIPROT)
     </i></strong></th>
   </tr>
   <tr>
@@ -574,7 +574,7 @@ Entende-se por pesquisa aplicada a investigação realizada com o objetivo de po
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Número de ativos de propriedade industrial, programas de computador e proteções <i>sui generis</i> transferidos (PIPROTR)
+      Número de ativos de propriedade industrial, programas de computador e proteções sui generis transferidos (PIPROTR)
     </i></strong></th>
   </tr>
   <tr>
