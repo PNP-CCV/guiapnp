@@ -92,7 +92,7 @@ itens:
 
       - title: "Lista dos indicadores"  
         href: "/documentacao/indicadores/lista_dos_indicadores"
-        icon: "fas fa-border-all"
+        icon: "fas fa-list-ol"
 
       #- title: "Indicadores de Ensino"
       #  href: "/documentacao/indicadores/indicadores_de_ensino"
