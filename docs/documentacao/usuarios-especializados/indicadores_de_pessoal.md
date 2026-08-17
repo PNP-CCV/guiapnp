@@ -48,7 +48,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ITCD</mi>
+            <mi>PETCD</mi>
             <mo>=</mo>
             <mfrac>
               <mrow>

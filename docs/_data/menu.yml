@@ -90,6 +90,10 @@ itens:
         href: "/documentacao/indicadores/normativos_e_dimensoes"
         icon: "fas fa-border-all"
 
+      - title: "Lista dos indicadores"  
+        href: "/documentacao/indicadores/lista_dos_indicadores"
+        icon: "fas fa-border-all"
+
       #- title: "Indicadores de Ensino"
       #  href: "/documentacao/indicadores/indicadores_de_ensino"
       #  icon: "fas fa-border-all"
@@ -156,9 +160,7 @@ itens:
         #     href: "#"
         #   - title: "Nível e tipo de curso"
         #     href: "#"
-      - title: "Fichas técnicas dos indicadores"
-        href: "/documentacao/usuarios-especializados/fichas_tecnica_dos_indicadores"
-        icon: "fas fa-list-alt"
+
       - title: "Contratos de Dados"
         icon: "fas fa-file-contract"
         children:
@@ -225,6 +227,10 @@ itens:
             - title: "Projetos de Desenvolvimento Institucional"
               href: "/documentacao/usuarios-especializados/contratos/projetos_de_desenvolvimento_institucional"
               icon: "fas fa-file-contract"
+
+      - title: "Fichas técnicas dos indicadores"
+        href: "/documentacao/usuarios-especializados/fichas_tecnica_dos_indicadores"
+        icon: "fas fa-list-alt"
       - title: "Indicadores de Ensino"
         href: "/documentacao/usuarios-especializados/indicadores_de_ensino"
         icon: "fas fa-table"

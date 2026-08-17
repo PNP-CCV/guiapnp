@@ -47,7 +47,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>NCP</mi>
+            <mi>POP</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mi>NCont</mi>
@@ -107,7 +107,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>NEAP</mi>
+            <mi>POEMP</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mi>NOrg</mi>
@@ -167,7 +167,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>VRC</mi>
+            <mi>POREC</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mi>RecFin</mi>
@@ -227,7 +227,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>NPID</mi>
+            <mi>POPID</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mi>PI</mi>
@@ -287,7 +287,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>NETR</mi>
+            <mi>POET</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mi>ETR</mi>
@@ -347,7 +347,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>NEB</mi>
+            <mi>POEB</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mi>EstB</mi>
@@ -473,7 +473,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>NCEB</mi>
+            <mi>POCO</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mi>PFSV</mi>

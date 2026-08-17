@@ -52,7 +52,7 @@ Entende-se por pesquisa aplicada a investigação realizada com o objetivo de po
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>PPA [%]</mi>
+            <mi>PIPA [%]</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mrow>
@@ -126,7 +126,7 @@ Entende-se por pesquisa aplicada a investigação realizada com o objetivo de po
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>NSPP [%]</mi>
+            <mi>PISERV [%]</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mrow>
@@ -197,7 +197,7 @@ Entende-se por pesquisa aplicada a investigação realizada com o objetivo de po
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>NEP [%]</mi>
+            <mi>PIES [%]</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mrow>
@@ -268,7 +268,7 @@ Entende-se por pesquisa aplicada a investigação realizada com o objetivo de po
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>NECPP [%]</mi>
+            <mi>PICOT [%]</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mrow>
@@ -436,7 +436,7 @@ Entende-se por pesquisa aplicada a investigação realizada com o objetivo de po
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>TAFPPI [%]</mi>
+            <mi>PINV [%]</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mrow>
@@ -510,7 +510,7 @@ Entende-se por pesquisa aplicada a investigação realizada com o objetivo de po
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>APIC</mi>
+            <mi>PIPROT</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mi>PA</mi>
@@ -606,7 +606,7 @@ Entende-se por pesquisa aplicada a investigação realizada com o objetivo de po
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>APICT</mi>
+            <mi>PIPROTR</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mi>CT</mi>
@@ -678,7 +678,7 @@ Entende-se por pesquisa aplicada a investigação realizada com o objetivo de po
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>NAPPDI</mi>
+            <mi>PIPDI</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mi>NAPPCT</mi>
