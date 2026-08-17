@@ -8,6 +8,9 @@ title: "Lista dos indicadores"
 
 Os quadros na sequência demonstram o conjunto de indicadores da PNP por dimensão. O detalhamento desses indicadores é apresentado nas suas respectivas fichas técnicas. 
 
+* TOC
+{:toc}
+
 ## Indicadores Dimensão Ensino
 
 <table>
