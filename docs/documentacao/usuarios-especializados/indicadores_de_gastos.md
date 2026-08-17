@@ -47,7 +47,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>GCMeq</mi>
+            <mi>GACM</mi>
             <mo>=</mo>            
             <mfrac>
                 <mi>GC</mi>
@@ -115,7 +115,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>GIV</mi>
+            <mi>GAIV</mi>
             <mo>=</mo>            
             <mo>(</mo>
             <mi>GInv</mi>
@@ -149,7 +149,7 @@ toc: true
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Outros Custeios (GOC)
+      Outros Custeios (GAOC)
     </i></strong></th>
   </tr>
   <tr>
@@ -181,7 +181,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>GOC</mi>
+            <mi>GAOC</mi>
             <mo>=</mo>
             <mo>(</mo>
             <msub>
@@ -244,7 +244,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>GPE</mi>
+            <mi>GAPE</mi>
             <mo>=</mo>            
             <mo>(</mo>
             <mi>GFP</mi>

@@ -872,7 +872,7 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
                   </mfrac>
                   <mo>)</mo>
                   <mo>&#xD7;</mo>
-                  <mn>0,028</mn>
+                  <mn>0,089</mn>
                 </mrow>
                 <mo>]</mo>
               </mrow>
@@ -891,7 +891,7 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
                   </mfrac>
                   <mo>)</mo>
                   <mo>&#xD7;</mo>
-                  <mn>0,089</mn>
+                  <mn>0,028</mn>
                 </mrow>
                 <mo>]</mo>
               </mrow>
@@ -1106,11 +1106,11 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
 
 
 
-### Matrículas Equivalentes em Cursos Técnicos (Técnicos)
+### Matrículas Equivalentes em Cursos Técnicos (ALMTEC)
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Matrículas Equivalentes em Cursos Técnicos (Técnicos)
+      Matrículas Equivalentes em Cursos Técnicos (ALMTEC)
     </i></strong></th>
   </tr>
   <tr>
@@ -1142,7 +1142,7 @@ A partir destas possibilidades, emprega-se um percentual de prioridades:
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>Técnicos</mi>
+            <mi>Técnicos [%]</mi>
             <mo>=</mo>
             <mrow>
               <mfrac>
@@ -1213,7 +1213,7 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ALMPROF</mi>
+            <mi>Formação de professores [%]</mi>
             <mo>=</mo>
             <mrow>
               <mfrac>
@@ -1281,7 +1281,7 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ALMEJA</mi>
+            <mi>ALMEJA [%]</mi>
             <mo>=</mo>
             <mrow>
               <mfrac>
@@ -1350,7 +1350,7 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ALVGN</mi>
+            <mi>ALVGN [%]</mi>
             <mo>=</mo>
             <mrow>
               <mfrac>

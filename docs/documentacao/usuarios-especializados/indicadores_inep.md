@@ -55,7 +55,7 @@ Conceito Preliminar de Curso (CPC - INEP)
               <mrow>
                 <mn>0,2</mn>
                 <mo>&#xD7;</mo>
-                <mi>NCC</mi>
+                <mi>NCc</mi>
               </mrow>
               <mo>)</mo>
               <mo>+</mo>
@@ -63,15 +63,15 @@ Conceito Preliminar de Curso (CPC - INEP)
               <mrow>
                 <mn>0,35</mn>
                 <mo>&#xD7;</mo>
-                <mi>NIDDC</mi>
+                <mi>NIDDc</mi>
               </mrow>
               <mo>)</mo>
               <mo>+</mo>
               <mo>(</mo>
               <mrow>
-                <mn>0,0075</mn>
+                <mn>0,075</mn>
                 <mo>&#xD7;</mo>
-                <mi>NMC</mi>
+                <mi>NMc</mi>
               </mrow>
               <mo>)</mo>
               <mo>+</mo>
@@ -79,26 +79,47 @@ Conceito Preliminar de Curso (CPC - INEP)
               <mrow>
                 <mn>0,15</mn>
                 <mo>&#xD7;</mo>
-                <mi>NDC</mi>
+                <mi>NDc</mi>
               </mrow>
               <mo>)</mo>
               <mo>+</mo>
               <mo>(</mo>
               <mrow>
-                <mn>0,0075</mn>
+                <mn>0,075</mn>
                 <mo>&#xD7;</mo>
-                <mi>NRC</mi>
-              </mrow>
-              <mo>)</mo>
-              <mo>+</mo>
-              <mo>(</mo>
-              <mrow>
-                <mn>0,0075</mn>
-                <mo>&#xD7;</mo>
-                <mi>NOC</mi>
+                <mi>NRc</mi>
               </mrow>
               <mo>)</mo>
             </mrow> 
+          </mrow>
+        </math>
+        <br/>
+        <math style="font-size: 1.0rem;" display="block">
+          <mrow>
+            <mo>+</mo>
+            <mo>(</mo>
+            <mrow>
+              <mn>0,075</mn>
+              <mo>&#xD7;</mo>
+              <mi>NOc</mi>
+            </mrow>
+            <mo>)</mo>
+            <mo>+</mo>
+            <mo>(</mo>
+            <mrow>
+              <mn>0,05</mn>
+              <mo>&#xD7;</mo>
+              <mi>NFc</mi>
+            </mrow>
+            <mo>)</mo>
+            <mo>+</mo>
+            <mo>(</mo>
+            <mrow>
+              <mn>0,025</mn>
+              <mo>&#xD7;</mo>
+              <mi>NAc</mi>
+            </mrow>
+            <mo>)</mo>
           </mrow>
         </math>
       </p>
@@ -108,12 +129,14 @@ Conceito Preliminar de Curso (CPC - INEP)
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
       <strong>
-        NCC - Nota dos Concluintes no Enade do curso de graduação.<br/>
-        NIDDC - Nota do Indicador da Diferença entre os Desempenhos Observado e Esperado do curso de graduação.<br/>
-        NMC – Nota de Proporção de Mestres do curso de graduação.<br/>
-        NDC – Nota de Proporção de Doutores do curso de graduação.<br/>
-        NRC – Nota de Regime de Trabalho do curso de graduação.<br/>
-        NOC – Nota referente à organização didático-pedagógica do curso de graduação.<br/>
+        NCc - Nota dos Concluintes no Enade do curso de graduação.<br/>
+        NIDDc - Nota do Indicador da Diferença entre os Desempenhos Observado e Esperado do curso de graduação.<br/>
+        NMc – Nota de Proporção de Mestres do curso de graduação.<br/>
+        NDc – Nota de Proporção de Doutores do curso de graduação.<br/>
+        NRc – Nota de Regime de Trabalho do curso de graduação.<br/>
+        NOc – Nota referente à organização didático-pedagógica do curso de graduação.<br/>
+        NFc – Nota referente à infraestrutura e instalações físicas do curso de graduação.<br/>
+        NAc – Nota referente às oportunidades de ampliação da formação acadêmica e profissional do curso de graduação.<br/>
       </strong><br/>
       <strong>Fonte:</strong> INEP.<br/>
       <strong>Definição:</strong> Conforme constante na Nota Técnica nº 4/2023/CEI/CGGI/DAES.
