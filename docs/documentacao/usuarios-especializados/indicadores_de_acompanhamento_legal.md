@@ -443,7 +443,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ALGN</mi>
+            <mi>ALGN [%]</mi>
             <mo>=</mo>
             <mrow>
               <mo>(</mo>
@@ -514,7 +514,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ALMGN</mi>
+            <mi>ALMGN [%]</mi>
             <mo>=</mo>
             <mrow>
               <mo>(</mo>
@@ -656,7 +656,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ALMTEC</mi>
+            <mi>ALMTEC [%]</mi>
             <mo>=</mo>
             <mrow>
               <mo>(</mo>
@@ -800,7 +800,7 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ALVPROEJA</mi>
+            <mi>ALVPROEJA [%]</mi>
             <mo>=</mo>
             <mrow>
               <mo>(</mo>
@@ -871,7 +871,7 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ALVTEC</mi>
+            <mi>ALVTEC [%]</mi>
             <mo>=</mo>
             <mrow>
               <mo>(</mo>
@@ -942,7 +942,7 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ALVFP</mi>
+            <mi>ALVFP [%]</mi>
             <mo>=</mo>
             <mrow>
               <mo>(</mo>
@@ -1084,7 +1084,7 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ALVCN</mi>
+            <mi>ALVCN [%]</mi>
             <mo>=</mo>
             <mrow>
               <mo>(</mo>
