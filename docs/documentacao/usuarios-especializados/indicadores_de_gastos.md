@@ -10,12 +10,12 @@ toc: true
 {:toc}
 
 
-### Gastos com pessoas inativas e pensionistas (GIP)
+### Gastos com pessoas inativas e pensionistas (GAIP)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Gastos com pessoas inativas e pensionistas (GIP)
+      Gastos com pessoas inativas e pensionistas (GAIP)
     </i></strong></th>
   </tr>
   <tr>
@@ -47,7 +47,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>GIP</mi>
+            <mi>GAIP</mi>
             <mo>=</mo>
             <mo>∑</mo>
             <mi>Inat</mi>
@@ -68,12 +68,12 @@ toc: true
 <p>&nbsp;</p>
 
 
-### Gasto com precatórios (GPRE)
+### Gasto com precatórios (GAPRE)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Gasto com precatórios (GPRE)
+      Gasto com precatórios (GAPRE)
     </i></strong></th>
   </tr>
   <tr>
@@ -105,7 +105,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>GPRE</mi>
+            <mi>GAPRE</mi>
             <mo>=</mo>
             <mo>∑</mo>
             <mi>GPrec</mi>
@@ -126,12 +126,12 @@ toc: true
 <p>&nbsp;</p>
 
 
-### Gastos correntes (GC)
+### Gastos correntes (GAC)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Gastos correntes (GC)
+      Gastos correntes (GAC)
     </i></strong></th>
   </tr>
   <tr>
@@ -163,7 +163,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>GC</mi>
+            <mi>GAC</mi>
             <mo>=</mo>
             <mo>∑</mo>
             <mi>Gasto corrente</mi>
@@ -321,12 +321,12 @@ toc: true
 
 
 
-### Gastos totais (GT)
+### Gastos totais (GAT)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Gastos totais (GT)
+      Gastos totais (GAT)
     </i></strong></th>
   </tr>
   <tr>
@@ -358,7 +358,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>GT</mi>
+            <mi>GAT</mi>
             <mo>=</mo>
             <mo>∑</mo>
             <mi>Gasto totais</mi>

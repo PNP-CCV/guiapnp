@@ -44,8 +44,8 @@ Os quadros na sequência demonstram o conjunto de indicadores da PNP por dimens�
 | III   | Número de ativos de propriedade industrial, programas de computador e proteções _sui generis_ transferidos (**PIPROTR**) |
 | IV    | Número de produção intelectual (**PIPRO**) |
 | V     | Percentual de investimento realizado em pesquisa, pós-graduação e inovação, oriundo de capital e custeio (**PINV**) |
-| VI    | Percentual de pessoas estudantes da instituição envolvidos em projetos de pesquisa (**PIES**) |
-| VII   | Percentual de pessoas estudantes matriculados por meio de cotas envolvidos em projetos de pesquisa (**PICOT**) |
+| VI    | Percentual de pessoas estudantes da instituição envolvidas em projetos de pesquisa (**PIES**) |
+| VII   | Percentual de pessoas estudantes matriculadas por meio de cotas envolvidas em projetos de pesquisa (**PICOT**) |
 | VIII  | Percentual de pessoas servidoras envolvidas em projetos de pesquisa (**PISERV**) |
 | IX    | Percentual de projetos de pesquisa aplicada (**PIPA**) |
 
