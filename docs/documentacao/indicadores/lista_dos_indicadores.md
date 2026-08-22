@@ -126,6 +126,7 @@ Os quadros na sequência demonstram o conjunto de indicadores da PNP por dimens�
 | XVII  | Relação entre matrícula equivalente e professor equivalente (**ALRMP**) |
 | XVIII | Relação entre matrícula equivalente presencial e professor equivalente (**ALRAPE**) |
 
+<br/>&nbsp;<br/>
 
 Ressalta-se que, mesmo com a sanção do novo Plano Nacional de Educação, aprovado por meio da Lei nº 15.388, de 14 de abril de 2026,  a Setec/MEC manterá, nesta dimensão, alguns indicadores utilizados para monitorar metas previstas na Lei nº 13.005, de 25 de junho de 2014, que aprovou o antigo Plano Nacional de Educação. Além de serem indicadores já amplamente disseminados na RFEPCT, a sua manutenção permite continuar a série histórica deste conjunto de dados. Os indicadores mencionados são:
 - Percentual de cursos de graduação noturna presencial (**ALGN**);
@@ -151,6 +152,7 @@ Ressalta-se que, mesmo com a sanção do novo Plano Nacional de Educação, apro
 | IX   | Percentual de projetos de cunho finalístico na área de sustentabilidade (**SPRO**) |
 | X    | Percentual de projetos de gestão institucional da sustentabilidade (**SPGIS**) |
 
+<br/>&nbsp;<br/>
 
 A PNP também disponibiliza informações diretamente de outras plataformas de dados da administração pública, a exemplo do Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP) e do Tesouro Gerencial, como demonstrado nos seguintes quadros. 
 
