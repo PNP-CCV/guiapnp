@@ -10,77 +10,17 @@ toc: true
 {:toc}
 
 
-### Número de matrículas oriundas de ampla concorrência em cursos técnicos e de graduação (ALAC)
+### Número de matrículas oriundas de ampla concorrência em cursos técnicos e de graduação (ALMAC)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Número de matrículas oriundas de ampla concorrência em cursos técnicos e de graduação (ALAC)
+      Número de matrículas oriundas de ampla concorrência em cursos técnicos e de graduação (ALMAC)
     </i></strong></th>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador apresenta o número total de matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por ampla concorrência, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Meta:</strong> 50% - Art. 1º da Lei 12.711/2012, com redação dada pela Lei 14.723/2023.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Polaridade:</strong> Quanto mais próximo do centro da meta, melhor.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Ciclo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Modelo matemático:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mi>ALAC</mi>
-            <mo>=</mo>
-            <mo>∑</mo>
-            <mi>MACTG</mi>
-            <mtext>, nos diferentes níveis de agregação</mtext>
-          </mrow>
-        </math>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>MACTG - matrículas oriundas de vagas de ampla concorrência em cursos técnicos e de graduação</strong><br/>
-      <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por ampla concorrência, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
-    </td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-
-
-
-### Número de matrículas em cursos técnicos e de graduação (ALM)
-
-<table>
-  <tr>
-    <th colspan="2"><strong><i>
-      Número de matrículas em cursos técnicos e de graduação (ALM)
-    </i></strong></th>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Definição:</strong> Este indicador apresenta o número total de matrículas em cursos técnicos e de graduação, considerando as formas de ingresso “ampla concorrência” e “vagas reservadas”, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> Permite avaliar o número de matrículas em cursos técnicos e de graduação cujo ingresso ocorreu por meio de vagas de ampla concorrência, no ano de referência.
     </td>
   </tr>
   <tr>
@@ -90,15 +30,15 @@ toc: true
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Polaridade:</strong> Não definido.
+      <strong>Polaridade:</strong> Não se aplica.
     </td>
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação mínima:</strong> Curso.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Ciclo.
+      <strong>Agregação máxima:</strong> RFEPCT.
     </td>
   </tr>
   <tr>
@@ -107,16 +47,13 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ALM</mi>
+            <mi>ALMAC</mi>
             <mo>=</mo>
-            <mo>∑</mo>
-            <mrow>
-              <mo>(</mo>
-              <mi>MACTG</mi>
-              <mo>+</mo>
-              <mi>MRTG</mi>
-              <mo>)</mo>
-            </mrow>
+            <mo>(</mo>
+            <mi>MTAC</mi>
+            <mo>+</mo>
+            <mi>MGAC</mi>
+            <mo>)</mo>
           </mrow>
         </math>
       </p>
@@ -125,13 +62,13 @@ toc: true
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>MACTG - matrículas oriundas de vagas de ampla concorrência em cursos técnicos e de graduação.</strong><br/>
+      <strong>MTAC - matrículas de ampla concorrência em cursos técnicos</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por ampla concorrência, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
-      <br/>&nbsp;<br/>
-      <strong>MRTG - matrículas oriundas de vagas reservadas em cursos técnicos e de graduação</strong><br/>
+      <strong>Definição:</strong> matrículas oriundas de vagas de ampla concorrência em cursos técnicos no ano de referência.
+      <br/><br/>
+      <strong>MGAC - matrículas de ampla concorrência em cursos de graduação</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por vagas reservadas, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> matrículas oriundas de vagas de ampla concorrência em cursos de graduação o ano de referência.
     </td>
   </tr>
 </table>
@@ -139,22 +76,88 @@ toc: true
 
 
 
-### Número de matrículas oriundas de vagas reservadas em cursos técnicos e de graduação (ALRV)
+### Número de matrículas em cursos técnicos e de graduação (ALMTG)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Número de matrículas oriundas de vagas reservadas em cursos técnicos e de graduação (ALRV)
+      Número de matrículas em cursos técnicos e de graduação (ALMTG)
     </i></strong></th>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador apresenta o número total de matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por cotas (reserva de vagas), conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> Permite avaliar o número de matrículas em cursos técnicos e de graduação no ano de referência.
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> 50% - Art. 1º da Lei 12.711/2012, com redação dada pela Lei 14.723/2023.
+      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Não se aplica.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação mínima:</strong> Curso.
+    </td>
+    <td>
+      <strong>Agregação máxima:</strong> RFEPCT.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>ALMTG</mi>
+            <mo>=</mo>
+            <mo>(</mo>
+            <mi>MT</mi>
+            <mo>+</mo>
+            <mi>MG</mi>
+            <mo>)</mo>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>MT - matrículas em cursos técnicos.</strong><br/>
+      <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
+      <strong>Definição:</strong> matrículas em cursos técnicos no ano de referência.
+      <br/>&nbsp;<br/>
+      <strong>MG - matrículas em cursos de graduação.</strong><br/>
+      <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
+      <strong>Definição:</strong> matrículas em cursos de graduação no ano de referência.
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+
+
+### Número de matrículas oriundas de vagas reservadas em cursos técnicos e de graduação (ALMRES)
+
+<table>
+  <tr>
+    <th colspan="2"><strong><i>
+      Número de matrículas oriundas de vagas reservadas em cursos técnicos e de graduação (ALMRES)
+    </i></strong></th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Definição:</strong> Permite avaliar o número de matrículas em cursos técnicos e de graduação cujo ingresso ocorreu por meio de vagas reservadas, no ano de referência.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Meta:</strong> A lei Lei nº 14.723, de 13 de novembro de 2023, não traz meta para matrícula, mas para vagas, que é de 50%.
     </td>
   </tr>
   <tr>
@@ -164,10 +167,10 @@ toc: true
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação mínima:</strong> Curso.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Ciclo.
+      <strong>Agregação máxima:</strong> RFEPCT.
     </td>
   </tr>
   <tr>
@@ -176,11 +179,13 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ALRV</mi>
+            <mi>ALRES</mi>
             <mo>=</mo>
-            <mo>∑</mo>
-            <mi>MRTG</mi>
-            <mtext>, nos diferentes níveis de agregação</mtext>
+            <mo>(</mo>
+            <mi>MTRES</mi>
+            <mo>+</mo>
+            <mi>MGRES</mi>
+            <mo>)</mo>
           </mrow>
         </math>
       </p>
@@ -189,9 +194,13 @@ toc: true
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>MRTG - matrículas oriundas de vagas reservadas em cursos técnicos e de graduação presenciais.</strong><br/>
+      <strong>MTRES - matrículas oriundas de vagas reservadas em cursos técnicos.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> matrículas em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por vagas reservadas, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> matrículas oriundas de vagas reservadas em cursos técnicos no ano de referência.
+      <br/><br/>
+      <strong>MGRES - matrículas oriundas de vagas reservadas em cursos de graduação.</strong><br/>
+      <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
+      <strong>Definição:</strong> matrículas oriundas de vagas reservadas em cursos de graduação no ano de referência.
     </td>
   </tr>
 </table>
@@ -209,25 +218,25 @@ toc: true
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador apresenta o número total de vagas ofertadas por ampla concorrência em cursos técnicos e de graduação, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> Permite avaliar o número de vagas regulares destinadas à ampla concorrência em cursos técnicos e de graduação no ano de referência.
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> 50% - Art. 1º da Lei 12.711/2012, com redação dada pela Lei 14.723/2023.
+      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Polaridade:</strong> Quanto mais próximo do centro da meta, melhor.
+      <strong>Polaridade:</strong> Não se aplica.
     </td>
   </tr>
   <tr>
+    <td>
+      <strong>Agregação mínima:</strong> Curso.
+    </td>
     <td>
       <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Ciclo.
     </td>
   </tr>
   <tr>
@@ -238,9 +247,11 @@ toc: true
           <mrow>
             <mi>ALVAC</mi>
             <mo>=</mo>
-            <mo>∑</mo>
-            <mi>ENVACTG</mi>
-            <mtext>, nos diferentes níveis de agregação</mtext>
+            <mo>(</mo>
+            <mi>VTAC</mi>
+            <mo>+</mo>
+            <mi>VGAC</mi>
+            <mo>)</mo>
           </mrow>
         </math>
       </p>
@@ -249,9 +260,13 @@ toc: true
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>ENVACTG - vagas de ampla concorrência em cursos técnicos e de graduação.</strong><br/>
+      <strong>VTAC - vagas regulares de ampla concorrência em cursos técnicos.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> vagas ofertadas por ampla concorrência em cursos técnicos e de graduação, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> vagas regulares de ampla concorrência em cursos técnicos no ano de referência.
+      <br/><br/>
+      <strong>VGAC - vagas regulares de ampla concorrência em cursos de graduação.</strong><br/>
+      <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
+      <strong>Definição:</strong> vagas regulares de ampla concorrência em cursos de graduação no ano de referência.
     </td>
   </tr>
 </table>
@@ -259,17 +274,17 @@ toc: true
 
 
 
-### Número de vagas regulares em cursos técnicos e de graduação (ALV)
+### Número de vagas regulares em cursos técnicos e de graduação (ALVTG)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Número de vagas regulares em cursos técnicos e de graduação (ALV)
+      Número de vagas regulares em cursos técnicos e de graduação (ALVTG)
     </i></strong></th>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador apresenta o número total de vagas ofertadas em cursos técnicos e de graduação, considerando as formas de ingresso “ampla concorrência” e “vagas reservadas”, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> Permite avaliar o número total de vagas regulares ofertadas em cursos técnicos e de graduação no ano de referência.
     </td>
   </tr>
   <tr>
@@ -279,15 +294,15 @@ toc: true
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Polaridade:</strong> Não definido.
+      <strong>Polaridade:</strong> Não se aplica.
     </td>
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação mínima:</strong> Curso.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Ciclo.
+      <strong>Agregação máxima:</strong> RFEPCT.
     </td>
   </tr>
   <tr>
@@ -298,14 +313,11 @@ toc: true
           <mrow>
             <mi>ALV</mi>
             <mo>=</mo>
-            <mo>∑</mo>
-            <mrow>
-              <mo>(</mo>
-              <mi>ENVACTG</mi>
-              <mo>+</mo>
-              <mi>ENVRTG</mi>
-              <mo>)</mo>
-            </mrow>
+            <mo>(</mo>
+            <mi>VT</mi>
+            <mo>+</mo>
+            <mi>VG</mi>
+            <mo>)</mo>
           </mrow>
         </math>
       </p>
@@ -314,13 +326,13 @@ toc: true
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>ENVACTG - vagas de ampla concorrência em cursos técnicos e de graduação presenciais.</strong><br/>
+      <strong>VT - Vagas regulares ofertadas em cursos técnicos.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> vagas ofertadas por ampla concorrência em cursos técnicos e de graduação, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023 .
+      <strong>Definição:</strong> Vagas regulares ofertadas em cursos técnicos no ano de referência.
       <br/>&nbsp;<br/>
-      <strong>ENVRTG - vagas reservadas em cursos técnicos e de graduação presenciais.</strong><br/>
+      <strong>VG - Vagas regulares ofertadas em cursos de graduação.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> vagas ofertadas por cotas (reserva de vagas), em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por vagas reservadas, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> Vagas regulares ofertadas em cursos de graduação no ano de referência.
     </td>
   </tr>
 </table>
@@ -328,22 +340,22 @@ toc: true
 
 
 
-### Número de vagas regulares reservadas em cursos técnicos e de graduação (ALVR)
+### Número de vagas regulares reservadas em cursos técnicos e de graduação (ALVRES)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Número de vagas regulares reservadas em cursos técnicos e de graduação (ALVR)
+      Número de vagas regulares reservadas em cursos técnicos e de graduação (ALVRES)
     </i></strong></th>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador apresenta o número total de vagas ofertadas por cotas (reserva de vagas), em cursos técnicos e de graduação, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> Permite avaliar o número de vagas regulares destinadas às modalidades de reserva de vagas em cursos técnicos e de graduação no ano de referência.
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> 50% - Art. 1º da Lei 12.711/2012, com redação dada pela Lei 14.723/2023.
+      <strong>Meta:</strong> 50% - Lei nº 14.723, de 13 de novembro de 2023, Art. 1º, parágrafo único.
     </td>
   </tr>
   <tr>
@@ -353,10 +365,10 @@ toc: true
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação mínima:</strong> Curso.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Ciclo.
+      <strong>Agregação máxima:</strong> RFEPCT.
     </td>
   </tr>
   <tr>
@@ -365,11 +377,13 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ALVR</mi>
+            <mi>ALVRES</mi>
             <mo>=</mo>
-            <mo>∑</mo>
-            <mi>ENVRTG</mi>
-            <mtext>, nos diferentes níveis de agregação</mtext>
+            <mo>(</mo>
+            <mi>VTRES</mi>
+            <mo>+</mo>
+            <mi>VGRES</mi>
+            <mo>)</mo>
           </mrow>
         </math>
       </p>
@@ -378,9 +392,13 @@ toc: true
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>ENVRTG - vagas reservadas em cursos técnicos e de graduação.</strong><br/>
+      <strong>VTRES - vagas reservadas em cursos técnicos.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> vagas ofertadas por cotas (reserva de vagas), em cursos técnicos e de graduação, vinculadas a estudantes que ingressaram por vagas reservadas, conforme estabelecido na Lei das Cotas (Lei 12.711/2012) e Lei nº 14.723/2023.
+      <strong>Definição:</strong> vagas regulares destinadas às modalidades de reserva de vagas em cursos técnicos no ano de referência.
+      <br/><br/>
+      <strong>VGRES - vagas reservadas em cursos de graduação.</strong><br/>
+      <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
+      <strong>Definição:</strong> vagas regulares destinadas às modalidades de reserva de vagas em cursos de graduação no ano de referência.
     </td>
   </tr>
 </table>
@@ -398,7 +416,7 @@ toc: true
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador mede o total de cursos de graduação com turno noturno, em relação ao total de cursos oferecidos nos cursos de graduação presencial.  
+      <strong>Definição:</strong> Permite avaliar a participação dos cursos de graduação presenciais ofertados no turno noturno em relação ao total de cursos de graduação presenciais no ano de referência.  
     </td>
   </tr>
   <tr>
@@ -408,15 +426,15 @@ toc: true
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Polaridade:</strong> Náo definido.
+      <strong>Polaridade:</strong> Náo se aplica.
     </td>
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação mínima:</strong> Curso.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Estrutura com matrícula.
+      <strong>Agregação máxima:</strong> RFEPCT.
     </td>
   </tr>
   <tr>
@@ -428,10 +446,12 @@ toc: true
             <mi>ALGN</mi>
             <mo>=</mo>
             <mrow>
+              <mo>(</mo>
               <mfrac>
-                <mi>CGPN</mi>
-                <mi>CGP</mi>
+                <mi>GN</mi>
+                <mi>NG</mi>
               </mfrac>
+              <mo>)</mo>
               <mo>&#xD7;</mo>
               <mn>100</mn>
             </mrow>
@@ -443,13 +463,13 @@ toc: true
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>CGPN – Cursos de graduação na modalidade presencial em turno noturno.</strong><br/>
+      <strong>GN – Cursos de graduação presencial noturno.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> Número de cursos de graduação na modalidade presencial no turno noturno.
+      <strong>Definição:</strong> Cursos de graduação presenciais com oferta no turno noturno, no ano de referência.
       <br/>&nbsp;<br/>
-      <strong>CGP – Cursos de graduação na modalidade presencial.</strong><br/>
+      <strong>NG – Cursos de graduação presencial.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> Número de cursos de graduação na modalidade presencial.
+      <strong>Definição:</strong> Cursos de graduação presenciais no ano de referência.
     </td>
   </tr>
 </table>
@@ -467,25 +487,25 @@ toc: true
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador mede o total de matrículas equivalentes de graduação presencial para o turno noturno, em relação ao total de matrículas equivalentes nos cursos de graduação presencial.   
+      <strong>Definição:</strong> Permite avaliar a participação das matrículas equivalentes de graduação presencial noturna em relação ao total de matrículas equivalentes nos cursos de graduação presencial no ano de referência.   
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
+      <strong>Meta:</strong> 1/3 do total das matrículas de graduação (Lei no. 13.005, de 25 de junho de 2014, Estratégia 12.3).
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Polaridade:</strong> Náo definido.
+      <strong>Polaridade:</strong> Quanto mais próximo do centro da meta, melhor.
     </td>
   </tr>
   <tr>
+    <td>
+      <strong>Agregação mínima:</strong> Estrutura com matrícula.
+    </td>
     <td>
       <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Curso.
     </td>
   </tr>
   <tr>
@@ -497,10 +517,12 @@ toc: true
             <mi>ALMGN</mi>
             <mo>=</mo>
             <mrow>
+              <mo>(</mo>
               <mfrac>
-                <mi>ENMEGPN</mi>
-                <mi>ENMEGP</mi>
+                <mi>MEGN</mi>
+                <mi>MEGP</mi>
               </mfrac>
+              <mo>)</mo>
               <mo>&#xD7;</mo>
               <mn>100</mn>
             </mrow>
@@ -512,13 +534,13 @@ toc: true
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>ENMEGPN - Matrículas equivalentes de graduação na modalidade presencial em turno noturno.</strong><br/>
+      <strong>MEGPN - Matrículas equivalentes de graduação presencial noturna.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> Número de matrículas equivalentes de cursos de graduação na modalidade presencial no turno noturno.
+      <strong>Definição:</strong> Matrículas equivalentes em cursos de graduação presenciais noturnos no ano de referência.
       <br/>&nbsp;<br/>
-      <strong>ENMEGP – Matrículas equivalentes de cursos de graduação na modalidade presencial.</strong><br/>
+      <strong>MEGP – Matrículas equivalentes de graduação presencial.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> Número de matrículas equivalentes de cursos de graduação na modalidade presencial.
+      <strong>Definição:</strong> Matrículas equivalentes em cursos de graduação presenciais no ano de referência.
     </td>
   </tr>
 </table>
@@ -541,7 +563,7 @@ toc: true
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> Mínimo de 10% - §1º do Art. 2º do Decreto 5.840/2.006.
+      <strong>Meta:</strong> 10% - Decreto 5.840, de 13 de julho de 2.006, §1º do Art. 2º.
     </td>
   </tr>
   <tr>
@@ -551,10 +573,10 @@ toc: true
   </tr>
   <tr>
     <td>
-      <strong>Agregação Mínima:</strong> Estrutura.
+      <strong>Agregação mínima:</strong> Curso.
     </td>
     <td>
-      <strong>Agregação máxima:</strong> Rede Federal.
+      <strong>Agregação máxima:</strong> RFEPCT.
     </td>
   </tr>
   <tr>
@@ -566,10 +588,12 @@ toc: true
             <mi>ALMEJA [%]</mi>
             <mo>=</mo>
             <mrow>
+              <mo>(</mo>
               <mfrac>
-                <mi>MeqEJA</mi>
-                <mi>Meq</mi>
+                <mi>MEJA</mi>
+                <mi>ME</mi>
               </mfrac>
+              <mo>)</mo>
               <mo>&#xD7;</mo>
               <mn>100</mn>
             </mrow>
@@ -581,11 +605,11 @@ toc: true
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>MeqEJA - Matrículas Equivalentes em Educação de Jovens e Adultos.</strong><br/>
+      <strong>MEJA - Matrículas Equivalentes em Educação de Jovens e Adultos.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
       <strong>Definição:</strong> Número de matrículas em curso FIC ou técnico contemplado pelo programa PROEJA que estiveram ativas por pelo menos um dia no ano base, ponderada pelos fatores de equivalência previstos.
       <br/>&nbsp;<br/>
-      <strong>Meq - Matrículas Equivalentes.</strong><br/>
+      <strong>ME - Matrículas Equivalentes.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
       <strong>Definição:</strong> Número de matrículas que estiveram ativas em pelo menos um dia no ano base, ponderada pelos fatores de equivalência previstos.
     </td>
@@ -605,12 +629,12 @@ toc: true
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador mede o percentual de matrículas equivalentes vinculadas a cursos de educação profissional técnica de nível médio, ou seja, cursos técnicos e de especialização técnica. É aplicável apenas aos Institutos Federais.  
+      <strong>Definição:</strong> Permite avaliar a participação das matrículas equivalentes em cursos de educação profissional técnica de nível médio em relação ao total de matrículas equivalentes no ano de referência.  
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> Mínimo de 50% - Art. 8º da Lei 11.892/2008.
+      <strong>Meta:</strong> 50% - Lei nº 11.892, de 29 de dezembro de 2008, Art. 8º.
     </td>
   </tr>
   <tr>
@@ -620,10 +644,10 @@ toc: true
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação mínima:</strong> Curso.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Estrutura com matrícula.
+      <strong>Agregação máxima:</strong> RFEPCT.
     </td>
   </tr>
   <tr>
@@ -635,10 +659,12 @@ toc: true
             <mi>ALMTEC</mi>
             <mo>=</mo>
             <mrow>
+              <mo>(</mo>
               <mfrac>
-                <mi>ENMECT</mi>
-                <mi>ENME</mi>
+                <mi>MET</mi>
+                <mi>ME</mi>
               </mfrac>
+              <mo>)</mo>
               <mo>&#xD7;</mo>
               <mn>100</mn>
             </mrow>
@@ -650,13 +676,13 @@ toc: true
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>ENMECT – Matrículas Equivalentes em Cursos Técnicos e de Especialização Técnica.</strong><br/>
+      <strong>MET – Matrículas equivalentes em cursos de educação profissional técnica de nível médio.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> Número de matrículas em cursos técnicos e de especialização técnica que estiveram ativas em pelo menos um dia no ano base, ponderada pelos fatores de equivalência previstos.
+      <strong>Definição:</strong> Matrículas equivalentes em cursos de educação profissional técnica de nível médio no ano de referência.
       <br/>&nbsp;<br/>
-      <strong>ENME - Matrículas Equivalentes.</strong><br/>
+      <strong>ME - Matrículas equivalentes.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> Número de matrículas que estiveram ativas em pelo menos um dia no ano base, ponderada pelos fatores de equivalência previstos.
+      <strong>Definição:</strong> Matrículas equivalentes no ano de referência.
     </td>
   </tr>
 </table>
@@ -681,7 +707,7 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> Mínimo de 20% - Art. 8º da Lei 11.892/2008.
+      <strong>Meta:</strong> 20% - Lei nº 11.892, de 29 de dezembro de 2008, Art. 8º.
     </td>
   </tr>
   <tr>
@@ -691,10 +717,10 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
   </tr>
   <tr>
     <td>
-      <strong>Agregação Mínima:</strong> Estrutura.
+      <strong>Agregação mínima:</strong> Curso.
     </td>
     <td>
-      <strong>Agregação máxima:</strong> Rede Federal.
+      <strong>Agregação máxima:</strong> RFEPCT.
     </td>
   </tr>
   <tr>
@@ -703,13 +729,15 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>Formação de professores [%]</mi>
+            <mi>ALMPROF [%]</mi>
             <mo>=</mo>
             <mrow>
+              <mo>(</mo>
               <mfrac>
-                <mi>MeqFP</mi>
-                <mi>Meq</mi>
+                <mi>MPROF</mi>
+                <mi>ME</mi>
               </mfrac>
+              <mo>)</mo>
               <mo>&#xD7;</mo>
               <mn>100</mn>
             </mrow>
@@ -721,11 +749,11 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>MeqFP - Matrículas Equivalentes em Formação de Professores.</strong><br/>
+      <strong>MPROF - Matrículas Equivalentes em Formação de Professores.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
       <strong>Definição:</strong> Número de matrículas em cursos destinados à formação de professores que estiveram ativas em pelo menos um dia no ano base, ponderada pelos fatores de equivalência previstos.
       <br/>&nbsp;<br/>
-      <strong>Meq - Matrículas Equivalentes.</strong><br/>
+      <strong>ME - Matrículas Equivalentes.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
       <strong>Definição:</strong> Número de matrículas que estiveram ativas em pelo menos um dia no ano base, ponderada pelos fatores de equivalência previstos.
     </td>
@@ -760,10 +788,10 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação mínima:</strong> Curso.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Estrutura com matrícula.
+      <strong>Agregação máxima:</strong> RFEPCT.
     </td>
   </tr>
   <tr>
@@ -775,10 +803,12 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
             <mi>ALVPROEJA</mi>
             <mo>=</mo>
             <mrow>
+              <mo>(</mo>
               <mfrac>
                 <mi>ENVEJA</mi>
                 <mi>ENV</mi>
               </mfrac>
+              <mo>)</mo>
               <mo>&#xD7;</mo>
               <mn>100</mn>
             </mrow>
@@ -814,12 +844,12 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador mede o percentual de oferta de vagas em cursos técnicos e de especialização técnica. É aplicável apenas aos Institutos Federais.
+      <strong>Definição:</strong> Permite avaliar a participação das vagas regulares ofertadas em cursos de educação profissional técnica de nível médio em relação ao total de vagas regulares no ano de referência.
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> Mínimo de 50% - Art. 8º da Lei 11.892/2008.
+      <strong>Meta:</strong> 50% - Lei nº 11.892, de 29 de dezembro de 2008, Art. 8º.
     </td>
   </tr>
   <tr>
@@ -829,10 +859,10 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação mínima:</strong> Curso.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Estrutura com matrícula.
+      <strong>Agregação máxima:</strong> RFEPCT.
     </td>
   </tr>
   <tr>
@@ -844,10 +874,12 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
             <mi>ALVTEC</mi>
             <mo>=</mo>
             <mrow>
+              <mo>(</mo>
               <mfrac>
-                <mi>ENVTEC</mi>
-                <mi>ENV</mi>
+                <mi>VT</mi>
+                <mi>VR</mi>
               </mfrac>
+              <mo>)</mo>
               <mo>&#xD7;</mo>
               <mn>100</mn>
             </mrow>
@@ -859,13 +891,13 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>ENVTEC – Vagas de educação profissional técnica de nível médio.</strong><br/>
+      <strong>VT – Vagas em cursos de educação profissional técnica de nível médio.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> Número de vagas em cursos técnicos e de especialização técnica no ano base.
+      <strong>Definição:</strong> Vagas em cursos de educação profissional técnica de nível médio no ano de referência.
       <br/>&nbsp;<br/>
-      <strong>ENV – Número de vagas.</strong><br/>
+      <strong>VR – Vagas regulares.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> Número total de vagas disponibilizadas para ciclos dos cursos no ano base, desconsiderando cursos MOOC.
+      <strong>Definição:</strong> Vagas regulares no ano de referência.
     </td>
   </tr>
 </table>
@@ -898,10 +930,10 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação mínima:</strong> Curso.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Estrutura com unidade.
+      <strong>Agregação máxima:</strong> RFEPCT.
     </td>
   </tr>
   <tr>
@@ -913,10 +945,12 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
             <mi>ALVFP</mi>
             <mo>=</mo>
             <mrow>
+              <mo>(</mo>
               <mfrac>
                 <mi>ENVFP</mi>
                 <mi>ENV</mi>
               </mfrac>
+              <mo>)</mo>
               <mo>&#xD7;</mo>
               <mn>100</mn>
             </mrow>
@@ -957,7 +991,7 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Meta:</strong> 33,3% - Estratégia 12.3 da Lei 13.005/2014.
+      <strong>Meta:</strong> 33,3% - Lei 13.005, de 25 de junho de 2014, estratégia 12.3.
     </td>
   </tr>
   <tr>
@@ -967,10 +1001,10 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
   </tr>
   <tr>
     <td>
-      <strong>Agregação Mínima:</strong> Curso.
+      <strong>Agregação mínima:</strong> Curso.
     </td>
     <td>
-      <strong>Agregação máxima:</strong> Rede Federal.
+      <strong>Agregação máxima:</strong> RFEPCT.
     </td>
   </tr>
   <tr>
@@ -982,10 +1016,12 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
             <mi>ALVGN [%]</mi>
             <mo>=</mo>
             <mrow>
+              <mo>(</mo>
               <mfrac>
-                <mi>VGPN</mi>
+                <mi>VGN</mi>
                 <mi>VGP</mi>
               </mfrac>
+              <mo>)</mo>
               <mo>&#xD7;</mo>
               <mn>100</mn>
             </mrow>
@@ -997,7 +1033,7 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>VGPN – Vagas para cursos de graduação na modalidade presencial em turno noturno.</strong><br/>
+      <strong>VGN – Vagas para cursos de graduação na modalidade presencial em turno noturno.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
       <strong>Definição:</strong> Número de vagas de ingresso oferecidas no ano base para cursos de graduação na modalidade presencial no turno noturno.
       <br/>&nbsp;<br/>
@@ -1011,17 +1047,17 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
 
 
 
-### Percentual de oferta de vagas em cursos noturnos presenciais (ALVN)
+### Percentual de oferta de vagas em cursos noturnos presenciais (ALVCN)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Percentual de oferta de vagas em cursos noturnos presenciais (ALVN)
+      Percentual de oferta de vagas em cursos noturnos presenciais (ALVCN)
     </i></strong></th>
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Este indicador mede o percentual de vagas de ingresso oferecidas nos cursos presenciais no turno noturno, em relação ao total de vagas de ingresso oferecidas nos cursos presenciais.
+      <strong>Definição:</strong> Permite avaliar a participação das vagas regulares ofertadas em cursos presenciais no turno noturno em relação ao total de vagas regulares ofertadas em cursos presenciais no ano de referência.
     </td>
   </tr>
   <tr>
@@ -1031,15 +1067,15 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Polaridade:</strong> Quanto maior, melhor.
+      <strong>Polaridade:</strong> Não se aplica.
     </td>
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação mínima:</strong> Estrutura com matrícula.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Curso.
+      <strong>Agregação máxima:</strong> RFEPCT.
     </td>
   </tr>
   <tr>
@@ -1048,13 +1084,15 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ALVN</mi>
+            <mi>ALVCN</mi>
             <mo>=</mo>
             <mrow>
+              <mo>(</mo>
               <mfrac>
-                <mi>ENVGPN</mi>
-                <mi>ENVGP</mi>
+                <mi>VCN</mi>
+                <mi>VCP</mi>
               </mfrac>
+              <mo>)</mo>
               <mo>&#xD7;</mo>
               <mn>100</mn>
             </mrow>
@@ -1066,13 +1104,13 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>ENVGPN – Vagas para cursos na modalidade presencial em turno noturno.</strong><br/>
+      <strong>VCN – Vagas para cursos presenciais noturnos.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> Número de vagas de ingresso oferecidas no ano base para cursos na modalidade presencial no turno noturno.
+      <strong>Definição:</strong> Vagas regulares ofertadas em cursos presenciais com turno noturno no ano de referência.
       <br/>&nbsp;<br/>
-      <strong>ENVGP – Total de vagas para cursos na modalidade presencial.</strong><br/>
+      <strong>VCP – Vagas para cursos presenciais.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> Número de vagas de ingresso oferecidas no ano base para cursos na modalidade presencial.
+      <strong>Definição:</strong> Vagas regulares em cursos presenciais no ano de referência.
     </td>
   </tr>
 </table>
@@ -1105,10 +1143,10 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> Rede Federal.
+      <strong>Agregação mínima:</strong> Unidade.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Unidade.
+      <strong>Agregação máxima:</strong> Rede Federal.
     </td>
   </tr>
   <tr>
@@ -1188,10 +1226,10 @@ A proporcionalidade de estudantes por docentes vinha sendo monitorada principalm
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> Rede Federal.
+      <strong>Agregação mínima:</strong> Curso.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Curso.
+      <strong>Agregação máxima:</strong> RFEPCT.
     </td>
   </tr>
   <tr>

@@ -238,12 +238,12 @@ toc: true
 
 
 
-### Número de Produção intelectual (NProd)
+### Número de produção intelectual (PIPRO)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Produção intelectual (NProd)
+      Número de produção intelectual (PIPRO)
     </i></strong></th>
   </tr>
   <tr>
@@ -275,7 +275,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>NProd</mi>
+            <mi>PIPRO</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mi>NPB</mi>
