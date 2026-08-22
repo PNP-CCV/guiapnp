@@ -353,7 +353,7 @@ Ações que apenas abordam temas relacionados à vulnerabilidade, de forma ampla
 
 
 
-### Percentual de pessoas estudantes matriculadas por meio de cotas envolvidos em ações de extensão (EXCOT)
+### Percentual de pessoas estudantes matriculadas por meio de cotas envolvidas em ações de extensão (EXCOT)
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -426,7 +426,7 @@ Ações que apenas abordam temas relacionados à vulnerabilidade, de forma ampla
 
 
 
-### Percentual de pessoas servidoras envolvidos em ações de extensão (EXSERV)
+### Percentual de pessoas servidoras envolvidas em ações de extensão (EXSERV)
 <table>
   <tr>
     <th colspan="2"><strong><i>
