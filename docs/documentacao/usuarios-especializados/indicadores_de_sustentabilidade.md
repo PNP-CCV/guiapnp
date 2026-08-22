@@ -61,10 +61,10 @@ toc: true
     </td>
   </tr>
 </table>
-
-
-
 <br/>&nbsp;<br/>
+
+
+
 ### Consumo de energia elétrica per capita (SCEE)
 <table>
   <tr>
@@ -116,10 +116,10 @@ toc: true
     </td>
   </tr>
 </table>
-
-
-
 <br/>&nbsp;<br/>
+
+
+
 ### Geração de energia elétrica de fonte renovável per capita (SGER)
 <table>
   <tr>
@@ -171,9 +171,9 @@ toc: true
     </td>
   </tr>
 </table>
-
-
 <br/>&nbsp;<br/>
+
+
 ### Índice de governança institucional da sustentabilidade (SIGS)
 <table>
   <tr>
@@ -326,10 +326,10 @@ toc: true
     </td>
   </tr>
 </table>
-
-
-
 <br/>&nbsp;<br/>
+
+
+
 ### Índice de implantação de gestão de resíduos sólidos (IGRS)
 <table>
   <tr>
@@ -456,10 +456,10 @@ toc: true
     </td>
   </tr>
 </table>
-
-
-
 <br/>&nbsp;<br/>
+
+
+
 ### Índice de intensidade de divulgação da política/ações institucionais de sustentabilidade (SIDS)
 <table>
   <tr>
@@ -581,10 +581,10 @@ toc: true
     </td>
   </tr>
 </table>
-
-
-
 <br/>&nbsp;<br/>
+
+
+
 ### Institucionalização das compras sustentáveis (SICS)
 <table>
   <tr>
@@ -623,10 +623,9 @@ toc: true
     </td>
   </tr>
 </table>
-
-
-
 <br/>&nbsp;<br/>
+
+
 ### Percentual de compras sustentáveis (SPCS)
 <table>
   <tr>
@@ -680,10 +679,10 @@ toc: true
     </td>
   </tr>
 </table>
-
-
-
 <br/>&nbsp;<br/>
+
+
+
 ### Percentual de projetos de cunho finalístico na área de sustentabilidade (SPRO)
 <table>
   <tr>
@@ -780,10 +779,10 @@ toc: true
     </td>
   </tr>
 </table>
-
-
-
 <br/>&nbsp;<br/>
+
+
+
 ### Percentual de projetos percentual de projetos de gestão institucional da sustentabilidade (SPGIS)
 <table>
   <tr>

@@ -11,12 +11,12 @@ toc: true
 
 
 
-### Índice de titulação do corpo docente (PETCD)
+### Índice de titulação do corpo docente efetivo (PETCD)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Índice de titulação do corpo docente (PETCD)
+      Índice de titulação do corpo docente efetivo (PETCD)
     </i></strong></th>
   </tr>
   <tr>
@@ -122,12 +122,12 @@ toc: true
 
 
 
-### Número de docentes (PEDO)
+### Número de pessoas docentes (PEDO)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Número de docentes (PEDO)
+      Número de pessoas docentes (PEDO)
     </i></strong></th>
   </tr>
   <tr>
@@ -182,12 +182,12 @@ toc: true
 
 
 
-### Número de docentes efetivos (PEDE)
+### Número de pessoas docentes efetivas (PEDE)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Número de docentes efetivos (PEDE)
+      Número de pessoas docentes efetivas (PEDE)
     </i></strong></th>
   </tr>
   <tr>
@@ -242,12 +242,12 @@ toc: true
 
 
 
-### Número de servidores (PES)
+### Número de pessoas servidoras (PES)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Número de servidores (PES)
+      Número de pessoas servidoras (PES)
     </i></strong></th>
   </tr>
   <tr>
@@ -302,7 +302,7 @@ toc: true
 
 
 
-### Número de técnicos administrativos em educação (PETAE)
+### Número de pessoas técnico administrativas em educação (PETAE)
 
 <table>
   <tr>
