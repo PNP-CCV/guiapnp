@@ -652,7 +652,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>SPCS</mi>
+            <mi>SPCS [%]</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mfrac>
@@ -709,7 +709,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>SPRO</mi>
+            <mi>SPRO [%]</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mfrac>
@@ -809,7 +809,7 @@ toc: true
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>SPGIS</mi>
+            <mi>SPGIS [%]</mi>
             <mo>=</mo>
             <mo>(</mo>
             <mfrac>
