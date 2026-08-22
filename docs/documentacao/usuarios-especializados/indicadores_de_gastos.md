@@ -10,6 +10,184 @@ toc: true
 {:toc}
 
 
+### Gastos com pessoas inativas e pensionistas (GIP)
+
+<table>
+  <tr>
+    <th colspan="2"><strong><i>
+      Gastos com pessoas inativas e pensionistas (GIP)
+    </i></strong></th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      Este indicador apresenta o valor relativo aos gastos com pessoal, exclusivamente com servidores inativos e pensionistas.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Quanto menor, melhor.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação máxima:</strong> RFEPCT.
+    </td>
+    <td>
+      <strong>Agregação Mínima:</strong> Instituição.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>GIP</mi>
+            <mo>=</mo>
+            <mo>∑</mo>
+            <mi>Inat</mi>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>Inat – Inativos e pensionistas.</strong><br/>
+      <strong>Fonte:</strong> SIAFI.<br/>
+      <strong>Definição:</strong> Valor com Inativos, que compreende o conjunto de servidores aposentados, instituidores de pensão e seus respectivos pensionistas, cujos gastos são identificados pelos códigos de ação orçamentária “0181”.
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+
+### Gasto com precatórios (GPRE)
+
+<table>
+  <tr>
+    <th colspan="2"><strong><i>
+      Gasto com precatórios (GPRE)
+    </i></strong></th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      Este indicador apresenta o valor de precatórios judiciais durante o ano base. 
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Quanto menor, melhor.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação máxima:</strong> RFEPCT.
+    </td>
+    <td>
+      <strong>Agregação Mínima:</strong> Instituição.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>GPRE</mi>
+            <mo>=</mo>
+            <mo>∑</mo>
+            <mi>GPrec</mi>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>GPrec = Gastos com precatórios.</strong><br/>
+      <strong>Fonte:</strong> SIAFI.<br/>
+      <strong>Definição:</strong> Valor correspondente aos pagamentos de requisições judiciais (precatórios) realizados. Refere-se às liquidações totais (exercício + RAP), cujo elemento de despesa é o código “91” (sentenças judiciais).
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+
+### Gastos correntes (GC)
+
+<table>
+  <tr>
+    <th colspan="2"><strong><i>
+      Gastos correntes (GC)
+    </i></strong></th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      Este indicador apresenta o valor de gastos totais, excluindo precatórios, gastos com inativos e pensionistas, investimentos e inversões financeiras.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Quanto menor, melhor.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação máxima:</strong> RFEPCT.
+    </td>
+    <td>
+      <strong>Agregação Mínima:</strong> Instituição.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>GC</mi>
+            <mo>=</mo>
+            <mo>∑</mo>
+            <mi>Gasto corrente</mi>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>GC - Gasto Corrente.</strong><br/>
+      <strong>Fonte:</strong> SIAFI.<br/>
+      <strong>Definição:</strong> Valor do Gasto Total com as Instituições que compõem a RFEPCT no ano base, excetuando-se gastos com:<ul>
+      <li>Inativos e Pensionistas;</li> 
+      <li>Investimentos;</li> 
+      <li>Inversões Financeiras; e</li> 
+      <li>Precatórios.</li></ul>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+
 ### Gastos correntes por matrícula equivalente (GACM)
 
 <table>
@@ -76,6 +254,129 @@ toc: true
 </table>
 <p>&nbsp;</p>
 
+
+### Gastos de Pessoal (GAPE)
+
+<table>
+  <tr>
+    <th colspan="2"><strong><i>
+      Gastos de Pessoal (GAPE)
+    </i></strong></th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      Este indicador diz respeito ao total de gastos com pessoal na RFEPCT. Apresenta o valor dos gastos com o grupo de natureza de despesa “pessoal” e as naturezas de despesa relativas a auxílios e congêneres. Em virtude da impossibilidade de segregar os dados financeiros das Escolas Técnicas Vinculadas às Universidades Federais (ETV-UF), este indicador não considera os dados das ETV-UF.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Quanto menor, melhor.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação máxima:</strong> Rede Federal.
+    </td>
+    <td>
+      <strong>Agregação Mínima:</strong> Instituição.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>GAPE</mi>
+            <mo>=</mo>            
+            <mo>(</mo>
+            <mi>GFP</mi>
+            <mo>+</mo>
+            <mi>GaB</mi>
+            <mo>)</mo>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>GFP - Gasto com remuneração de servidores.</strong><br/>
+      <strong>Fonte:</strong> SIAFI.<br/>
+      <strong>Definição:</strong> Gasto com remuneração de ativos e aposentados no ano base, com as Instituições que compõem a RFEPCT. 
+      <br/>&nbsp;<br/>
+      <strong>GaB – Gastos com benefícios pagos aos servidores.</strong><br/>
+      <strong>Fonte:</strong> SIAFI.<br/>
+      <strong>Definição:</strong> Gasto com pagamento de benefícios de ativos e aposentados no ano base, com as Instituições que compõem a RFEPCT.
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+
+
+### Gastos totais (GT)
+
+<table>
+  <tr>
+    <th colspan="2"><strong><i>
+      Gastos totais (GT)
+    </i></strong></th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      Este indicador apresenta o valor total de liquidações de gastos correntes, excluindo valores relacionados ao Pis-Pasep. 
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Quanto menor, melhor.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação máxima:</strong> RFEPCT.
+    </td>
+    <td>
+      <strong>Agregação Mínima:</strong> Instituição.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>GT</mi>
+            <mo>=</mo>
+            <mo>∑</mo>
+            <mi>Gasto totais</mi>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>Gastos totais.</strong><br/>
+      <strong>Fonte:</strong> SIAFI.<br/>
+      <strong>Definição:</strong>  Valor total de liquidações de gastos correntes, excluindo valores relacionados ao Pis-Pasep.
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
 
 
 ### Investimentos e inversões (GAIV)
@@ -201,311 +502,5 @@ toc: true
       <strong>Fonte:</strong> SIAFI.<br/>
       <strong>Definição:</strong>  Gasto no grupo de natureza de despesas “Outras despesas correntes” no ano base, com as Instituições que compõem a RFEPCT, deduzindo-se gastos com benefícios pagos aos servidores. 
       </td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-
-
-
-### Gastos de Pessoal (GAPE)
-
-<table>
-  <tr>
-    <th colspan="2"><strong><i>
-      Gastos de Pessoal (GAPE)
-    </i></strong></th>
-  </tr>
-  <tr>
-    <td colspan="2">
-      Este indicador diz respeito ao total de gastos com pessoal na RFEPCT. Apresenta o valor dos gastos com o grupo de natureza de despesa “pessoal” e as naturezas de despesa relativas a auxílios e congêneres. Em virtude da impossibilidade de segregar os dados financeiros das Escolas Técnicas Vinculadas às Universidades Federais (ETV-UF), este indicador não considera os dados das ETV-UF.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Polaridade:</strong> Quanto menor, melhor.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Agregação máxima:</strong> Rede Federal.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Instituição.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Modelo matemático:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mi>GAPE</mi>
-            <mo>=</mo>            
-            <mo>(</mo>
-            <mi>GFP</mi>
-            <mo>+</mo>
-            <mi>GaB</mi>
-            <mo>)</mo>
-          </mrow>
-        </math>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>GFP - Gasto com remuneração de servidores.</strong><br/>
-      <strong>Fonte:</strong> SIAFI.<br/>
-      <strong>Definição:</strong> Gasto com remuneração de ativos e aposentados no ano base, com as Instituições que compõem a RFEPCT. 
-      <br/>&nbsp;<br/>
-      <strong>GaB – Gastos com benefícios pagos aos servidores.</strong><br/>
-      <strong>Fonte:</strong> SIAFI.<br/>
-      <strong>Definição:</strong> Gasto com pagamento de benefícios de ativos e aposentados no ano base, com as Instituições que compõem a RFEPCT.
-    </td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-
-
-
-### Gasto com precatórios (GPRE)
-
-<table>
-  <tr>
-    <th colspan="2"><strong><i>
-      Gasto com precatórios (GPRE)
-    </i></strong></th>
-  </tr>
-  <tr>
-    <td colspan="2">
-      Este indicador apresenta o valor de precatórios judiciais durante o ano base. 
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Polaridade:</strong> Quanto menor, melhor.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Instituição.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Modelo matemático:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mi>GPRE</mi>
-            <mo>=</mo>
-            <mo>∑</mo>
-            <mi>GPrec</mi>
-          </mrow>
-        </math>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>GPrec = Gastos com precatórios.</strong><br/>
-      <strong>Fonte:</strong> SIAFI.<br/>
-      <strong>Definição:</strong> Valor correspondente aos pagamentos de requisições judiciais (precatórios) realizados. Refere-se às liquidações totais (exercício + RAP), cujo elemento de despesa é o código “91” (sentenças judiciais).
-    </td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-
-
-
-### Gastos com inativos e pensionistas (GIP)
-
-<table>
-  <tr>
-    <th colspan="2"><strong><i>
-      Gastos com inativos e pensionistas (GIP)
-    </i></strong></th>
-  </tr>
-  <tr>
-    <td colspan="2">
-      Este indicador apresenta o valor relativo aos gastos com pessoal, exclusivamente com servidores inativos e pensionistas.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Polaridade:</strong> Quanto menor, melhor.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Instituição.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Modelo matemático:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mi>GIP</mi>
-            <mo>=</mo>
-            <mo>∑</mo>
-            <mi>Inat</mi>
-          </mrow>
-        </math>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>Inat – Inativos e pensionistas.</strong><br/>
-      <strong>Fonte:</strong> SIAFI.<br/>
-      <strong>Definição:</strong> Valor com Inativos, que compreende o conjunto de servidores aposentados, instituidores de pensão e seus respectivos pensionistas, cujos gastos são identificados pelos códigos de ação orçamentária “0181”.
-    </td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-
-
-
-### Gastos correntes (GC)
-
-<table>
-  <tr>
-    <th colspan="2"><strong><i>
-      Gastos correntes (GC)
-    </i></strong></th>
-  </tr>
-  <tr>
-    <td colspan="2">
-      Este indicador apresenta o valor de gastos totais, excluindo precatórios, gastos com inativos e pensionistas, investimentos e inversões financeiras.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Polaridade:</strong> Quanto menor, melhor.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Instituição.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Modelo matemático:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mi>GC</mi>
-            <mo>=</mo>
-            <mo>∑</mo>
-            <mi>Gasto corrente</mi>
-          </mrow>
-        </math>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>GC - Gasto Corrente.</strong><br/>
-      <strong>Fonte:</strong> SIAFI.<br/>
-      <strong>Definição:</strong> Valor do Gasto Total com as Instituições que compõem a RFEPCT no ano base, excetuando-se gastos com:<ul>
-      <li>Inativos e Pensionistas;</li> 
-      <li>Investimentos;</li> 
-      <li>Inversões Financeiras; e</li> 
-      <li>Precatórios.</li></ul>
-    </td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-
-
-
-### Gastos totais (GT)
-
-<table>
-  <tr>
-    <th colspan="2"><strong><i>
-      Gastos totais (GT)
-    </i></strong></th>
-  </tr>
-  <tr>
-    <td colspan="2">
-      Este indicador apresenta o valor total de liquidações de gastos correntes, excluindo valores relacionados ao Pis-Pasep. 
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Polaridade:</strong> Quanto menor, melhor.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Instituição.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Modelo matemático:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mi>GT</mi>
-            <mo>=</mo>
-            <mo>∑</mo>
-            <mi>Gasto totais</mi>
-          </mrow>
-        </math>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>Gastos totais.</strong><br/>
-      <strong>Fonte:</strong> SIAFI.<br/>
-      <strong>Definição:</strong>  Valor total de liquidações de gastos correntes, excluindo valores relacionados ao Pis-Pasep.
-    </td>
   </tr>
 </table>

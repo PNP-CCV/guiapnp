@@ -13,104 +13,42 @@ Os quadros na sequência demonstram o conjunto de indicadores da PNP por dimens�
 
 ## Indicadores Dimensão Ensino
 
-<table>
-  <tr>
-    <th><b>Categoria</b></th>
-    <th><b>Item</b></th>
-    <th><b>Indicador</b></th>
-  </tr>
-
-  <tr>
-    <td rowspan="11"><b>Geral</b></td>
-    <td>I</td>
-    <td>Número de concluintes (<b>ENCT</b>)</td>
-  </tr>
-  <tr>
-    <td>II</td>
-    <td>Número de cursos (<b>ENC</b>)</td>
-  </tr>
-  <tr>
-    <td>III</td>
-    <td>Número de evadidos (<b>ENEV</b>)</td>
-  </tr>
-  <tr>
-    <td>IV</td>
-    <td>Número de estruturas com matrícula (<b>ENEMA</b>)</td>
-  </tr>
-  <tr>
-    <td>V</td>
-    <td>Número de ingressantes (<b>ENING</b>)</td>
-  </tr>
-  <tr>
-    <td>VI</td>
-    <td>Número de inscritos (<b>ENIC</b>)</td>
-  </tr>
-  <tr>
-    <td>VII</td>
-    <td>Número de matrículas (<b>ENM</b>)</td>
-  </tr>
-  <tr>
-    <td>VIII</td>
-    <td>Número de matrículas equivalentes (<b>ENME</b>)</td>
-  </tr>
-  <tr>
-    <td>IX</td>
-    <td>Número de unidades acadêmicas (<b>ENUND</b>)</td>
-  </tr>
-  <tr>
-    <td>X</td>
-    <td>Número de vagas (<b>ENV</b>)</td>
-  </tr>
-  <tr>
-    <td>XI</td>
-    <td>Índice de eficiência acadêmica (<b>ENIEA</b>)</td>
-  </tr>
-  
-  <tr>
-    <td rowspan="8"><b>Acadêmicos</b></td>
-    <td>I</td>
-    <td>Índice de verticalização (<b>ENIV</b>)</td>
-  </tr>
-  <tr>
-    <td>II</td>
-    <td>Percentual de conclusão por ciclo (<b>ENCC</b>)</td>
-  </tr>
-  <tr>
-    <td>III</td>
-    <td>Percentual de evasão anual (<b>ENEVA</b>)</td>
-  </tr>
-  <tr>
-    <td>IV</td>
-    <td>Percentual de evasão por ciclo (<b>ENEC</b>)</td>
-  </tr>
-  <tr>
-    <td>V</td>
-    <td>Percentual de retenção por ciclo (<b>ENREC</b>)</td>
-  </tr>
-  <tr>
-    <td>VI</td>
-    <td>Relação de inscritos por vagas (<b>ENRIV</b>)</td>
-  </tr>
-  <tr>
-    <td>VII</td>
-    <td>Taxa de ocupação (<b>ENOC</b>)</td>
-  </tr>
-</table>
+| **Item** | **Indicador** |
+| :---: | :--- |
+| I     | Índice de eficiência acadêmica (**ENIEA**) |
+| II    | Índice de verticalização (**ENIV**) |
+| III   | Número de concluintes (**ENCT**) |
+| IV    | Número de cursos (**ENC**) |
+| V     | Número de estruturas com matrícula (**ENEMA**) |
+| VI    | Número de evadidos (**ENEV**) |
+| VII   | Número de ingressantes (**ENING**) |
+| VIII  | Número de inscritos (**ENIC**) |
+| IX    | Número de matrículas (**ENM**) |
+| X     | Número de matrículas equivalentes (**ENME**) |
+| XI    | Número de unidades acadêmicas (**ENUND**) |
+| XII   | Número de vagas (**ENV**) |
+| XIII  | Percentual de conclusão por ciclo (**ENCC**) |
+| XIV   | Percentual de evasão anual (**ENEVA**) |
+| XV    | Percentual de evasão por ciclo (**ENEC**) |
+| XVI   | Percentual de retenção por ciclo (**ENREC**) |
+| XVII  | Relação de inscritos por vagas (**ENRIV**) |
+| XVIII | Taxa de ocupação (**ENOC**) |
 
 
 ## Indicadores Dimensão Pesquisa e Inovação
 
 | **Item** | **Indicador** |
 | :---: | :--- |
-| I | Número de acordos de parceria para pesquisa, desenvolvimento e inovação (**PIPDI**) |
-| II | Número de ativos de propriedade industrial, programas de computador e proteções sui generis (**PIPROT**) |
-| III | Número de ativos de propriedade industrial, programas de computador e proteções sui generis transferidos (**PIPROTR**) |
-| IV | Número de produção intelectual (**PIPRO**) |
-| V | Percentual de estudantes da instituição envolvidos em projetos de pesquisa (**PIES**) |
-| VI | Percentual de pessoas estudantes matriculados por meio de cotas envolvidos em projetos de pesquisa (**PICOT**) |
-| VII | Percentual de investimento realizado em pesquisa, pós-graduação e inovação, oriundo de capital e custeio (**PINV**) |
-| VIII | Percentual de pessoas servidoras envolvidas em projetos de pesquisa (**PISERV**) |
-| IX | Percentual de projetos de pesquisa aplicada (**PIPA**) |
+| I     | Número de acordos de parceria e de convênios para pesquisa, desenvolvimento e inovação (**PIPDI**) |
+| II    | Número de ativos de propriedade industrial, programas de computador e proteções _sui generis_ (**PIPROT**) |
+| III   | Número de ativos de propriedade industrial, programas de computador e proteções _sui generis_ transferidos (**PIPROTR**) |
+| IV    | Número de produção intelectual (**PIPRO**) |
+| V     | Percentual de investimento realizado em pesquisa, pós-graduação e inovação, oriundo de capital e custeio (**PINV**) |
+| VI    | Percentual de pessoas estudantes da instituição envolvidos em projetos de pesquisa (**PIES**) |
+| VII   | Percentual de pessoas estudantes matriculados por meio de cotas envolvidos em projetos de pesquisa (**PICOT**) |
+| VIII  | Percentual de pessoas servidoras envolvidas em projetos de pesquisa (**PISERV**) |
+| IX    | Percentual de projetos de pesquisa aplicada (**PIPA**) |
+
 
 ## Indicadores Dimensão Extensão
 
@@ -124,11 +62,12 @@ Os quadros na sequência demonstram o conjunto de indicadores da PNP por dimens�
 | VI   | Percentual de pessoas servidoras envolvidas em ações de extensão (**EXSERV**) |
 | VII  | Percentual de recursos financeiros do orçamento anual público aplicados em extensão (**EXREC**) |
 
+
 ## Indicadores Dimensão Polos de Inovação
 
 | **Item** | **Indicador** |
 | :---: | :--- |
-| I    | Número de contratos de parcerias (**POP**) |
+| I    | Número de contratos de parcerias e de convênios (**POP**) |
 | II   | Número de empresas com acordo de parceria (**POEMP**) |
 | III  | Número de eventos e treinamentos realizados (**POET**) |
 | IV   | Número de pessoas colaboradoras externas bolsistas (**POCO**) |
@@ -137,6 +76,7 @@ Os quadros na sequência demonstram o conjunto de indicadores da PNP por dimens�
 | VII  | Número de propriedades intelectuais depositadas (**POPID**) |
 | VIII | Número de unidades de pesquisa (**POUP**) |
 | IX   | Valor de recurso captado (**POREC**) |
+
 
 ## Indicadores Dimensão Pessoal
 
@@ -147,6 +87,7 @@ Os quadros na sequência demonstram o conjunto de indicadores da PNP por dimens�
 | III  | Número de pessoas docentes efetivas (**PEDE**) |
 | IV   | Número de pessoas servidoras (**PES**) |
 | V    | Número de pessoas técnico-administrativas em educação (**PETAE**) |
+
 
 ## Indicadores de Gastos
 
@@ -161,92 +102,30 @@ Os quadros na sequência demonstram o conjunto de indicadores da PNP por dimens�
 | VII  | Investimentos e inversões (**GAIV**) |
 | VIII | Outros custeios (**GAOC**) |
 
+
 ## Indicadores Dimensão Acompanhamento Legal
 
-<table>
-  <tr>
-    <th><b>Categoria</b></th>
-    <th><b>Item</b></th>
-    <th><b>Indicador</b></th>
-  </tr>
-  <tr>
-    <td rowspan="6"><b>Lei nº 11.892/2008</b></td>
-    <td>I</td>
-    <td>Percentual de matrículas equivalentes em cursos de educação de jovens e adultos articulada à educação profissional e tecnológica (<b>ALMEJA</b>)</td>
-  </tr>
-  <tr>
-    <td>II</td>
-    <td>Percentual de matrículas equivalentes em cursos de educação profissional técnica de nível médio (<b>ALMTEC</b>)</td>
-  </tr>
-  <tr>
-    <td>III</td>
-    <td>Percentual de matrículas equivalentes em cursos de formação de professores (<b>ALMPROF</b>)</td>
-  </tr>
-  <tr>
-    <td>IV</td>
-    <td>Percentual de oferta de vagas em cursos de educação de jovens e adultos articulada à educação profissional e tecnológica (<b>ALVEJA</b>)</td>
-  </tr>
-  <tr>
-    <td>V</td>
-    <td>Percentual de oferta de vagas em cursos de educação profissional técnica de nível médio (<b>ALVTEC</b>)</td>
-  </tr>
-  <tr>
-    <td>VI</td>
-    <td>Percentual de oferta de vagas em cursos de formação de professores (<b>ALVPROF</b>)</td>
-  </tr>
+| **Item** | **Indicador** |
+| :---: | :--- |
+| I     | Número de matrículas oriundas de ampla concorrência em cursos técnicos e de graduação (**ALMAC**) |
+| II    | Número de matrículas em cursos técnicos e de graduação (**ALMTG**) |
+| III   | Número de matrículas oriundas de vagas reservadas em cursos técnicos e de graduação (**ALMRES**) |
+| IV    | Número de vagas regulares de ampla concorrência em cursos técnicos e de graduação (**ALVAC**) |
+| V     | Número de vagas regulares em cursos técnicos e de graduação (**ALVTG**) |
+| VI    | Número de vagas regulares reservadas em cursos técnicos e de graduação (**ALVRES**) |
+| VII   | Percentual de cursos de graduação noturna presencial (**ALGN**) |
+| VIII  | Percentual de matrículas equivalentes de graduação noturna presencial (**ALMGN**) |
+| IX    | Percentual de matrículas equivalentes em cursos de educação de jovens e adultos articulada à educação profissional e tecnológica (**ALMEJA**) |
+| X     | Percentual de matrículas equivalentes em cursos de educação profissional técnica de nível médio (**ALMTEC**) |
+| XI    | Percentual de matrículas equivalentes em cursos de formação de professores (**ALMPROF**) |
+| XII   | Percentual de oferta de vagas em cursos de educação de jovens e adultos articulada à educação profissional e tecnológica (**ALVEJA**) |
+| XIII  | Percentual de oferta de vagas em cursos de educação profissional técnica de nível médio (**ALVTEC**) |
+| XIV   | Percentual de oferta de vagas em cursos de formação de professores (**ALVPROF**) |
+| XV    | Percentual de oferta de vagas em cursos de graduação noturna presencial (**ALVGN**) |
+| XVI   | Percentual de oferta de vagas em cursos noturnos presenciais (**ALVCN**) |
+| XVII  | Relação entre matrícula equivalente e professor equivalente (**ALRMP**) |
+| XVIII | Relação entre matrícula equivalente presencial e professor equivalente (**ALRAPE**) |
 
-  <tr>
-    <td rowspan="6"><b>Lei nº 13.005/2014</b></td>
-    <td>I</td>
-    <td>Percentual de cursos de graduação noturna presencial (<b>ALGN</b>)</td>
-  </tr>
-  <tr>
-    <td>II</td>
-    <td>Percentual de matrículas equivalentes de graduação noturna presencial (<b>ALMGN</b>)</td>
-  </tr>
-  <tr>
-    <td>III</td>
-    <td>Percentual de oferta de vagas em cursos de graduação noturna presencial (<b>ALVGN</b>)</td>
-  </tr>
-  <tr>
-    <td>IV</td>
-    <td>Percentual de oferta de vagas em cursos noturnos presenciais (<b>ALVCN</b>)</td>
-  </tr>
-  <tr>
-    <td>V</td>
-    <td>Relação entre matrícula equivalente e professor equivalente (<b>ALRMP</b>)</td>
-  </tr>
-  <tr>
-    <td>VI</td>
-    <td>Relação entre matrícula equivalente presencial e professor equivalente (<b>ALRAPE</b>)</td>
-  </tr>
-
-  <tr>
-    <td rowspan="6"><b>Lei nº 14.723/2023</b></td>
-    <td>I</td>
-    <td>Número de matrículas oriundas de ampla concorrência em cursos técnicos e de graduação (<b>ALMAC</b>)</td>
-  </tr>
-  <tr>
-    <td>II</td>
-    <td>Número de matrículas em cursos técnicos e de graduação (<b>ALMTG</b>)</td>
-  </tr>
-  <tr>
-    <td>III</td>
-    <td>Número de matrículas oriundas de vagas reservadas em cursos técnicos e de graduação (<b>ALMRES</b>)</td>
-  </tr>
-  <tr>
-    <td>IV</td>
-    <td>Número de vagas regulares de ampla concorrência em cursos técnicos e de graduação (<b>ALVAC</b>)</td>
-  </tr>
-  <tr>
-    <td>V</td>
-    <td>Número de vagas regulares em cursos técnicos e de graduação (<b>ALVTG</b>)</td>
-  </tr>
-  <tr>
-    <td>VI</td>
-    <td>Número de vagas regulares reservadas em cursos técnicos e de graduação (<b>ALVRES</b>)</td>
-  </tr>
-</table>
 
 Ressalta-se que, mesmo com a sanção do novo Plano Nacional de Educação, aprovado por meio da Lei nº 15.388, de 14 de abril de 2026,  a Setec/MEC manterá, nesta dimensão, alguns indicadores utilizados para monitorar metas previstas na Lei nº 13.005, de 25 de junho de 2014, que aprovou o antigo Plano Nacional de Educação. Além de serem indicadores já amplamente disseminados na RFEPCT, a sua manutenção permite continuar a série histórica deste conjunto de dados. Os indicadores mencionados são:
 - Percentual de cursos de graduação noturna presencial (**ALGN**);
@@ -256,54 +135,21 @@ Ressalta-se que, mesmo com a sanção do novo Plano Nacional de Educação, apro
 - Relação entre matrícula equivalente e professor equivalente (**ALRMP**);
 - Relação entre matrícula equivalente presencial e professor equivalente (**ALRAPE**).
 
+
 ## Indicadores de Sustentabilidade
 
-<table>
-  <tr>
-    <th><b>Item</b></th>
-    <th><b>Indicador</b></th>
-  </tr>
-  <tr>
-    <td>I</td>
-    <td>Consumo de água per capita (<b>SCAG</b>)</td>
-  </tr>
-  <tr>
-    <td>II</td>
-    <td>Consumo de energia elétrica per capita (<b>SCEE</b>)</td>
-  </tr>
-  <tr>
-    <td>III</td>
-    <td>Geração de energia elétrica de fonte renovável per capita (<b>SGER</b>)</td>
-  </tr>
-  <tr>
-    <td>IV</td>
-    <td>Índice da governança institucional da sustentabilidade (<b>SIGS</b>)</td>
-  </tr>
-  <tr>
-    <td>V</td>
-    <td>Índice de implantação de gestão de resíduos sólidos (<b>SIGRS</b>)</td>
-  </tr>
-  <tr>
-    <td>VI</td>
-    <td>CÍndice de intensidade de divulgação da política/ações institucionais de sustentabilidade (<b>SIDS</b>)</td>
-  </tr>
-  <tr>
-    <td>VII</td>
-    <td>Institucionalização das compras sustentáveis (<b>SICS</b>)</td>
-  </tr>
-  <tr>
-    <td>VIII</td>
-    <td>Percentual de compras sustentáveis (<b>SPCS</b>)</td>
-  </tr>
-  <tr>
-    <td>IX</td>
-    <td>Percentual de projetos de cunho finalístico na área de sustentabilidade (<b>SPRO</b>)</td>
-  </tr>
-  <tr>
-    <td>X</td>
-    <td>Percentual de projetos de gestão institucional da sustentabilidade (<b>SPGIS</b>)</td>
-  </tr>
-</table>
+| **Item** | **Indicador** |
+| :---: | :--- |
+| I    | Consumo de água per capita (**SCAG**) |
+| II   | Consumo de energia elétrica per capita (**SCEE**) |
+| III  | Geração de energia elétrica de fonte renovável per capita (**SGER**) |
+| IV   | Índice da governança institucional da sustentabilidade (**SIGS**) |
+| V    | Índice de implantação de gestão de resíduos sólidos (**SIGRS**) |
+| VI   | Índice de intensidade de divulgação da política/ações institucionais de sustentabilidade (**SIDS**) |
+| VII  | Institucionalização das compras sustentáveis (**SICS**) |
+| VIII | Percentual de compras sustentáveis (**SPCS**) |
+| IX   | Percentual de projetos de cunho finalístico na área de sustentabilidade (**SPRO**) |
+| X    | Percentual de projetos de gestão institucional da sustentabilidade (**SPGIS**) |
 
 
 A PNP também disponibiliza informações diretamente de outras plataformas de dados da administração pública, a exemplo do Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP) e do Tesouro Gerencial, como demonstrado nos seguintes quadros. 
@@ -312,18 +158,18 @@ A PNP também disponibiliza informações diretamente de outras plataformas de d
 
 | **Item** | **Indicador** |
 | :---: | :--- |
-| I | Conceito Preliminar de Curso (CPC - INEP) |
-| II | Índice Geral de Cursos (IGC - INEP) |
+| I   | Conceito Preliminar de Curso (CPC - INEP) |
+| II  | Índice Geral de Cursos (IGC - INEP) |
 | III | Conceito Enade (Enade – INEP) |
-| IV | Indicador de Diferença entre os Desempenhos Observado e Esperado (IDD – INEP) |
+| IV  | Indicador de Diferença entre os Desempenhos Observado e Esperado (IDD – INEP) |
 
 ## Indicadores do Tesouro Gerencial
 
 | **Item** | **Indicador** |
 | :---: | :--- |
-| I | Dotação atualizada |
-| II | Despesa empenhada |
+| I   | Dotação atualizada |
+| II  | Despesa empenhada |
 | III | Despesa liquidada |
-| IV | Despesa paga |
-| V | Empenho a liquidar |
-| VI | Crédito disponível |
+| IV  | Despesa paga |
+| V   | Empenho a liquidar |
+| VI  | Crédito disponível |
