@@ -19,53 +19,55 @@ toc: true
 
 ## Resumo de negócio
 
-Este **[Contrato de Dados]** descreve os **os dados de pessoa terceirizado**: quem trabalha na instituição e em qual estrutura.
+Este **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** descreve os **indicadores institucionais que dependem de informações sobre servidores terceirizados**: quem trabalha na instituição sob esse vínculo, em qual estrutura e por quanto tempo.
 
-A **PNP** coleta este contrato para ter a relação de pessoal terceirazado vinculado as instituições, de forma a apoiar os indicadores de sustentabilidade.
+A **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** coleta este contrato para calcular os indicadores de força de trabalho da Rede Federal — o dimensionamento de quadro que alimenta o orçamento.
+
+> ℹ️ **O modelo carrega PII.** `servidor_terceirizado` traz `cpf` marcado como `pii: true` e `classification: sensitive`. Vale lembrar o que o [CLAUDE.md](https://github.com/PNP-CCV/coletor-pnp-microdados/blob/master/CLAUDE.md) registra sobre o Coletor: **não há criptografia em nível de aplicação** — a proteção desses dados é responsabilidade da infraestrutura que hospeda o banco e o diretório `storage/extracoes/`.
 
 ## Modelos contidos
 
-- **`servidor_terceirizado`** *(obrigatório no fluxo)* — trabalhadores terceirizados vinculados à instituição, nominais.
+- **`servidor_terceirizado`** *(obrigatório no fluxo)* — trabalhadores terceirizados vinculados à instituição, nominais. Contém PII (`cpf`).
 
-O contrato Pessoal declara ainda dois outros modelos — **`servidor_nao_docente`** (servidores técnico-administrativos) e **`prof_equivalente`** (indicador de professor equivalente) —, ambos com `meta.disabled: true`. Eles **não são coletados hoje** e por isso não são documentados aqui.
-
-> ℹ️ **Atenção ao vocabulário.** *Obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** da tabela de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) e [Modelos obrigatórios, opcionais e desabilitados]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
-
-> ⚠️ **`servidor_nao_docente` e `prof_equivalente` não aparecem no painel.** A sincronização com a PNP não os importa: não há como configurar extração para eles, e o contrato Pessoal aparece com **um único modelo**. Se eles existiam de sincronizações anteriores, foram recolhidos por **exclusão lógica** — o histórico de extrações e os arquivos já gerados não são apagados, e continuam listados nas telas de **Extrações** e **Envios**, que mostram o histórico por conta própria; o que sai de vista são as listagens de **Contratos** e **Modelos de Dados**. Se a PNP reabilitá-los um dia, voltam **zerados**: a configuração de extração anterior precisa ser refeita.
-
+> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** das tabelas de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato).
 
 ## Modelo `servidor_terceirizado`
 
-> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`) — hoje, o único modelo coletável deste contrato. O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`) — o único modelo deste contrato. O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
-Trabalhadores terceirizados atuando na instituição, um por linha. Contém PII (`cpf`). Este modelo rastreia **entrada e saída** (`data_ingresso` / `data_exclusao`).
+Trabalhadores terceirizados atuando na instituição, um por linha. Contém PII (`cpf`). O modelo rastreia **entrada e saída** (`data_ingresso` / `data_exclusao`) e não tem matrícula — terceirizado não é servidor, não tem SIAPE.
 
-> **Modelo fechado:** `additionalFields: false` — qualquer coluna não declarada abaixo é rejeitada na validação de schema.
+> ℹ️ **Modelo fechado:** `additionalFields: false` — qualquer coluna não declarada abaixo é rejeitada na validação de schema.
 
 ### Tabela de campos
 
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
-| `id` | `integer` | sim | `primaryKey` | Identificador |
+| `id_servidor_terceirizado` | `integer` | sim | `primaryKey` | Identificador único do registro de servidor terceirizado |
 | `cpf` | `string` | sim | `pii`, `classification: sensitive` | Cadastro de pessoa física do servidor terceirizado |
-| `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se os servidores terceirizados. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se os servidores terceirizados. Formato: `{codigo}`, fornecido pelo Coletor PNP |
 | `situacao` | `string` | sim | `enum: [Ativo, Inativo]` | Permanece atuando ou deixou de atuar na estrutura |
 | `data_ingresso` | `date` | sim | — | Data que iniciou atividades na estrutura |
 | `data_exclusao` | `date` | não | — | Data que encerrou atividades na estrutura |
 
-> ℹ️ **`referencia_pnp` é conferido na extração.** O campo `estrutura` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`, e o Coletor confere esse código contra o cadastro local de estruturas antes de gravar o Parquet — a mesma checagem que a PNP faz depois do envio, antecipada. O padrão de fábrica é o **modo sombra**: a divergência é registrada no Registro de Extração, mas ainda não reprova a extração. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+### Regras de qualidade
 
-> **`situacao` e `data_exclusao` podem se contradizer.** Nada no schema garante que `situacao: "Inativo"` venha com `data_exclusao` preenchida, nem que `situacao: "Ativo"` venha sem ela. Não há regra de qualidade declarada — a coerência é responsabilidade da origem.
+Além do schema (colunas obrigatórias, tipos, `enum` e rejeição de colunas extras via `additionalFields: false`), o modelo declara regras `quality` do tipo `sql`:
 
+| Regra | Espera |
+|---|---|
+| `cpf` deve conter 11 dígitos | `mustBe: 0` |
+| `data_exclusao` não pode anteceder `data_ingresso`; `situacao: Ativo` não pode ter `data_exclusao` e `situacao: Inativo` precisa ter | `mustBe: 0` |
 
+> A coerência entre `situacao` e `data_exclusao`, que antes ficava por conta da origem, hoje é cobrada pela segunda regra.
 
 ### Exemplo válido
 
 ```json
 {
-  "id": 1,
+  "id_servidor_terceirizado": 1,
   "cpf": "98765432100",
   "estrutura": "12",
   "situacao": "Ativo",
@@ -78,11 +80,22 @@ Trabalhadores terceirizados atuando na instituição, um por linha. Contém PII 
 
 | Payload (resumido) | Erro |
 |---|---|
-| `{"cpf": "...", "estrutura": "12"}` (sem `id`) | `Required field 'id' is missing` |
+| `{"cpf": "...", "estrutura": "12"}` (sem `id_servidor_terceirizado`) | `Required field 'id_servidor_terceirizado' is missing` |
 | `{..., "situacao": "Desligado"}` (valor fora do `enum`) | `Value 'Desligado' for field 'situacao' not in enum [Ativo, Inativo]` |
 | `{..., "data_ingresso": "02/05/2024"}` (formato errado, `date` espera ISO 8601) | `Type mismatch on 'data_ingresso': expected date, got string '02/05/2024'` |
 | `{..., "matricula": "1548923"}` (coluna não declarada neste modelo) | `Field 'matricula' not in schema (additionalFields: false)` |
+| `{..., "situacao": "Ativo", "data_exclusao": "2025-01-31"}` (ativo com data de exclusão) | `A situação deve ser coerente com a data de exclusão.: Actual custom_sql(servidor_terceirizado) was 1, expected = 0` |
 
+## `referencia_pnp` — conferido na extração
+
+O modelo declarado traz, no campo `estrutura`, um bloco `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`. O Coletor confere esse código contra o espelho local de estruturas antes de gravar o Parquet, antecipando a checagem que a PNP faz depois do envio. O padrão de fábrica é o **modo sombra**: a divergência é registrada no Registro de Extração, mas ainda não reprova a extração. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+
+## Histórico de versões
+
+| Versão | Data | Mudança | Breaking? |
+|---|---|---|---|
+| `1.0.0` | 2026-07-16 | Versão inicial documentada nesta data. | — |
+| `1.0.0` | 2026-09-01 | Modelos `servidor_nao_docente` e `prof_equivalente` (desabilitados, nunca coletados) removidos do contrato; `id` renomeado para `id_servidor_terceirizado`; regras `quality` acrescentadas. `info.version` não foi bumpada. | **sim** |
 
 ## Contrato de Dados - Formato YAML
 ```yaml
@@ -93,7 +106,7 @@ info:
   version: "1.0.0"
   status: "active"
   description: >
-    Este contrato descreve a relação servidores terceirizados vinculados a instituição e suas respectivas estruturas.
+    Este contrato descreve a estrutura de dados dos indicadores que necessitam de informações sobre servidores terceirizados.
 
 servers:
   local:
@@ -103,10 +116,6 @@ servers:
     format: "parquet"
 
 models:
-
-  # O contrato declara ainda servidor_nao_docente e prof_equivalente,
-  # ambos com meta.disabled: true — omitidos aqui por não serem coletados.
-
   servidor_terceirizado:
     type: table
     title: "Servidor Terceirizado"
@@ -114,26 +123,43 @@ models:
     meta:
       required: true
       disabled: false
+    quality:
+      - type: sql
+        description: "CPF deve conter 11 dígitos."
+        query: >
+          SELECT COUNT(*) FROM servidor_terceirizado
+          WHERE NOT regexp_full_match(cpf, '[0-9]{11}')
+        mustBe: 0
+      - type: sql
+        description: "A situação deve ser coerente com a data de exclusão."
+        query: >
+          SELECT COUNT(*) FROM servidor_terceirizado
+          WHERE data_exclusao < data_ingresso
+             OR (situacao = 'Ativo' AND data_exclusao IS NOT NULL)
+             OR (situacao = 'Inativo' AND data_exclusao IS NULL)
+        mustBe: 0
     fields:
-      id:
+      id_servidor_terceirizado:
         type: integer
         title: "Identificador"
         primaryKey: true
         required: true
+        description: "Identificador único do registro de servidor terceirizado."
 
       cpf:
         type: string
         title: "CPF"
         description: "Cadastro de pessoa física do servidor terceirizado."
         pii: true
+        required: true
         classification: "sensitive"
 
       estrutura:
         type: string
         title: "Estrutura à qual vinculam-se os servidores terceirizados"
+        required: true
         description: >
-          Formato: {codigo}. Filtro: pnp_tipounidade - todos exceto id 9,
-          código 10 (Outros).
+          Formato: {codigo}. Código fornecido pelo Coletor PNP.
         referencia_pnp:
           recurso: campi
           tipo: codigo
@@ -142,11 +168,13 @@ models:
       situacao:
         type: string
         title: "Situação"
+        required: true
         enum: ["Ativo", "Inativo"]
         description: "Permanece atuando ou deixou de atuar na estrutura."
 
       data_ingresso:
         type: date
+        required: true
         title: "Data de ingresso"
         description: "Data que iniciou atividades na estrutura."
 

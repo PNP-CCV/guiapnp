@@ -18,15 +18,15 @@ toc: true
 
 Este **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** descreve os **ativos de propriedade intelectual** depositados e concedidos à instituição: patentes, marcas, desenhos industriais, cultivares, topografias de circuitos integrados, programas de computador e organismos geneticamente modificados. Cada registro representa um ativo com processo junto ao **INPI**, sua situação de registro e a eventual transferência, licenciamento ou cessão a terceiros.
 
-A **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** coleta este contrato para mensurar a **inovação e a transferência de tecnologia** da Rede Federal — quanto se deposita, quanto se concede e quanto efetivamente chega ao setor produtivo.
+A **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** coleta este contrato para mensurar a **inovação e a transferência de tecnologia** da rede federal — quanto se deposita, quanto se concede e quanto efetivamente chega ao setor produtivo.
 
 Este contrato é composto por um único **[Modelo de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-de-dados)**, e ele é obrigatório — diferente de [Acordos de Parceria]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acordos_de_parceria), cujo modelo único é opcional.
 
 ## Modelos contidos
 
-- **`ativos_pesquisa`** *(obrigatório no fluxo)* — ativos de propriedade intelectual com número de processo no INPI, titularidade, datas de depósito e concessão, validade, situação do registro e situação da transferência.
+- **`ativos_pesquisa`** *(obrigatório no fluxo)* — ativos de propriedade intelectual com número de processo no INPI, titularidade, datas de depósito e concessão, validade, situação do registro e totais de contratos de transferência, licenciamento e cessão.
 
-> ℹ️ **Atenção ao vocabulário.** *Obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** da tabela de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) e [Modelos obrigatórios, opcionais e desabilitados]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
+> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** da tabela de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato).
 
 ## Modelo `ativos_pesquisa`
 
@@ -36,7 +36,7 @@ Este contrato é composto por um único **[Modelo de Dados]({{ site.baseurl }}/d
 
 Tabela única do contrato. Cada linha é um ativo de propriedade intelectual identificado por `id_ativo_pesq`, com o número do processo no INPI como identificador externo. O modelo tem dependência de outros conjuntos de dados da instituição — em especial o de projetos de pesquisa que originou o ativo —, mas essa relação não é declarada como `references` no YAML.
 
-> **Modelo fechado:** `additionalFields: false` — qualquer coluna não declarada abaixo é rejeitada na validação de schema.
+> ℹ️ **Modelo fechado:** `additionalFields: false` — qualquer coluna não declarada abaixo é rejeitada na validação de schema.
 
 ### Tabela de campos
 
@@ -51,9 +51,11 @@ Tabela única do contrato. Cada linha é um ativo de propriedade intelectual ide
 | `data_concessao_ativo_pesq` | `date` | não | — | Data em que o INPI concedeu o registro do ativo à instituição |
 | `validade_ativo_pesq` | `integer` | não | — | Prazo de validade do registro do ativo, em anos |
 | `sit_registro_ativo_pesq` | `string` | sim | `enum: [Ativo, Inativo, Pedido em análise]` | Situação atual do registro de propriedade intelectual |
-| `sit_transf_ativo_pesq` | `string` | sim | `enum` (4 valores — ver legenda abaixo) | Situação atual do projeto de pesquisa quanto à transferência do ativo |
-| `num_transf_ativo_pesq` | `string` | sim | — | Número do contrato de transferência, licenciamento ou cessão do ativo |
-| `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se os ativos. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `ativo_pesq_transferido` | `boolean` | sim | — | O ativo foi transferido, licenciado e/ou cedido para outra instituição |
+| `total_transf_ativo_pesq` | `integer` | sim | — | Número total de contratos de transferência de tecnologia não patenteada, não patenteável e de know-how relacionados ao ativo |
+| `total_licenc_ativo_pesq` | `integer` | sim | — | Número total de contratos de licenciamento de propriedade industrial relacionados ao ativo |
+| `total_cessao_ativo_pesq` | `integer` | sim | — | Número total de contratos de cessão de propriedade industrial relacionados ao ativo |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se os ativos. Formato: `{codigo}`, fornecido pelo Coletor PNP |
 
 #### Valores de `tipo_ativo_pesq`
 
@@ -61,22 +63,23 @@ Propriedade industrial: `Patente de Invenção`, `Patente de Modelo de Utilidade
 
 Demais regimes: `Cultivar`, `Programa de Computador`, `Organismo Geneticamente Modificado`.
 
-#### Valores de `sit_transf_ativo_pesq`
-
-| Valor | Quando usar |
-|---|---|
-| `Transferido: contrato de transferência de tecnologia não patenteada, não patenteável e de know-how` | Houve transferência de tecnologia sem registro de propriedade industrial |
-| `Licenciado: contrato de licenciamento de propriedade industrial` | O ativo foi licenciado, e a titularidade continua com a instituição |
-| `Cedido: contrato de cessão de propriedade industrial` | A titularidade do ativo foi cedida a terceiro |
-| `NA` | Não houve transferência, licenciamento nem cessão |
-
-> ℹ️ **`referencia_pnp` é conferido na extração.** O campo `estrutura` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`, e o Coletor confere esse código contra o cadastro local de estruturas antes de gravar o Parquet — a mesma checagem que a PNP faz depois do envio, antecipada. O padrão de fábrica é o **modo sombra**: a divergência é registrada no Registro de Extração, mas ainda não reprova a extração. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+> ℹ️ **`referencia_pnp` agora é conferido na extração.** O campo `estrutura` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`, e o Coletor confere esse código contra o espelho local de estruturas antes de gravar o Parquet — a mesma checagem que a PNP faz depois do envio, antecipada. O padrão de fábrica é o **modo sombra**: a divergência é registrada no Registro de Extração, mas ainda não reprova. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 ### Regras de qualidade
 
-Atualmente não declaradas neste contrato (bloco `quality` ausente). A validação ativa hoje é apenas o schema (colunas obrigatórias, tipos, e rejeição de colunas extras via `additionalFields: false`).
+Além do schema (colunas obrigatórias, tipos e rejeição de colunas extras via `additionalFields: false`), o modelo declara regras `quality` do tipo `sql`:
 
-> ⚠️ **`num_transf_ativo_pesq` é obrigatório mesmo sem transferência.** O contrato não declara condicionalidade entre campos, então um ativo com `sit_transf_ativo_pesq: "NA"` precisa preencher a coluna assim mesmo — na prática, com um marcador como `NA`. Deixá-la vazia reprova a extração.
+| Regra | Consulta | Espera |
+|---|---|---|
+| Os totais de contratos não podem ser negativos | `SELECT COUNT(*) FROM ativos_pesquisa WHERE total_transf_ativo_pesq < 0 OR total_licenc_ativo_pesq < 0 OR total_cessao_ativo_pesq < 0` | `mustBe: 0` |
+| `num_inpi_ativo_pesq` deve ser único e não vazio | `SELECT COUNT(*) FROM (SELECT id_ativo_pesq FROM ativos_pesquisa WHERE NULLIF(TRIM(num_inpi_ativo_pesq), '') IS NULL UNION ALL SELECT MIN(id_ativo_pesq) FROM ativos_pesquisa WHERE NULLIF(TRIM(num_inpi_ativo_pesq), '') IS NOT NULL GROUP BY UPPER(TRIM(num_inpi_ativo_pesq)) HAVING COUNT(*) > 1) violacoes` | `mustBe: 0` |
+| A concessão não pode anteceder o depósito | `SELECT COUNT(*) FROM ativos_pesquisa WHERE data_concessao_ativo_pesq < data_deposito_ativo_pesq` | `mustBe: 0` |
+| `ativo_pesq_transferido` deve ser coerente com a soma dos três totais | `SELECT COUNT(*) FROM ativos_pesquisa WHERE (ativo_pesq_transferido = TRUE AND total_transf_ativo_pesq + total_licenc_ativo_pesq + total_cessao_ativo_pesq = 0) OR (ativo_pesq_transferido = FALSE AND total_transf_ativo_pesq + total_licenc_ativo_pesq + total_cessao_ativo_pesq > 0)` | `mustBe: 0` |
+| A estrutura não pode ser titular e co-titular do mesmo ativo | `SELECT COUNT(*) FROM ativos_pesquisa WHERE titular_inpi_ativo_pesq = TRUE AND cotitular_inpi_ativo_pesq = TRUE` | `mustBe: 0` |
+| O prazo de validade, quando informado, deve ser maior que zero | `SELECT COUNT(*) FROM ativos_pesquisa WHERE validade_ativo_pesq <= 0` | `mustBe: 0` |
+| `estrutura` deve vir preenchida com valor não vazio | `SELECT COUNT(*) FROM ativos_pesquisa WHERE NULLIF(TRIM(estrutura), '') IS NULL` | `mustBe: 0` |
+
+São condicionalidades que o schema sozinho não expressa — a principal delas é a coerência entre a indicação de transferência e a contagem de contratos: quem marca `ativo_pesq_transferido: true` precisa declarar pelo menos um contrato nos três totais, e quem marca `false` não pode declarar nenhum. Essas regras rodam uma vez, sobre o contrato inteiro, ao fim da extração ([validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)) — uma violação **não** reprova a extração deste modelo (o Parquet fica gravado normalmente); ela deixa o contrato em "Qualidade Reprovada" e bloqueia o envio até a linha ser corrigida na origem.
 
 ### Exemplo válido
 
@@ -91,8 +94,10 @@ Atualmente não declaradas neste contrato (bloco `quality` ausente). A validaç�
   "data_concessao_ativo_pesq": "2025-11-04",
   "validade_ativo_pesq": 20,
   "sit_registro_ativo_pesq": "Ativo",
-  "sit_transf_ativo_pesq": "Licenciado: contrato de licenciamento de propriedade industrial",
-  "num_transf_ativo_pesq": "LIC 007/2026-IFRN",
+  "ativo_pesq_transferido": true,
+  "total_transf_ativo_pesq": 0,
+  "total_licenc_ativo_pesq": 1,
+  "total_cessao_ativo_pesq": 0,
   "estrutura": "12"
 }
 ```
@@ -102,11 +107,12 @@ Atualmente não declaradas neste contrato (bloco `quality` ausente). A validaç�
 | Payload (resumido) | Erro |
 |---|---|
 | `{"num_inpi_ativo_pesq": "BR 10 ...", "tipo_ativo_pesq": "Marca"}` (sem `id_ativo_pesq`) | `Required field 'id_ativo_pesq' is missing` |
-| `{"id_ativo_pesq": 811, "tipo_ativo_pesq": "Marca"}` (sem `sit_transf_ativo_pesq`) | `Required field 'sit_transf_ativo_pesq' is missing` |
+| `{"id_ativo_pesq": 811, "tipo_ativo_pesq": "Marca"}` (sem `ativo_pesq_transferido`) | `Required field 'ativo_pesq_transferido' is missing` |
 | `{..., "tipo_ativo_pesq": "Patente"}` (valor fora do `enum`) | `Value 'Patente' for field 'tipo_ativo_pesq' not in enum` |
 | `{..., "data_deposito_ativo_pesq": "19/06/2023"}` (formato errado, `date` espera ISO 8601) | `Type mismatch on 'data_deposito_ativo_pesq': expected date, got string '19/06/2023'` |
 | `{..., "validade_ativo_pesq": "20 anos"}` (`string` em vez de `integer`) | `Type mismatch on 'validade_ativo_pesq': expected integer, got string` |
 | `{..., "inventor": "Ana Souza"}` (coluna não declarada) | `Field 'inventor' not in schema (additionalFields: false)` |
+| `{..., "ativo_pesq_transferido": true, "total_transf_ativo_pesq": 0, "total_licenc_ativo_pesq": 0, "total_cessao_ativo_pesq": 0}` (transferência declarada sem contrato nenhum) | `A indicação de transferência deve ser coerente com o total de contratos de transferência, licenciamento e cessão.: Actual custom_sql(ativos_pesquisa) was 1, expected = 0` |
 
 ## Histórico de versões
 
@@ -144,6 +150,63 @@ models:
     meta:
       required: true
       disabled: false
+    quality:
+      - type: sql
+        description: "As quantidades de contratos de transferência, licenciamento e cessão não podem ser negativas."
+        query: >
+          SELECT COUNT(*) FROM ativos_pesquisa
+          WHERE total_transf_ativo_pesq < 0
+             OR total_licenc_ativo_pesq < 0
+             OR total_cessao_ativo_pesq < 0
+        mustBe: 0
+      - type: sql
+        description: "O número do processo no INPI deve ser único e não vazio."
+        query: >
+          SELECT COUNT(*) FROM (
+            SELECT id_ativo_pesq FROM ativos_pesquisa
+            WHERE NULLIF(TRIM(num_inpi_ativo_pesq), '') IS NULL
+            UNION ALL
+            SELECT MIN(id_ativo_pesq) FROM ativos_pesquisa
+            WHERE NULLIF(TRIM(num_inpi_ativo_pesq), '') IS NOT NULL
+            GROUP BY UPPER(TRIM(num_inpi_ativo_pesq)) HAVING COUNT(*) > 1
+          ) violacoes
+        mustBe: 0
+      - type: sql
+        description: "A concessão não pode anteceder o depósito."
+        query: >
+          SELECT COUNT(*) FROM ativos_pesquisa
+          WHERE data_concessao_ativo_pesq < data_deposito_ativo_pesq
+        mustBe: 0
+      - type: sql
+        description: "A indicação de transferência deve ser coerente com o total de contratos de transferência, licenciamento e cessão."
+        query: >
+          SELECT COUNT(*) FROM ativos_pesquisa
+          WHERE (
+            ativo_pesq_transferido = TRUE
+            AND total_transf_ativo_pesq + total_licenc_ativo_pesq + total_cessao_ativo_pesq = 0
+          ) OR (
+            ativo_pesq_transferido = FALSE
+            AND total_transf_ativo_pesq + total_licenc_ativo_pesq + total_cessao_ativo_pesq > 0
+          )
+        mustBe: 0
+      - type: sql
+        description: "A estrutura não pode ser titular e co-titular do mesmo ativo."
+        query: >
+          SELECT COUNT(*) FROM ativos_pesquisa
+          WHERE titular_inpi_ativo_pesq = TRUE AND cotitular_inpi_ativo_pesq = TRUE
+        mustBe: 0
+      - type: sql
+        description: "O prazo de validade do registro, quando informado, deve ser maior que zero."
+        query: >
+          SELECT COUNT(*) FROM ativos_pesquisa
+          WHERE validade_ativo_pesq <= 0
+        mustBe: 0
+      - type: sql
+        description: "A estrutura deve ser preenchida com um valor não vazio."
+        query: >
+          SELECT COUNT(*) FROM ativos_pesquisa
+          WHERE NULLIF(TRIM(estrutura), '') IS NULL
+        mustBe: 0
     fields:
       id_ativo_pesq:
         type: integer
@@ -175,19 +238,19 @@ models:
 
       titular_inpi_ativo_pesq:
         type: boolean
-        title: "É instituição titular no INPI?"
+        title: "É instituição titular do ativo no INPI?"
         required: false
         description: >
-          A instituição que está informando o ativo neste BD registrou-se
-          como titular do ativo junto ao INPI.
+          A instituição que está informando o ativo registrou-se
+          como titular junto ao INPI.
 
       cotitular_inpi_ativo_pesq:
         type: boolean
         title: "É instituição co-titular no INPI?"
         required: false
         description: >
-          A instituição que está informando o ativo neste BD registrou-se
-          como co-titular do ativo junto ao INPI.
+          A instituição que está informando o ativo registrou-se
+          como co-titular junto ao INPI.
 
       data_deposito_ativo_pesq:
         type: date
@@ -214,30 +277,36 @@ models:
         enum: ["Ativo", "Inativo", "Pedido em análise"]
         description: "Situação atual do registro de propriedade intelectual."
 
-      sit_transf_ativo_pesq:
-        type: string
-        title: "Situação da transferência do ativo"
+      ativo_pesq_transferido:
+        type: boolean
+        title: "O ativo foi transferido, licenciado e/ou cedido para outra instituição?"
         required: true
-        enum:
-          - "Transferido: contrato de transferência de tecnologia não patenteada, não patenteável e de know-how"
-          - "Licenciado: contrato de licenciamento de propriedade industrial"
-          - "Cedido: contrato de cessão de propriedade industrial"
-          - "NA"
-        description: "Situação atual do projeto de pesquisa quanto à transferência do ativo."
+        description: "Indica se o ativo de propriedade intelectual foi transferido, licenciado e/ou cedido para outra instituição."
 
-      num_transf_ativo_pesq:
-        type: string
-        title: "Número do contrato de transferência"
+      total_transf_ativo_pesq:
+        type: integer
+        title: "Número total de contratos de transferência de tecnologia não patenteada, não patenteável e de know-how."
         required: true
-        description: "Número do contrato de transferência, licenciamento ou cessão do ativo."
+        description: "Número total de contratos de transferência de tecnologia não patenteada, não patenteável e de know-how relacionados ao ativo."
+
+      total_licenc_ativo_pesq:
+        type: integer
+        title: "Número total de contratos de licenciamento de propriedade industrial."
+        required: true
+        description: "Número total de contratos de licenciamento de propriedade industrial relacionados ao ativo."
+
+      total_cessao_ativo_pesq:
+        type: integer
+        title: "Número total de contratos de cessão de propriedade industrial."
+        required: true
+        description: "Número total de contratos de cessão de propriedade industrial relacionados ao ativo."
 
       estrutura:
         type: string
         title: "Estrutura à qual vinculam-se os ativos"
         required: true
         description: >
-          Formato: {codigo}. Filtro: pnp_tipounidade - todos exceto id 9,
-          código 10 (Outros).
+          Formato: {codigo}. Código fornecido pelo Coletor PNP.
         referencia_pnp:
           recurso: campi
           tipo: codigo
