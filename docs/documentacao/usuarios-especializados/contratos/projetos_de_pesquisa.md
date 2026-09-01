@@ -11,7 +11,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-**Slug:** `projetos_de_pesquisa` · **Versão:** `1.0.0` · **Owner:** SETEC
+**Slug:** `projetos_de_pesquisa` · **Versão:** `2.0.0` · **Owner:** SETEC
 
 **Status:** `active` · **Spec:** `dataContractSpecification: "1.2.0"`
 

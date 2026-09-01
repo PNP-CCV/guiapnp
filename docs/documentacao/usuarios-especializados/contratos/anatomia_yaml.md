@@ -152,7 +152,7 @@ Tipos efetivamente usados nos onze contratos da PNP:
 |---|---|---|
 | `string` | Texto livre | nomes, títulos, CPF, descrições |
 | `integer` | Número inteiro | IDs, ano de publicação |
-| `double` | Número decimal | orçamento de projeto, matrícula equivalente |
+| `double` | Número decimal | contrapartida financeira de projeto, consumo de água/energia |
 | `boolean` | Verdadeiro/falso | `parceria_institucional`, `populacao_vulneravel` |
 | `date` | Data | datas de início, término, atendimento |
 | `array` | Lista de valores | `municipios_atendidos` em ações de extensão |

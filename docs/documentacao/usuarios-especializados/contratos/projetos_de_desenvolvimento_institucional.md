@@ -11,7 +11,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-**Slug:** `projeto_desenvolvimento_institucional` · **Versão:** `1.0.0` · **Owner:** SETEC
+**Slug:** `projeto_desenvolvimento_institucional` · **Versão:** `2.0.0` · **Owner:** SETEC
 
 **Status:** `active` · **Spec:** `dataContractSpecification: "1.2.0"`
 

@@ -112,7 +112,7 @@ Tabela principal do contrato. Cada linha é uma ação de extensão única, iden
 | `tipo_vulnerabilidade` | `array` (de `string`) | não | `enum: [Socioeconômica, Educacional, Gênero e Raça, Deficiência ou Condição de Saúde, Geracional, Territorial]` | Tipos de vulnerabilidade atendidos — lista, obrigatória quando `populacao_vulneravel` é `true` e vazia quando é `false` (ver *Regras de qualidade*) |
 | `produto` | `string` | não | — | Produto |
 
-> ℹ️ **`municipios_atendidos`: o "Formato: `{codigo; codigo}`" do YAML engana.** A descrição no fixture sugere uma string com `;` separando códigos, mas o campo é declarado `type: array` com `items: {type: bigint}`. O que a validação de schema aceita é **uma lista de números** — `[2408102, 2403103]` —, não `"2408102; 2403103"`. A notação `{codigo; codigo}` ali é a taquigrafia do autor para "vários códigos", herdada dos campos que são mesmo string (`vigencia`, `objeto_acordo`). Mandar string aqui reprova por tipo.
+> ℹ️ **`municipios_atendidos`: o "Formato: `{codigo; codigo}`" do YAML engana.** A descrição no fixture sugere uma string com `;` separando códigos, mas o campo é declarado `type: array` com `items: {type: bigint}`. O que a validação de schema aceita é **uma lista de números** — `[2408102, 2403103]` —, não `"2408102; 2403103"`. A notação `{codigo; codigo}` ali é a taquigrafia do autor para "vários códigos", herdada dos campos que são mesmo string. Mandar string aqui reprova por tipo.
 
 ### Regras de qualidade
 
