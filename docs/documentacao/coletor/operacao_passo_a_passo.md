@@ -107,7 +107,7 @@ Enviar **não encerra o fluxo**: o contrato entra em "Aguardando Validação PNP
 
 ## Passo 6 — Aguardar a validação da PNP
 
-A PNP confere cada Parquet recebido por conta própria: além do schema, roda uma **validação referencial** — campus, área temática e município citados no dado precisam existir no cadastro da Rede.
+A PNP confere cada Parquet recebido por conta própria: além do schema, roda uma **validação referencial** — campus, área temática e município citados no dado precisam existir no cadastro da Rede. A mesma conferência hoje também roda **antes do envio**, lá no passo 4, contra os cadastros que o Coletor sincroniza da PNP: ela não bloqueia nada de fábrica, mas antecipa o diagnóstico (ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial)).
 
 ![Modelo validado aguardando aprovação]({{ site.baseurl }}/assets/img/docs/coletor/23-modelo-detalhe.png)
 

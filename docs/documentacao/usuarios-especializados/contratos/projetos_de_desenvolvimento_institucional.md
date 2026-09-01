@@ -51,7 +51,7 @@ Tabela única do contrato. Cada linha é um projeto de gestão/desenvolvimento i
 | `natureza_projeto` | `string` | sim | `enum` (2 valores — ver abaixo) | Natureza do projeto |
 | `titulo_projeto` | `string` | sim | — | Título do Projeto |
 | `resumo_projeto` | `string` | não | — | Resumo do Projeto |
-| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os projetos. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se os projetos. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
 | `projeto_gestao_di_sustentavel` | `boolean` | sim | — | Aborda a temática da sustentabilidade? Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 | `nome_coordenador` | `string` | sim | — | Nome do Coordenador |
 | `data_inicio` | `date` | sim | — | Data de início |
@@ -77,7 +77,7 @@ Tabela única do contrato. Cada linha é um projeto de gestão/desenvolvimento i
 - `organização ou instituição internacional`
 - `outro`
 
-> **`referencia_pnp` é metadado declarativo, não validação.** O campo `estrutura` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`.
+> ℹ️ **`referencia_pnp` é conferido na extração.** O campo `estrutura` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`, e o Coletor confere esse código contra o cadastro local de estruturas antes de gravar o Parquet — a mesma checagem que a PNP faz depois do envio, antecipada. O padrão de fábrica é o **modo sombra**: a divergência é registrada no Registro de Extração, mas ainda não reprova a extração. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 
 > **A sustentabilidade é declarada em dois lugares, e nada os concilia.** `natureza_projeto` distingue projeto sustentável de não-sustentável, e `projeto_gestao_di_sustentavel` repete a mesma informação como `boolean`. Não há regra de qualidade declarada que impeça a combinação incoerente (`natureza_projeto: "…sustentabilidade"` com `projeto_gestao_di_sustentavel: false`). Quem integra deve garantir a consistência na origem — a validação não vai pegar.

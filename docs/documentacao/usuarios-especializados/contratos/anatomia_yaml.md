@@ -174,6 +174,21 @@ Constraints **efetivamente usadas** nos onze contratos:
 
 Constraints **suportadas pela spec mas não usadas hoje**: `unique`, `pattern` (regex), `minLength`, `maxLength`, `examples`, `tags`.
 
+## Bloco `referencia_pnp` {#bloco-referencia-pnp}
+
+Extensão da PNP fora da especificação, declarada **por campo**: diz que aquele valor aponta para uma entidade do cadastro da Rede — um campus, um município, uma área do CNPq, o CPF de alguém da instituição.
+
+```yaml
+estrutura:
+  type: string
+  referencia_pnp:
+    recurso: campi
+    tipo: codigo
+    severidade: erro
+```
+
+O motor de teste do contrato ignora a chave. Quem a lê é a validação referencial do Coletor, que confere o valor contra o cadastro local sincronizado da PNP **antes de gravar o Parquet** — de fábrica em modo sombra, apenas registrando. A gramática completa (incluindo a forma em lista, que roteia por categoria, e a `chave_composta`) está em [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+
 ## Bloco `quality` {#bloco-quality}
 
 Sintaxe **[SodaCL]({{ site.baseurl }}/documentacao/coletor/glossario#sodacl)** aceita pela `datacontract-cli`. Os onze contratos atuais **não populam** este bloco — quando populado, o Coletor executa os checks contra o Parquet local na hora do teste de qualidade.
@@ -220,4 +235,5 @@ O YAML íntegro de cada contrato está embutido na respectiva página do catálo
 
 - [Conceito de Contrato de Dados]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/conceito)
 - [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)
+- [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial)
 - [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao) — exemplo de página do catálogo

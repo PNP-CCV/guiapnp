@@ -50,7 +50,7 @@ Tabela principal do contrato. Cada linha é uma ação de extensão única, iden
 | `tipo` | `string` | sim | `enum: [Programa, Projeto, Curso, Evento, Prestação de serviços]` | Tipo |
 | `titulo_acao` | `string` | sim | — | Título da ação |
 | `resumo_acao` | `string` | não | — | Resumo da ação |
-| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se as ações de extensão. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se as ações de extensão. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
 | `projeto_extensao_sustentavel` | `boolean` | sim | — | Se projeto, aborda a temática da sustentabilidade? Aplicável quando `tipo = "Projeto"`. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 | `parceria_institucional` | `boolean` | sim | — | Ação com parceria institucional? |
 | `instrumento_parceria` | `string` | sim | `enum: [Contrato, Convênio, Acordo, Nenhum]` | Instrumento de parceria |
@@ -59,11 +59,11 @@ Tabela principal do contrato. Cada linha é uma ação de extensão única, iden
 | `data_termino` | `date` | sim | — | Data de término |
 | `situacao_acao` | `string` | sim | `enum: [Em andamento, Finalizado, Cancelado]` | Situação da ação |
 | `data_ultima_situacao` | `date` | não | — | Data da última situação |
-| `municipios_atendidos` | `array` (de `bigint`) | não | `referencia_pnp: municipios` (declarativo — ver nota) | Municípios atendidos, por código IBGE — lista de números, ex. `[2408102, 2403103]`. Ver a ressalva sobre o formato abaixo |
+| `municipios_atendidos` | `array` (de `bigint`) | não | `referencia_pnp: municipios` (conferido na extração — ver nota) | Municípios atendidos, por código IBGE — lista de números, ex. `[2408102, 2403103]`. Ver a ressalva sobre o formato abaixo |
 | `entidade_financiadora` | `string` | não | — | Entidade financiadora |
 | `contrapartida_financeira` | `string` | não | — | Contrapartida financeira institucional |
-| `area_tematica_cnpq` | `string` | não | `referencia_pnp: areas_tematicas_cnpq` (declarativo — ver nota) | Área temática CNPq. Formato: `{codigo}` |
-| `subeixo_tecnologico` | `string` | sim | `referencia_pnp: subeixos_tecnologicos` (declarativo — ver nota) | Subeixo tecnológico. Formato: `{codigo}` |
+| `area_tematica_cnpq` | `string` | não | `referencia_pnp: areas_tematicas_cnpq` (conferido na extração — ver nota) | Área temática CNPq. Formato: `{codigo}` |
+| `subeixo_tecnologico` | `string` | sim | `referencia_pnp: subeixos_tecnologicos` (conferido na extração — ver nota) | Subeixo tecnológico. Formato: `{codigo}` |
 | `populacao_vulneravel` | `boolean` | sim | — | Destinado à população em vulnerabilidade? |
 | `tipo_vulnerabilidade` | `string` | sim | `enum: [Socioeconômica, Educacional, Gênero e Raça, Deficiência ou Condição de Saúde, Geracional, Territorial]` | Tipo de vulnerabilidade |
 | `produto` | `string` | não | — | Produto |
@@ -166,7 +166,7 @@ Pessoas formalmente envolvidas na execução de uma ação (docentes, TAEs, estu
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id_envolvido` | `integer` | sim | `primaryKey` | ID envolvido |
-| `cpf` | `string` | sim | `pii`, `classification: sensitive`, `referencia_pnp: pessoas` (declarativo — ver nota) | CPF |
+| `cpf` | `string` | sim | `pii`, `classification: sensitive`, `referencia_pnp: pessoas` (conferido na extração — ver nota) | CPF |
 | `nome` | `string` | sim | `pii`, `classification: sensitive` | Nome |
 | `categoria` | `string` | sim | `enum: [docente, TAE, externo, estudante]` | Categoria |
 | `id_acao_extensao` | `integer` | sim | `references acoes_extensao.id_acao_extensao` | ID ação de extensão |
@@ -202,7 +202,7 @@ Pessoas formalmente envolvidas na execução de uma ação (docentes, TAEs, estu
 | `{..., "categoria": "professor"}` (valor fora do `enum`) | `Value 'professor' for field 'categoria' not in enum [docente, TAE, externo, estudante]` |
 | `{..., "extra_field": "x"}` (coluna não declarada) | `Field 'extra_field' not in schema (additionalFields: false)` |
 
-## `referencia_pnp` — metadado declarativo, não validação
+## `referencia_pnp` — conferido na extração
 
 Este é o contrato que mais usa a chave `referencia_pnp`, e ela aponta para quatro recursos distintos da PNP:
 
@@ -216,6 +216,8 @@ Este é o contrato que mais usa a chave `referencia_pnp`, e ela aponta para quat
 
 
 > **Consequência:** Apenas os dados que encontram referência na PNP são validados, ou seja, caso seja informado uma `area_tematica_cnpq` que não esteja dentro da Base da PNP, a respectiva ação de extensão será rejeitada, até que seja fornecido o dado correto.
+
+O Coletor **antecipa essa conferência para a extração**, contra os cadastros que ele sincroniza da PNP — ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial). De fábrica ela roda em **modo sombra**: um `subeixo_tecnologico` inexistente ainda passa, mas aparece apontado no Registro de Extração, em vez de só voltar como rejeição da PNP dias depois. `recurso: pessoas` não é uma tabela: a PNP mantém dois cadastros separados (`servidores` e `matriculas`), e o Coletor resolve `pessoas` pela união dos dois. É a conferência certa para o CPF sozinho; conferir a **matrícula** exige a forma com roteamento por categoria.
 
 ## Contrato de Dados - Formato YAML
 

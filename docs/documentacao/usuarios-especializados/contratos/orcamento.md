@@ -62,7 +62,7 @@ Tabela única do contrato. Cada linha é uma combinação de classificação or�
 | `orgao_gestor_cod` | `string` | não | — | Órgão Gestor (Cód). Origem: (Siafi) |
 | `ug_cod` | `string` | não | — | Unidade Gestora (Cód). Origem:  (Siafi) |
 | `ugr_cod` | `string` | sim | — | Unidade Gestora Responsável (Cód). Origem: (Siafi) |
-| `estrutura_vinculada` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os orçamentos. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `estrutura_vinculada` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se os orçamentos. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
 | `liquidado_valor` | `double` | sim | — | Liquidado (R$). Origem:  (Siafi) |
 | `rp_pago_valor` | `double` | sim | — | Restos a Pagar pagos (R$). Origem: (Siafi) |
 
@@ -95,7 +95,7 @@ Os três campos com `enum` só aceitam os valores abaixo — qualquer outro repr
 
 > **Códigos são `string`, não número.** `programa_interno_cod` e `gnd_cod` são declarados como `string`; enviar `20` (inteiro) em vez de `"20"` reprova por tipo, antes mesmo da checagem de enum.
 
-> **`referencia_pnp` é metadado declarativo, não validação.** O campo `estrutura_vinculada` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`.
+> ℹ️ **`referencia_pnp` é conferido na extração.** O campo `estrutura_vinculada` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`, e o Coletor confere esse código contra o cadastro local de estruturas antes de gravar o Parquet — a mesma checagem que a PNP faz depois do envio, antecipada. O padrão de fábrica é o **modo sombra**: a divergência é registrada no Registro de Extração, mas ainda não reprova a extração. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 
 ### Exemplo válido

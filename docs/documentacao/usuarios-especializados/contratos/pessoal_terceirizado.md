@@ -50,10 +50,12 @@ Trabalhadores terceirizados atuando na instituição, um por linha. Contém PII 
 |---|---|---|---|---|
 | `id` | `integer` | sim | `primaryKey` | Identificador |
 | `cpf` | `string` | sim | `pii`, `classification: sensitive` | Cadastro de pessoa física do servidor terceirizado |
-| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os servidores terceirizados. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se os servidores terceirizados. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
 | `situacao` | `string` | sim | `enum: [Ativo, Inativo]` | Permanece atuando ou deixou de atuar na estrutura |
 | `data_ingresso` | `date` | sim | — | Data que iniciou atividades na estrutura |
 | `data_exclusao` | `date` | não | — | Data que encerrou atividades na estrutura |
+
+> ℹ️ **`referencia_pnp` é conferido na extração.** O campo `estrutura` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`, e o Coletor confere esse código contra o cadastro local de estruturas antes de gravar o Parquet — a mesma checagem que a PNP faz depois do envio, antecipada. O padrão de fábrica é o **modo sombra**: a divergência é registrada no Registro de Extração, mas ainda não reprova a extração. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 > **`situacao` e `data_exclusao` podem se contradizer.** Nada no schema garante que `situacao: "Inativo"` venha com `data_exclusao` preenchida, nem que `situacao: "Ativo"` venha sem ela. Não há regra de qualidade declarada — a coerência é responsabilidade da origem.
 

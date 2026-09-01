@@ -51,7 +51,7 @@ Tabela principal do contrato. Cada linha é um projeto de pesquisa identificado 
 | `natureza_projeto` | `string` | sim | `enum: [Básica, Aplicada]` | Natureza do projeto |
 | `titulo_projeto` | `string` | sim | — | Título do Projeto |
 | `resumo_projeto` | `string` | não | — | Resumo do Projeto |
-| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os projetos de pesquisa. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se os projetos de pesquisa. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
 | `projeto_pesquisa_sustentavel` | `boolean` | sim | — | Aborda a temática da sustentabilidade? Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 | `nome_orientador` | `string` | não | — | Nome do Orientador |
 | `data_inicio` | `date` | sim | — | Data de início |
@@ -59,7 +59,7 @@ Tabela principal do contrato. Cada linha é um projeto de pesquisa identificado 
 | `situacao_projeto` | `string` | sim | `enum: [Em andamento, Finalizado, Cancelado]` | Situação do projeto |
 | `entidade_financiadora` | `string` | não | `enum: [Capes, CNPq, FINEP, sem fomento externo, outras]` | Entidade financiadora |
 | `orcamento_projeto` | `double` | não | — | Valor numérico em reais (R$) |
-| `area_tematica_cnpq` | `string` | sim | `referencia_pnp: areas_tematicas_cnpq` (declarativo — ver nota) | Área Temática CNPq. Formato: `{codigo}` |
+| `area_tematica_cnpq` | `string` | sim | `referencia_pnp: areas_tematicas_cnpq` (conferido na extração — ver nota) | Área Temática CNPq. Formato: `{codigo}` |
 | `produto` | `string` | não | — | Produto final |
 
 
@@ -110,7 +110,7 @@ Pessoas diretamente vinculadas a um projeto de pesquisa (docentes, TAEs, estudan
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id_envolvido` | `integer` | sim | `primaryKey` | ID envolvido |
-| `cpf` | `string` | sim | `pii`, `classification: sensitive`, `referencia_pnp: pessoas` (declarativo — ver nota) | CPF |
+| `cpf` | `string` | sim | `pii`, `classification: sensitive`, `referencia_pnp: pessoas` (conferido na extração — ver nota) | CPF |
 | `nome` | `string` | sim | `pii`, `classification: sensitive` | Nome |
 | `categoria` | `string` | sim | `enum: [docente, TAE, externo, estudante]` | Categoria |
 | `id_projeto_pesquisa` | `integer` | sim | `references projetos_pesquisa.id_projeto_pesquisa` | ID projeto de pesquisa |
@@ -146,7 +146,7 @@ Pessoas diretamente vinculadas a um projeto de pesquisa (docentes, TAEs, estudan
 | `{..., "categoria": "bolsista"}` (valor fora do `enum`) | `Value 'bolsista' for field 'categoria' not in enum [docente, TAE, externo, estudante]` |
 | `{..., "carga_horaria": 20}` (coluna não declarada) | `Field 'carga_horaria' not in schema (additionalFields: false)` |
 
-## `referencia_pnp` — metadado declarativo, não validação
+## `referencia_pnp` — conferido na extração
 
 | Campo | Modelo | `recurso` | `tipo` | `severidade` |
 |---|---|---|---|---|
@@ -155,7 +155,9 @@ Pessoas diretamente vinculadas a um projeto de pesquisa (docentes, TAEs, estudan
 | `cpf` | `pessoas_envolvidas_projeto_pesquisa` | `pessoas` | `chave_simples` | `erro` |
 
 
-> **`area_tematica_cnpq` é o único `aviso` deste contrato — e a severidade do mesmo campo diverge entre contratos.** Aqui e em [Produção Intelectual]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/producao_intelectual) ele é `aviso`; em [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao), o mesmo `area_tematica_cnpq` apontando para o mesmo `recurso: areas_tematicas_cnpq` é `erro`.
+O Coletor confere esses valores contra os cadastros locais sincronizados da PNP antes de gravar o Parquet, no **modo sombra** por padrão — a divergência é apontada no Registro de Extração, mas ainda não reprova. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial). `recurso: pessoas` não é uma tabela: a PNP mantém dois cadastros separados (`servidores` e `matriculas`), e o Coletor resolve `pessoas` pela união dos dois. É a conferência certa para o CPF sozinho; conferir a **matrícula** exige a forma com roteamento por categoria.
+
+> ⚠️ **`area_tematica_cnpq` é o único `aviso` deste contrato — e a severidade do mesmo campo diverge entre contratos.** Aqui e em [Produção Intelectual]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/producao_intelectual) ele é `aviso`; em [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao), o mesmo `area_tematica_cnpq` apontando para o mesmo `recurso: areas_tematicas_cnpq` é `erro`. Quando o modo bloqueante for ligado, o mesmo código de área reprovaria a extração lá e passaria como aviso aqui. É uma decisão da PNP, no YAML — o Coletor honra o que cada contrato declara.
 
 
 

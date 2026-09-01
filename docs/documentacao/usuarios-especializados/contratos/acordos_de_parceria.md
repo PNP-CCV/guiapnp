@@ -52,10 +52,12 @@ Tabela única do contrato. Cada linha é um instrumento jurídico (acordo, conv�
 | `vigencia` | `string` | sim | — | Período de validade do acordo. Formato: `Ano de início; Ano de fim` |
 | `numero_acordo` | `string` | sim | — | Número identificador do instrumento jurídico |
 | `contrapartida_financeira` | `string` | não | — | Valor em R$ ou indicação de que não há |
-| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os acordos de parceria. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se os acordos de parceria. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
 | `fundacao_interveniente` | `string` | não | — | Nome da fundação responsável pela gestão |
 
 > **referencia_pnp:** Apenas os dados que encontram referência na PNP são validados, ou seja, caso seja informado uma `estrutura` que não esteja dentro da Base da PNP, a respectiva ação de extensão será rejeitada, até que seja fornecido o dado correto.
+
+> ℹ️ **O Coletor antecipa essa conferência.** O mesmo código de estrutura é checado contra o cadastro local sincronizado da PNP ainda na extração, antes de gravar o Parquet. De fábrica em **modo sombra**: a divergência aparece no Registro de Extração, mas ainda não reprova. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 
 ### Exemplo válido

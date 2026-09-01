@@ -53,7 +53,7 @@ Tabela única do contrato. Cada linha é um ativo de propriedade intelectual ide
 | `sit_registro_ativo_pesq` | `string` | sim | `enum: [Ativo, Inativo, Pedido em análise]` | Situação atual do registro de propriedade intelectual |
 | `sit_transf_ativo_pesq` | `string` | sim | `enum` (4 valores — ver legenda abaixo) | Situação atual do projeto de pesquisa quanto à transferência do ativo |
 | `num_transf_ativo_pesq` | `string` | sim | — | Número do contrato de transferência, licenciamento ou cessão do ativo |
-| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os ativos. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se os ativos. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
 
 #### Valores de `tipo_ativo_pesq`
 
@@ -70,7 +70,7 @@ Demais regimes: `Cultivar`, `Programa de Computador`, `Organismo Geneticamente M
 | `Cedido: contrato de cessão de propriedade industrial` | A titularidade do ativo foi cedida a terceiro |
 | `NA` | Não houve transferência, licenciamento nem cessão |
 
-> **`referencia_pnp` é metadado declarativo, não validação local.** O campo `estrutura` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`, mas o Coletor não checa esse vínculo na extração — localmente `estrutura` é validada apenas como `string`. A conferência de que o código de campus existe acontece na **validação referencial do lado da PNP**, após o envio.
+> ℹ️ **`referencia_pnp` é conferido na extração.** O campo `estrutura` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`, e o Coletor confere esse código contra o cadastro local de estruturas antes de gravar o Parquet — a mesma checagem que a PNP faz depois do envio, antecipada. O padrão de fábrica é o **modo sombra**: a divergência é registrada no Registro de Extração, mas ainda não reprova a extração. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 ### Regras de qualidade
 

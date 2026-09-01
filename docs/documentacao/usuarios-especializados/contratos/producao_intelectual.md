@@ -50,7 +50,9 @@ Tabela principal do contrato. Cada linha é uma produção intelectual única, i
 | `titulo_producao` | `string` | sim | — | Título da produção |
 | `ano_publicacao` | `integer` | sim | — | Ano de publicação. Formato: `AAAA` |
 | `avaliacao_capes` | `string` | não | `enum: [Qualis, NA]` | Avaliação Capes |
-| `area_tematica_cnpq` | `string` | sim | `referencia_pnp: areas_tematicas_cnpq` (declarativo) | Área Temática CNPq. Formato: `{codigo}` |
+| `area_tematica_cnpq` | `string` | sim | `referencia_pnp: areas_tematicas_cnpq` (conferido na extração — ver nota) | Área Temática CNPq. Formato: `{codigo}` |
+
+> ℹ️ **`referencia_pnp` é conferido na extração.** `area_tematica_cnpq` (`recurso: areas_tematicas_cnpq`, `severidade: aviso`) e `cpf_autoria` (`recurso: pessoas`) são conferidos contra os cadastros locais sincronizados da PNP antes de gravar o Parquet, no **modo sombra** por padrão — a divergência é registrada no Registro de Extração, mas ainda não reprova. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial). `recurso: pessoas` não é uma tabela: a PNP mantém `servidores` e `matriculas` separados, e o Coletor resolve `pessoas` pela união dos dois.
 
 #### Valores de `classificacao_producao`
 

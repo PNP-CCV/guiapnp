@@ -49,7 +49,7 @@ Indicadores físicos de consumo e geração por estrutura. Os três valores são
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id` | `integer` | sim | `primaryKey` | Identificador |
-| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os consumos e produções de água/energia. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se os consumos e produções de água/energia. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
 | `agua_consumo` | `double` | sim | — | Soma dos consumos mensais de água, em m³. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 | `energia_consumo` | `double` | sim | — | Soma dos consumos mensais de energia elétrica, em KWh. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 | `prod_energia_renovavel` | `double` | sim | — | Produção anual de energia elétrica de fonte renovável, em KWh. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
@@ -92,7 +92,7 @@ Maturidade institucional da política de sustentabilidade por estrutura: que ins
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id` | `integer` | sim | `primaryKey` | Identificador |
-| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se a governança, implantação e divulgação da sustentabilidade. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se a governança, implantação e divulgação da sustentabilidade. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
 | `instancia_governanca` | `array` (de `string`) | sim | `enum` por item (11 códigos — ver legenda) | Instâncias de governança formalmente instituídas para coordenar e/ou executar a política de sustentabilidade institucional |
 | `col_res_solidos` | `boolean` | sim | — | Existência de coletores de resíduos sólidos identificados na estrutura. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 | `sen_com_interna` | `boolean` | sim | — | Realização de ações de sensibilização da comunidade interna sobre a gestão dos resíduos sólidos na estrutura. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
@@ -164,7 +164,7 @@ Volume de compras e contratações por estrutura, com o recorte de quantas aplic
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id` | `integer` | sim | `primaryKey` | Identificador |
-| `estrutura` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se as compras e contratações. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se as compras e contratações. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
 | `realiza_compras_contratacoes` | `boolean` | sim | — | A estrutura realiza compras e/ou contratações? Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 | `normativo_compras_sustentaveis` | `boolean` | sim | — | Possui normativo que regulamenta compras e contratações com aplicação de critérios de sustentabilidade? Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
 | `compras_sustentaveis` | `integer` | sim | — | Número de compras efetivadas utilizando pelo menos um critério de sustentabilidade, no ano de referência. Origem: Dados ou sistemas institucionais → Coletor PNP Microdados |
@@ -198,9 +198,9 @@ Volume de compras e contratações por estrutura, com o recorte de quantas aplic
 | `{..., "normativo_compras_sustentaveis": 1}` (`boolean` espera `true`/`false`) | `Type mismatch on 'normativo_compras_sustentaveis': expected boolean, got integer` |
 | `{..., "valor_compras": 480000.0}` (coluna não declarada) | `Field 'valor_compras' not in schema (additionalFields: false)` |
 
-## `referencia_pnp` — metadado declarativo, não validação
+## `referencia_pnp` — conferido na extração
 
-Os três modelos declaram, no campo `estrutura`, um bloco `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`. .
+Os três modelos declaram, no campo `estrutura`, um bloco `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`, e o Coletor confere esse código contra o cadastro local de estruturas antes de gravar o Parquet — a mesma checagem que a PNP faz depois do envio, antecipada. O padrão de fábrica é o **modo sombra**: a divergência é registrada no Registro de Extração, mas ainda não reprova a extração. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 
 ## Contrato de Dados - Formato YAML
