@@ -52,7 +52,7 @@ Tabela única do contrato. Cada linha é uma autoria de uma produção intelectu
 | `area_tematica_cnpq` | `string` | sim | `referencia_pnp: areas_tematicas_cnpq` (conferido na extração — ver nota) | Área Temática CNPq. Formato: `{codigo}` |
 | `cpf_autoria` | `string` | sim | `pii`, `classification: sensitive`, `referencia_pnp: pessoas` (conferido na extração — ver nota) | CPF de quem assina a produção |
 | `categoria_autoria` | `string` | sim | `enum: [docente, TAE]` | Tipo de vínculo do autor/co-autor |
-| `matricula_autoria` | `string` | sim | — | Matrícula SIAPE do autor/co-autor |
+| `matricula_autoria` | `string` | sim | `referencia_pnp: servidores` (roteado por `categoria_autoria` — ver nota) | Matrícula SIAPE do autor/co-autor |
 
 #### Valores de `classificacao_producao`
 
@@ -108,8 +108,26 @@ Além do schema (colunas obrigatórias, tipos e rejeição de colunas extras via
 |---|---|---|---|---|
 | `area_tematica_cnpq` | `producao_intelectual` | `areas_tematicas_cnpq` | `codigo` | **`aviso`** |
 | `cpf_autoria` | `producao_intelectual` | `pessoas` | `chave_simples` | `erro` |
+| `matricula_autoria` | `producao_intelectual` | `servidores` | `chave_composta` | `erro` |
 
 O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gravar o Parquet, no **modo sombra** por padrão — a divergência é apontada no Registro de Extração, mas ainda não reprova. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial). `recurso: pessoas` não é uma tabela: a PNP mantém dois cadastros (`servidores` e `matriculas`), e o Coletor resolve `pessoas` pela união dos dois.
+
+### `matricula_autoria` confere só contra `servidores`
+
+Diferente dos outros dois contratos de pessoas, aqui não há roteamento a fazer: `categoria_autoria` só aceita `docente` e `TAE`, e ambos estão no cadastro de servidores. A regra tem uma entrada só.
+
+O que ela precisa, e os outros não, é da ponte de nomes: este modelo chama `cpf_autoria`/`matricula_autoria` o que o cadastro chama de `cpf`/`matricula`. É o que `colunas:` faz:
+
+```yaml
+matricula_autoria:
+  referencia_pnp:
+    - recurso: servidores
+      chaves: [cpf, matricula]
+      colunas: [cpf_autoria, matricula_autoria]
+      categorias_validar: ["docente", "TAE"]
+```
+
+A conferência é do par `(cpf_autoria, matricula_autoria)`, não dos dois campos soltos — conferir cada um por si aceitaria o CPF de uma pessoa com a matrícula de outra.
 
 > ℹ️ **`categorias_validar` acompanhou o estreitamento de `categoria_autoria`.** O bloco `referencia_pnp` de `cpf_autoria` traz uma lista `categorias_validar`, que hoje é `["docente", "TAE"]` — mesmo recorte do `enum` de `categoria_autoria` neste contrato. Como a entrada não é uma lista de regras, ela funciona aqui apenas como recorte de quais linhas são conferidas. **Este estreitamento vale só aqui**: em [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao) e em [Projetos de Pesquisa]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa) os modelos de pessoas continuam aceitando `docente`, `TAE`, `externo` e `estudante`.
 
@@ -294,7 +312,7 @@ models:
           tipo: chave_simples
           chave: cpf
           severidade: erro
-          filtro_categoria_campo: categoria
+          filtro_categoria_campo: categoria_autoria
           categorias_validar: ["docente", "TAE"]
 
       categoria_autoria:
@@ -309,6 +327,14 @@ models:
         title: "Matrícula"
         description: "Número de matrícula SIAPE (servidor) do autor/co-autor."
         required: true
+        referencia_pnp:
+          - recurso: servidores
+            tipo: chave_composta
+            chaves: [cpf, matricula]
+            colunas: [cpf_autoria, matricula_autoria]
+            filtro_categoria_campo: categoria_autoria
+            categorias_validar: ["docente", "TAE"]
+            severidade: erro
 
     additionalFields: false
 ```
