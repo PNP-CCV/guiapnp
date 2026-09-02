@@ -158,7 +158,16 @@ Valor **ausente** também não é violação referencial: quem cobra preenchimen
 
 ## O que o operador vê
 
-O resultado entra nos detalhes do **[Registro de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#registro-de-extracao)** do modelo, sob a chave `validacao_referencial`:
+A conferência aparece em **duas telas**, sempre que a última extração do modelo apontou alguma coisa:
+
+- **Modelos → o modelo**, junto do erro de extração e da rejeição da PNP;
+- **Extrações → o registro**, que é onde se investiga uma extração específica.
+
+O bloco é **âmbar** quando apenas aponta e **vermelho** quando reprovou. A diferença importa: em modo sombra a extração passou, e sem dizer isso o aviso seria lido como falha, mandando o operador procurar um erro que não existe.
+
+> ⚠️ **Sem essa tela, a validação é invisível.** Em modo sombra nada bloqueia e nenhum status muda. Um apontamento que só existisse dentro do JSON de detalhes seria, na prática, indistinguível de a conferência não ter rodado.
+
+O dado bruto continua nos detalhes do **[Registro de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#registro-de-extracao)** do modelo, sob a chave `validacao_referencial`:
 
 ```json
 {
