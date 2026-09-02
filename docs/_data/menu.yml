@@ -224,9 +224,6 @@ itens:
             - title: "Projetos de Ensino"
               href: "/documentacao/usuarios-especializados/contratos/projetos_de_ensino"
               icon: "fas fa-file-contract"
-            - title: "Acadêmico"
-              href: "/documentacao/usuarios-especializados/contratos/academico"
-              icon: "fas fa-file-contract"
           - title: "Desenvolvimento Institucional"
             icon: "fas fa-building"
             children:
