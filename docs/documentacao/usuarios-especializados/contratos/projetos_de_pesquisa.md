@@ -121,14 +121,14 @@ Pessoas diretamente vinculadas a um projeto de pesquisa (docentes, TAEs, estudan
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id_envolvido` | `integer` | sim | `primaryKey` | ID envolvido |
-| `cpf` | `string` | sim | `pii`, `classification: sensitive`, `referencia_pnp: pessoas` (conferido na extração — ver nota) | CPF |
+| `cpf` | `string` | sim | `pii`, `classification: sensitive` | CPF |
 | `nome` | `string` | sim | `pii`, `classification: sensitive` | Nome |
 | `categoria` | `string` | sim | `enum: [docente, TAE, externo, estudante]` | Categoria |
 | `id_projeto_pesquisa` | `integer` | sim | `references projetos_pesquisa.id_projeto_pesquisa` | ID projeto de pesquisa |
 | `data_ingresso` | `date` | sim | — | Data de ingresso no projeto |
 | `data_saida` | `date` | não | — | Data de saída do projeto |
 | `situacao_envolvido` | `string` | sim | `enum: [Ativo, Inativo]` | Situação do envolvido |
-| `matricula` | `string` | não | `referencia_pnp: servidores/matriculas` (roteado por `categoria` — ver nota) | Matrícula SIAPE (servidor) ou Sistec (aluno). Exigida para `docente`, `TAE` e `estudante`; proibida para `externo` (ver *Regras de qualidade*) |
+| `matricula` | `string` | não | `referencia_pnp` roteada por categoria, com chave composta `[cpf, matricula]` (conferida na extração — ver nota) | Matrícula SIAPE para docentes e TAEs ou SISTEC para estudantes. Exigida para participantes internos e proibida para `externo` (ver *Regras de qualidade*) |
 
 ### Regras de qualidade
 
@@ -155,7 +155,8 @@ Além do schema, o modelo declara regras `quality` do tipo `sql`:
   "id_projeto_pesquisa": 3147,
   "data_ingresso": "2024-09-01",
   "data_saida": null,
-  "situacao_envolvido": "Ativo"
+  "situacao_envolvido": "Ativo",
+  "matricula": "2024123456"
 }
 ```
 
@@ -175,10 +176,10 @@ Além do schema, o modelo declara regras `quality` do tipo `sql`:
 |---|---|---|---|---|
 | `estrutura` | `projetos_pesquisa` | `campi` | `codigo` | `erro` |
 | `area_tematica_cnpq` | `projetos_pesquisa` | `areas_tematicas_cnpq` | `codigo` | **`aviso`** |
-| `cpf` | `pessoas_envolvidas_projeto_pesquisa` | `pessoas` | `chave_simples` | `erro` |
-| `matricula` | `pessoas_envolvidas_projeto_pesquisa` | `servidores` **ou** `matriculas` | `chave_composta` | `erro` |
+| `matricula` (`docente`, `TAE`) | `pessoas_envolvidas_projeto_pesquisa` | `servidores` | `chave_composta: [cpf, matricula]` | `erro` |
+| `matricula` (`estudante`) | `pessoas_envolvidas_projeto_pesquisa` | `matriculas` | `chave_composta: [cpf, matricula]` | `erro` |
 
-O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gravar o Parquet, no **modo sombra** por padrão — a divergência é apontada no Registro de Extração, mas ainda não reprova. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial). `recurso: pessoas` não é uma tabela: a PNP mantém dois cadastros (`servidores` e `matriculas`), e o Coletor resolve `pessoas` pela união dos dois.
+O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gravar o Parquet, no **modo sombra** por padrão — a divergência é apontada no Registro de Extração, mas ainda não reprova. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial). A matrícula usa roteamento por categoria: o par `[cpf, matricula]` de docentes e TAEs é conferido em `servidores`, enquanto o de estudantes é conferido em `matriculas`. Participantes externos não são submetidos a essas regras.
 
 ### `matricula` é roteada por `categoria`
 
@@ -445,13 +446,6 @@ models:
         classification: "sensitive"
         required: true
         description: "CPF da pessoa envolvida no projeto de pesquisa."
-        referencia_pnp:
-          recurso: pessoas
-          tipo: chave_simples
-          chave: cpf
-          severidade: erro
-          filtro_categoria_campo: categoria
-          categorias_validar: ["docente", "TAE", "estudante"]
 
       nome:
         type: string
@@ -497,8 +491,7 @@ models:
       matricula:
         type: string
         title: "Matrícula"
-        required: false
-        description: "Número de matrícula SIAPE (servidor) ou Sistec (estudante), a depender do tipo de vínculo do registro."
+        description: "Matrícula da pessoa envolvida no projeto de pesquisa, caso seja participante interno. Siape para docentes e TAE, matrícula SISTEC para estudantes."
         referencia_pnp:
           - recurso: servidores
             tipo: chave_composta

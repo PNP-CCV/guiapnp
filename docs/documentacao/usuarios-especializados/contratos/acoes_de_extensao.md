@@ -237,7 +237,7 @@ Pessoas formalmente envolvidas na execução de uma ação (docentes, TAEs, estu
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id_envolvido` | `integer` | sim | `primaryKey` | ID envolvido |
-| `cpf` | `string` | sim | `pii`, `classification: sensitive`, `referencia_pnp: pessoas` (conferido na extração — ver nota) | CPF |
+| `cpf` | `string` | sim | `pii`, `classification: sensitive` | CPF |
 | `nome` | `string` | sim | `pii`, `classification: sensitive` | Nome |
 | `categoria` | `string` | sim | `enum: [docente, TAE, externo, estudante]` | Categoria |
 | `id_acao_extensao` | `integer` | sim | `references acoes_extensao.id_acao_extensao` | ID ação de extensão |
@@ -245,7 +245,7 @@ Pessoas formalmente envolvidas na execução de uma ação (docentes, TAEs, estu
 | `data_saida` | `date` | não | — | Data de saída da ação |
 | `situacao_envolvido` | `string` | sim | `enum: [Ativo, Inativo]` | Situação do envolvido |
 | `data_ultima_situacao` | `date` | sim | — | Data da última situação |
-| `matricula` | `string` | não | `referencia_pnp: servidores/matriculas` (roteado por `categoria` — ver nota) | Matrícula SIAPE (servidor) ou Sistec (aluno). Exigida para `docente`, `TAE` e `estudante`; proibida para `externo` (ver *Regras de qualidade*) |
+| `matricula` | `string` | não | `referencia_pnp` roteada por categoria, com chave composta `[cpf, matricula]` (conferida na extração — ver nota) | Matrícula SIAPE para docentes e TAEs ou SISTEC para estudantes. Exigida para participantes internos e proibida para `externo` (ver *Regras de qualidade*) |
 
 ### Regras de qualidade
 
@@ -270,7 +270,8 @@ Além do schema, o modelo declara regras `quality` do tipo `sql`:
   "data_ingresso": "2025-03-01",
   "data_saida": null,
   "situacao_envolvido": "Ativo",
-  "data_ultima_situacao": "2025-03-01"
+  "data_ultima_situacao": "2025-03-01",
+  "matricula": "1548923"
 }
 ```
 
@@ -746,13 +747,6 @@ models:
         required: true
         classification: "sensitive"
         description: "CPF da pessoa envolvida na ação de extensão."
-        referencia_pnp:
-          recurso: pessoas
-          tipo: chave_simples
-          chave: cpf
-          severidade: erro
-          filtro_categoria_campo: categoria
-          categorias_validar: ["docente", "TAE", "estudante"]
 
       nome:
         type: string
@@ -801,8 +795,7 @@ models:
       matricula:
         type: string
         title: "Matrícula"
-        required: false
-        description: "Número de matrícula SIAPE (servidor) ou Sistec (aluno), a depender do tipo de vínculo do registro."
+        description: "Matrícula da pessoa envolvida na ação de extensão, caso seja participante interno. Siape para docentes e TAE, matrícula SISTEC para estudantes."
         referencia_pnp:
           - recurso: servidores
             tipo: chave_composta

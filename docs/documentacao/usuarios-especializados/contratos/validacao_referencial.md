@@ -59,9 +59,9 @@ Cada recurso declarado no contrato é conferido contra o cadastro local correspo
 
 ### `pessoas` não é uma tabela
 
-Não existe cadastro único de pessoas na PNP: existem **dois** — `servidores` e `matriculas`. Os três contratos que hoje declaram `recurso: pessoas` ([Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao), [Projetos de Pesquisa]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa) e [Produção Intelectual]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/producao_intelectual)) conferem apenas o CPF, então o Coletor resolve `pessoas` pela **união** dos dois cadastros: a pergunta que a regra faz é "esse CPF pertence a alguém da instituição?", e a união responde exatamente isso.
+Não existe cadastro único de pessoas na PNP: existem **dois** — `servidores` e `matriculas`. O alias `recurso: pessoas`, mantido por compatibilidade embora nenhum contrato atual o use, resolve a referência pela **união** dos dois cadastros: a pergunta que essa regra faz é "esse CPF pertence a alguém da instituição?", e a união responde exatamente isso.
 
-A união é deliberadamente frouxa: ela aceita o CPF de um estudante numa linha marcada como `docente`. Quem quiser a conferência estrita declara a forma com roteamento, descrita a seguir.
+A união é deliberadamente frouxa: ela aceita o CPF de um estudante numa linha marcada como `docente`. Os contratos atuais adotam a conferência estrita descrita a seguir: [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao) e [Projetos de Pesquisa]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa) roteiam a chave composta `[cpf, matricula]` conforme a categoria, e [Produção Intelectual]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/producao_intelectual) confere todas as autorias no cadastro de servidores.
 
 ## A gramática `referencia_pnp`
 
@@ -104,7 +104,7 @@ matricula:
 
 A lista **é** o roteamento: cada entrada só se aplica às categorias que declara. Uma categoria ausente de todas as entradas — `externo`, que não está em cadastro nenhum — simplesmente não é conferida, sem virar erro.
 
-As duas formas convivem: um contrato pode adotar o roteamento sem que os outros dez precisem mudar.
+As duas formas convivem: Ações de Extensão, Projetos de Pesquisa e Produção Intelectual usam a lista de regras para participantes, enquanto os demais campos continuam na forma simples.
 
 ### `chave_composta` confere a tupla
 
@@ -112,17 +112,17 @@ As duas formas convivem: um contrato pode adotar o roteamento sem que os outros 
 
 ### Quando as colunas têm outro nome
 
-`chaves` nomeia as colunas do **cadastro**; por padrão, assume-se que o modelo usa os mesmos nomes. Quando não usa, `colunas` faz a ponte — Produção Intelectual chama `cpf_autoria`/`matricula_autoria` o que `servidores` chama de `cpf`/`matricula`:
+`chaves` nomeia as colunas do **cadastro**; por padrão, assume-se que o modelo usa os mesmos nomes. Quando não usa, `colunas` faz a ponte. Nenhum contrato precisa dela hoje — Produção Intelectual chegou a chamar `cpf_autoria`/`matricula_autoria` e voltou aos nomes do cadastro —, mas a chave existe para um modelo cujos campos não possam ser renomeados:
 
 ```yaml
-matricula_autoria:
+matricula_do_autor:
   type: string
   referencia_pnp:
     - recurso: servidores
       tipo: chave_composta
       chaves: [cpf, matricula]
-      colunas: [cpf_autoria, matricula_autoria]
-      filtro_categoria_campo: categoria_autoria
+      colunas: [cpf_do_autor, matricula_do_autor]
+      filtro_categoria_campo: categoria
       categorias_validar: ["docente", "TAE"]
       severidade: erro
 ```
