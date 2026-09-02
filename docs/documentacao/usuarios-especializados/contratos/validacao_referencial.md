@@ -110,6 +110,25 @@ As duas formas convivem: um contrato pode adotar o roteamento sem que os outros 
 
 `chaves: [cpf, matricula]` confere o **par**, não os dois campos em separado. A diferença não é cosmética: conferir cada um por si aceitaria o CPF de uma pessoa com a matrícula de outra, já que os dois valores existem — em pessoas diferentes.
 
+### Quando as colunas têm outro nome
+
+`chaves` nomeia as colunas do **cadastro**; por padrão, assume-se que o modelo usa os mesmos nomes. Quando não usa, `colunas` faz a ponte — Produção Intelectual chama `cpf_autoria`/`matricula_autoria` o que `servidores` chama de `cpf`/`matricula`:
+
+```yaml
+matricula_autoria:
+  type: string
+  referencia_pnp:
+    - recurso: servidores
+      tipo: chave_composta
+      chaves: [cpf, matricula]
+      colunas: [cpf_autoria, matricula_autoria]
+      filtro_categoria_campo: categoria_autoria
+      categorias_validar: ["docente", "TAE"]
+      severidade: erro
+```
+
+Sem a ponte, a regra procura colunas que o modelo não tem, registra o aviso e é pulada — uma validação declarada que não valida nada é pior do que não declarar.
+
 ### Campos aceitos
 
 | Campo | Obrigatório | Significado |
@@ -118,6 +137,7 @@ As duas formas convivem: um contrato pode adotar o roteamento sem que os outros 
 | `tipo` | não | `codigo`, `chave_simples`, `chave_composta`, `array_codigo`. Documental: quem determina o comportamento é `chave`/`chaves` |
 | `chave` | não | Chave única a conferir (ex.: `cpf`). Padrão: `codigo` |
 | `chaves` | não | Lista de chaves — dispara a conferência por tupla |
+| `colunas` | não | Colunas do modelo que alimentam cada chave, quando não têm o mesmo nome |
 | `severidade` | não | `erro` (padrão) ou `aviso`. Só tem efeito no modo `bloqueante` |
 | `filtro_categoria_campo` | não | Coluna que diz a categoria da linha |
 | `categorias_validar` | não | Categorias a que esta entrada se aplica |
