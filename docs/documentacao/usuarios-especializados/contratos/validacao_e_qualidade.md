@@ -10,26 +10,29 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-Esta página descreve as duas camadas de validação que rodam sobre os dados de um **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** no Coletor — schema (durante a extração) e qualidade (testes do contrato) — e como ler o relatório de testes.
+Esta página descreve as camadas de validação que rodam sobre os dados de um **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** no Coletor — schema e referências (durante a extração) e qualidade (testes do contrato) — e como ler o relatório de testes.
 
-## Duas camadas de validação
+## As camadas de validação
 
 | Camada | Quando roda | O que valida |
 |---|---|---|
 | **Schema (extração)** | Assim que a fonte devolve os dados, antes de gravar o **[Parquet]({{ site.baseurl }}/documentacao/coletor/glossario#parquet)** | Colunas obrigatórias presentes; tipos básicos (string, integer, double, boolean, date, array); **rejeita colunas extras** sempre |
+| **Referencial (extração)** | Depois de consolidar os dados do modelo, antes de gravar o Parquet | Se os códigos de campus, município, área e subeixo — e os CPFs — existem nos cadastros da Rede sincronizados localmente. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial) |
 | **Qualidade (teste do contrato)** | Automaticamente, ao fim de uma extração bem-sucedida | Regras **[SodaCL]({{ site.baseurl }}/documentacao/coletor/glossario#sodacl)** declaradas no bloco `quality:` do YAML |
 
 A primeira camada é **bloqueante**: se a extração rejeitar, nenhum Parquet é gravado e o **[Registro de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#registro-de-extracao)** entra com status de falha.
 
+A camada referencial nasce em **modo sombra** (o padrão de fábrica): ela confere e registra a divergência no Registro de Extração, mas não reprova nada — nem o que o contrato declara como `severidade: erro`. É uma decisão deliberada de primeiro ciclo, para comparar o que o Coletor apontaria com o que a PNP de fato reprova antes de travar qualquer extração. Os motivos, os três modos e a gramática `referencia_pnp` estão em [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+
 A segunda **não é disparada pelo operador** — não existe botão "Executar Testes" no painel. Ela roda sozinha ao final da extração, e só quando *todos* os modelos cobrados do contrato foram extraídos com sucesso (não faz sentido testar um contrato incompleto). Modelos **opcionais** sem Configuração de Extração não entram nessa conta: a extração em lote os pula de propósito, porque tentar extrair um modelo sem provedor derrubaria a tarefa inteira e o teste de qualidade nem chegaria a rodar. Como consequência, um teste de qualidade reprovado aparece no fluxo como **"Falha na Extração"**, e não como um estado próprio.
 
-> ℹ️ **Bloco `quality` ausente em todos os contratos hoje.** Nenhum dos onze contratos da PNP populou o bloco [`quality`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-quality). Logo, o teste verifica hoje apenas a estrutura básica: que o Parquet exista, seja legível e não esteja corrompido. Quando os checks SodaCL forem adicionados, a validação ganha conteúdo de domínio (chave única, valores em enum, frescor temporal, etc.).
+> ℹ️ **O bloco `quality` chega pelo schema sincronizado da PNP.** As regras de qualidade não estão nos arquivos que o Coletor traz de fábrica: elas vêm no YAML que a sincronização baixa, então um contrato pode estar verificando dezenas de regras que nenhum arquivo local mostra — Ações de Extensão, por exemplo, traz dez. Para ver o que um contrato de fato verifica, olhe **Ver resultados de teste** no painel.
 
 ## Como o teste roda
 
-Ao final de uma extração bem-sucedida, o Coletor envia o schema do contrato ao serviço de validação (`datacontract-cli`, que roda como um componente da própria stack) e indica onde estão os Parquets recém-gerados. O serviço carrega os arquivos, executa os checks e devolve um relatório, que fica registrado junto ao contrato.
+Ao final de uma extração bem-sucedida, o próprio Coletor monta o schema do contrato e roda o motor do `datacontract` no seu processo, apontando para os Parquets recém-gerados. O motor carrega os arquivos, executa os checks e devolve um relatório, que fica registrado junto ao contrato.
 
-O teste passa só se **nenhum** check falhou — avisos (`warn`) são tolerados. Uma falha de comunicação com o serviço de validação também conta como teste falho, com a mensagem de erro registrada.
+O teste passa só se **nenhum** check falhou — avisos (`warn`) são tolerados. Um erro do próprio motor (YAML que ele recusa, por exemplo) também conta como teste falho, com a mensagem registrada.
 
 > ℹ️ **O schema enviado ao teste é o YAML inteiro.** Ele inclui os modelos opcionais que ninguém configurou — eles ficam de fora do *status*, dos *contadores* e da *extração em lote*, mas continuam aparecendo no schema submetido ao serviço de validação. Se o relatório mencionar um modelo que a instituição não coleta, é isso.
 

@@ -109,6 +109,12 @@ Log persistente que espelha, dentro do Coletor, o estado de um [Modelo de Dados]
 
 Ato de enviar um arquivo [Parquet](#parquet) já validado para a [PNP](#pnp). Cada sincronização gera um [Registro de Sincronização](#registro-de-sincronizacao) e só é permitida para modelos cujo contrato esteja com testes de qualidade aprovados no [Ciclo de Coleta](#ciclo-de-coleta) ativo. Veja [Sincronização com a PNP]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/sincronizacao_pnp).
 
+## Validação referencial {#validacao-referencial}
+
+Conferência de que os valores que apontam para entidades da Rede — código de campus, município, área temática do CNPq, CPF — existem de fato no cadastro da [PNP](#pnp). Roda **dos dois lados**: a PNP a executa depois do envio, e é a dela que vale; o Coletor a antecipa na extração, contra os cadastros que ele sincroniza da PNP, antes de gravar o [Parquet](#parquet).
+
+De fábrica a conferência local roda em **modo sombra**: registra a divergência no [Registro de Extração](#registro-de-extracao) sem reprovar a extração. É o que permite ver, no dia da extração, o erro que antes só voltava como rejeição da PNP dias depois. Veja [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+
 ## SodaCL {#sodacl}
 
 [Soda Checks Language](https://docs.soda.io/soda-cl/soda-cl-overview.html). Linguagem declarativa para testes de qualidade de dados. No Coletor, expressões SodaCL aparecem na seção `quality:` do YAML do contrato e são executadas a cada teste de qualidade. Veja [Anatomia do YAML]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml).

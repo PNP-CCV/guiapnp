@@ -66,6 +66,8 @@ Enviar não encerra o fluxo: o contrato entra em "Aguardando Validação PNP" e 
 
 A PNP confere o parquet recebido por conta própria. Além do schema, roda uma **validação referencial**: campos que apontam para entidades da Rede — campus, área temática, município — precisam existir de fato no cadastro dela. Um dado pode passar no contrato e ainda assim ser rejeitado aqui, por exemplo com o código de campus de outra instituição.
 
+O Coletor passou a **antecipar essa mesma conferência na extração**, usando os cadastros que ele já sincroniza da PNP. De fábrica ela só *aponta* a divergência, sem bloquear — mas o erro aparece no dia da extração, não dias depois. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+
 ### Homologação da Área (na PNP)
 
 O **Gestor de Área Temática** revisa o que a sua área enviou e decide. Cada área responde pelos seus dados — Extensão homologa Extensão, Pesquisa homologa Pesquisa. Neste nível existe rejeição: a área pode devolver o dataset com uma justificativa, que volta ao Coletor para a instituição corrigir e reenviar.

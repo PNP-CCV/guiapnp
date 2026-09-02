@@ -152,7 +152,7 @@ Tipos efetivamente usados nos onze contratos da PNP:
 |---|---|---|
 | `string` | Texto livre | nomes, títulos, CPF, descrições |
 | `integer` | Número inteiro | IDs, ano de publicação |
-| `double` | Número decimal | orçamento de projeto, matrícula equivalente |
+| `double` | Número decimal | contrapartida financeira de projeto, consumo de água/energia |
 | `boolean` | Verdadeiro/falso | `parceria_institucional`, `populacao_vulneravel` |
 | `date` | Data | datas de início, término, atendimento |
 | `array` | Lista de valores | `municipios_atendidos` em ações de extensão |
@@ -173,6 +173,21 @@ Constraints **efetivamente usadas** nos onze contratos:
 - `description` — descrição livre. Recomendada, ainda que opcional; é usada nas páginas do catálogo.
 
 Constraints **suportadas pela spec mas não usadas hoje**: `unique`, `pattern` (regex), `minLength`, `maxLength`, `examples`, `tags`.
+
+## Bloco `referencia_pnp` {#bloco-referencia-pnp}
+
+Extensão da PNP fora da especificação, declarada **por campo**: diz que aquele valor aponta para uma entidade do cadastro da Rede — um campus, um município, uma área do CNPq, o CPF de alguém da instituição.
+
+```yaml
+estrutura:
+  type: string
+  referencia_pnp:
+    recurso: campi
+    tipo: codigo
+    severidade: erro
+```
+
+O motor de teste do contrato ignora a chave. Quem a lê é a validação referencial do Coletor, que confere o valor contra o cadastro local sincronizado da PNP **antes de gravar o Parquet** — de fábrica em modo sombra, apenas registrando. A gramática completa (incluindo a forma em lista, que roteia por categoria, e a `chave_composta`) está em [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 ## Bloco `quality` {#bloco-quality}
 
@@ -220,4 +235,5 @@ O YAML íntegro de cada contrato está embutido na respectiva página do catálo
 
 - [Conceito de Contrato de Dados]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/conceito)
 - [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)
+- [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial)
 - [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao) — exemplo de página do catálogo

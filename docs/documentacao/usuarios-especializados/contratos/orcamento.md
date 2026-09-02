@@ -17,15 +17,15 @@ toc: true
 
 ## Resumo de negócio
 
-Este **Contrato de Dados** descreve o indicador institucional de **orçamento**, a partir do subconjunto mínimo de dados financeiros (Dados Orçamentários). Cada registro é uma linha de execução orçamentária extraída do **Siafi** (via ODI), com a classificação orçamentária completa (órgão, UO, ação, PTRES, fonte, GND) e os valores efetivamente **liquidados** e de **restos a pagar pagos**.
+Este **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** descreve o indicador institucional de **orçamento**, a partir do subconjunto mínimo de dados financeiros (Dados Orçamentários). Cada registro é uma linha de execução orçamentária extraída do **Siafi** (via ODI), com a classificação orçamentária completa (órgão, UO, ação, PTRES, fonte, GND) e os valores efetivamente **liquidados** e de **restos a pagar pagos**.
 
-A **PNP** coleta este contrato para relacionar gasto público executado para apoiar as ações de pesquisa e extensão, em especial para os indicadores que analisam quanto do orçamento institucional é aplicado nessas respectivas ações.
+A **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** coleta este contrato para relacionar gasto público executado com a oferta de ensino, pesquisa e extensão — é o insumo dos indicadores de custo por aluno e de aplicação de recursos por finalidade.
 
 ## Modelos contidos
 
 - **`dados_orcamentarios`** *(opcional no fluxo)* — dados orçamentários vinculados à execução financeira institucional.
 
-> ℹ️ **Atenção ao vocabulário.** *Obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** da tabela de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) e [Modelos obrigatórios, opcionais e desabilitados]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
+> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** da tabela de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato).
 
 > ℹ️ **Este contrato nasce em "Somente Modelos Opcionais".** Como o único modelo é opcional, logo depois da primeira sincronização o contrato aparece no painel com o badge **Somente Modelos Opcionais** e fica fora do progresso do assistente e das ações em lote — não é erro nem falha de sincronização, é o esperado. Ele entra no fluxo assim que alguém cadastrar uma **[Configuração de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#configuracao-de-extracao)** para `dados_orcamentarios`.
 
@@ -35,36 +35,36 @@ A **PNP** coleta este contrato para relacionar gasto público executado para apo
 
 ### Resumo do modelo
 
-Tabela única do contrato. Cada linha é uma combinação de classificação orçamentária com os valores executados no período. 
+Tabela única do contrato. Cada linha é uma combinação de classificação orçamentária com os valores executados no período. A granularidade é definida pela origem (SIAFI) — o contrato não declara chave composta, apenas o `id` técnico do registro.
 
-> **Modelo fechado:** `additionalFields: false` — qualquer coluna não declarada abaixo é rejeitada na validação de schema.
+> ℹ️ **Modelo fechado:** `additionalFields: false` — qualquer coluna não declarada abaixo é rejeitada na validação de schema.
 
 ### Tabela de campos
 
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
-| `id` | `integer` | sim | `primaryKey` | Identificador do registro |
-| `orgao_superior_cod` | `integer` | sim | — | Órgão Superior (Cód)(UO). Origem: (Siafi) |
-| `uo_cod` | `string` | sim | — | Unidade Orçamentária (Cód). Origem: (Siafi) |
-| `acao_cod` | `string` | sim | — | Ação (Cód). Origem: (Siafi) |
-| `ptres` | `string` | sim | — | Programa de Trabalho Resumido. Origem: (Siafi) |
-| `origem_despesa` | `string` | sim | `enum` (ver legenda) | Origem da Despesa. Origem: (Siafi) |
-| `emenda_impositiva_tipo` | `string` | não | — | Emenda Impositiva (Tipo). Origem: (Siafi) |
-| `emenda_impositiva_numero_ano` | `string` | não | — | Emenda Impositiva (Número/Ano). Origem: (Siafi) |
-| `programa_interno_cod` | `string` | sim | `enum` (ver legenda) | Programa Interno (Cód). Origem: (Siafi) |
-| `programa_interno_desc` | `string` | sim | — | Programa Interno (Desc). Origem: (Siafi) |
-| `gnd_cod` | `string` | sim | `enum` (ver legenda) | Grupo de Natureza da Despesa (Cód). Origem: (Siafi) |
-| `esfera_cod` | `string` | não | — | Esfera (Cód). Origem: (Siafi) |
-| `fonte_cod` | `string` | não | — | Fonte (Cód). Origem: (Siafi) |
-| `fonte_grupo_cod` | `string` | não | — | Fonte Grupo (Cód). Origem: (Siafi) |
-| `fonte_especificacao_cod` | `string` | não | — | Fonte Especificação (Cód). Origem:  (Siafi) |
-| `orgao_gestor_superior_cod` | `string` | não | — | Órgão Gestor Superior (Cód). Origem:  (Siafi) |
-| `orgao_gestor_cod` | `string` | não | — | Órgão Gestor (Cód). Origem: (Siafi) |
-| `ug_cod` | `string` | não | — | Unidade Gestora (Cód). Origem:  (Siafi) |
-| `ugr_cod` | `string` | sim | — | Unidade Gestora Responsável (Cód). Origem: (Siafi) |
-| `estrutura_vinculada` | `string` | sim | `referencia_pnp: campi` (declarativo — ver nota) | Estrutura à qual vinculam-se os orçamentos. Formato: `{codigo}`. Filtro: `pnp_tipounidade` — todos exceto id 9, código 10 (Outros) |
-| `liquidado_valor` | `double` | sim | — | Liquidado (R$). Origem:  (Siafi) |
-| `rp_pago_valor` | `double` | sim | — | Restos a Pagar pagos (R$). Origem: (Siafi) |
+| `id_dados_orcamentarios` | `integer` | sim | `primaryKey` | Identificador do registro |
+| `orgao_superior_cod` | `string` | sim | — | Órgão Superior (Cód)(UO). Origem: SIAFI |
+| `uo_cod` | `string` | sim | — | Unidade Orçamentária (Cód). Origem: SIAFI |
+| `acao_cod` | `string` | sim | — | Ação (Cód). Origem: SIAFI |
+| `ptres` | `string` | sim | — | Programa de Trabalho Resumido. Origem: SIAFI |
+| `origem_despesa` | `string` | sim | `enum` (ver legenda) | Origem da Despesa. Origem: SIAFI |
+| `emenda_impositiva_tipo` | `string` | não | — | Emenda Impositiva (Tipo). Origem: SIAFI |
+| `emenda_impositiva_numero_ano` | `string` | não | — | Emenda Impositiva (Número/Ano). Origem: SIAFI |
+| `programa_interno_cod` | `string` | sim | `enum` (ver legenda) | Programa Interno (Cód). Origem: SIAFI |
+| `programa_interno_desc` | `string` | sim | — | Programa Interno (Desc). Origem: SIAFI |
+| `gnd_cod` | `string` | sim | `enum` (ver legenda) | Grupo de Natureza da Despesa (Cód). Origem: SIAFI |
+| `esfera_cod` | `string` | não | — | Esfera (Cód). Origem: SIAFI |
+| `fonte_cod` | `string` | não | — | Fonte (Cód). Origem: SIAFI |
+| `fonte_grupo_cod` | `string` | não | — | Fonte Grupo (Cód). Origem: SIAFI |
+| `fonte_especificacao_cod` | `string` | não | — | Fonte Especificação (Cód). Origem: SIAFI |
+| `orgao_gestor_superior_cod` | `string` | não | — | Órgão Gestor Superior (Cód). Origem: SIAFI |
+| `orgao_gestor_cod` | `string` | não | — | Órgão Gestor (Cód). Origem: SIAFI |
+| `ug_cod` | `string` | não | — | Unidade Gestora (Cód). Origem: SIAFI |
+| `ugr_cod` | `string` | sim | — | Unidade Gestora Responsável (Cód). Origem: SIAFI |
+| `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se os orçamentos. Formato: `{codigo}`, fornecido pelo Coletor PNP |
+| `liquidado_valor` | `double` | sim | — | Liquidado (R$). Origem: SIAFI |
+| `rp_pago_valor` | `double` | sim | — | Restos a Pagar pagos (R$). Origem: SIAFI |
 
 ### Legenda dos enums
 
@@ -93,23 +93,32 @@ Os três campos com `enum` só aceitam os valores abaixo — qualquer outro repr
 | `3` | Outras despesas correntes |
 | `4` | Investimentos |
 
-> **Códigos são `string`, não número.** `programa_interno_cod` e `gnd_cod` são declarados como `string`; enviar `20` (inteiro) em vez de `"20"` reprova por tipo, antes mesmo da checagem de enum.
+> ℹ️ **Códigos são `string`, não número.** `programa_interno_cod` e `gnd_cod` são declarados como `string`; enviar `20` (inteiro) em vez de `"20"` reprova por tipo, antes mesmo da checagem de enum.
 
-> **`referencia_pnp` é metadado declarativo, não validação.** O campo `estrutura_vinculada` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`.
+> ℹ️ **`referencia_pnp` agora é conferido na extração.** O campo `estrutura` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`, e o Coletor confere esse código contra o espelho local de estruturas antes de gravar o Parquet — a mesma checagem que a PNP faz depois do envio, antecipada. O padrão de fábrica é o **modo sombra**: a divergência é registrada no Registro de Extração, mas ainda não reprova. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
+### Regras de qualidade
+
+Além do schema (campos obrigatórios, tipos, `enum` e rejeição de colunas extras via `additionalFields: false`), o modelo declara regras `quality` do tipo `sql`:
+
+| Regra | Espera |
+|---|---|
+| `orgao_superior_cod`, `uo_cod`, `acao_cod`, `ptres`, `ugr_cod` e `estrutura` não podem ser texto vazio | `mustBe: 0` |
+| `liquidado_valor` e `rp_pago_valor` não podem ser negativos | `mustBe: 0` |
+| Despesa de `origem_despesa: Emenda` exige `emenda_impositiva_tipo` e `emenda_impositiva_numero_ano` no formato `número/ano`; despesa de outra origem não pode trazer nenhum dos dois | `mustBe: 0` |
 
 ### Exemplo válido
 
 ```json
 {
-  "id": 1042,
-  "orgao_superior_cod": 26000,
+  "id_dados_orcamentarios": 1042,
+  "orgao_superior_cod": "26000",
   "uo_cod": "26435",
   "acao_cod": "20RL",
   "ptres": "108963",
   "origem_despesa": "Proposta do executivo",
-  "emenda_impositiva_tipo": "-",
-  "emenda_impositiva_numero_ano": "-",
+  "emenda_impositiva_tipo": null,
+  "emenda_impositiva_numero_ano": null,
   "programa_interno_cod": "20",
   "programa_interno_desc": "Pesquisa",
   "gnd_cod": "3",
@@ -121,7 +130,7 @@ Os três campos com `enum` só aceitam os valores abaixo — qualquer outro repr
   "orgao_gestor_cod": "26435",
   "ug_cod": "158155",
   "ugr_cod": "158155",
-  "estrutura_vinculada": "12",
+  "estrutura": "12",
   "liquidado_valor": 184320.55,
   "rp_pago_valor": 12040.00
 }
@@ -131,12 +140,17 @@ Os três campos com `enum` só aceitam os valores abaixo — qualquer outro repr
 
 | Payload (resumido) | Erro |
 |---|---|
-| `{"uo_cod": "26435", ...}` (sem `id`) | `Required field 'id' is missing` |
-| `{"id": 1042, "gnd_cod": "2", ...}` | `Value '2' not in enum for 'gnd_cod'` |
-| `{"id": 1042, "programa_interno_cod": 20, ...}` (inteiro) | `Type mismatch on 'programa_interno_cod': expected string, got integer` |
-| `{"id": 1042, "empenhado_valor": 200000, ...}` (coluna não declarada) | `Field 'empenhado_valor' not in schema (additionalFields: false)` |
+| `{"uo_cod": "26435", ...}` (sem `id_dados_orcamentarios`) | `Required field 'id_dados_orcamentarios' is missing` |
+| `{"id_dados_orcamentarios": 1042, "gnd_cod": "2", ...}` | `Value '2' not in enum for 'gnd_cod'` |
+| `{"id_dados_orcamentarios": 1042, "programa_interno_cod": 20, ...}` (inteiro) | `Type mismatch on 'programa_interno_cod': expected string, got integer` |
+| `{"id_dados_orcamentarios": 1042, "empenhado_valor": 200000, ...}` (coluna não declarada) | `Field 'empenhado_valor' not in schema (additionalFields: false)` |
+| `{..., "origem_despesa": "Emenda", "emenda_impositiva_numero_ano": null}` (emenda sem número/ano) | `Dados de emenda devem ser coerentes com a origem da despesa.: Actual custom_sql(dados_orcamentarios) was 1, expected = 0` |
 
+## Histórico de versões
 
+| Versão | Data | Mudança | Breaking? |
+|---|---|---|---|
+| `1.0.0` | 2026-07-19 | Versão inicial. | — |
 
 ## Contrato de Dados - Formato YAML
 
@@ -167,8 +181,41 @@ models:
     meta:
       required: false
       disabled: false
+    quality:
+      - type: sql
+        description: "Códigos obrigatórios não podem ser vazios."
+        query: >
+          SELECT COUNT(*) FROM dados_orcamentarios
+          WHERE NULLIF(TRIM(orgao_superior_cod), '') IS NULL
+             OR NULLIF(TRIM(uo_cod), '') IS NULL
+             OR NULLIF(TRIM(acao_cod), '') IS NULL
+             OR NULLIF(TRIM(ptres), '') IS NULL
+             OR NULLIF(TRIM(ugr_cod), '') IS NULL
+             OR NULLIF(TRIM(estrutura), '') IS NULL
+        mustBe: 0
+      - type: sql
+        description: "Valores financeiros não podem ser negativos."
+        query: >
+          SELECT COUNT(*) FROM dados_orcamentarios
+          WHERE liquidado_valor < 0 OR rp_pago_valor < 0
+        mustBe: 0
+      - type: sql
+        description: "Dados de emenda devem ser coerentes com a origem da despesa."
+        query: >
+          SELECT COUNT(*) FROM dados_orcamentarios
+          WHERE (origem_despesa = 'Emenda'
+                 AND (NULLIF(TRIM(emenda_impositiva_tipo), '') IS NULL
+                      OR NULLIF(TRIM(emenda_impositiva_numero_ano), '') IS NULL
+                      OR NOT regexp_full_match(
+                           TRIM(emenda_impositiva_numero_ano),
+                           '[0-9]+/[0-9]{4}'
+                         )))
+             OR (origem_despesa <> 'Emenda'
+                 AND (NULLIF(TRIM(emenda_impositiva_tipo), '') IS NOT NULL
+                      OR NULLIF(TRIM(emenda_impositiva_numero_ano), '') IS NOT NULL))
+        mustBe: 0
     fields:
-      id:
+      id_dados_orcamentarios:
         type: integer
         title: "Identificador"
         primaryKey: true
@@ -177,24 +224,28 @@ models:
           Identificador do registro.
 
       orgao_superior_cod:
-        type: integer
+        type: string
+        required: true
         title: "Órgão Superior (Cód)(UO)"
-        description: "Origem: (Siafi)"
+        description: "Origem: SIAFI"
 
       uo_cod:
         type: string
+        required: true
         title: "UO (Cód)"
-        description: "Origem: (Siafi)"
+        description: "Origem: SIAFI"
 
       acao_cod:
         type: string
+        required: true
         title: "Ação (Cód)"
-        description: "Origem: (Siafi)"
+        description: "Origem: SIAFI"
 
       ptres:
         type: string
+        required: true
         title: "PTRES"
-        description: "Origem: (Siafi)"
+        description: "Origem: SIAFI"
 
       origem_despesa:
         type: string
@@ -203,88 +254,93 @@ models:
           - "Emenda"
           - "-"
         title: "Origem da Despesa"
-        description: "Origem:  (Siafi)"
+        required: true
+        description: "Origem: SIAFI"
 
       emenda_impositiva_tipo:
         type: string
         title: "Emenda Impositiva (Tipo)"
-        description: "Origem:  (Siafi)"
+        description: "Origem: SIAFI"
 
       emenda_impositiva_numero_ano:
         type: string
         title: "Emenda Impositiva (Número/Ano)"
-        description: "Origem:  (Siafi)"
+        description: "Origem: SIAFI"
 
       programa_interno_cod:
         type: string
         enum:
-          - "20"  # pesquisa
-          - "21"  # extensão
+          - "20" # pesquisa
+          - "21" # extensão
         title: "Programa Interno (Cód) (1)"
+        required: true
         description: >
-          Origem: (Siafi)
+          Origem: SIAFI. Códigos: 20 (Pesquisa) e 21 (Extensão).
 
       programa_interno_desc:
         type: string
         title: "Programa Interno (Desc)"
-        description: "Origem: (Siafi)"
+        required: true
+        description: "Origem: SIAFI"
 
       gnd_cod:
         type: string
         enum:
-          - "1"  # Pessoal e encargos sociais
-          - "3"  # Outras despesas correntes
-          - "4"  # Investimentos
+          - "1" # Pessoal e encargos sociais
+          - "3" # Outras despesas correntes
+          - "4" # Investimentos
         title: "GND (Cód)"
-        description: "Origem:  (Siafi)"
+        required: true
+        description: "Origem: SIAFI. Códigos: 1 (Pessoal e encargos sociais), 3 (Outras despesas correntes) e 4 (Investimentos)."
 
       esfera_cod:
         type: string
         title: "Esfera (Cód)"
-        description: "Origem:  (Siafi)"
+        description: "Origem: SIAFI"
 
       fonte_cod:
         type: string
         title: "Fonte (Cód)"
-        description: "Origem:  (Siafi)"
+        description: "Origem: SIAFI"
 
       fonte_grupo_cod:
         type: string
         title: "Fonte Grupo (Cód)"
-        description: "Origem:  (Siafi)"
+        description: "Origem: SIAFI"
 
       fonte_especificacao_cod:
         type: string
         title: "Fonte Especificação (Cód)"
-        description: "Origem:  (Siafi)"
+        description: "Origem: SIAFI"
 
       orgao_gestor_superior_cod:
         type: string
         title: "Órgão Gestor Superior (Cód)"
-        description: "Origem:  (Siafi)"
+        description: "Origem: SIAFI"
 
       orgao_gestor_cod:
         type: string
         title: "Órgão Gestor (Cód)"
-        description: "Origem:  (Siafi)"
+        description: "Origem: SIAFI"
 
       ug_cod:
         type: string
         title: "UG (Cód)"
-        description: "Origem:  (Siafi)"
+        description: "Origem: SIAFI"
 
       ugr_cod:
         type: string
         title: "UGR (Cód) (2)"
+        required: true
         description: >
-          Origem: (Siafi)
+          Origem: SIAFI
 
-      estrutura_vinculada:
+      estrutura:
         type: string
         title: "Estrutura à qual vinculam-se os orçamentos"
+        required: true
         description: >
-          Formato: {codigo}. Filtro: pnp_tipounidade - todos exceto id 9,
-          código 10 (Outros).
+          Formato: {codigo}. Código fornecido pelo Coletor PNP.
         referencia_pnp:
           recurso: campi
           tipo: codigo
@@ -292,15 +348,16 @@ models:
 
       liquidado_valor:
         type: double
+        required: true
         title: "Liquidado (R$)"
-        description: "Origem:  (Siafi)"
+        description: "Origem: SIAFI"
 
       rp_pago_valor:
         type: double
         title: "RP Pago (R$)"
-        description: "Origem: (Siafi)"
+        required: true
+        description: "Origem: SIAFI"
 
     additionalFields: false
-
 ```
 

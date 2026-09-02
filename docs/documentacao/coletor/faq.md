@@ -13,6 +13,10 @@ Perguntas reais que aparecem com frequência durante a operação do Coletor. Ca
 
 O teste de qualidade roda **dentro** da extração, então um teste reprovado aparece como "Falha na Extração", não como um estado próprio — não há botão "Executar Teste". Abra o relatório em **Contratos → o contrato → resultados de teste** para identificar quais campos falharam (tipo, obrigatoriedade, domínio de valores). A partir daí, decida entre **corrigir os dados na fonte** (quando o contrato reflete a regra correta) ou **reportar à equipe da PNP** (quando a regra do YAML parece mais estrita do que o combinado). Detalhes em [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade).
 
+### P: O Registro de Extração trouxe uma "validação referencial" com violações, mas a extração passou. Está errado?
+
+Não. A conferência de referências — se o código de campus, o município, a área ou o CPF existem no cadastro da Rede — roda de fábrica em **modo sombra**: ela aponta a divergência nos detalhes do Registro de Extração, mas não reprova a extração nem impede o envio. É deliberado: a checagem é nova e o primeiro ciclo serve para comparar o que ela aponta com o que a PNP de fato reprova. Trate cada apontamento como um aviso a investigar na origem — se ele estiver certo, é exatamente o que a PNP rejeitaria depois do envio. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+
 ### P: A PNP não recebeu os dados — onde olho primeiro?
 
 Abra o registro mais recente em **Envios** (`/painel/sincronizacoes/`) e leia os detalhes — eles guardam a resposta completa devolvida pela API da PNP, com código HTTP e mensagem de erro. Em seguida, confira se a URL da PNP aponta para o ambiente correto (visível em **Configurações**, para administradores). Se a resposta for 401/403, a instância pode ter perdido a autenticação: reinicie a stack (`coletor down` seguido de `coletor up`) para reativá-la — os dados são preservados. O fluxo completo está em [Sincronização com a PNP]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/sincronizacao_pnp).
