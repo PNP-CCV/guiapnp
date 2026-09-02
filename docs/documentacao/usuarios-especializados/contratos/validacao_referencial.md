@@ -35,11 +35,13 @@ O comportamento é decidido pela variável de ambiente `VALIDACAO_REFERENCIAL_MO
 
 | Modo | O que faz | Quando usar |
 |---|---|---|
-| **`sombra`** (padrão) | Confere tudo e registra o resultado no Registro de Extração, mas **nunca reprova** — mesmo o que está declarado como `severidade: erro`. | O primeiro ciclo. Serve para comparar o que o Coletor apontaria com o que a PNP de fato reprova. |
-| **`bloqueante`** | Uma violação de `severidade: erro` reprova a extração do modelo; `severidade: aviso` continua só registrando. | Depois que o modo sombra mostrou que os apontamentos batem com a realidade. |
-| **`desligada`** | Não confere nada. | Diagnóstico, ou instalação cujos cadastros ainda não foram sincronizados. |
+| **`bloqueante`** (padrão) | Uma violação de `severidade: erro` reprova a extração do modelo; `severidade: aviso` continua só registrando. | O comportamento normal. |
+| **`sombra`** | Confere tudo e registra o resultado no Registro de Extração, mas **nunca reprova** — mesmo o que está declarado como `severidade: erro`. | Diagnóstico: ver o que uma regra apontaria sem travar a coleta de ninguém. |
+| **`desligada`** | Não confere nada. | Último recurso, quando nem o registro do apontamento é desejado. |
 
-> 💡 **O padrão é `sombra` de propósito.** A chave `referencia_pnp` está nos contratos há tempo, mas nunca foi executada por ninguém — nem no Coletor, nem em modo de teste. Ligar a reprovação de saída seria descobrir, com o ciclo aberto, todas as divergências de formato de uma vez. Em sombra o operador vê exatamente o que mudaria, sem que nada trave.
+> 💡 **Quem regula a rigidez é o contrato, não esta variável.** O ajuste fino é a `severidade` declarada **campo a campo** no contrato: `erro` reprova, `aviso` só registra. Quem controla isso é a CCV, e a mudança chega aos institutos pela sincronização de contratos — sem release, sem tocar em nenhuma instalação. É esse o botão a usar quando uma regra se mostra rígida demais.
+>
+> Os três modos são uma alavanca de emergência da própria CCV, para o caso de um cadastro desatualizado reprovar extração legítima em toda a Rede. Não são configuração de instalação: quem roda o Coletor não tem `.env` nem acesso ao `docker compose`, então o padrão do código é literalmente o que roda em todo mundo — e um padrão que não reprova nada equivale a não ter a validação.
 
 ## O que ela consegue conferir
 
@@ -163,22 +165,22 @@ A conferência aparece em **duas telas**, sempre que a última extração do mod
 - **Modelos → o modelo**, junto do erro de extração e da rejeição da PNP;
 - **Extrações → o registro**, que é onde se investiga uma extração específica.
 
-O bloco é **âmbar** quando apenas aponta e **vermelho** quando reprovou. A diferença importa: em modo sombra a extração passou, e sem dizer isso o aviso seria lido como falha, mandando o operador procurar um erro que não existe.
+O bloco é **âmbar** quando apenas aponta e **vermelho** quando reprovou. A diferença importa: um apontamento de `severidade: aviso` não impediu nada, e sem dizer isso o aviso seria lido como falha, mandando o operador procurar um erro que não existe.
 
-> ⚠️ **Sem essa tela, a validação é invisível.** Em modo sombra nada bloqueia e nenhum status muda. Um apontamento que só existisse dentro do JSON de detalhes seria, na prática, indistinguível de a conferência não ter rodado.
+> ⚠️ **Sem essa tela, o que só avisa é invisível.** Um apontamento que não reprova (`severidade: aviso`, ou qualquer regra no modo sombra) não muda status nenhum. Se existisse apenas dentro do JSON de detalhes, seria na prática indistinguível de a conferência não ter rodado.
 
 O dado bruto continua nos detalhes do **[Registro de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#registro-de-extracao)** do modelo, sob a chave `validacao_referencial`:
 
 ```json
 {
-  "modo": "sombra",
+  "modo": "bloqueante",
   "violacoes": [
     {
       "campo": "estrutura",
       "recurso": "campi",
       "chaves": ["codigo"],
       "severidade": "erro",
-      "efeito": "aviso",
+      "efeito": "reprova",
       "total": 20,
       "amostras": ["26419.4300604.01.001"]
     }
@@ -186,7 +188,7 @@ O dado bruto continua nos detalhes do **[Registro de Extração]({{ site.baseurl
 }
 ```
 
-`severidade` é o que o contrato **declarou**; `efeito` é o que de fato aconteceu nesta execução. Em modo sombra os dois divergem de propósito — é assim que se lê "isto teria reprovado".
+`severidade` é o que o contrato **declarou**; `efeito` é o que de fato aconteceu nesta execução. Os dois divergem no modo sombra, que rebaixa todo `erro` a `aviso` sem apagar a severidade declarada — é assim que se lê "isto teria reprovado".
 
 No modo bloqueante, o motivo do erro do Registro de Extração replica o formato da mensagem da PNP, para o operador reconhecer o mesmo texto dos dois lados:
 

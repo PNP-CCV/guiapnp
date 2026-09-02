@@ -187,7 +187,7 @@ estrutura:
     severidade: erro
 ```
 
-O motor de teste do contrato ignora a chave. Quem a lê é a validação referencial do Coletor, que confere o valor contra o cadastro local sincronizado da PNP **antes de gravar o Parquet** — de fábrica em modo sombra, apenas registrando. A gramática completa (incluindo a forma em lista, que roteia por categoria, e a `chave_composta`) está em [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+O motor de teste do contrato ignora a chave. Quem a lê é a validação referencial do Coletor, que confere o valor contra o cadastro local sincronizado da PNP **antes de gravar o Parquet** — de fábrica reprovando a extração quando a `severidade` declarada é `erro`. A gramática completa (incluindo a forma em lista, que roteia por categoria, e a `chave_composta`) está em [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 ## Bloco `quality` {#bloco-quality}
 

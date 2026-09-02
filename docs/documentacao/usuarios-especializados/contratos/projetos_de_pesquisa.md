@@ -179,7 +179,7 @@ Além do schema, o modelo declara regras `quality` do tipo `sql`:
 | `matricula` (`docente`, `TAE`) | `pessoas_envolvidas_projeto_pesquisa` | `servidores` | `chave_composta: [cpf, matricula]` | `erro` |
 | `matricula` (`estudante`) | `pessoas_envolvidas_projeto_pesquisa` | `matriculas` | `chave_composta: [cpf, matricula]` | `erro` |
 
-O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gravar o Parquet, no **modo sombra** por padrão — a divergência é apontada no Registro de Extração, mas ainda não reprova. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial). A matrícula usa roteamento por categoria: o par `[cpf, matricula]` de docentes e TAEs é conferido em `servidores`, enquanto o de estudantes é conferido em `matriculas`. Participantes externos não são submetidos a essas regras.
+O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gravar o Parquet, no **modo bloqueante** por padrão — uma referência que não existe no espelho reprova a extração, com o campo e o valor no Registro de Extração. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial). A matrícula usa roteamento por categoria: o par `[cpf, matricula]` de docentes e TAEs é conferido em `servidores`, enquanto o de estudantes é conferido em `matriculas`. Participantes externos não são submetidos a essas regras.
 
 ### `matricula` é roteada por `categoria`
 

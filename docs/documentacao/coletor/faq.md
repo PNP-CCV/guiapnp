@@ -13,9 +13,13 @@ Perguntas reais que aparecem com frequência durante a operação do Coletor. Ca
 
 O teste de qualidade roda **dentro** da extração, então um teste reprovado aparece como "Falha na Extração", não como um estado próprio — não há botão "Executar Teste". Abra o relatório em **Contratos → o contrato → resultados de teste** para identificar quais campos falharam (tipo, obrigatoriedade, domínio de valores). A partir daí, decida entre **corrigir os dados na fonte** (quando o contrato reflete a regra correta) ou **reportar à equipe da PNP** (quando a regra do YAML parece mais estrita do que o combinado). Detalhes em [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade).
 
+### P: A extração foi reprovada por "validação referencial". O que isso quer dizer?
+
+Que algum valor do dado aponta para uma entidade que **não existe no cadastro da Rede** — um código de campus, um município, uma área temática ou um CPF. O Coletor confere isso antes de gravar o arquivo, contra os cadastros que sincroniza da própria PNP, e de fábrica **reprova**: é a mesma conferência que a PNP faria depois do envio, antecipada para o dia da extração. O Registro de Extração mostra o campo, quantas linhas caíram e alguns exemplos do valor recusado. A correção é sempre no **dado de origem**. Se o valor estiver certo e o cadastro local é que está velho, rode "Sincronizar com a PNP" e extraia de novo.
+
 ### P: O Registro de Extração trouxe uma "validação referencial" com violações, mas a extração passou. Está errado?
 
-Não. A conferência de referências — se o código de campus, o município, a área ou o CPF existem no cadastro da Rede — roda de fábrica em **modo sombra**: ela aponta a divergência nos detalhes do Registro de Extração, mas não reprova a extração nem impede o envio. É deliberado: a checagem é nova e o primeiro ciclo serve para comparar o que ela aponta com o que a PNP de fato reprova. Trate cada apontamento como um aviso a investigar na origem — se ele estiver certo, é exatamente o que a PNP rejeitaria depois do envio. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+Não. Nem toda referência é declarada como impeditiva: o contrato marca cada uma como `erro` (reprova) ou `aviso` (só registra). Um apontamento em amarelo é do segundo tipo — a extração seguiu e o envio está liberado. Ainda assim vale investigar na origem: se o apontamento estiver certo, é exatamente o que a PNP tende a rejeitar depois do envio. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 ### P: A PNP não recebeu os dados — onde olho primeiro?
 

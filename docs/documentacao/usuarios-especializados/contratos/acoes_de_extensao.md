@@ -322,7 +322,7 @@ Três consequências:
 
 > ℹ️ **O `cpf` continua conferido à parte, contra `pessoas`.** Não é redundante: a regra composta só olha as linhas que *têm* matrícula, e a de CPF cobre as demais. `recurso: pessoas` não corresponde a uma tabela — a PNP mantém dois cadastros —, e o Coletor o resolve pela união dos dois. É a resposta certa para o CPF sozinho.
 
-> ℹ️ **Padrão de fábrica é o modo sombra.** Um `subeixo_tecnologico: "99"` inexistente ainda passa, mas agora aparece apontado no Registro de Extração, em vez de só voltar como rejeição da PNP dias depois.
+> ℹ️ **Padrão de fábrica é o modo bloqueante.** Um `subeixo_tecnologico: "99"` inexistente reprova a extração na hora, com o campo e o valor no Registro de Extração, em vez de voltar como rejeição da PNP dias depois.
 
 ## Histórico de versões
 
