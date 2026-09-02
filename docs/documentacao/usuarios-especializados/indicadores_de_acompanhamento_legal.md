@@ -905,12 +905,12 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
 
 
 
-### Percentual de oferta de vagas em cursos de formação de professores (ALVFP)
+### Percentual de oferta de vagas em cursos de formação de professores (ALVPROF)
 
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Percentual de oferta de vagas em cursos de formação de professores (ALVFP)
+      Percentual de oferta de vagas em cursos de formação de professores (ALVPROF)
     </i></strong></th>
   </tr>
   <tr>
@@ -942,7 +942,7 @@ Os cursos de formação de professores incluídos neste indicador são aqueles c
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>ALVFP [%]</mi>
+            <mi>ALVPROF [%]</mi>
             <mo>=</mo>
             <mrow>
               <mo>(</mo>
