@@ -128,7 +128,7 @@ Pessoas diretamente vinculadas a um projeto de pesquisa (docentes, TAEs, estudan
 | `data_ingresso` | `date` | sim | — | Data de ingresso no projeto |
 | `data_saida` | `date` | não | — | Data de saída do projeto |
 | `situacao_envolvido` | `string` | sim | `enum: [Ativo, Inativo]` | Situação do envolvido |
-| `matricula` | `string` | não | — | Matrícula SIAPE (servidor) ou Sistec (aluno). Exigida para `docente`, `TAE` e `estudante`; proibida para `externo` (ver *Regras de qualidade*) |
+| `matricula` | `string` | não | `referencia_pnp: servidores/matriculas` (roteado por `categoria` — ver nota) | Matrícula SIAPE (servidor) ou Sistec (aluno). Exigida para `docente`, `TAE` e `estudante`; proibida para `externo` (ver *Regras de qualidade*) |
 
 ### Regras de qualidade
 
@@ -176,8 +176,17 @@ Além do schema, o modelo declara regras `quality` do tipo `sql`:
 | `estrutura` | `projetos_pesquisa` | `campi` | `codigo` | `erro` |
 | `area_tematica_cnpq` | `projetos_pesquisa` | `areas_tematicas_cnpq` | `codigo` | **`aviso`** |
 | `cpf` | `pessoas_envolvidas_projeto_pesquisa` | `pessoas` | `chave_simples` | `erro` |
+| `matricula` | `pessoas_envolvidas_projeto_pesquisa` | `servidores` **ou** `matriculas` | `chave_composta` | `erro` |
 
 O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gravar o Parquet, no **modo sombra** por padrão — a divergência é apontada no Registro de Extração, mas ainda não reprova. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial). `recurso: pessoas` não é uma tabela: a PNP mantém dois cadastros (`servidores` e `matriculas`), e o Coletor resolve `pessoas` pela união dos dois.
+
+### `matricula` é roteada por `categoria`
+
+`matricula` guarda coisas diferentes conforme o vínculo: SIAPE para servidor, Sistec para estudante. A regra é declarada em **lista**, e cada entrada leva o próprio filtro de categoria — `docente`/`TAE` conferem contra `servidores`, `estudante` contra `matriculas`. A conferência é do par `(cpf, matricula)`: conferir os dois campos em separado aceitaria o CPF de uma pessoa com a matrícula de outra.
+
+`externo` fica de fora por não estar em nenhuma das entradas, e está certo — quem é externo não tem matrícula na instituição. Matrícula vazia também não é violação: o campo é opcional, e quem cobra preenchimento é a regra `quality`.
+
+> ℹ️ **`externo` saiu do `categorias_validar` do `cpf`.** Ele estava listado, e como externo não consta de cadastro nenhum da instituição, a regra apontaria **todo participante externo** como CPF inexistente. Era o único dos três contratos de pessoas a incluí-lo.
 
 > ℹ️ **`area_tematica_cnpq` é o único `aviso` deste contrato — e a severidade do mesmo campo diverge entre contratos.** Aqui e em [Produção Intelectual]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/producao_intelectual) ele é `aviso`; em [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao), o mesmo `area_tematica_cnpq` apontando para o mesmo `recurso: areas_tematicas_cnpq` é `erro`. A divergência deixou de ser inócua: quando o modo `bloqueante` for ligado, o mesmo código de área reprovaria a extração de Ações de Extensão e passaria como aviso aqui. É uma decisão da PNP, no YAML — o Coletor honra o que cada contrato declara.
 
@@ -442,7 +451,7 @@ models:
           chave: cpf
           severidade: erro
           filtro_categoria_campo: categoria
-          categorias_validar: ["docente", "TAE", "externo", "estudante"]
+          categorias_validar: ["docente", "TAE", "estudante"]
 
       nome:
         type: string
@@ -490,6 +499,19 @@ models:
         title: "Matrícula"
         required: false
         description: "Número de matrícula SIAPE (servidor) ou Sistec (estudante), a depender do tipo de vínculo do registro."
+        referencia_pnp:
+          - recurso: servidores
+            tipo: chave_composta
+            chaves: [cpf, matricula]
+            filtro_categoria_campo: categoria
+            categorias_validar: ["docente", "TAE"]
+            severidade: erro
+          - recurso: matriculas
+            tipo: chave_composta
+            chaves: [cpf, matricula]
+            filtro_categoria_campo: categoria
+            categorias_validar: ["estudante"]
+            severidade: erro
     additionalFields: false
 ```
 

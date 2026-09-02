@@ -245,7 +245,7 @@ Pessoas formalmente envolvidas na execução de uma ação (docentes, TAEs, estu
 | `data_saida` | `date` | não | — | Data de saída da ação |
 | `situacao_envolvido` | `string` | sim | `enum: [Ativo, Inativo]` | Situação do envolvido |
 | `data_ultima_situacao` | `date` | sim | — | Data da última situação |
-| `matricula` | `string` | não | — | Matrícula SIAPE (servidor) ou Sistec (aluno). Exigida para `docente`, `TAE` e `estudante`; proibida para `externo` (ver *Regras de qualidade*) |
+| `matricula` | `string` | não | `referencia_pnp: servidores/matriculas` (roteado por `categoria` — ver nota) | Matrícula SIAPE (servidor) ou Sistec (aluno). Exigida para `docente`, `TAE` e `estudante`; proibida para `externo` (ver *Regras de qualidade*) |
 
 ### Regras de qualidade
 
@@ -294,10 +294,34 @@ Este é o contrato que mais usa a chave `referencia_pnp`, e ela aponta para quat
 | `area_tematica_cnpq` | `acoes_extensao` | `areas_tematicas_cnpq` | `codigo` | `aviso` |
 | `subeixo_tecnologico` | `acoes_extensao` | `subeixos_tecnologicos` | `codigo` | `erro` |
 | `cpf` | `pessoas_envolvidas_acoes_extensao` | `pessoas` | `chave_simples` | `erro` |
+| `matricula` | `pessoas_envolvidas_acoes_extensao` | `servidores` **ou** `matriculas` | `chave_composta` | `erro` |
 
 Todas declaram `severidade: erro`, menos `area_tematica_cnpq`, que é `aviso` — como também é em [Projetos de Pesquisa]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa) e em [Produção Intelectual]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/producao_intelectual). O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gravar o Parquet, antecipando a checagem que antes só acontecia depois do envio. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
-> ℹ️ **Duas ressalvas de leitura.** A primeira: o padrão de fábrica é o **modo sombra** — um `subeixo_tecnologico: "99"` inexistente ainda passa, mas agora aparece apontado no Registro de Extração, em vez de só voltar como rejeição da PNP dias depois. A segunda: `recurso: pessoas` não corresponde a uma tabela — a PNP mantém dois cadastros (`servidores` e `matriculas`), e o Coletor resolve `pessoas` pela união dos dois. É a conferência certa para o CPF sozinho; conferir a **matrícula** exige a forma com roteamento por categoria.
+### `matricula` é roteada por `categoria`
+
+`matricula` guarda coisas diferentes conforme o vínculo: SIAPE para servidor, Sistec para aluno. Conferir contra um cadastro só reprovaria metade das linhas corretas, então a regra é declarada em **lista**, e cada entrada leva o próprio filtro:
+
+```yaml
+matricula:
+  referencia_pnp:
+    - recurso: servidores
+      chaves: [cpf, matricula]
+      categorias_validar: ["docente", "TAE"]
+    - recurso: matriculas
+      chaves: [cpf, matricula]
+      categorias_validar: ["estudante"]
+```
+
+Três consequências:
+
+- **`externo` fica de fora** por não estar em nenhuma das entradas — e está certo: quem é externo não tem matrícula na instituição. A regra `quality` do contrato já proíbe matrícula para essa categoria.
+- **A conferência é do par `(cpf, matricula)`**, não dos dois campos soltos. Conferir cada um por si aceitaria o CPF de uma pessoa com a matrícula de outra, já que ambos existem — em pessoas diferentes.
+- **Matrícula vazia não é violação.** O campo é opcional aqui; quem cobra preenchimento é a regra `quality`, não esta camada.
+
+> ℹ️ **O `cpf` continua conferido à parte, contra `pessoas`.** Não é redundante: a regra composta só olha as linhas que *têm* matrícula, e a de CPF cobre as demais. `recurso: pessoas` não corresponde a uma tabela — a PNP mantém dois cadastros —, e o Coletor o resolve pela união dos dois. É a resposta certa para o CPF sozinho.
+
+> ℹ️ **Padrão de fábrica é o modo sombra.** Um `subeixo_tecnologico: "99"` inexistente ainda passa, mas agora aparece apontado no Registro de Extração, em vez de só voltar como rejeição da PNP dias depois.
 
 ## Histórico de versões
 
@@ -779,6 +803,19 @@ models:
         title: "Matrícula"
         required: false
         description: "Número de matrícula SIAPE (servidor) ou Sistec (aluno), a depender do tipo de vínculo do registro."
+        referencia_pnp:
+          - recurso: servidores
+            tipo: chave_composta
+            chaves: [cpf, matricula]
+            filtro_categoria_campo: categoria
+            categorias_validar: ["docente", "TAE"]
+            severidade: erro
+          - recurso: matriculas
+            tipo: chave_composta
+            chaves: [cpf, matricula]
+            filtro_categoria_campo: categoria
+            categorias_validar: ["estudante"]
+            severidade: erro
     additionalFields: false
 ```
 
