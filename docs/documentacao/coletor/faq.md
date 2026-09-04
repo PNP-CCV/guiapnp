@@ -13,13 +13,17 @@ Perguntas reais que aparecem com frequência durante a operação do Coletor. Ca
 
 O teste de qualidade roda **dentro** da extração, então um teste reprovado aparece como "Falha na Extração", não como um estado próprio — não há botão "Executar Teste". Abra o relatório em **Contratos → o contrato → resultados de teste** para identificar quais campos falharam (tipo, obrigatoriedade, domínio de valores). A partir daí, decida entre **corrigir os dados na fonte** (quando o contrato reflete a regra correta) ou **reportar à equipe da PNP** (quando a regra do YAML parece mais estrita do que o combinado). Detalhes em [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade).
 
-### P: A extração foi reprovada por "validação referencial". O que isso quer dizer?
+### P: O teste do contrato reprovou por "validação referencial". O que isso quer dizer?
 
-Que algum valor do dado aponta para uma entidade que **não existe no cadastro da Rede** — um código de campus, um município, uma área temática ou um CPF. O Coletor confere isso antes de gravar o arquivo, contra os cadastros que sincroniza da própria PNP, e de fábrica **reprova**: é a mesma conferência que a PNP faria depois do envio, antecipada para o dia da extração. O Registro de Extração mostra o campo, quantas linhas caíram e alguns exemplos do valor recusado. A correção é sempre no **dado de origem**. Se o valor estiver certo e o cadastro local é que está velho, rode "Sincronizar com a PNP" e extraia de novo.
+Que algum valor do dado aponta para uma entidade que **não existe no cadastro da Rede** — um código de campus, um município, uma área temática ou um CPF. O Coletor confere isso na extração, contra os cadastros que sincroniza da própria PNP: é a mesma conferência que a PNP faria depois do envio, antecipada para o dia da extração.
 
-### P: O Registro de Extração trouxe uma "validação referencial" com violações, mas a extração passou. Está errado?
+A extração conclui normalmente e o arquivo fica gravado; o que a reprovação bloqueia é o **envio**. Abra **Contratos → o contrato → Ver resultados de teste**: cada apontamento aparece como um card, com o campo, quantas linhas caíram e a tabela das linhas envolvidas — a linha inteira, não só o valor recusado, para dar para achar o registro na origem. A correção é sempre no **dado de origem**. Se o valor estiver certo e o cadastro local é que está velho, rode "Sincronizar com a PNP" e extraia de novo.
 
-Não. Nem toda referência é declarada como impeditiva: o contrato marca cada uma como `erro` (reprova) ou `aviso` (só registra). Um apontamento em amarelo é do segundo tipo — a extração seguiu e o envio está liberado. Ainda assim vale investigar na origem: se o apontamento estiver certo, é exatamente o que a PNP tende a rejeitar depois do envio. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+### P: A extração passou, mas o Registro de Extração trouxe uma "validação referencial" com violações. Está errado?
+
+Não, e há duas leituras possíveis. A primeira: a extração **sempre** conclui — quem reprova é o teste do contrato, então o apontamento no Registro de Extração não é sinal de falha da extração, e sim o mesmo achado visto por outra tela.
+
+A segunda: nem toda referência é declarada como impeditiva. O contrato marca cada uma como `erro` (reprova o teste e barra o envio) ou `aviso` (só registra). Um apontamento em amarelo é do segundo tipo — não reprovou nada. Ainda assim vale investigar na origem: se o apontamento estiver certo, é exatamente o que a PNP tende a rejeitar depois do envio. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 ### P: A PNP não recebeu os dados — onde olho primeiro?
 

@@ -109,7 +109,7 @@ Além do schema (colunas obrigatórias, tipos e rejeição de colunas extras via
 | `area_tematica_cnpq` | `producao_intelectual` | `areas_tematicas_cnpq` | `codigo` | **`aviso`** |
 | `matricula` (`docente`, `TAE`) | `producao_intelectual` | `servidores` | `chave_composta: [cpf, matricula]` | `erro` |
 
-O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gravar o Parquet, no **modo bloqueante** por padrão — uma referência que não existe no espelho reprova a extração, com o campo e o valor no Registro de Extração. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial). Para a autoria, a validação confere o par `[cpf, matricula]` no cadastro de `servidores`, evitando aceitar o CPF de uma pessoa combinado com a matrícula de outra.
+O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gravar o Parquet, no **modo bloqueante** por padrão — uma referência que não existe no cadastro reprova o **teste do contrato** e barra o envio, aparecendo em **Ver resultados de teste** com o campo e as linhas envolvidas. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial). Para a autoria, a validação confere o par `[cpf, matricula]` no cadastro de `servidores`, evitando aceitar o CPF de uma pessoa combinado com a matrícula de outra.
 
 ### `matricula` confere só contra `servidores`
 

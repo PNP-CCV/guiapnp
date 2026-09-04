@@ -18,16 +18,20 @@ Quem cobra é a PNP, na validação que roda **depois** do envio. O problema nun
 
 ## Onde ela entra
 
-A conferência roda **por modelo**, depois de consolidar todas as Configurações de Extração daquele modelo e **antes de gravar o Parquet** — mesmo ponto da validação de schema, pela mesma razão: reprovar antes de escrever evita deixar em disco um arquivo que a PNP rejeitaria dias depois.
+A conferência roda **por modelo**, depois de consolidar todas as Configurações de Extração daquele modelo e antes de gravar o Parquet — é aí que os dados ainda estão na memória e os cadastros sincronizados da PNP estão ao alcance.
 
 | # | Etapa | Onde |
 |---|---|---|
 | 1 | Schema — colunas e tipos | Coletor, na extração |
-| **1.5** | **Referencial — o valor existe no cadastro?** | **Coletor, na extração** |
+| **1.5** | **Referencial — o valor existe no cadastro?** | **Coletor, na extração** (confere e anota; quem julga é a etapa 3) |
 | 2 | Grava o Parquet | Coletor |
-| 3 | Teste do contrato (`quality`) | Coletor, ao fim da extração |
+| 3 | Teste do contrato — regras `quality` **e as referências anotadas na etapa 1.5** | Coletor, ao fim da extração |
 | 4 | Envio à PNP | Coletor |
 | 5 | Validação referencial oficial | PNP, depois do envio |
+
+**Quem reprova é o teste do contrato.** A extração conclui e grava o Parquet; o apontamento fica anotado no Registro de Extração e é lido de volta pelo teste do contrato, que o soma às regras `quality` num resultado só. É o mesmo trato que já vale para qualquer falha de qualidade: o dado fica em disco, o contrato fica reprovado, e o envio à PNP não acontece.
+
+> 💡 **Por que não reprova a extração.** Reprovando ali, o modelo ficava sem Parquet, o teste do contrato nem chegava a rodar, e o operador descobria **um problema por extração**: corrigia um campo, reextraía, encontrava o próximo. Agora todos os modelos extraem e a tela **Ver resultados de teste** mostra de uma vez tudo o que precisa ser corrigido — referências e regras de qualidade lado a lado.
 
 ## Os três modos
 
@@ -35,13 +39,13 @@ O comportamento é decidido pela variável de ambiente `VALIDACAO_REFERENCIAL_MO
 
 | Modo | O que faz | Quando usar |
 |---|---|---|
-| **`bloqueante`** (padrão) | Uma violação de `severidade: erro` reprova a extração do modelo; `severidade: aviso` continua só registrando. | O comportamento normal. |
-| **`sombra`** | Confere tudo e registra o resultado no Registro de Extração, mas **nunca reprova** — mesmo o que está declarado como `severidade: erro`. | Diagnóstico: ver o que uma regra apontaria sem travar a coleta de ninguém. |
+| **`bloqueante`** (padrão) | Uma violação de `severidade: erro` reprova o **teste do contrato** e barra o envio (a extração conclui); `severidade: aviso` entra como alerta e não reprova. | O comportamento normal. |
+| **`sombra`** | Confere tudo e registra o resultado no Registro de Extração, mas **nunca reprova** — mesmo o que está declarado como `severidade: erro`. | Diagnóstico: ver o que uma regra apontaria sem travar o envio de ninguém. |
 | **`desligada`** | Não confere nada. | Último recurso, quando nem o registro do apontamento é desejado. |
 
 > 💡 **Quem regula a rigidez é o contrato, não esta variável.** O ajuste fino é a `severidade` declarada **campo a campo** no contrato: `erro` reprova, `aviso` só registra. Quem controla isso é a CCV, e a mudança chega aos institutos pela sincronização de contratos — sem release, sem tocar em nenhuma instalação. É esse o botão a usar quando uma regra se mostra rígida demais.
 >
-> Os três modos são uma alavanca de emergência da própria CCV, para o caso de um cadastro desatualizado reprovar extração legítima em toda a Rede. Não são configuração de instalação: quem roda o Coletor não tem `.env` nem acesso ao `docker compose`, então o padrão do código é literalmente o que roda em todo mundo — e um padrão que não reprova nada equivale a não ter a validação.
+> Os três modos são uma alavanca de emergência da própria CCV, para o caso de um cadastro desatualizado reprovar dado legítimo em toda a Rede. Não são configuração de instalação: quem roda o Coletor não tem `.env` nem acesso ao `docker compose`, então o padrão do código é literalmente o que roda em todo mundo — e um padrão que não reprova nada equivale a não ter a validação.
 
 ## O que ela consegue conferir
 
@@ -160,7 +164,9 @@ Valor **ausente** também não é violação referencial: quem cobra preenchimen
 
 ## O que o operador vê
 
-A conferência aparece em **duas telas**, sempre que a última extração do modelo apontou alguma coisa:
+A conferência aparece em **três telas**. A principal é **Contratos → Ver resultados de teste**, onde cada apontamento é um card de falha como os das regras de qualidade, com a mesma tabela "ver as linhas que violaram a regra" — é essa tela que reúne, num lugar só, tudo o que precisa ser corrigido no contrato inteiro.
+
+As outras duas mostram o apontamento **daquele modelo**, sempre que a última extração dele apontou alguma coisa:
 
 - **Modelos → o modelo**, junto do erro de extração e da rejeição da PNP;
 - **Extrações → o registro**, que é onde se investiga uma extração específica.
@@ -182,23 +188,35 @@ O dado bruto continua nos detalhes do **[Registro de Extração]({{ site.baseurl
       "severidade": "erro",
       "efeito": "reprova",
       "total": 20,
-      "amostras": ["26419.4300604.01.001"]
+      "amostras": ["26419.4300604.01.001"],
+      "linhas": [
+        {"id_acao_extensao": 42, "titulo_acao": "Curso de Verão", "estrutura": "26419.4300604.01.001", "...": "..."}
+      ]
     }
   ]
 }
 ```
 
+`amostras` traz a chave **normalizada** (é a forma comparada com o cadastro); `linhas` traz a **linha inteira** como veio da origem, com a coluna conferida à frente das demais. É `linhas` que a tela de resultados do teste mostra: um CPF sozinho não diz de qual ação nem de que pessoa se trata, e procurar isso na planilha é trabalho manual que a tela pode poupar.
+
+As duas listas têm tetos diferentes: **500** chaves e **100** linhas inteiras por violação. Cada linha carrega dezenas de colunas e é guardada duas vezes (no Registro de Extração e no resultado do teste); cem linhas já mostram o padrão do erro, e a lista de chaves continua completa ao lado.
+
 `severidade` é o que o contrato **declarou**; `efeito` é o que de fato aconteceu nesta execução. Os dois divergem no modo sombra, que rebaixa todo `erro` a `aviso` sem apagar a severidade declarada — é assim que se lê "isto teria reprovado".
 
-No modo bloqueante, o motivo do erro do Registro de Extração replica o formato da mensagem da PNP, para o operador reconhecer o mesmo texto dos dois lados:
+Nos registros técnicos do Coletor, a linha anotada replica o formato da mensagem da PNP, para o operador reconhecer o mesmo texto dos dois lados:
 
 ```text
-Extração rejeitada para o modelo acoes_extensao. Validação referencial
-reprovada — (campi, campo 'estrutura'): 20 com codigo inexistente em
-'campi': '26419.4300604.01.001'
+Validação referencial reprovada no modelo acoes_extensao — (campi, campo
+'estrutura'): 20 com codigo inexistente em 'campi': '26419.4300604.01.001'
 ```
 
-Só as **cinco primeiras** amostras entram na mensagem: o suficiente para reconhecer o padrão do erro sem transformar o motivo da falha num despejo de dados pessoais.
+Só as **cinco primeiras** amostras entram nessa linha. A lista **completa** (até 500 por violação) fica anotada no Registro de Extração e é exibida inteira no painel — com cinco valores não dá para corrigir a origem.
+
+### O apontamento na tela de resultados do teste
+
+Cada violação anotada é reapresentada no mesmo formato dos demais checks do contrato — os de `enum`, de obrigatoriedade, das regras `quality`. É por isso que ela aparece na tela **Ver resultados de teste** sem nada de especial: mesmo card, mesma tabela de linhas violadoras, mesmo lugar. O que muda é o rótulo, que nomeia o cadastro cobrado ("Referência ao cadastro da Rede: 'estrutura' precisa existir em 'campi'").
+
+Uma referência de `severidade: erro` sai como **falha** e derruba o contrato; uma de `severidade: aviso` sai como **alerta**: aparece na lista de verificações sem reprovar nada.
 
 ## Por que não é uma regra `quality`
 
@@ -207,7 +225,7 @@ Seria natural escrever isso como um check do próprio contrato. Não dá, por do
 1. **O motor de teste roda em modo restrito**, sem acesso a nada fora dos Parquets do contrato — e afrouxar isso para alcançar o banco desligaria a proteção em silêncio, sem erro e sem aviso. É caro demais para pagar por uma conferência.
 2. **Os cadastros não estão em Parquet.** Eles vivem no banco do Coletor, não no diretório de extrações que o motor lê.
 
-Por isso a conferência é um passo próprio, em Python, fora do motor de teste do contrato.
+Por isso a conferência é um passo próprio, fora do motor de teste do contrato. O que ela compartilha com as regras `quality` é **onde o resultado aparece** — a tela de resultados do teste, e o poder de barrar o envio —, não quem o calcula.
 
 ## Veja também
 
