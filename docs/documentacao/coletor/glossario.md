@@ -113,7 +113,7 @@ Ato de enviar um arquivo [Parquet](#parquet) já validado para a [PNP](#pnp). Ca
 
 Conferência de que os valores que apontam para entidades da Rede — código de campus, município, área temática do CNPq, CPF — existem de fato no cadastro da [PNP](#pnp). Roda **dos dois lados**: a PNP a executa depois do envio, e é a dela que vale; o Coletor a antecipa na extração, contra os cadastros que ele sincroniza da PNP, antes de gravar o [Parquet](#parquet).
 
-De fábrica a conferência local roda em **modo sombra**: registra a divergência no [Registro de Extração](#registro-de-extracao) sem reprovar a extração. É o que permite ver, no dia da extração, o erro que antes só voltava como rejeição da PNP dias depois. Veja [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+De fábrica a conferência local **reprova**: uma referência declarada no contrato como `severidade: erro` derruba o teste do contrato e barra o envio, aparecendo em **Ver resultados de teste** com o campo e as linhas envolvidas. A extração em si conclui — o que muda é o veredito do contrato. É o que permite ver, no dia da extração, o erro que antes só voltava como rejeição da PNP dias depois. Referências declaradas como `severidade: aviso` viram alerta e não reprovam. Veja [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 ## SodaCL {#sodacl}
 
