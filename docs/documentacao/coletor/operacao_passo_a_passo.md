@@ -51,7 +51,7 @@ Duas dicas evitam as falhas mais comuns com planilhas:
   ✅ https://docs.google.com/spreadsheets/d/<ID>/export?format=xlsx
   ```
 
-- **Planilha de exemplo:** `GET /base/planilha_exemplo/` baixa um XLSX com uma aba por modelo cadastrado — slug da aba, colunas do schema e dados fictícios (`?linhas=N` controla o volume). É o jeito mais rápido de montar uma planilha que casa com os contratos importados.
+- **Planilha de exemplo:** Para a versão atual dos contratos, é possível usar uma planilha de exemplo, disponível [aqui]({{ site.baseurl }}/assets/files/template_fornecimento_dados.xlsx). Além disso, ao adicionar um provedor do tipo de dados planilha, o coletor fornece um modelo de exemplo.
 
 ## Passo 3 — Configurar a extração
 
