@@ -99,7 +99,7 @@ def upload_to_gcs(bucket_name, source_file, destination_blob, credentials_path):
 
 if __name__ == "__main__":
     #sitemap_url = "https://referencialpnp.dsbr.org/sitemap.xml"
-    base_site = "https://pnp-ccv.github.io/guiapnp/"
+    base_site = "http://127.0.0.1:4000/guiapnp/"
     #urls = get_urls_from_sitemap(sitemap_url)
     urls = get_urls_from_navbar(base_site)
     
@@ -119,7 +119,7 @@ if __name__ == "__main__":
     
     # Merge all PDFs
     if pdf_files:
-        output_file = "/app/output/guiapnp.pdf"
+        output_file = "./guiapnp.pdf"
         print(f"Merging {len(pdf_files)} PDFs into {output_file}")
         merge_pdfs(pdf_files, output_file)
         print(f"Successfully created {output_file}")
