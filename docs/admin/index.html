@@ -1,11 +1,20 @@
+---
+# Sem layout: a pagina e a aplicacao do CMS, nao uma pagina do guia.
+# sitemap: false mantem /admin/ fora do sitemap.xml gerado pelo jekyll-sitemap.
+sitemap: false
+---
 <!doctype html>
-<html>
+<html lang="pt-br">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
     <title>Guia PNP - CMS</title>
   </head>
   <body>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <!-- Versao fixada de proposito: em `^3.0.0` o editor mudaria sozinho a cada
+         release, sem revisao. Para atualizar, troque aqui e reteste o round-trip
+         do markdown descrito no README. -->
+    <script src="https://unpkg.com/decap-cms@3.16.2/dist/decap-cms.js"></script>
   </body>
 </html>

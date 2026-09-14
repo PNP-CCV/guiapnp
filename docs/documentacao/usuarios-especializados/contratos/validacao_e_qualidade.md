@@ -10,19 +10,19 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-Esta página descreve as camadas de validação que rodam sobre os dados de um **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** no Coletor — schema e referências (durante a extração) e qualidade (testes do contrato) — e como ler o relatório de testes.
+Esta página descreve as camadas de validação que rodam sobre os dados de um **[Contrato de Dados]({{site.baseurl}}/documentacao/coletor/glossario#contrato-de-dados)** no Coletor — schema e referências (durante a extração) e qualidade (testes do contrato) — e como ler o relatório de testes.
 
 ## As camadas de validação
 
 | Camada | Quando roda | O que valida |
 |---|---|---|
-| **Schema (extração)** | Assim que a fonte devolve os dados, antes de gravar o **[Parquet]({{ site.baseurl }}/documentacao/coletor/glossario#parquet)** | Colunas obrigatórias presentes; tipos básicos (string, integer, double, boolean, date, array); **rejeita colunas extras** sempre |
-| **Referencial (extração)** | Depois de consolidar os dados do modelo, antes de gravar o Parquet | Se os códigos de campus, município, área e subeixo — e os CPFs — existem nos cadastros da Rede sincronizados localmente. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial) |
-| **Qualidade (teste do contrato)** | Automaticamente, ao fim de uma extração bem-sucedida | Regras **[SodaCL]({{ site.baseurl }}/documentacao/coletor/glossario#sodacl)** declaradas no bloco `quality:` do YAML |
+| **Schema (extração)** | Assim que a fonte devolve os dados, antes de gravar o **[Parquet]({{site.baseurl}}/documentacao/coletor/glossario#parquet)** | Colunas obrigatórias presentes; tipos básicos (string, integer, double, boolean, date, array); **rejeita colunas extras** sempre |
+| **Referencial (extração)** | Depois de consolidar os dados do modelo, antes de gravar o Parquet | Se os códigos de campus, município, área e subeixo — e os CPFs — existem nos cadastros da Rede sincronizados localmente. Ver [Validação referencial]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_referencial) |
+| **Qualidade (teste do contrato)** | Automaticamente, ao fim de uma extração bem-sucedida | Regras **[SodaCL]({{site.baseurl}}/documentacao/coletor/glossario#sodacl)** declaradas no bloco `quality:` do YAML |
 
-A primeira camada é **bloqueante**: se a extração rejeitar, nenhum Parquet é gravado e o **[Registro de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#registro-de-extracao)** entra com status de falha.
+A primeira camada é **bloqueante**: se a extração rejeitar, nenhum Parquet é gravado e o **[Registro de Extração]({{site.baseurl}}/documentacao/coletor/glossario#registro-de-extracao)** entra com status de falha.
 
-A camada referencial confere e **anota**, sem derrubar a extração: o apontamento é somado às regras de qualidade no teste do contrato, e é lá que uma referência declarada como `severidade: erro` reprova e barra o envio (`severidade: aviso` vira alerta e não reprova). O ganho de juntar as duas coisas num resultado só é o operador ver de uma vez tudo o que precisa corrigir, em vez de descobrir um problema por extração. Quem regula a rigidez é o próprio contrato, campo a campo — a variável de ambiente que muda o modo é alavanca de emergência da CCV. Os três modos e a gramática `referencia_pnp` estão em [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+A camada referencial confere e **anota**, sem derrubar a extração: o apontamento é somado às regras de qualidade no teste do contrato, e é lá que uma referência declarada como `severidade: erro` reprova e barra o envio (`severidade: aviso` vira alerta e não reprova). O ganho de juntar as duas coisas num resultado só é o operador ver de uma vez tudo o que precisa corrigir, em vez de descobrir um problema por extração. Quem regula a rigidez é o próprio contrato, campo a campo — a variável de ambiente que muda o modo é alavanca de emergência da CCV. Os três modos e a gramática `referencia_pnp` estão em [Validação referencial]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 A segunda **não é disparada pelo operador** — não existe botão "Executar Testes" no painel. Ela roda sozinha ao final da extração, e só quando *todos* os modelos cobrados do contrato foram extraídos com sucesso (não faz sentido testar um contrato incompleto). Modelos **opcionais** sem Configuração de Extração não entram nessa conta: a extração em lote os pula de propósito, porque tentar extrair um modelo sem provedor derrubaria a tarefa inteira e o teste de qualidade nem chegaria a rodar. Como consequência, um teste de qualidade reprovado aparece no fluxo como **"Falha na Extração"**, e não como um estado próprio.
 
@@ -86,12 +86,12 @@ O status do contrato é calculado em tempo real, avaliando as condições nesta 
 9. Aprovado pelo Reitor → "Sincronizado com Sucesso" — terminal.
 10. Caso contrário → "Pronto para Sincronizar".
 
-> ℹ️ **"Modelo que conta no fluxo" a partir do passo 4.** Um modelo **opcional** (`meta.required: false`) só entra nas condições 4 em diante depois de ganhar uma Configuração de Extração; enquanto não ganha, é como se não estivesse ali para efeito de status. Modelo **desabilitado** (`meta.disabled: true`) sequer é importado. Ver [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta).
+> ℹ️ **"Modelo que conta no fluxo" a partir do passo 4.** Um modelo **opcional** (`meta.required: false`) só entra nas condições 4 em diante depois de ganhar uma Configuração de Extração; enquanto não ganha, é como se não estivesse ali para efeito de status. Modelo **desabilitado** (`meta.disabled: true`) sequer é importado. Ver [Bloco `meta`]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta).
 
-A máquina de estados tem hoje **12 códigos de status e 13 rótulos** — dois rótulos compartilham o mesmo código ("Sem Modelos" e "Modelos Não Configurados"), e "Reextração Necessária" cobre dois sub-casos. A tabela completa de estados e transições está em [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato).
+A máquina de estados tem hoje **12 códigos de status e 13 rótulos** — dois rótulos compartilham o mesmo código ("Sem Modelos" e "Modelos Não Configurados"), e "Reextração Necessária" cobre dois sub-casos. A tabela completa de estados e transições está em [Status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato).
 
 ## Veja também
 
-- [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato)
-- [Anatomia do YAML do Contrato]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml)
-- [Quando algo falha]({{ site.baseurl }}/documentacao/coletor/quando_algo_falha) — o roteiro de diagnóstico do operador
+- [Status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato)
+- [Anatomia do YAML do Contrato]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/anatomia_yaml)
+- [Quando algo falha]({{site.baseurl}}/documentacao/coletor/quando_algo_falha) — o roteiro de diagnóstico do operador

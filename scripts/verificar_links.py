@@ -47,7 +47,28 @@ CONFIG = DOCS / "_config.yml"
 # Links markdown com caminho absoluto cru: ](/algo  -- sem o {{ site.baseurl }}.
 RE_MD_CRU = re.compile(r"\]\((/(?!/)[^)]*)\)")
 # Prefixo do baseurl escrito a mao, em qualquer arquivo versionado.
-RE_HARDCODE = re.compile(r'["\'(](/guiapnp/)')
+# Captura o caminho inteiro (e nao so o prefixo) para que a excecao dos uploads
+# do CMS abaixo consiga distinguir um caso do outro.
+RE_HARDCODE = re.compile(r'["\'(](/guiapnp/[^"\')\s]*)')
+
+# O Liquid aceita "{{ site.baseurl }}" e "{{site.baseurl}}" como a mesma coisa,
+# mas o Decap CMS nao: o espaco viola o CommonMark, entao o parser do editor nem
+# reconhece "[texto]({{ site.baseurl }}/x)" como link — devolve o trecho escapado,
+# como texto literal, e o link some da pagina. Medido em contratos/conceito.md:
+# 24 de 24 links destruidos com espaco, 0 sem espaco. Por isso a forma sem espaco
+# e obrigatoria no conteudo editavel pelo CMS (docs/documentacao/**.md); em
+# template a forma com espaco segue valendo, que la o CMS nao entra.
+RE_LIQUID_BASEURL = re.compile(r"\{\{\s*site\.baseurl\s*\}\}")
+LIQUID_BASEURL_OK = "{{site.baseurl}}"
+CONTEUDO_DO_CMS = "documentacao"
+
+# Unica excecao as duas regras acima. O Decap CMS grava o caminho da imagem a
+# partir do `public_folder` de docs/admin/config.yml, que e um valor literal: o
+# CMS nao interpola Liquid ali, entao nao ha como pedir "{{ site.baseurl }}" a
+# ele. A excecao e deliberadamente estreita — so esta pasta — e o custo esta
+# coberto: a camada --site confere que o arquivo existe de fato no site gerado,
+# e um dia em que o baseurl mude, este e o unico lugar a corrigir na mao.
+PREFIXO_UPLOADS_CMS = "/assets/img/uploads/"
 
 RE_HREF = re.compile(r'href="([^"]*)"')
 RE_SRC = re.compile(r'src="([^"]*)"')
@@ -74,6 +95,16 @@ def ler_baseurl() -> str:
     return ""
 
 
+def e_editavel_no_cms(caminho: Path) -> bool:
+    """Diz se o arquivo e conteudo que o Decap CMS abre (ver RE_LIQUID_BASEURL)."""
+    return caminho.suffix == ".md" and CONTEUDO_DO_CMS in caminho.parts
+
+
+def e_upload_do_cms(destino: str, baseurl: str) -> bool:
+    """Diz se o caminho é uma imagem enviada pelo Decap CMS (ver PREFIXO_UPLOADS_CMS)."""
+    return bool(baseurl) and destino.startswith(baseurl + PREFIXO_UPLOADS_CMS)
+
+
 def arquivos_de_fonte():
     for caminho in DOCS.rglob("*"):
         if not caminho.is_file() or caminho.suffix not in FONTES:
@@ -92,6 +123,8 @@ def checar_fonte(baseurl: str) -> list[str]:
             for destino in RE_MD_CRU.findall(linha):
                 # Caminho ja prefixado pelo Liquid nao cai aqui: o texto antes
                 # do "/" seria "{{ site.baseurl }}", nao "](" .
+                if e_upload_do_cms(destino, baseurl):
+                    continue
                 if destino.startswith(baseurl + "/") and baseurl:
                     problemas.append(
                         f"{rel}:{n}: prefixo '{baseurl}' escrito à mão em '{destino}' "
@@ -103,13 +136,22 @@ def checar_fonte(baseurl: str) -> list[str]:
                         f"— use ]({{{{ site.baseurl }}}}{destino})"
                     )
             if baseurl:
-                for _ in RE_HARDCODE.findall(linha):
+                for destino in RE_HARDCODE.findall(linha):
                     if "site.baseurl" in linha or "relative_url" in linha:
                         continue
+                    if e_upload_do_cms(destino, baseurl):
+                        continue
                     problemas.append(
-                        f"{rel}:{n}: prefixo '{baseurl}' escrito à mão "
-                        f"— use o filtro relative_url ou {{{{ site.baseurl }}}}"
+                        f"{rel}:{n}: prefixo '{baseurl}' escrito à mão em '{destino}' "
+                        f"— use o filtro relative_url ou {LIQUID_BASEURL_OK}"
                     )
+            if e_editavel_no_cms(caminho):
+                for trecho in RE_LIQUID_BASEURL.findall(linha):
+                    if trecho != LIQUID_BASEURL_OK:
+                        problemas.append(
+                            f"{rel}:{n}: '{trecho}' tem espaço e o Decap CMS "
+                            f"apaga o link ao salvar — escreva {LIQUID_BASEURL_OK}"
+                        )
     return problemas
 
 

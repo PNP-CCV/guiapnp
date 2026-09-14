@@ -25,7 +25,7 @@ O Coletor registra tudo. Cinco telas respondem a praticamente qualquer "por que 
 | **Tarefas Agendadas** | O que roda sozinho e quando |
 | **Ver resultados de teste** (no contrato) | Qual regra do contrato reprovou |
 
-![Histórico de extrações](/guiapnp/assets/img/docs/coletor/25-extracoes-historico.png)
+![Histórico de extrações]({{site.baseurl}}/assets/img/docs/coletor/25-extracoes-historico.png)
 
 Para extrações grandes, espere alguns minutos antes de concluir que algo travou — a execução é assíncrona e a tela se atualiza sozinha.
 
@@ -47,17 +47,17 @@ Colunas a mais também reprovam. A causa é quase sempre uma destas três: **aba
 
 O bloco **Detalhes** do Registro de Extração mostra exatamente de onde o sistema tentou ler (aba, URL, query) — é por ali que se descobre o erro em segundos:
 
-![Registro de extração com falha por colunas ausentes](/guiapnp/assets/img/docs/coletor/15-registro-extracao-falha.png)
+![Registro de extração com falha por colunas ausentes]({{site.baseurl}}/assets/img/docs/coletor/15-registro-extracao-falha.png)
 
 O ciclo de correção é sempre o mesmo — corrigir, testar, re-extrair:
 
 1. Corrija a configuração e rode "Testar extração" até ver as colunas certas.
 
-   ![Teste OK após correção](/guiapnp/assets/img/docs/coletor/17-config-corrigida-teste-ok.png)
+   ![Teste OK após correção]({{site.baseurl}}/assets/img/docs/coletor/17-config-corrigida-teste-ok.png)
 
 2. O contrato muda para **"Reextração Necessária"** — o sistema detecta que a configuração mudou depois da última extração. Dispare a nova extração; nenhuma etapa anterior é perdida.
 
-   ![Contrato pedindo reextração](/guiapnp/assets/img/docs/coletor/18-contrato-reextracao-necessaria.png)
+   ![Contrato pedindo reextração]({{site.baseurl}}/assets/img/docs/coletor/18-contrato-reextracao-necessaria.png)
 
 ## Falha na extração: modelo sem configuração
 
@@ -65,7 +65,7 @@ O ciclo de correção é sempre o mesmo — corrigir, testar, re-extrair:
 Nenhum dataset foi gerado para o modelo <slug do modelo>
 ```
 
-Esse erro significa que o modelo não tem nenhuma **Configuração de Extração** — o Coletor foi buscar o dado e não sabia de onde. Acontece quando alguém dispara o "Extrair Dados" **do modelo** (o botão individual não faz essa checagem) num modelo que ainda não foi configurado, tipicamente um [modelo opcional]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-opcional). A extração em lote, do contrato ou do dashboard, pula esses modelos de propósito.
+Esse erro significa que o modelo não tem nenhuma **Configuração de Extração** — o Coletor foi buscar o dado e não sabia de onde. Acontece quando alguém dispara o "Extrair Dados" **do modelo** (o botão individual não faz essa checagem) num modelo que ainda não foi configurado, tipicamente um [modelo opcional]({{site.baseurl}}/documentacao/coletor/glossario#modelo-opcional). A extração em lote, do contrato ou do dashboard, pula esses modelos de propósito.
 
 A correção é criar a Configuração de Extração — ou simplesmente não disparar a extração daquele modelo, se a instituição não vai coletá-lo. O registro de falha fica no histórico, mas não muda o status do contrato quando o modelo é opcional e não configurado.
 
@@ -85,7 +85,7 @@ Os testes do contrato rodam **dentro** da extração, então uma reprovação ta
 
 Passar no contrato não garante passar na PNP: ela ainda roda a **validação referencial** — campus, área temática e município citados precisam existir no cadastro da Rede.
 
-![Dashboard com validação rejeitada](/guiapnp/assets/img/docs/coletor/19-dashboard-validacao-rejeitada.png)
+![Dashboard com validação rejeitada]({{site.baseurl}}/assets/img/docs/coletor/19-dashboard-validacao-rejeitada.png)
 
 ```text
 Validação referencial PNP reprovada — (campi, campo 'estrutura'):
@@ -94,7 +94,7 @@ Validação referencial PNP reprovada — (campi, campo 'estrutura'):
 
 Caso real da coleta 2026: duas abas da planilha haviam sido copiadas do arquivo de outro Instituto, e ninguém trocou o código do campus. O contrato aceitou (o campo é `string` válida), a PNP não. A correção é sempre no **dado de origem** — corrigido lá, o conteúdo muda, e o reenvio segue o fluxo normal.
 
-> 💡 **O Coletor agora aponta isso antes do envio.** A mesma conferência passou a rodar **na extração**, contra os cadastros que o Coletor sincroniza da PNP. Um campus que não existe no cadastro aparece em **Ver resultados de teste**, junto das demais regras do contrato, e **barra o envio** — dá para ver o campus errado no dia da extração, em vez de esperar a fila de validação. A extração em si conclui e o Parquet fica em disco, como em qualquer reprovação de qualidade. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+> 💡 **O Coletor agora aponta isso antes do envio.** A mesma conferência passou a rodar **na extração**, contra os cadastros que o Coletor sincroniza da PNP. Um campus que não existe no cadastro aparece em **Ver resultados de teste**, junto das demais regras do contrato, e **barra o envio** — dá para ver o campus errado no dia da extração, em vez de esperar a fila de validação. A extração em si conclui e o Parquet fica em disco, como em qualquer reprovação de qualidade. Ver [Validação referencial]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 > ⚠️ **Reenviar dado idêntico não reseta a validação.** A PNP identifica cada dataset pelo **conteúdo** (checksum). Reextrair e reenviar um dado que não mudou faz a PNP devolver o **mesmo dataset, com o status antigo** — inclusive uma rejeição anterior. O sintoma é "reenviei e continua rejeitado". Para mudar o estado na PNP, o dado precisa mudar de verdade.
 
@@ -108,7 +108,7 @@ Acontece: a área homologa, e só depois se descobre que o dado estava errado. E
 
 Corrija na origem e **re-extraia**. Uma reextração bem-sucedida torna obsoleta a validação anterior daquele modelo, seja ela "Aguardando", "Validado" ou "Homologado pela Área", e o botão de envio volta a aparecer. O modelo retoma o fluxo a partir de "Pronto para Sincronizar", e o novo envio recomeça a cadeia de validação na PNP.
 
-A única exceção é o modelo **aprovado pelo Reitor**: aí a reextração continua bloqueada, porque substituir dado oficialmente aceito exige um novo [Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta).
+A única exceção é o modelo **aprovado pelo Reitor**: aí a reextração continua bloqueada, porque substituir dado oficialmente aceito exige um novo [Ciclo de Coleta]({{site.baseurl}}/documentacao/coletor/ciclo_de_coleta).
 
 > ℹ️ **O dado precisa mudar de fato.** Vale aqui a mesma regra do bloco acima: a PNP identifica cada dataset pelo conteúdo. Re-extrair sem que o dado tenha mudado devolve o mesmo dataset com o status que ele já tinha — o botão volta, mas o reenvio não muda nada do outro lado.
 
@@ -118,7 +118,7 @@ O executável `coletor` verifica o ambiente antes de agir e reporta mensagens cl
 
 | Mensagem | O que fazer |
 |---|---|
-| `Docker não encontrado` | Instalar o Docker — ver [Instalação]({{ site.baseurl }}/documentacao/coletor/instalacao#instalar-o-docker) |
+| `Docker não encontrado` | Instalar o Docker — ver [Instalação]({{site.baseurl}}/documentacao/coletor/instalacao#instalar-o-docker) |
 | `Docker daemon não está rodando` | Linux: `sudo systemctl start docker`. Windows/macOS: abrir o Docker Desktop |
 | `permission denied` ao falar com o Docker | Adicionar o usuário ao grupo `docker` e reabrir a sessão. **Não** contornar com `sudo` |
 | `plugin docker compose ausente` | Linux: reinstalar pelo script oficial. Windows/macOS: atualizar o Docker Desktop |
@@ -130,10 +130,10 @@ Para problemas dentro da stack, `coletor status` mostra a saúde de cada serviç
 
 ## Quando o problema não é técnico
 
-Coleta parada em "Aguardando Homologação da Área" ou "Aguardando Aprovação do Reitor" não tem solução no sistema: são decisões humanas pendentes **na PNP**. O caminho é falar com o gestor da área ou com a reitoria — antes disso, confira se quem vai decidir está com o **papel ativo** correto na PNP (ver [Operação passo a passo]({{ site.baseurl }}/documentacao/coletor/operacao_passo_a_passo#passos-7-e-8)).
+Coleta parada em "Aguardando Homologação da Área" ou "Aguardando Aprovação do Reitor" não tem solução no sistema: são decisões humanas pendentes **na PNP**. O caminho é falar com o gestor da área ou com a reitoria — antes disso, confira se quem vai decidir está com o **papel ativo** correto na PNP (ver [Operação passo a passo]({{site.baseurl}}/documentacao/coletor/operacao_passo_a_passo#passos-7-e-8)).
 
 ## Veja também
 
-- [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) — todos os estados e suas transições
-- [Perguntas frequentes]({{ site.baseurl }}/documentacao/coletor/faq) — casos típicos e como diagnosticá-los
-- [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade) — as regras que os testes aplicam
+- [Status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato) — todos os estados e suas transições
+- [Perguntas frequentes]({{site.baseurl}}/documentacao/coletor/faq) — casos típicos e como diagnosticá-los
+- [Validação e qualidade]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade) — as regras que os testes aplicam

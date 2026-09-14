@@ -17,7 +17,7 @@ O conteúdo desta página incorpora e expande o [Manual do Usuário](https://git
 
 ## 1. Instalar o Docker {#instalar-o-docker}
 
-O Coletor precisa do **Docker Engine** e do plugin **Docker Compose**. Confirme antes os [requisitos técnicos]({{ site.baseurl }}/documentacao/coletor/requisitos_tecnicos).
+O Coletor precisa do **Docker Engine** e do plugin **Docker Compose**. Confirme antes os [requisitos técnicos]({{site.baseurl}}/documentacao/coletor/requisitos_tecnicos).
 
 ### Linux (servidor)
 
@@ -97,7 +97,7 @@ Se `coletor --help` lista os comandos `up`, `down`, `status`, `logs` e `update`,
 coletor up
 ```
 
-O comando liga todos os serviços descritos em [Requisitos técnicos]({{ site.baseurl }}/documentacao/coletor/requisitos_tecnicos#o-que-a-instalacao-sobe). Quando termina, a aplicação está no ar em `http://<servidor>:8000/painel/` e o terminal pode ser fechado — os serviços continuam em segundo plano.
+O comando liga todos os serviços descritos em [Requisitos técnicos]({{site.baseurl}}/documentacao/coletor/requisitos_tecnicos#o-que-a-instalacao-sobe). Quando termina, a aplicação está no ar em `http://<servidor>:8000/painel/` e o terminal pode ser fechado — os serviços continuam em segundo plano.
 
 > ℹ️ **O primeiro `coletor up` baixa as imagens.** Na primeira execução o Coletor baixa os componentes da aplicação pela internet, o que pode levar alguns minutos. Nas execuções seguintes é quase instantâneo.
 
@@ -128,7 +128,7 @@ Em `coletor logs`, `Ctrl + C` para de acompanhar sem desligar a aplicação.
 
 `coletor update` baixa as imagens mais novas e reinicia a stack com elas. Antes de atualizar, o programa verifica se existe uma versão mais nova **do próprio executável**: se houver, ele avisa, mostra o link de download e **não atualiza a stack** — troque o `coletor` primeiro e rode `update` de novo. O mesmo aviso aparece (sem bloquear) nos demais comandos. A consulta acontece no máximo uma vez por dia e é ignorada sem internet.
 
-> ℹ️ **Depois de atualizar, sincronize uma vez.** Versões novas podem trazer marcações de contrato que só entram em vigor na próxima sincronização — é o caso das marcações de modelo obrigatório, opcional e desabilitado. Até rodar **"Sincronizar com a PNP"** no painel, todos os modelos já importados continuam sendo tratados como obrigatórios. Ver [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
+> ℹ️ **Depois de atualizar, sincronize uma vez.** Versões novas podem trazer marcações de contrato que só entram em vigor na próxima sincronização — é o caso das marcações de modelo obrigatório, opcional e desabilitado. Até rodar **"Sincronizar com a PNP"** no painel, todos os modelos já importados continuam sendo tratados como obrigatórios. Ver [Status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato#modelos-obrigatorios-opcionais-e-desabilitados).
 
 ### Desligar e apagar dados
 
@@ -138,7 +138,7 @@ Em `coletor logs`, `Ctrl + C` para de acompanhar sem desligar a aplicação.
 - **todo o storage** na pasta de dados do usuário: os arquivos Parquet extraídos, as planilhas enviadas por upload e os logs;
 - as **preferências da instância**, entre elas a porta salva por `--port`. O próximo `coletor up` volta à porta padrão 8000.
 
-> ⚠️ **`coletor down --wipe` apaga o banco *e* os arquivos extraídos.** Não há como desfazer. O comando descreve o que será apagado e pede confirmação (`--yes` pula o prompt em automação). Use apenas para recomeçar uma instalação do zero — e lembre que a instância ativada na PNP está vinculada ao hostname do servidor (ver [Primeiro acesso]({{ site.baseurl }}/documentacao/coletor/primeiro_acesso#secret-casado-com-hostname)).
+> ⚠️ **`coletor down --wipe` apaga o banco *e* os arquivos extraídos.** Não há como desfazer. O comando descreve o que será apagado e pede confirmação (`--yes` pula o prompt em automação). Use apenas para recomeçar uma instalação do zero — e lembre que a instância ativada na PNP está vinculada ao hostname do servidor (ver [Primeiro acesso]({{site.baseurl}}/documentacao/coletor/primeiro_acesso#secret-casado-com-hostname)).
 
 Para desligar sem perder nada, use `coletor down` puro. Se o objetivo era só liberar espaço dos Parquets antigos, apagá-los à mão na pasta de dados é mais cirúrgico do que o `--wipe`.
 
@@ -148,6 +148,6 @@ Equipes que preferem controlar o Compose diretamente podem subir a mesma stack s
 
 ## Veja também
 
-- [Primeiro acesso]({{ site.baseurl }}/documentacao/coletor/primeiro_acesso) — o que fazer assim que o painel abrir
-- [Requisitos técnicos]({{ site.baseurl }}/documentacao/coletor/requisitos_tecnicos) — servidor, rede e credenciais necessárias
+- [Primeiro acesso]({{site.baseurl}}/documentacao/coletor/primeiro_acesso) — o que fazer assim que o painel abrir
+- [Requisitos técnicos]({{site.baseurl}}/documentacao/coletor/requisitos_tecnicos) — servidor, rede e credenciais necessárias
 - [Manual do Usuário no repositório de releases](https://github.com/PNP-CCV/coletor) — versão resumida desta página

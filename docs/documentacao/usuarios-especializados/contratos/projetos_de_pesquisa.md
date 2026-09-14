@@ -19,9 +19,9 @@ toc: true
 
 ## Resumo de negócio
 
-Este **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** descreve as **iniciativas de investigação científica e tecnológica** conduzidas por servidores e estudantes da rede federal — projetos de pesquisa básica e aplicada, com fomento próprio ou externo (CNPq, CAPES, FINEP, FAPs estaduais).
+Este **[Contrato de Dados]({{site.baseurl}}/documentacao/coletor/glossario#contrato-de-dados)** descreve as **iniciativas de investigação científica e tecnológica** conduzidas por servidores e estudantes da rede federal — projetos de pesquisa básica e aplicada, com fomento próprio ou externo (CNPq, CAPES, FINEP, FAPs estaduais).
 
-A **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** coleta este contrato para mensurar a **produção em P&D** da rede federal: orçamento, fomento, área temática CNPq, vigência e participação de docentes, TAEs, estudantes e externos. Os dois modelos cobrem o projeto em si e as pessoas envolvidas (com PII).
+A **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)** coleta este contrato para mensurar a **produção em P&D** da rede federal: orçamento, fomento, área temática CNPq, vigência e participação de docentes, TAEs, estudantes e externos. Os dois modelos cobrem o projeto em si e as pessoas envolvidas (com PII).
 
 Este contrato é também o destino lógico do vínculo declarado textualmente em `acordos_parceria.objeto_acordo` — embora não haja `references` formal entre os dois contratos, o `id_projeto_pesquisa` daqui é o que aparece naquele campo.
 
@@ -30,11 +30,11 @@ Este contrato é também o destino lógico do vínculo declarado textualmente em
 - **`projetos_pesquisa`** *(obrigatório no fluxo)* — projetos de pesquisa institucionais, com natureza, vigência, situação, orçamento, entidade financiadora e área temática CNPq.
 - **`pessoas_envolvidas_projeto_pesquisa`** *(obrigatório no fluxo)* — pessoas vinculadas a cada projeto (docentes, TAEs, estudantes, externos). Contém PII (`cpf`, `nome`).
 
-> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** das tabelas de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato).
+> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** das tabelas de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato).
 
 ## Modelo `projetos_pesquisa`
 
-> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
@@ -108,7 +108,7 @@ Além do schema (colunas obrigatórias, tipos e rejeição de colunas extras via
 
 ## Modelo `pessoas_envolvidas_projeto_pesquisa`
 
-> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
@@ -179,7 +179,7 @@ Além do schema, o modelo declara regras `quality` do tipo `sql`:
 | `matricula` (`docente`, `TAE`) | `pessoas_envolvidas_projeto_pesquisa` | `servidores` | `chave_composta: [cpf, matricula]` | `erro` |
 | `matricula` (`estudante`) | `pessoas_envolvidas_projeto_pesquisa` | `matriculas` | `chave_composta: [cpf, matricula]` | `erro` |
 
-O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gravar o Parquet, no **modo bloqueante** por padrão — uma referência que não existe no cadastro reprova o **teste do contrato** e barra o envio, aparecendo em **Ver resultados de teste** com o campo e as linhas envolvidas. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial). A matrícula usa roteamento por categoria: o par `[cpf, matricula]` de docentes e TAEs é conferido em `servidores`, enquanto o de estudantes é conferido em `matriculas`. Participantes externos não são submetidos a essas regras.
+O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gravar o Parquet, no **modo bloqueante** por padrão — uma referência que não existe no cadastro reprova o **teste do contrato** e barra o envio, aparecendo em **Ver resultados de teste** com o campo e as linhas envolvidas. Ver [Validação referencial]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_referencial). A matrícula usa roteamento por categoria: o par `[cpf, matricula]` de docentes e TAEs é conferido em `servidores`, enquanto o de estudantes é conferido em `matriculas`. Participantes externos não são submetidos a essas regras.
 
 ### `matricula` é roteada por `categoria`
 
@@ -189,7 +189,7 @@ O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gr
 
 > ℹ️ **`externo` saiu do `categorias_validar` do `cpf`.** Ele estava listado, e como externo não consta de cadastro nenhum da instituição, a regra apontaria **todo participante externo** como CPF inexistente. Era o único dos três contratos de pessoas a incluí-lo.
 
-> ℹ️ **`area_tematica_cnpq` é o único `aviso` deste contrato — e a severidade do mesmo campo diverge entre contratos.** Aqui e em [Produção Intelectual]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/producao_intelectual) ele é `aviso`; em [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao), o mesmo `area_tematica_cnpq` apontando para o mesmo `recurso: areas_tematicas_cnpq` é `erro`. A divergência deixou de ser inócua: quando o modo `bloqueante` for ligado, o mesmo código de área reprovaria a extração de Ações de Extensão e passaria como aviso aqui. É uma decisão da PNP, no YAML — o Coletor honra o que cada contrato declara.
+> ℹ️ **`area_tematica_cnpq` é o único `aviso` deste contrato — e a severidade do mesmo campo diverge entre contratos.** Aqui e em [Produção Intelectual]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/producao_intelectual) ele é `aviso`; em [Ações de Extensão]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/acoes_de_extensao), o mesmo `area_tematica_cnpq` apontando para o mesmo `recurso: areas_tematicas_cnpq` é `erro`. A divergência deixou de ser inócua: quando o modo `bloqueante` for ligado, o mesmo código de área reprovaria a extração de Ações de Extensão e passaria como aviso aqui. É uma decisão da PNP, no YAML — o Coletor honra o que cada contrato declara.
 
 ## Histórico de versões
 

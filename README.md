@@ -67,12 +67,20 @@ Pressione `Ctrl+C` no terminal onde o servidor está rodando.
 O site é publicado num subcaminho (`baseurl: "/guiapnp"` no `_config.yml`), então
 **todo link ou imagem interna precisa carregar esse prefixo explicitamente**.
 
-Em Markdown, use `{{ site.baseurl }}`:
+Em Markdown, use `{{site.baseurl}}` — **sem espaços dentro das chaves**:
 
 ```markdown
-[Ciclo de coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta)
-![Dashboard]({{ site.baseurl }}/assets/img/docs/coletor/02-dashboard.png)
+[Ciclo de coleta]({{site.baseurl}}/documentacao/coletor/ciclo_de_coleta)
+![Dashboard]({{site.baseurl}}/assets/img/docs/coletor/02-dashboard.png)
 ```
+
+> **Por que sem espaço.** Para o Liquid, `{{ site.baseurl }}` e `{{site.baseurl}}`
+> são a mesma coisa. Para o Decap CMS, não: espaço no destino de um link viola o
+> CommonMark, então o editor **nem reconhece aquilo como link** — ao salvar, ele
+> devolve o trecho escapado, como texto literal, e o link desaparece da página.
+> Medido em `contratos/conceito.md`: 24 de 24 links destruídos com espaço, 0 sem
+> espaço. O verificador cobra a forma sem espaço em `docs/documentacao/**.md`, que
+> é o conteúdo aberto pelo CMS; em template a forma com espaço segue valendo.
 
 Em HTML e nos templates (`_includes/`, `_layouts/`), use o filtro `relative_url`:
 
@@ -135,20 +143,36 @@ Esta configuracao permite que editores alterem conteudo via CMS com commits na b
 
 ### Como o fluxo funciona
 
-1. O Decap CMS grava alteracoes na branch `editoracao`.
-2. O workflow [`.github/workflows/editoracao-review-gate.yml`](.github/workflows/editoracao-review-gate.yml) garante a abertura de PR `editoracao -> deploy`.
-3. Um terceiro revisa e aprova o PR.
-4. Apos merge, a branch `deploy` e atualizada.
+O CMS esta em `publish_mode: editorial_workflow`, entao a revisao acontece em
+dois momentos — o rascunho e revisado antes de entrar na `editoracao`, e o
+conteudo acumulado e revisado antes de ir ao ar:
+
+1. O editor abre uma pagina em `/admin/` e salva. O Decap cria uma branch
+   `cms/<colecao>/<slug>` e abre um PR contra `editoracao`. Enquanto o editor
+   nao mandar para "Ready", aquilo e rascunho.
+2. **Primeira revisao:** um terceiro revisa esse PR e faz o merge na `editoracao`.
+3. O workflow [`editoracao-review-gate.yml`](.github/workflows/editoracao-review-gate.yml)
+   abre (ou reaproveita) o PR `editoracao -> deploy`.
+4. **Segunda revisao:** um terceiro aprova esse PR.
+5. Apos o merge, a `deploy` e atualizada e o GitHub Pages publica.
 
 ### Configuracao de seguranca recomendada no GitHub
+
+Quem pode editar e definido pelo GitHub, nao pelo CMS: o backend `github`
+autoriza qualquer conta com permissao de escrita no repositorio. Dar `write` aos
+editores e o que os habilita no `/admin` — e a protecao de branch abaixo e o que
+os impede de publicar sozinhos.
 
 Em `Settings > Branches`:
 
 1. Proteger `deploy` com:
 	1. `Require a pull request before merging`.
 	2. `Require approvals` (minimo 1).
-	3. Opcional: `Dismiss stale pull request approvals when new commits are pushed`.
-2. Opcional: proteger `editoracao` para restringir quem pode editar.
+	3. `Require status checks to pass` marcando **Verificar links internos**.
+	4. Opcional: `Dismiss stale pull request approvals when new commits are pushed`.
+2. Proteger `main` contra push direto, senao o `write` dado aos editores alcanca
+   tambem a branch principal.
+3. Opcional: proteger `editoracao` para restringir quem pode editar.
 
 ### Teste local do CMS
 
@@ -176,6 +200,23 @@ Observacoes:
 
 - O `local_backend: true` em [docs/admin/config.yml](docs/admin/config.yml) ativa o modo local para testes sem OAuth remoto.
 - Em producao (GitHub Pages), o backend `github` exige um endpoint OAuth do Decap CMS para login com conta GitHub.
+- Imagens enviadas pelo editor vao para `docs/assets/img/uploads/`. E a unica
+  pasta em que o verificador aceita o prefixo `/guiapnp/` escrito direto, porque
+  o Decap monta esse caminho a partir do `public_folder` e nao interpola Liquid ali.
+
+### Ao mexer no editor, reteste o round-trip
+
+O campo de conteudo esta fixado em `modes: ['raw']` e a versao do Decap esta
+fixada em [docs/admin/index.html](docs/admin/index.html). Os dois existem pelo
+mesmo motivo: o editor rich text destroi os links em Liquid (ver a secao "Links
+internos" acima). Ao trocar a versao do Decap ou liberar o modo rich text, refaca
+este teste antes de publicar:
+
+1. Abra `/admin/` e edite `Contratos > Conceito de Contrato de Dados`.
+2. Salve **sem alterar nada**.
+3. Confira que `git diff` na branch do rascunho veio vazio.
+
+Se vier diferenca, o editor esta reescrevendo o conteudo — nao siga adiante.
 
 ### Produção no GitHub Pages com login GitHub
 

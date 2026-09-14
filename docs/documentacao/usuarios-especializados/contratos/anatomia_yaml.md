@@ -10,7 +10,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-Esta página é a referência chave-a-chave do YAML usado nos **[Contratos de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** da PNP. Os exemplos vêm dos onze contratos reais do catálogo. Use-a junto com [Conceito]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/conceito) (visão geral) e [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade) (como os checks rodam).
+Esta página é a referência chave-a-chave do YAML usado nos **[Contratos de Dados]({{site.baseurl}}/documentacao/coletor/glossario#contrato-de-dados)** da PNP. Os exemplos vêm dos onze contratos reais do catálogo. Use-a junto com [Conceito]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/conceito) (visão geral) e [Validação e qualidade]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade) (como os checks rodam).
 
 ## Estrutura de alto nível
 
@@ -65,7 +65,7 @@ Slug único do contrato. Convenção crítica: deve bater com o `slug` do contra
 Metadados de descoberta:
 
 - `title` — nome humano. É o que aparece no painel do Coletor.
-- `version` — SemVer (ex.: `"1.0.0"`). Deve subir junto com mudanças no schema; ver [Ciclo de vida do contrato]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/ciclo_de_vida).
+- `version` — SemVer (ex.: `"1.0.0"`). Deve subir junto com mudanças no schema; ver [Ciclo de vida do contrato]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/ciclo_de_vida).
 - `status` — `"active"` nos onze contratos atuais. Outros valores comuns na spec: `draft`, `proposed`, `deprecated`, `retired`.
 - `description` — texto livre, multilinha. Renderizado nas páginas do catálogo.
 
@@ -77,13 +77,13 @@ Condições de uso, finalidade e limitações. Importante para integradores quan
 
 ## `servers`
 
-Configuração de onde os dados ficam. Nos onze contratos, declara-se um server `local` apontando para uma pasta de arquivos **[Parquet]({{ site.baseurl }}/documentacao/coletor/glossario#parquet)**.
+Configuração de onde os dados ficam. Nos onze contratos, declara-se um server `local` apontando para uma pasta de arquivos **[Parquet]({{site.baseurl}}/documentacao/coletor/glossario#parquet)**.
 
 > ⚠️ **O server `local` é gerenciado pelo Coletor em tempo de execução.** Ao rodar os testes, o Coletor substitui o `local` declarado no YAML por um caminho montado dinamicamente a partir do slug do contrato. Declarar `servers.local` no YAML é tolerado (e necessário para rodar a `datacontract-cli` standalone, fora do Coletor), mas o que está lá **não** é honrado quando o Coletor executa os testes.
 
 ## `models`
 
-Cada entrada representa um dataset (tabela lógica) e vira um **[Modelo de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-de-dados)** no Coletor com slug correspondente. Atributos por modelo:
+Cada entrada representa um dataset (tabela lógica) e vira um **[Modelo de Dados]({{site.baseurl}}/documentacao/coletor/glossario#modelo-de-dados)** no Coletor com slug correspondente. Atributos por modelo:
 
 - `type: table` — único valor usado nos contratos atuais.
 - `title` — nome humano.
@@ -113,20 +113,20 @@ São duas chaves, ambas booleanas:
 
 | Chave | Padrão | Efeito quando **`true`** | Efeito quando **`false`** |
 |---|---|---|---|
-| `required` | `true` | Modelo **obrigatório**: entra no status do contrato, no contador do assistente do dashboard e na extração em lote. | Modelo **opcional**: enquanto não tiver nenhuma **[Configuração de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#configuracao-de-extracao)**, fica fora do status do contrato, dos contadores e da extração em lote. |
+| `required` | `true` | Modelo **obrigatório**: entra no status do contrato, no contador do assistente do dashboard e na extração em lote. | Modelo **opcional**: enquanto não tiver nenhuma **[Configuração de Extração]({{site.baseurl}}/documentacao/coletor/glossario#configuracao-de-extracao)**, fica fora do status do contrato, dos contadores e da extração em lote. |
 | `disabled` | `false` | Modelo **desabilitado**: nunca é importado da PNP. Se já existia no Coletor, é recolhido por exclusão lógica na sincronização seguinte. | Modelo habilitado: comportamento normal. |
 
 ### `required` — o modelo é cobrado ou não
 
 `meta.required: false` **não** esconde o modelo: ele é importado normalmente e aparece na lista de modelos, como qualquer outro. O que muda é apenas quem o Coletor cobra:
 
-- **Sem nenhuma Configuração de Extração**, o modelo opcional é ignorado pelo [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato), pelos contadores dos cards e pela extração em lote do contrato. Ele não vira "pendência".
+- **Sem nenhuma Configuração de Extração**, o modelo opcional é ignorado pelo [status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato), pelos contadores dos cards e pela extração em lote do contrato. Ele não vira "pendência".
 - **Assim que ganha uma configuração**, passa a contar como qualquer obrigatório: o contrato volta para *Aguardando Extração* e só fecha quando esse modelo for extraído, testado, enviado e aprovado.
 - O cálculo é feito na hora, então o caminho é reversível: removidas todas as configurações do modelo, ele sai do fluxo de novo. Não existe botão de "desativar modelo" no painel — remover a configuração é a forma de desistir da coleta.
 
 > ⚠️ **Não clique em "Extrair" num modelo sem configuração de extração.** O botão de extração individual do modelo não checa se existe configuração: a execução vai até o fim e falha com *"Nenhum dataset foi gerado"*. O registro de falha fica no histórico do modelo. Se o modelo for opcional e não configurado, isso não muda o status do contrato — mas polui o histórico à toa.
 
-Um contrato cujos modelos são **todos opcionais e nenhum configurado** aparece no painel com o badge **Somente Modelos Opcionais** e fica fora do progresso do assistente. Quatro contratos do catálogo estão nessa situação hoje: [Acordos de Parceria]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acordos_de_parceria), [Projetos de Desenvolvimento Institucional]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_desenvolvimento_institucional), [Orçamento]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/orcamento) e [Projetos de Ensino]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_ensino).
+Um contrato cujos modelos são **todos opcionais e nenhum configurado** aparece no painel com o badge **Somente Modelos Opcionais** e fica fora do progresso do assistente. Quatro contratos do catálogo estão nessa situação hoje: [Acordos de Parceria]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/acordos_de_parceria), [Projetos de Desenvolvimento Institucional]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/projetos_de_desenvolvimento_institucional), [Orçamento]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/orcamento) e [Projetos de Ensino]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/projetos_de_ensino).
 
 ### `disabled` — o modelo existe ou não
 
@@ -187,11 +187,11 @@ estrutura:
     severidade: erro
 ```
 
-O motor de teste do contrato ignora a chave. Quem a lê é a validação referencial do Coletor, que confere o valor contra o cadastro local sincronizado da PNP **antes de gravar o Parquet**. O apontamento não derruba a extração: ele entra no teste do contrato, e é lá que uma `severidade: erro` reprova e barra o envio. A gramática completa (incluindo a forma em lista, que roteia por categoria, e a `chave_composta`) está em [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+O motor de teste do contrato ignora a chave. Quem a lê é a validação referencial do Coletor, que confere o valor contra o cadastro local sincronizado da PNP **antes de gravar o Parquet**. O apontamento não derruba a extração: ele entra no teste do contrato, e é lá que uma `severidade: erro` reprova e barra o envio. A gramática completa (incluindo a forma em lista, que roteia por categoria, e a `chave_composta`) está em [Validação referencial]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 ## Bloco `quality` {#bloco-quality}
 
-Sintaxe **[SodaCL]({{ site.baseurl }}/documentacao/coletor/glossario#sodacl)** aceita pela `datacontract-cli`. Os onze contratos atuais **não populam** este bloco — quando populado, o Coletor executa os checks contra o Parquet local na hora do teste de qualidade.
+Sintaxe **[SodaCL]({{site.baseurl}}/documentacao/coletor/glossario#sodacl)** aceita pela `datacontract-cli`. Os onze contratos atuais **não populam** este bloco — quando populado, o Coletor executa os checks contra o Parquet local na hora do teste de qualidade.
 
 Esqueleto típico:
 
@@ -215,7 +215,7 @@ Tipos de check úteis para a PNP:
 - `invalid_count(<col>)` com `valid values` ou `valid regex` — domínio fechado mais fino que o `enum` do schema.
 - `freshness(<timestamp_col>) < 30d` — dado precisa ser recente.
 
-Sintaxe completa em [docs.soda.io](https://docs.soda.io/soda-cl/soda-cl-overview.html). Como os resultados aparecem para o operador está em [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade).
+Sintaxe completa em [docs.soda.io](https://docs.soda.io/soda-cl/soda-cl-overview.html). Como os resultados aparecem para o operador está em [Validação e qualidade]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade).
 
 ## Convenções que o Coletor exige
 
@@ -233,7 +233,7 @@ O YAML íntegro de cada contrato está embutido na respectiva página do catálo
 
 ## Veja também
 
-- [Conceito de Contrato de Dados]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/conceito)
-- [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)
-- [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial)
-- [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao) — exemplo de página do catálogo
+- [Conceito de Contrato de Dados]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/conceito)
+- [Validação e qualidade]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)
+- [Validação referencial]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_referencial)
+- [Ações de Extensão]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/acoes_de_extensao) — exemplo de página do catálogo

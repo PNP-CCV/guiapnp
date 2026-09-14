@@ -67,7 +67,7 @@ Cada recurso declarado no contrato é conferido contra o cadastro local correspo
 
 Não existe cadastro único de pessoas na PNP: existem **dois** — `servidores` e `matriculas`. O alias `recurso: pessoas`, mantido por compatibilidade embora nenhum contrato atual o use, resolve a referência pela **união** dos dois cadastros: a pergunta que essa regra faz é "esse CPF pertence a alguém da instituição?", e a união responde exatamente isso.
 
-A união é deliberadamente frouxa: ela aceita o CPF de um estudante numa linha marcada como `docente`. Os contratos atuais adotam a conferência estrita descrita a seguir: [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao) e [Projetos de Pesquisa]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa) roteiam a chave composta `[cpf, matricula]` conforme a categoria, e [Produção Intelectual]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/producao_intelectual) confere todas as autorias no cadastro de servidores.
+A união é deliberadamente frouxa: ela aceita o CPF de um estudante numa linha marcada como `docente`. Os contratos atuais adotam a conferência estrita descrita a seguir: [Ações de Extensão]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/acoes_de_extensao) e [Projetos de Pesquisa]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa) roteiam a chave composta `[cpf, matricula]` conforme a categoria, e [Produção Intelectual]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/producao_intelectual) confere todas as autorias no cadastro de servidores.
 
 ## A gramática `referencia_pnp`
 
@@ -175,7 +175,7 @@ O bloco é **âmbar** quando apenas aponta e **vermelho** quando reprovou. A dif
 
 > ⚠️ **Sem essa tela, o que só avisa é invisível.** Um apontamento que não reprova (`severidade: aviso`, ou qualquer regra no modo sombra) não muda status nenhum. Se existisse apenas dentro do JSON de detalhes, seria na prática indistinguível de a conferência não ter rodado.
 
-O dado bruto continua nos detalhes do **[Registro de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#registro-de-extracao)** do modelo, sob a chave `validacao_referencial`:
+O dado bruto continua nos detalhes do **[Registro de Extração]({{site.baseurl}}/documentacao/coletor/glossario#registro-de-extracao)** do modelo, sob a chave `validacao_referencial`:
 
 ```json
 {
@@ -229,7 +229,7 @@ Por isso a conferência é um passo próprio, fora do motor de teste do contrato
 
 ## Veja também
 
-- [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade) — as outras camadas
-- [Anatomia do YAML]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml)
-- [Sincronização com a PNP]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/sincronizacao_pnp) — o que popula os cadastros locais
-- [Quando algo falha]({{ site.baseurl }}/documentacao/coletor/quando_algo_falha)
+- [Validação e qualidade]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade) — as outras camadas
+- [Anatomia do YAML]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/anatomia_yaml)
+- [Sincronização com a PNP]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/sincronizacao_pnp) — o que popula os cadastros locais
+- [Quando algo falha]({{site.baseurl}}/documentacao/coletor/quando_algo_falha)

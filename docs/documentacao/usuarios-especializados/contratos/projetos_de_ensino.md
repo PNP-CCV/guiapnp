@@ -17,23 +17,23 @@ toc: true
 
 ## Resumo de negócio
 
-Este **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** descreve os **projetos de ensino** conduzidos pela instituição — monitoria, tutoria, intervenção pedagógica, material didático, tecnologia assistiva, eventos de ensino e ações de inclusão. É o terceiro pé do tripé acadêmico, ao lado de [Projetos de Pesquisa]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa) e [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao).
+Este **[Contrato de Dados]({{site.baseurl}}/documentacao/coletor/glossario#contrato-de-dados)** descreve os **projetos de ensino** conduzidos pela instituição — monitoria, tutoria, intervenção pedagógica, material didático, tecnologia assistiva, eventos de ensino e ações de inclusão. É o terceiro pé do tripé acadêmico, ao lado de [Projetos de Pesquisa]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa) e [Ações de Extensão]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/acoes_de_extensao).
 
-A **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** coleta este contrato para mensurar o investimento da Rede Federal na qualidade do próprio ensino — e, via `projeto_ensino_sustentavel`, quanto desse investimento toca a temática da sustentabilidade.
+A **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)** coleta este contrato para mensurar o investimento da Rede Federal na qualidade do próprio ensino — e, via `projeto_ensino_sustentavel`, quanto desse investimento toca a temática da sustentabilidade.
 
-Diferente de [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao), este contrato **não registra as pessoas envolvidas nem as atendidas**: é uma tabela única sobre o projeto, sem PII.
+Diferente de [Ações de Extensão]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/acoes_de_extensao), este contrato **não registra as pessoas envolvidas nem as atendidas**: é uma tabela única sobre o projeto, sem PII.
 
 ## Modelos contidos
 
 - **`projetos_ensino`** *(opcional no fluxo)* — projetos de ensino, com natureza, vigência, financiamento, orçamento e produto final.
 
-> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** da tabela de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato).
+> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** da tabela de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato).
 
-> ℹ️ **Este contrato nasce em "Somente Modelos Opcionais".** Como o único modelo é opcional, logo depois da primeira sincronização o contrato aparece no painel com o badge **Somente Modelos Opcionais** e fica fora do progresso do assistente e das ações em lote — não é erro nem falha de sincronização, é o esperado. Ele entra no fluxo assim que alguém cadastrar uma **[Configuração de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#configuracao-de-extracao)** para `projetos_ensino`.
+> ℹ️ **Este contrato nasce em "Somente Modelos Opcionais".** Como o único modelo é opcional, logo depois da primeira sincronização o contrato aparece no painel com o badge **Somente Modelos Opcionais** e fica fora do progresso do assistente e das ações em lote — não é erro nem falha de sincronização, é o esperado. Ele entra no fluxo assim que alguém cadastrar uma **[Configuração de Extração]({{site.baseurl}}/documentacao/coletor/glossario#configuracao-de-extracao)** para `projetos_ensino`.
 
 ## Modelo `projetos_ensino`
 
-> ℹ️ **No fluxo do Coletor:** modelo **opcional** (`meta.required: false`) e **habilitado** (`meta.disabled: false`). Enquanto ninguém cadastrar uma Configuração de Extração para ele, o Coletor não o cobra: não vira pendência, não segura o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) e é pulado pela extração em lote. Assim que ganha uma configuração, passa a contar como qualquer outro modelo — o contrato volta para *Aguardando Extração* e só fecha quando este modelo for extraído, testado, enviado e aprovado. Para desistir dele, basta remover a(s) configuração(ões) de extração.
+> ℹ️ **No fluxo do Coletor:** modelo **opcional** (`meta.required: false`) e **habilitado** (`meta.disabled: false`). Enquanto ninguém cadastrar uma Configuração de Extração para ele, o Coletor não o cobra: não vira pendência, não segura o [status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato) e é pulado pela extração em lote. Assim que ganha uma configuração, passa a contar como qualquer outro modelo — o contrato volta para *Aguardando Extração* e só fecha quando este modelo for extraído, testado, enviado e aprovado. Para desistir dele, basta remover a(s) configuração(ões) de extração.
 
 ### Resumo do modelo
 
@@ -80,7 +80,7 @@ Tabela única do contrato. Cada linha é um projeto de ensino identificado por `
 - `organização ou instituição internacional`
 - `outro`
 
-> ℹ️ **`referencia_pnp` agora é conferido na extração.** O campo `estrutura` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`, e o Coletor confere esse código contra o espelho local de estruturas antes de gravar o Parquet — a mesma checagem que a PNP faz depois do envio, antecipada. Como a `severidade` declarada é `erro`, um código que não existe no cadastro **reprova o teste do contrato** — a extração conclui, mas o apontamento aparece em **Ver resultados de teste**, com o campo e as linhas envolvidas, e o envio à PNP fica barrado. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+> ℹ️ **`referencia_pnp` agora é conferido na extração.** O campo `estrutura` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`, e o Coletor confere esse código contra o espelho local de estruturas antes de gravar o Parquet — a mesma checagem que a PNP faz depois do envio, antecipada. Como a `severidade` declarada é `erro`, um código que não existe no cadastro **reprova o teste do contrato** — a extração conclui, mas o apontamento aparece em **Ver resultados de teste**, com o campo e as linhas envolvidas, e o envio à PNP fica barrado. Ver [Validação referencial]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 ### Regras de qualidade
 

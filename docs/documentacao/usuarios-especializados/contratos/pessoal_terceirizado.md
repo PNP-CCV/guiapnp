@@ -19,9 +19,9 @@ toc: true
 
 ## Resumo de negócio
 
-Este **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** descreve os **indicadores institucionais que dependem de informações sobre servidores terceirizados**: quem trabalha na instituição sob esse vínculo, em qual estrutura e por quanto tempo.
+Este **[Contrato de Dados]({{site.baseurl}}/documentacao/coletor/glossario#contrato-de-dados)** descreve os **indicadores institucionais que dependem de informações sobre servidores terceirizados**: quem trabalha na instituição sob esse vínculo, em qual estrutura e por quanto tempo.
 
-A **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** coleta este contrato para calcular os indicadores de força de trabalho da Rede Federal — o dimensionamento de quadro que alimenta o orçamento.
+A **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)** coleta este contrato para calcular os indicadores de força de trabalho da Rede Federal — o dimensionamento de quadro que alimenta o orçamento.
 
 > ℹ️ **O modelo carrega PII.** `servidor_terceirizado` traz `cpf` marcado como `pii: true` e `classification: sensitive`. Vale lembrar o que o [CLAUDE.md](https://github.com/PNP-CCV/coletor-pnp-microdados/blob/master/CLAUDE.md) registra sobre o Coletor: **não há criptografia em nível de aplicação** — a proteção desses dados é responsabilidade da infraestrutura que hospeda o banco e o diretório `storage/extracoes/`.
 
@@ -29,11 +29,11 @@ A **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** coleta este c
 
 - **`servidor_terceirizado`** *(obrigatório no fluxo)* — trabalhadores terceirizados vinculados à instituição, nominais. Contém PII (`cpf`).
 
-> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** das tabelas de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato).
+> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** das tabelas de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato).
 
 ## Modelo `servidor_terceirizado`
 
-> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`) — o único modelo deste contrato. O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`) — o único modelo deste contrato. O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
@@ -88,7 +88,7 @@ Além do schema (colunas obrigatórias, tipos, `enum` e rejeição de colunas ex
 
 ## `referencia_pnp` — conferido na extração
 
-O modelo declarado traz, no campo `estrutura`, um bloco `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`. O Coletor confere esse código contra o espelho local de estruturas antes de gravar o Parquet, antecipando a checagem que a PNP faz depois do envio. Como a `severidade` declarada é `erro`, um código que não existe no cadastro **reprova o teste do contrato** — a extração conclui, mas o apontamento aparece em **Ver resultados de teste**, com o campo e as linhas envolvidas, e o envio à PNP fica barrado. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+O modelo declarado traz, no campo `estrutura`, um bloco `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`. O Coletor confere esse código contra o espelho local de estruturas antes de gravar o Parquet, antecipando a checagem que a PNP faz depois do envio. Como a `severidade` declarada é `erro`, um código que não existe no cadastro **reprova o teste do contrato** — a extração conclui, mas o apontamento aparece em **Ver resultados de teste**, com o campo e as linhas envolvidas, e o envio à PNP fica barrado. Ver [Validação referencial]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 ## Histórico de versões
 

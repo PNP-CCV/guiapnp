@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /guiapnp/admin/
 Sitemap: https://pnp-ccv.github.io/guiapnp/sitemap.xml

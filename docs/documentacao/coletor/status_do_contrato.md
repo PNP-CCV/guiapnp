@@ -11,7 +11,7 @@ toc: true
 
 > **Para quem é:** 👔 gestores · 🔌 integradores
 
-Esta página descreve os estados em que um **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** pode estar e como ele transita entre eles. É a página de referência para ler o badge colorido que aparece ao lado de cada contrato no painel. Antes de ler, recomenda-se passar por [Fluxo de negócio]({{ site.baseurl }}/documentacao/coletor/fluxo_de_negocio) e [Operação corrente]({{ site.baseurl }}/documentacao/coletor/operacao_corrente).
+Esta página descreve os estados em que um **[Contrato de Dados]({{site.baseurl}}/documentacao/coletor/glossario#contrato-de-dados)** pode estar e como ele transita entre eles. É a página de referência para ler o badge colorido que aparece ao lado de cada contrato no painel. Antes de ler, recomenda-se passar por [Fluxo de negócio]({{site.baseurl}}/documentacao/coletor/fluxo_de_negocio) e [Operação corrente]({{site.baseurl}}/documentacao/coletor/operacao_corrente).
 
 ## Os estados em uma frase
 
@@ -19,21 +19,21 @@ São **12 códigos de status** e **13 rótulos** — o código `1` cobre dois ca
 
 | # | Status | O que significa | O que fazer |
 |---|---|---|---|
-| 9 | Ciclo de Coleta inativo | O **[Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/glossario#ciclo-de-coleta)** do contrato está inativo ou fora do prazo. Tem prioridade sobre todos os outros: bloqueia extração e envio. | Aguardar a janela abrir, ou revisar as datas do ciclo. |
-| 1 | Sem Modelos | O contrato existe, mas nenhum **[Modelo de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-de-dados)** foi criado para ele. | Sincronizar com a PNP para trazer os modelos. |
-| 14 | Somente Modelos Opcionais | O contrato tem modelos, mas todos são **[opcionais]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-opcional)** e nenhum foi configurado — "não há nada a coletar". Fica **fora** do progresso do wizard. | Nada, se a instituição não vai coletá-los. Para coletar, criar a Configuração de Extração de um deles. |
-| 1 | Modelos Não Configurados | Modelo que conta no fluxo existe, mas sem **[Configuração de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#configuracao-de-extracao)**. | Adicionar uma Configuração ligando o modelo a um **[Provedor de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#provedor-de-dados)**. |
+| 9 | Ciclo de Coleta inativo | O **[Ciclo de Coleta]({{site.baseurl}}/documentacao/coletor/glossario#ciclo-de-coleta)** do contrato está inativo ou fora do prazo. Tem prioridade sobre todos os outros: bloqueia extração e envio. | Aguardar a janela abrir, ou revisar as datas do ciclo. |
+| 1 | Sem Modelos | O contrato existe, mas nenhum **[Modelo de Dados]({{site.baseurl}}/documentacao/coletor/glossario#modelo-de-dados)** foi criado para ele. | Sincronizar com a PNP para trazer os modelos. |
+| 14 | Somente Modelos Opcionais | O contrato tem modelos, mas todos são **[opcionais]({{site.baseurl}}/documentacao/coletor/glossario#modelo-opcional)** e nenhum foi configurado — "não há nada a coletar". Fica **fora** do progresso do wizard. | Nada, se a instituição não vai coletá-los. Para coletar, criar a Configuração de Extração de um deles. |
+| 1 | Modelos Não Configurados | Modelo que conta no fluxo existe, mas sem **[Configuração de Extração]({{site.baseurl}}/documentacao/coletor/glossario#configuracao-de-extracao)**. | Adicionar uma Configuração ligando o modelo a um **[Provedor de Dados]({{site.baseurl}}/documentacao/coletor/glossario#provedor-de-dados)**. |
 | 2 | Aguardando Extração | Tudo configurado, mas a extração nunca foi executada. | Disparar "Extrair Dados". |
-| 7 | Falha na Extração | A última extração registrou erro — inclusive quando o que falhou foi o **teste de qualidade** do contrato, que roda no mesmo run. | Ler o motivo no **[Registro de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#registro-de-extracao)**, corrigir e re-extrair. |
+| 7 | Falha na Extração | A última extração registrou erro — inclusive quando o que falhou foi o **teste de qualidade** do contrato, que roda no mesmo run. | Ler o motivo no **[Registro de Extração]({{site.baseurl}}/documentacao/coletor/glossario#registro-de-extracao)**, corrigir e re-extrair. |
 | 8 | Reextração Necessária | Modelo ou Configuração foram alterados depois da última extração. | Disparar nova extração. |
-| 5 | Pronto para Sincronizar | Extração e teste passaram, dados aguardam envio à **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)**. | Disparar "Sincronizar com a PNP". |
+| 5 | Pronto para Sincronizar | Extração e teste passaram, dados aguardam envio à **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)**. | Disparar "Sincronizar com a PNP". |
 | 10 | Aguardando Validação PNP | Enviado; a PNP ainda não validou a estrutura do Parquet. | Nenhuma ação no Coletor — só esperar. |
 | 11 | Validação Rejeitada | A PNP rejeitou a validação de um ou mais Parquets. | Ler o motivo, corrigir os dados na origem e re-extrair. |
 | 12 | Aguardando Homologação da Área | Validado estruturalmente; aguarda a homologação da área **na PNP**. | Ação humana na PNP — sem botão no Coletor. |
 | 13 | Aguardando Aprovação do Reitor | Homologado pela área; aguarda a decisão final do Reitor **na PNP**. | Ação humana na PNP — sem botão no Coletor. |
 | 6 | Sincronizado com Sucesso | Aprovado pelo Reitor. Estado terminal do ciclo. | Nenhuma ação. |
 
-> ⚠️ **Metade do fluxo acontece do lado da PNP.** Os estados 10 a 13 espelham o que está acontecendo **na PNP**, não no Coletor. Homologação da Área e Aprovação do Reitor são ações humanas lá — o Coletor apenas consulta o status e reflete o resultado. Não existe botão para avançá-las aqui. Ver [Sincronização com a PNP]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/sincronizacao_pnp).
+> ⚠️ **Metade do fluxo acontece do lado da PNP.** Os estados 10 a 13 espelham o que está acontecendo **na PNP**, não no Coletor. Homologação da Área e Aprovação do Reitor são ações humanas lá — o Coletor apenas consulta o status e reflete o resultado. Não existe botão para avançá-las aqui. Ver [Sincronização com a PNP]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/sincronizacao_pnp).
 
 ## Só a Aprovação do Reitor é definitiva {#so-a-aprovacao-do-reitor-e-definitiva}
 
@@ -49,7 +49,7 @@ Dos estados espelhados da PNP, só o **Sincronizado com Sucesso** é irreversív
 
 Na prática: se a área homologou um dado que depois se revelou errado, há saída dentro do Coletor. Corrija na origem e re-extraia — a validação anterior fica obsoleta, o botão de envio reaparece e o modelo volta a "Pronto para Sincronizar", reiniciando a cadeia de validação na PNP.
 
-Depois da aprovação do Reitor, não: substituir dado oficialmente aceito exige um novo [Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta).
+Depois da aprovação do Reitor, não: substituir dado oficialmente aceito exige um novo [Ciclo de Coleta]({{site.baseurl}}/documentacao/coletor/ciclo_de_coleta).
 
 > ℹ️ **O dado precisa mudar de fato.** A PNP identifica cada dataset pelo conteúdo. Re-extrair sem que o dado tenha mudado devolve o mesmo dataset com o status que ele já tinha: o botão volta, mas o reenvio não muda nada do outro lado.
 
@@ -61,9 +61,9 @@ O status de um contrato **não olha todos os modelos** — olha os que "contam n
 
 | Marcação no contrato | O modelo aparece no painel? | Conta no status e no wizard? |
 |---|---|---|
-| **[Obrigatório]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-obrigatorio)** (`meta.required: true`, ou sem marcação) | Sim | Sempre |
-| **[Opcional]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-opcional)** (`meta.required: false`) | Sim | Só depois que ganhar uma Configuração de Extração |
-| **[Desabilitado]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-desabilitado)** (`meta.disabled: true`) | Não — nem chega a ser importado | Nunca |
+| **[Obrigatório]({{site.baseurl}}/documentacao/coletor/glossario#modelo-obrigatorio)** (`meta.required: true`, ou sem marcação) | Sim | Sempre |
+| **[Opcional]({{site.baseurl}}/documentacao/coletor/glossario#modelo-opcional)** (`meta.required: false`) | Sim | Só depois que ganhar uma Configuração de Extração |
+| **[Desabilitado]({{site.baseurl}}/documentacao/coletor/glossario#modelo-desabilitado)** (`meta.disabled: true`) | Não — nem chega a ser importado | Nunca |
 
 Consequências práticas:
 
@@ -106,6 +106,6 @@ O status **9 tem prioridade sobre o 14**: um contrato com o ciclo bloqueado most
 
 ## Veja também
 
-- [Operação corrente]({{ site.baseurl }}/documentacao/coletor/operacao_corrente)
-- [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)
-- [Fluxo de negócio]({{ site.baseurl }}/documentacao/coletor/fluxo_de_negocio)
+- [Operação corrente]({{site.baseurl}}/documentacao/coletor/operacao_corrente)
+- [Validação e qualidade]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)
+- [Fluxo de negócio]({{site.baseurl}}/documentacao/coletor/fluxo_de_negocio)

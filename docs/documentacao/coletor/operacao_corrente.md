@@ -11,14 +11,14 @@ toc: true
 
 > **Para quem é:** 👔 gestores · 🔌 integradores
 
-Esta página descreve a rotina diária do operador do Coletor — o que acompanhar, quando re-extrair, quando re-sincronizar e quais antipadrões evitar. Para o pano de fundo do calendário e do fluxo, leia antes [Ciclo de coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta) e [Fluxo de negócio]({{ site.baseurl }}/documentacao/coletor/fluxo_de_negocio).
+Esta página descreve a rotina diária do operador do Coletor — o que acompanhar, quando re-extrair, quando re-sincronizar e quais antipadrões evitar. Para o pano de fundo do calendário e do fluxo, leia antes [Ciclo de coleta]({{site.baseurl}}/documentacao/coletor/ciclo_de_coleta) e [Fluxo de negócio]({{site.baseurl}}/documentacao/coletor/fluxo_de_negocio).
 
 ## Rotina diária do operador
 
-- Abrir o painel do Coletor e olhar a lista de **Contratos de Dados** do **[Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/glossario#ciclo-de-coleta)** ativo.
-- Conferir os contratos que não estão em "Sincronizado com Sucesso" e ler o badge de status de cada um. Contratos marcados como **"Somente Modelos Opcionais"** não pedem ação: só têm [modelos opcionais]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-opcional) e nenhum foi configurado.
+- Abrir o painel do Coletor e olhar a lista de **Contratos de Dados** do **[Ciclo de Coleta]({{site.baseurl}}/documentacao/coletor/glossario#ciclo-de-coleta)** ativo.
+- Conferir os contratos que não estão em "Sincronizado com Sucesso" e ler o badge de status de cada um. Contratos marcados como **"Somente Modelos Opcionais"** não pedem ação: só têm [modelos opcionais]({{site.baseurl}}/documentacao/coletor/glossario#modelo-opcional) e nenhum foi configurado.
 - Re-disparar extrações dos **Modelos** que estão com falha, depois de checar o motivo do erro. Lembre que o teste de qualidade roda **dentro** da extração — não há passo separado para executá-lo.
-- Enviar à **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** os contratos em "Pronto para Sincronizar".
+- Enviar à **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)** os contratos em "Pronto para Sincronizar".
 - Nos contratos já enviados, acompanhar o estado da validação **do lado da PNP** — o Coletor só espelha, não avança.
 
 ## Extração manual vs agendada
@@ -37,28 +37,28 @@ A execução de cada extração ocorre em background, então o navegador não tr
 
 ## Quando re-extrair
 
-- O **[Provedor de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#provedor-de-dados)** mudou (novo endpoint, nova credencial, mudança de host do banco).
-- A **[Configuração de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#configuracao-de-extracao)** foi alterada (query SQL diferente, nova aba de planilha).
-- O **[Modelo de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-de-dados)** foi atualizado e o sistema marcou o contrato como "Reextração Necessária".
+- O **[Provedor de Dados]({{site.baseurl}}/documentacao/coletor/glossario#provedor-de-dados)** mudou (novo endpoint, nova credencial, mudança de host do banco).
+- A **[Configuração de Extração]({{site.baseurl}}/documentacao/coletor/glossario#configuracao-de-extracao)** foi alterada (query SQL diferente, nova aba de planilha).
+- O **[Modelo de Dados]({{site.baseurl}}/documentacao/coletor/glossario#modelo-de-dados)** foi atualizado e o sistema marcou o contrato como "Reextração Necessária".
 - O teste do contrato falhou e o problema foi corrigido na origem.
 - O contrato evoluiu para uma nova versão com schema ajustado.
 
-A máquina de status, com todas as transições possíveis, está descrita em [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato).
+A máquina de status, com todas as transições possíveis, está descrita em [Status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato).
 
 ## Modelos opcionais no dia a dia
 
-Alguns modelos são marcados pela PNP como [opcionais]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-opcional). Enquanto não tiverem Configuração de Extração, eles não entram no status do contrato, nos contadores do card nem no wizard — o painel pode fechar 8/8 sem que eles tenham sido coletados. Duas consequências para a rotina:
+Alguns modelos são marcados pela PNP como [opcionais]({{site.baseurl}}/documentacao/coletor/glossario#modelo-opcional). Enquanto não tiverem Configuração de Extração, eles não entram no status do contrato, nos contadores do card nem no wizard — o painel pode fechar 8/8 sem que eles tenham sido coletados. Duas consequências para a rotina:
 
 - **Decidiu coletar um opcional?** Basta criar a Configuração de Extração. A partir daí ele é cobrado como qualquer outro: o contrato volta a "Aguardando Extração" e só fecha depois que aquele modelo for extraído, enviado e aprovado.
 - **Mudou de ideia?** Remova a(s) Configuração(ões) de Extração daquele modelo. Ele sai do fluxo de novo — não existe botão de "desativar modelo", e nada do que já foi extraído é apagado.
 
-Já os modelos **[desabilitados]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-desabilitado)** pela PNP nem aparecem na lista: não há nada a acompanhar neles.
+Já os modelos **[desabilitados]({{site.baseurl}}/documentacao/coletor/glossario#modelo-desabilitado)** pela PNP nem aparecem na lista: não há nada a acompanhar neles.
 
 ## Quando re-sincronizar
 
-- A última **[Sincronização]({{ site.baseurl }}/documentacao/coletor/glossario#sincronizacao)** falhou por instabilidade da PNP ou da rede.
-- Dados foram corrigidos durante o **[Período de Correção]({{ site.baseurl }}/documentacao/coletor/glossario#periodo-de-correcao)** e precisam reentrar na consolidação.
-- O contrato foi sincronizado em ciclo anterior e precisa ser reenviado por solicitação do **[MEC]({{ site.baseurl }}/documentacao/coletor/glossario#mec)** dentro da janela atual.
+- A última **[Sincronização]({{site.baseurl}}/documentacao/coletor/glossario#sincronizacao)** falhou por instabilidade da PNP ou da rede.
+- Dados foram corrigidos durante o **[Período de Correção]({{site.baseurl}}/documentacao/coletor/glossario#periodo-de-correcao)** e precisam reentrar na consolidação.
+- O contrato foi sincronizado em ciclo anterior e precisa ser reenviado por solicitação do **[MEC]({{site.baseurl}}/documentacao/coletor/glossario#mec)** dentro da janela atual.
 
 ## O que NÃO fazer
 
@@ -71,6 +71,6 @@ Já os modelos **[desabilitados]({{ site.baseurl }}/documentacao/coletor/glossar
 
 ## Veja também
 
-- [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato)
-- [Quando algo falha]({{ site.baseurl }}/documentacao/coletor/quando_algo_falha)
-- [Perguntas frequentes]({{ site.baseurl }}/documentacao/coletor/faq)
+- [Status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato)
+- [Quando algo falha]({{site.baseurl}}/documentacao/coletor/quando_algo_falha)
+- [Perguntas frequentes]({{site.baseurl}}/documentacao/coletor/faq)

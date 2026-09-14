@@ -16,13 +16,13 @@ toc: true
 
 ## Resumo de negócio
 
-Este **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** descreve os **indicadores institucionais de sustentabilidade**, organizados em três subconjuntos temáticos: consumo de água e energia, governança da política de sustentabilidade, e compras e contratações sustentáveis.
+Este **[Contrato de Dados]({{site.baseurl}}/documentacao/coletor/glossario#contrato-de-dados)** descreve os **indicadores institucionais de sustentabilidade**, organizados em três subconjuntos temáticos: consumo de água e energia, governança da política de sustentabilidade, e compras e contratações sustentáveis.
 
-A **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** coleta este contrato para mensurar a agenda ambiental da Rede Federal — não só o consumo físico (m³, KWh), mas a **maturidade institucional**: existe instância de governança formalmente instituída? Existe normativo de compras sustentáveis? A política é divulgada, e por onde?
+A **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)** coleta este contrato para mensurar a agenda ambiental da Rede Federal — não só o consumo físico (m³, KWh), mas a **maturidade institucional**: existe instância de governança formalmente instituída? Existe normativo de compras sustentáveis? A política é divulgada, e por onde?
 
-É o contrato mais amplo do catálogo em número de campos declarativos, e o que mais usa campos do tipo `array` — os dois de `governanca_gestao_sustentabilidade`. O único outro `array` do catálogo é `municipios_atendidos`, em [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao).
+É o contrato mais amplo do catálogo em número de campos declarativos, e o que mais usa campos do tipo `array` — os dois de `governanca_gestao_sustentabilidade`. O único outro `array` do catálogo é `municipios_atendidos`, em [Ações de Extensão]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/acoes_de_extensao).
 
-> ℹ️ **Sustentabilidade também aparece fora deste contrato.** Os contratos de [Projetos de Ensino]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_ensino), [Projetos de Pesquisa]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa), [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao) e [Desenvolvimento Institucional]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_desenvolvimento_institucional) carregam, cada um, uma flag `projeto_<domínio>_sustentavel`. Este contrato mede a **estrutura** de sustentabilidade; aqueles medem os **projetos** que a tocam.
+> ℹ️ **Sustentabilidade também aparece fora deste contrato.** Os contratos de [Projetos de Ensino]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/projetos_de_ensino), [Projetos de Pesquisa]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa), [Ações de Extensão]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/acoes_de_extensao) e [Desenvolvimento Institucional]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/projetos_de_desenvolvimento_institucional) carregam, cada um, uma flag `projeto_<domínio>_sustentavel`. Este contrato mede a **estrutura** de sustentabilidade; aqueles medem os **projetos** que a tocam.
 
 ## Modelos contidos
 
@@ -30,13 +30,13 @@ A **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** coleta este c
 - **`governanca_gestao_sustentabilidade`** *(obrigatório no fluxo)* — instâncias de governança, gestão de resíduos sólidos e canais de divulgação da política.
 - **`compras_contratacoes`** *(obrigatório no fluxo)* — volume de compras e contratações, total e com critério de sustentabilidade.
 
-> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** das tabelas de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato).
+> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** das tabelas de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato).
 
 > ℹ️ **Os três modelos são independentes.** Nenhum declara `references` para outro. Todos se organizam pela mesma granularidade — uma linha por `estrutura` (campus) —, mas essa correspondência é convenção, não constraint.
 
 ## Modelo `agua_energia`
 
-> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
@@ -89,7 +89,7 @@ Além do schema, o modelo declara regras `quality` do tipo `sql`:
 
 ## Modelo `governanca_gestao_sustentabilidade`
 
-> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
@@ -175,7 +175,7 @@ Além do schema, o modelo declara regras `quality` do tipo `sql`:
 
 ## Modelo `compras_contratacoes`
 
-> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
@@ -195,7 +195,7 @@ Volume de compras e contratações por estrutura, com o recorte de quantas aplic
 | `compras_geral` | `integer` | sim | — | Número de compras efetivadas no ano de referência |
 | `contratacoes_geral` | `integer` | sim | — | Número de contratações efetivadas no ano de referência |
 
-> ℹ️ **Os subconjuntos agora são checados contra os totais.** `compras_sustentaveis` é, por definição, um subconjunto de `compras_geral`, e a segunda regra de qualidade abaixo faz valer isso — `compras_sustentaveis: 90` com `compras_geral: 12`, que antes passava e produzia um indicador de 750%, hoje reprova o teste do contrato. Ver [Validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade).
+> ℹ️ **Os subconjuntos agora são checados contra os totais.** `compras_sustentaveis` é, por definição, um subconjunto de `compras_geral`, e a segunda regra de qualidade abaixo faz valer isso — `compras_sustentaveis: 90` com `compras_geral: 12`, que antes passava e produzia um indicador de 750%, hoje reprova o teste do contrato. Ver [Validação e qualidade]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade).
 
 ### Regras de qualidade
 
@@ -234,7 +234,7 @@ Além do schema, o modelo declara regras `quality` do tipo `sql`:
 
 ## `referencia_pnp` — conferido na extração
 
-Os três modelos declaram, no campo `estrutura`, um bloco `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`. O Coletor confere esse código contra o espelho local de estruturas antes de gravar o Parquet, antecipando a checagem que a PNP faz depois do envio. Como a `severidade` declarada é `erro`, um código que não existe no cadastro **reprova o teste do contrato** — a extração conclui, mas o apontamento aparece em **Ver resultados de teste**, com o campo e as linhas envolvidas, e o envio à PNP fica barrado. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+Os três modelos declaram, no campo `estrutura`, um bloco `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`. O Coletor confere esse código contra o espelho local de estruturas antes de gravar o Parquet, antecipando a checagem que a PNP faz depois do envio. Como a `severidade` declarada é `erro`, um código que não existe no cadastro **reprova o teste do contrato** — a extração conclui, mas o apontamento aparece em **Ver resultados de teste**, com o campo e as linhas envolvidas, e o envio à PNP fica barrado. Ver [Validação referencial]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 ## Histórico de versões
 
