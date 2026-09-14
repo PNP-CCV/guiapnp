@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Conceito de Contrato de Dados"
+title: Conceito de Contrato de Dados
 toc: true
 ---
 # Conceito de Contrato de Dados
@@ -18,7 +18,7 @@ Um **contrato de API** formaliza a interface entre dois serviços que trocam men
 
 O Coletor usa a especificação aberta do ecossistema [datacontract.com](https://datacontract.com/), na versão `1.2.0`. A leitura e os testes são feitos pela ferramenta `datacontract-cli`, executada automaticamente pelo próprio Coletor.
 
-## Por que o Coletor usa contratos
+## Por que o Coletor usa contratos 
 
 Quatro motivos práticos:
 
