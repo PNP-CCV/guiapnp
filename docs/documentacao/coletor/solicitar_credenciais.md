@@ -28,6 +28,6 @@ Para solicitar as credenciais do ambiente de desenvolvimento/testes, o responsá
 
 ## Veja também
 
-- [Requisitos técnicos]({{ site.baseurl }}/documentacao/coletor/requisitos_tecnicos) — a próxima página do roteiro
-- [Visão geral]({{ site.baseurl }}/documentacao/coletor/visao_geral) — o que é o Coletor e seu papel na cadeia de coleta
-- [Processo CCV]({{ site.baseurl }}/documentacao/ccv/processo_ccv) — o ciclo de coleta e validação no contexto metodológico da PNP
+- [Requisitos técnicos]({{site.baseurl}}/documentacao/coletor/requisitos_tecnicos) — a próxima página do roteiro
+- [Visão geral]({{site.baseurl}}/documentacao/coletor/visao_geral) — o que é o Coletor e seu papel na cadeia de coleta
+- [Processo CCV]({{site.baseurl}}/documentacao/ccv/processo_ccv) — o ciclo de coleta e validação no contexto metodológico da PNP

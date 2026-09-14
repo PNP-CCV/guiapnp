@@ -10,7 +10,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-Esta página descreve como um **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** evolui ao longo do tempo: versionamento, classificação de mudanças como breaking ou não-breaking, relação com o **[Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/glossario#ciclo-de-coleta)** e o que vale fazer durante a janela de correção. Os onze contratos atuais estão em `1.0.0` — esta é a referência para quando alguém propuser a primeira mudança.
+Esta página descreve como um **[Contrato de Dados]({{site.baseurl}}/documentacao/coletor/glossario#contrato-de-dados)** evolui ao longo do tempo: versionamento, classificação de mudanças como breaking ou não-breaking, relação com o **[Ciclo de Coleta]({{site.baseurl}}/documentacao/coletor/glossario#ciclo-de-coleta)** e o que vale fazer durante a janela de correção. Os onze contratos atuais estão em `1.0.0` — esta é a referência para quando alguém propuser a primeira mudança.
 
 ## Versionamento do contrato
 
@@ -55,7 +55,7 @@ O critério é o mesmo das demais linhas: a mudança **invalida dado já entregu
 - **Desligar um modelo (`disabled: true`) é MINOR do ponto de vista do dado** — ninguém precisa produzir nada novo e nada já entregue é invalidado —, mas **exige comunicação**: o modelo some do painel na sincronização seguinte (por exclusão lógica, sem apagar histórico nem arquivos gerados) e, se for o último modelo habilitado, o contrato inteiro desaparece da tela. Quem vê um contrato sumir sem aviso abre chamado.
 - **Religar um modelo (`disabled: false`) é MAJOR.** Ele volta **zerado**: a configuração de extração anterior não é recuperada e precisa ser refeita — trabalho novo para todas as instituições, que é justamente o que caracteriza uma mudança maior.
 
-O detalhamento das duas flags está em [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta).
+O detalhamento das duas flags está em [Bloco `meta`]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta).
 
 ## Relação Contrato ↔ Ciclo
 
@@ -72,7 +72,7 @@ A versão antiga não some imediatamente. Ela continua viva enquanto o ciclo del
 
 ## Janela de correção: o que dá para mudar
 
-Durante o **[Período de Correção]({{ site.baseurl }}/documentacao/coletor/glossario#periodo-de-correcao)**, o contrato vigente pode receber **mudanças corretivas** — não evolutivas. A linha divisória é se a mudança invalida ou não dados que integradores já submeteram.
+Durante o **[Período de Correção]({{site.baseurl}}/documentacao/coletor/glossario#periodo-de-correcao)**, o contrato vigente pode receber **mudanças corretivas** — não evolutivas. A linha divisória é se a mudança invalida ou não dados que integradores já submeteram.
 
 Permitido durante a correção:
 
@@ -91,7 +91,7 @@ Não permitido durante a correção:
 - Tornar obrigatório (`meta.required: true`) um modelo que era opcional: quem já fechou o contrato passaria a ter trabalho novo no meio da janela.
 - Religar (`meta.disabled: false`) um modelo desabilitado: ele volta zerado e exige nova configuração de extração de todo mundo.
 
-A regra prática: se a mudança força reextração de quem já sincronizou com sucesso, **não é correção** — é nova versão MAJOR no próximo ciclo. Detalhes operacionais em [Ciclo de coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta).
+A regra prática: se a mudança força reextração de quem já sincronizou com sucesso, **não é correção** — é nova versão MAJOR no próximo ciclo. Detalhes operacionais em [Ciclo de coleta]({{site.baseurl}}/documentacao/coletor/ciclo_de_coleta).
 
 ## Exclusão é lógica, histórico é preservado
 
@@ -101,6 +101,6 @@ Vale o mesmo para o desligamento vindo do contrato: um modelo marcado com `meta.
 
 ## Veja também
 
-- [Ciclo de coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta)
-- [Anatomia do YAML do Contrato]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml)
-- [Conceito de Contrato de Dados]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/conceito)
+- [Ciclo de coleta]({{site.baseurl}}/documentacao/coletor/ciclo_de_coleta)
+- [Anatomia do YAML do Contrato]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/anatomia_yaml)
+- [Conceito de Contrato de Dados]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/conceito)

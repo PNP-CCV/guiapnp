@@ -30,3 +30,6 @@ Gemfile.lock
 
 # Ignore Google Cloud Storage bucket credentials
 gcs-bucket.json
+# Dependencias do Worker de OAuth (instaladas por npx wrangler)
+oauth-proxy/node_modules/
+oauth-proxy/.wrangler/

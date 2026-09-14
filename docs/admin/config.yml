@@ -1,0 +1,238 @@
+backend:
+  name: github
+  repo: PNP-CCV/guiapnp
+  branch: editoracao
+  # O GitHub Pages e estatico: o login do backend `github` depende de um
+  # provedor OAuth externo que troque o `code` pelo `access_token`. O provedor
+  # deste repositorio esta em ../../oauth-proxy (Cloudflare Worker); o deploy
+  # dele imprime a URL que entra em `base_url`.
+  # Sem as duas linhas abaixo preenchidas, o /admin publicado abre mas o login
+  # nunca conclui. Elas ficam dentro de `backend:` de proposito — no nivel raiz
+  # sao silenciosamente ignoradas.
+  # base_url: https://guiapnp-cms-oauth.SUA-CONTA.workers.dev
+  # auth_endpoint: auth
+
+# Permite testar o CMS localmente sem OAuth remoto (so vale em localhost).
+local_backend: true
+
+# Rascunho no CMS: cada edicao vira uma branch `cms/<colecao>/<slug>` e um PR
+# contra `editoracao`, onde acontece a revisao de terceiro. Depois do merge, o
+# workflow editoracao-review-gate abre o PR de promocao para `deploy`.
+publish_mode: editorial_workflow
+
+editor:
+  preview: true
+
+# As duas linhas precisam apontar para o mesmo diretorio: o upload grava em
+# `media_folder` e o markdown gerado referencia `public_folder`. Uma pasta
+# dedicada tambem evita que a biblioteca de midia liste as centenas de imagens
+# ja versionadas em docs/assets/img.
+media_folder: docs/assets/img/uploads
+public_folder: /guiapnp/assets/img/uploads
+
+site_url: https://pnp-ccv.github.io/guiapnp
+display_url: https://pnp-ccv.github.io/guiapnp
+show_preview_links: true
+
+collections:
+  - name: ccv
+    label: Documentacao - CCV
+    label_singular: Pagina
+    folder: docs/documentacao/ccv
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    preview_path: /documentacao/ccv/{{slug}}
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown, modes: ['raw'] }
+
+  - name: coletor
+    label: Documentacao - Coletor
+    label_singular: Pagina
+    folder: docs/documentacao/coletor
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    preview_path: /documentacao/coletor/{{slug}}
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown, modes: ['raw'] }
+
+  - name: metodologia
+    label: Documentacao - Metodologia
+    label_singular: Pagina
+    folder: docs/documentacao/metodologia
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    preview_path: /documentacao/metodologia/{{slug}}
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown, modes: ['raw'] }
+
+  - name: odi
+    label: Documentacao - ODI
+    label_singular: Pagina
+    folder: docs/documentacao/odi
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    preview_path: /documentacao/odi/{{slug}}
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown, modes: ['raw'] }
+
+  - name: pnp
+    label: Documentacao - PNP
+    label_singular: Pagina
+    folder: docs/documentacao/pnp
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    preview_path: /documentacao/pnp/{{slug}}
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown, modes: ['raw'] }
+
+  - name: indicadores
+    label: Documentacao - Indicadores
+    label_singular: Pagina
+    folder: docs/documentacao/indicadores
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    preview_path: /documentacao/indicadores/{{slug}}
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown, modes: ['raw'] }
+
+  - name: usuarios_especializados
+    label: Documentacao - Usuarios Especializados
+    label_singular: Pagina
+    folder: docs/documentacao/usuarios-especializados
+    create: false
+    extension: md
+    format: frontmatter
+    nested:
+      depth: 1
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    preview_path: /documentacao/usuarios-especializados/{{slug}}
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown, modes: ['raw'] }
+
+  - name: contratos
+    label: Contratos
+    label_singular: Pagina
+    folder: docs/documentacao/usuarios-especializados/contratos
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    preview_path: /documentacao/usuarios-especializados/contratos/{{slug}}
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown, modes: ['raw'] }
+
+  - name: referencias
+    label: Documentacao - Referencias
+    label_singular: Pagina
+    folder: docs/documentacao/referencias
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    preview_path: /documentacao/referencias/{{slug}}
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown, modes: ['raw'] }
+
+  - name: termos
+    label: Documentacao - Termos
+    label_singular: Pagina
+    folder: docs/documentacao/termos
+    create: false
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    preview_path: /documentacao/termos/{{slug}}
+    sortable_fields: [title]
+    view_filters:
+      - { label: TOC ativo, field: toc, pattern: true }
+      - { label: TOC inativo, field: toc, pattern: false }
+    fields:
+      - { label: Layout, name: layout, widget: string, required: false, default: default }
+      - { label: Titulo, name: title, widget: string, required: false }
+      - { label: TOC, name: toc, widget: boolean, required: false, default: false }
+      - { label: Conteudo, name: body, widget: markdown, modes: ['raw'] }

@@ -67,12 +67,20 @@ Pressione `Ctrl+C` no terminal onde o servidor está rodando.
 O site é publicado num subcaminho (`baseurl: "/guiapnp"` no `_config.yml`), então
 **todo link ou imagem interna precisa carregar esse prefixo explicitamente**.
 
-Em Markdown, use `{{ site.baseurl }}`:
+Em Markdown, use `{{site.baseurl}}` — **sem espaços dentro das chaves**:
 
 ```markdown
-[Ciclo de coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta)
-![Dashboard]({{ site.baseurl }}/assets/img/docs/coletor/02-dashboard.png)
+[Ciclo de coleta]({{site.baseurl}}/documentacao/coletor/ciclo_de_coleta)
+![Dashboard]({{site.baseurl}}/assets/img/docs/coletor/02-dashboard.png)
 ```
+
+> **Por que sem espaço.** Para o Liquid, `{{ site.baseurl }}` e `{{site.baseurl}}`
+> são a mesma coisa. Para o Decap CMS, não: espaço no destino de um link viola o
+> CommonMark, então o editor **nem reconhece aquilo como link** — ao salvar, ele
+> devolve o trecho escapado, como texto literal, e o link desaparece da página.
+> Medido em `contratos/conceito.md`: 24 de 24 links destruídos com espaço, 0 sem
+> espaço. O verificador cobra a forma sem espaço em `docs/documentacao/**.md`, que
+> é o conteúdo aberto pelo CMS; em template a forma com espaço segue valendo.
 
 Em HTML e nos templates (`_includes/`, `_layouts/`), use o filtro `relative_url`:
 
@@ -128,6 +136,137 @@ docs/
 ├── documentacao/         # Conteúdo Markdown
 └── Gemfile              # Dependências Ruby
 ```
+
+## Fluxo editorial com Decap CMS
+
+Esta configuracao permite que editores alterem conteudo via CMS com commits na branch `editoracao`, e que a publicacao em `deploy` aconteca apenas apos revisao.
+
+### Como o fluxo funciona
+
+O CMS esta em `publish_mode: editorial_workflow`, entao a revisao acontece em
+dois momentos — o rascunho e revisado antes de entrar na `editoracao`, e o
+conteudo acumulado e revisado antes de ir ao ar:
+
+1. O editor abre uma pagina em `/admin/` e salva. O Decap cria uma branch
+   `cms/<colecao>/<slug>` e abre um PR contra `editoracao`. Enquanto o editor
+   nao mandar para "Ready", aquilo e rascunho.
+2. **Primeira revisao:** um terceiro revisa esse PR e faz o merge na `editoracao`.
+3. O workflow [`editoracao-review-gate.yml`](.github/workflows/editoracao-review-gate.yml)
+   abre (ou reaproveita) o PR `editoracao -> deploy`.
+4. **Segunda revisao:** um terceiro aprova esse PR.
+5. Apos o merge, a `deploy` e atualizada e o GitHub Pages publica.
+
+> **O botao "Publish" do Decap nao e usado neste fluxo.** Ele tenta fazer o merge
+> do PR pela API, e a protecao da `editoracao` recusa merge sem aprovacao — o
+> editor veria um erro sem explicacao. O correto e o editor mover o rascunho para
+> **"Ready"** e parar ai; a aprovacao e o merge acontecem no GitHub, por outra
+> pessoa. Vale dizer isso aos editores antes do primeiro uso, porque o botao
+> continua visivel na interface.
+
+### Configuracao de seguranca recomendada no GitHub
+
+Quem pode editar e definido pelo GitHub, nao pelo CMS: o backend `github`
+autoriza qualquer conta com permissao de escrita no repositorio. Dar `write` aos
+editores e o que os habilita no `/admin` — e a protecao de branch abaixo e o que
+os impede de publicar sozinhos.
+
+Em `Settings > Branches`:
+
+1. Proteger `deploy` com:
+	1. `Require a pull request before merging`.
+	2. `Require approvals` (minimo 1).
+	3. `Require status checks to pass` marcando **Verificar links internos**.
+	4. Opcional: `Dismiss stale pull request approvals when new commits are pushed`.
+2. Proteger `main` contra push direto, senao o `write` dado aos editores alcanca
+   tambem a branch principal.
+3. Opcional: proteger `editoracao` para restringir quem pode editar.
+
+### Teste local do CMS
+
+Comandos em dois terminais:
+
+Terminal 1 (site Jekyll):
+
+```bash
+cd docs
+bundle exec jekyll serve --baseurl "/guiapnp"
+```
+
+Terminal 2 (proxy local do Decap) — **na raiz do repositorio, nao em `docs/`**:
+
+```bash
+cd /caminho/para/guiapnp
+MODE=git npx decap-server
+```
+
+Os dois detalhes desse comando sao os que costumam custar uma tarde:
+
+- **A pasta importa.** Os `folder:` de [docs/admin/config.yml](docs/admin/config.yml)
+  sao relativos a raiz do repositorio (`docs/documentacao/ccv`), e o proxy os
+  resolve a partir do diretorio onde foi iniciado. Rodando de dentro de `docs/`,
+  ele procura `docs/docs/documentacao/ccv`, nao acha nada, e **o CMS abre com as
+  colecoes na barra lateral e nenhum arquivo dentro** — sem mensagem de erro. Para
+  conferir em que pasta o seu proxy esta, pergunte a ele:
+
+  ```bash
+  curl -s -X POST http://localhost:8081/api/v1 \
+    -H 'Content-Type: application/json' -d '{"action":"info","params":{}}'
+  ```
+
+  O campo `repo` traz o nome da pasta em que o proxy foi iniciado — precisa ser a
+  pasta que contem `docs/` e `.github/`. Se vier `"repo":"docs"`, o proxy subiu um
+  nivel abaixo do certo: e essa a causa da lista vazia.
+
+- **`MODE=git` nao e opcional aqui.** Sem ele o proxy roda como `local_fs`, que
+  anuncia `"publish_modes":["simple"]` — ou seja, nao suporta o
+  `editorial_workflow` configurado neste repositorio. Com `MODE=git` a resposta
+  passa a ser `["simple","editorial_workflow"]`.
+
+> **Atencao com `MODE=git`.** Nesse modo o proxy opera no seu checkout de verdade:
+> ele roda `git checkout` na branch do CMS e cria branches `cms/*` localmente. Se
+> houver alteracao nao commitada, ele aborta com "Your local changes would be
+> overwritten". Vale usar um worktree separado so para isso:
+>
+> ```bash
+> git worktree add ../guiapnp-cms editoracao
+> cd ../guiapnp-cms && MODE=git npx decap-server
+> ```
+
+Abra:
+
+- Site: `http://127.0.0.1:4000/guiapnp/`
+- CMS: `http://127.0.0.1:4000/guiapnp/admin/`
+
+Observacoes:
+
+- O `local_backend: true` em [docs/admin/config.yml](docs/admin/config.yml) ativa o modo local para testes sem OAuth remoto.
+- Em producao (GitHub Pages), o backend `github` exige um endpoint OAuth do Decap CMS para login com conta GitHub.
+- Imagens enviadas pelo editor vao para `docs/assets/img/uploads/`. E a unica
+  pasta em que o verificador aceita o prefixo `/guiapnp/` escrito direto, porque
+  o Decap monta esse caminho a partir do `public_folder` e nao interpola Liquid ali.
+
+### Ao mexer no editor, reteste o round-trip
+
+O campo de conteudo esta fixado em `modes: ['raw']` e a versao do Decap esta
+fixada em [docs/admin/index.html](docs/admin/index.html). Os dois existem pelo
+mesmo motivo: o editor rich text destroi os links em Liquid (ver a secao "Links
+internos" acima). Ao trocar a versao do Decap ou liberar o modo rich text, refaca
+este teste antes de publicar:
+
+1. Abra `/admin/` e edite `Contratos > Conceito de Contrato de Dados`.
+2. Salve **sem alterar nada**.
+3. Confira que `git diff` na branch do rascunho veio vazio.
+
+Se vier diferenca, o editor esta reescrevendo o conteudo — nao siga adiante.
+
+### Produção no GitHub Pages com login GitHub
+
+Para o login funcionar no `/admin` publicado, configure um OAuth provider do Decap CMS (servico externo) e preencha em [docs/admin/config.yml](docs/admin/config.yml):
+
+- `base_url`
+- `auth_endpoint`
+
+Sem isso, o editor funciona localmente, mas o login no ambiente publicado nao sera concluido.
 
 ## Licença
 

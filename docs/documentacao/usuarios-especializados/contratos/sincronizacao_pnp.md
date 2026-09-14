@@ -10,24 +10,24 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-Esta página descreve o fluxo de envio dos **[Parquets]({{ site.baseurl }}/documentacao/coletor/glossario#parquet)** locais para a **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** — o que sai do Coletor, com qual autenticação, e o que acontece **depois** do envio, que é metade da história. Cobre também a direção inversa: o que "Sincronizar com a PNP" traz para dentro do Coletor.
+Esta página descreve o fluxo de envio dos **[Parquets]({{site.baseurl}}/documentacao/coletor/glossario#parquet)** locais para a **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)** — o que sai do Coletor, com qual autenticação, e o que acontece **depois** do envio, que é metade da história. Cobre também a direção inversa: o que "Sincronizar com a PNP" traz para dentro do Coletor.
 
 > ⚠️ **Enviar não encerra o fluxo.** O envio bem-sucedido não significa "dado aceito". Ele coloca o Parquet numa fila de validação **do lado da PNP**, que passa por validação estrutural, homologação da área e aprovação do Reitor — todas ações fora do Coletor.
 
 ## Fluxo de envio
 
-Começa quando o operador clica **Enviar** no contrato (status "Pronto para Sincronizar") e termina com um **[Registro de Sincronização]({{ site.baseurl }}/documentacao/coletor/glossario#registro-de-sincronizacao)** consultável na tela **Envios**:
+Começa quando o operador clica **Enviar** no contrato (status "Pronto para Sincronizar") e termina com um **[Registro de Sincronização]({{site.baseurl}}/documentacao/coletor/glossario#registro-de-sincronizacao)** consultável na tela **Envios**:
 
 1. O clique dispara uma tarefa em background — o navegador não trava.
 2. A tarefa localiza, para cada modelo do contrato, o Parquet da última extração bem-sucedida.
 3. Modelos sem extração bem-sucedida ou sem arquivo em disco são pulados. Se nenhum for elegível, o envio é abortado.
 4. Cada modelo é enviado em uma requisição separada à PNP — não há lote. O tempo limite é de 5 minutos por arquivo.
-5. Para cada modelo aceito, a PNP devolve um identificador de dataset, que o Coletor guarda em um **[Registro de Validação de Modelo]({{ site.baseurl }}/documentacao/coletor/glossario#registro-de-validacao-de-modelo)** — é por ele que a validação será acompanhada.
+5. Para cada modelo aceito, a PNP devolve um identificador de dataset, que o Coletor guarda em um **[Registro de Validação de Modelo]({{site.baseurl}}/documentacao/coletor/glossario#registro-de-validacao-de-modelo)** — é por ele que a validação será acompanhada.
 6. Falhas individuais não interrompem o restante: a tarefa tenta todos os modelos e agrega o resultado no Registro de Sincronização (total, sucessos, erros e a resposta completa da PNP por modelo).
 
 ## Autenticação
 
-Não há "chave de ativação" manual. A autenticação da instância com a PNP é **automática, entre servidores**, com tokens de vida curta renovados pelo próprio Coletor. O vínculo foi estabelecido uma única vez no [Primeiro acesso]({{ site.baseurl }}/documentacao/coletor/primeiro_acesso), quando o secret da instituição foi casado com o hostname do servidor. Se a instância perder a autenticação (respostas 401/403 em todos os envios), reiniciar a stack (`coletor down` e `coletor up`) refaz a ativação.
+Não há "chave de ativação" manual. A autenticação da instância com a PNP é **automática, entre servidores**, com tokens de vida curta renovados pelo próprio Coletor. O vínculo foi estabelecido uma única vez no [Primeiro acesso]({{site.baseurl}}/documentacao/coletor/primeiro_acesso), quando o secret da instituição foi casado com o hostname do servidor. Se a instância perder a autenticação (respostas 401/403 em todos os envios), reiniciar a stack (`coletor down` e `coletor up`) refaz a ativação.
 
 ## A cadeia de validação do lado da PNP
 
@@ -56,7 +56,7 @@ O prazo de uma validação pendente é a **data limite do ciclo do contrato**: o
 
 **Homologação da Área e Aprovação do Reitor são ações humanas na PNP.** Não existe botão para elas no Coletor.
 
-> ℹ️ **Homologar não tranca o modelo.** Só a **Aprovação do Reitor** é definitiva. Enquanto o dado está "Aguardando validação", "Validado" ou "Homologado pela área", uma reextração bem-sucedida torna a validação anterior obsoleta e o envio volta a ser oferecido — é a saída para quando a área homologa em cima de dado errado. Depois da aprovação do Reitor a reextração fica bloqueada, e substituir o dado exige um novo [Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta).
+> ℹ️ **Homologar não tranca o modelo.** Só a **Aprovação do Reitor** é definitiva. Enquanto o dado está "Aguardando validação", "Validado" ou "Homologado pela área", uma reextração bem-sucedida torna a validação anterior obsoleta e o envio volta a ser oferecido — é a saída para quando a área homologa em cima de dado errado. Depois da aprovação do Reitor a reextração fica bloqueada, e substituir o dado exige um novo [Ciclo de Coleta]({{site.baseurl}}/documentacao/coletor/ciclo_de_coleta).
 
 > ⚠️ **Reenviar dado idêntico não reseta a validação.** A PNP deduplica dataset por conteúdo (checksum). Reenviar um Parquet idêntico devolve o **identificador do dataset já existente, com o status antigo** — inclusive uma rejeição anterior. Ou seja: re-extrair sem que o dado mude não limpa uma rejeição. Para destravar, o dado na origem precisa efetivamente mudar.
 
@@ -91,6 +91,6 @@ O botão **Sincronizar com a PNP** no dashboard puxa os metadados da PNP para o 
 
 ## Veja também
 
-- [Operação corrente]({{ site.baseurl }}/documentacao/coletor/operacao_corrente)
-- [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato)
-- [Perguntas frequentes]({{ site.baseurl }}/documentacao/coletor/faq)
+- [Operação corrente]({{site.baseurl}}/documentacao/coletor/operacao_corrente)
+- [Status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato)
+- [Perguntas frequentes]({{site.baseurl}}/documentacao/coletor/faq)

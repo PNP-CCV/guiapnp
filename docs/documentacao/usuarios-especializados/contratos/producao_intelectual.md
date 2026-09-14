@@ -19,19 +19,19 @@ toc: true
 
 ## Resumo de negócio
 
-Este **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** descreve a **produção intelectual acadêmica e técnica** dos servidores da instituição: publicações (artigos, livros, capítulos, anais), produções técnico-tecnológicas, artístico-culturais e demais categorias da taxonomia Lattes/CNPq, com classificação Qualis-CAPES quando aplicável.
+Este **[Contrato de Dados]({{site.baseurl}}/documentacao/coletor/glossario#contrato-de-dados)** descreve a **produção intelectual acadêmica e técnica** dos servidores da instituição: publicações (artigos, livros, capítulos, anais), produções técnico-tecnológicas, artístico-culturais e demais categorias da taxonomia Lattes/CNPq, com classificação Qualis-CAPES quando aplicável.
 
-A **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** coleta este contrato para mensurar a **produção acadêmica e técnica** da rede federal e a participação de docentes e TAEs em cada produção. Modelo único: a autoria deixou de ser tabela à parte e passou a viver na própria linha da produção (`cpf`, `categoria`, `matricula`), o que torna a granularidade **uma linha por autoria**, não por produção.
+A **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)** coleta este contrato para mensurar a **produção acadêmica e técnica** da rede federal e a participação de docentes e TAEs em cada produção. Modelo único: a autoria deixou de ser tabela à parte e passou a viver na própria linha da produção (`cpf`, `categoria`, `matricula`), o que torna a granularidade **uma linha por autoria**, não por produção.
 
 ## Modelos contidos
 
 - **`producao_intelectual`** *(obrigatório no fluxo)* — produções acadêmicas, técnicas, tecnológicas e culturais registradas institucionalmente, com tipo, classificação, ano, área CNPq e a autoria vinculada. Contém PII (`cpf`).
 
-> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** das tabelas de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato).
+> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** das tabelas de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato).
 
 ## Modelo `producao_intelectual`
 
-> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
@@ -109,7 +109,7 @@ Além do schema (colunas obrigatórias, tipos e rejeição de colunas extras via
 | `area_tematica_cnpq` | `producao_intelectual` | `areas_tematicas_cnpq` | `codigo` | **`aviso`** |
 | `matricula` (`docente`, `TAE`) | `producao_intelectual` | `servidores` | `chave_composta: [cpf, matricula]` | `erro` |
 
-O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gravar o Parquet, no **modo bloqueante** por padrão — uma referência que não existe no cadastro reprova o **teste do contrato** e barra o envio, aparecendo em **Ver resultados de teste** com o campo e as linhas envolvidas. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial). Para a autoria, a validação confere o par `[cpf, matricula]` no cadastro de `servidores`, evitando aceitar o CPF de uma pessoa combinado com a matrícula de outra.
+O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gravar o Parquet, no **modo bloqueante** por padrão — uma referência que não existe no cadastro reprova o **teste do contrato** e barra o envio, aparecendo em **Ver resultados de teste** com o campo e as linhas envolvidas. Ver [Validação referencial]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_referencial). Para a autoria, a validação confere o par `[cpf, matricula]` no cadastro de `servidores`, evitando aceitar o CPF de uma pessoa combinado com a matrícula de outra.
 
 ### `matricula` confere só contra `servidores`
 
@@ -126,7 +126,7 @@ matricula:
 
 A conferência é do par `(cpf, matricula)`, não dos dois campos soltos — conferir cada um por si aceitaria o CPF de uma pessoa com a matrícula de outra.
 
-> ℹ️ **Este contrato não cobre estudante.** O `enum` de `categoria` aceita só `docente` e `TAE`, e `categorias_validar` acompanha esse recorte. Em [Ações de Extensão]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acoes_de_extensao) e em [Projetos de Pesquisa]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa) os modelos de pessoas aceitam também `externo` e `estudante`, e por isso lá a regra é roteada entre dois cadastros.
+> ℹ️ **Este contrato não cobre estudante.** O `enum` de `categoria` aceita só `docente` e `TAE`, e `categorias_validar` acompanha esse recorte. Em [Ações de Extensão]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/acoes_de_extensao) e em [Projetos de Pesquisa]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa) os modelos de pessoas aceitam também `externo` e `estudante`, e por isso lá a regra é roteada entre dois cadastros.
 
 ## Histórico de versões
 

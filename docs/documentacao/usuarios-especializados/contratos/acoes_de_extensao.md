@@ -1,14 +1,12 @@
 ---
 layout: default
-title: "Ações de Extensão"
+title: Ações de Extensão
 toc: true
 ---
-
 # Ações de Extensão
 
 * TOC
-{:toc}
-
+  {:toc}
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
@@ -20,9 +18,9 @@ toc: true
 
 ## Resumo de negócio
 
-Este **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** descreve as **ações de extensão acadêmica** — programas, projetos, cursos, eventos e prestações de serviço — executadas pela instituição em interação com a comunidade externa, conforme prevê a LDB e a política nacional de extensão da Rede Federal.
+Este **[Contrato de Dados]({{site.baseurl}}/documentacao/coletor/glossario#contrato-de-dados)** descreve as **ações de extensão acadêmica** — programas, projetos, cursos, eventos e prestações de serviço — executadas pela instituição em interação com a comunidade externa, conforme prevê a LDB e a política nacional de extensão da Rede Federal.
 
-A **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** coleta este contrato para mensurar o impacto social da extensão (alcance comunitário, atendimento a populações vulneráveis, parcerias institucionais e financiamento) e o engajamento da rede federal com a sociedade. Os quatro modelos cobrem os **programas** que agrupam as ações, a ação em si, as **pessoas atendidas** (público-alvo, com PII) e as **pessoas envolvidas** na execução (docentes, TAEs, estudantes, externos).
+A **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)** coleta este contrato para mensurar o impacto social da extensão (alcance comunitário, atendimento a populações vulneráveis, parcerias institucionais e financiamento) e o engajamento da rede federal com a sociedade. Os quatro modelos cobrem os **programas** que agrupam as ações, a ação em si, as **pessoas atendidas** (público-alvo, com PII) e as **pessoas envolvidas** na execução (docentes, TAEs, estudantes, externos).
 
 ## Modelos contidos
 
@@ -31,11 +29,11 @@ A **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** coleta este c
 - **`pessoas_atendidas_acoes_extensao`** *(opcional no fluxo)* — pessoas impactadas diretamente pelas ações (público-alvo). Contém PII (`cpf`, `nome`).
 - **`pessoas_envolvidas_acoes_extensao`** *(obrigatório no fluxo)* — pessoas formalmente envolvidas na execução (docentes, TAEs, estudantes, externos). Contém PII.
 
-> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** das tabelas de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato).
+> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** das tabelas de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato).
 
 ## Modelo `programa`
 
-> ℹ️ **No fluxo do Coletor:** modelo **opcional** (`meta.required: false`) e **habilitado** (`meta.disabled: false`). Enquanto ninguém cadastrar uma **[Configuração de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#configuracao-de-extracao)** para ele, o Coletor não o cobra: não vira pendência, não segura o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) e é pulado pela extração em lote. Assim que ganha uma configuração, passa a contar como qualquer outro modelo.
+> ℹ️ **No fluxo do Coletor:** modelo **opcional** (`meta.required: false`) e **habilitado** (`meta.disabled: false`). Enquanto ninguém cadastrar uma **[Configuração de Extração]({{site.baseurl}}/documentacao/coletor/glossario#configuracao-de-extracao)** para ele, o Coletor não o cobra: não vira pendência, não segura o [status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato) e é pulado pela extração em lote. Assim que ganha uma configuração, passa a contar como qualquer outro modelo.
 
 ### Resumo do modelo
 
@@ -76,7 +74,7 @@ Não declaradas para este modelo (bloco `quality` ausente). A validação ativa 
 
 ## Modelo `acoes_extensao`
 
-> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
@@ -129,7 +127,7 @@ Além do schema (colunas obrigatórias, tipos e rejeição de colunas extras via
 
 > ℹ️ **Ano de referência.** As duas últimas consultas usam o token `#ANO_REFERENCIA#`, substituído pelo Coletor antes de o contrato chegar ao motor: é o **ano-base** da coleta, `ciclo.ano - 1` (o ciclo de 2026 coleta o que aconteceu em 2025). Contrato que usa o token sem ciclo de coleta associado falha com erro explícito, em vez de mandar SQL quebrado ao motor.
 
-Essas regras rodam uma vez, sobre o contrato inteiro, ao fim da extração ([validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)) — uma violação **não** reprova a extração deste modelo (o Parquet fica gravado normalmente); ela deixa o contrato em "Qualidade Reprovada" e bloqueia o envio até a linha ser corrigida na origem.
+Essas regras rodam uma vez, sobre o contrato inteiro, ao fim da extração ([validação e qualidade]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)) — uma violação **não** reprova a extração deste modelo (o Parquet fica gravado normalmente); ela deixa o contrato em "Qualidade Reprovada" e bloqueia o envio até a linha ser corrigida na origem.
 
 ### Exemplo válido
 
@@ -174,7 +172,7 @@ Essas regras rodam uma vez, sobre o contrato inteiro, ao fim da extração ([val
 
 ## Modelo `pessoas_atendidas_acoes_extensao`
 
-> ℹ️ **No fluxo do Coletor:** modelo **opcional** (`meta.required: false`) e **habilitado** (`meta.disabled: false`) — o único modelo opcional deste contrato. Enquanto ninguém cadastrar uma **[Configuração de Extração]({{ site.baseurl }}/documentacao/coletor/glossario#configuracao-de-extracao)** para ele, o Coletor não o cobra: não vira pendência, não segura o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) e é pulado pela extração em lote do contrato. Assim que ganha uma configuração, passa a contar como qualquer outro modelo — o contrato volta para *Aguardando Extração* e só fecha quando este modelo for extraído, testado, enviado e aprovado. Para desistir dele, basta remover a(s) configuração(ões) de extração.
+> ℹ️ **No fluxo do Coletor:** modelo **opcional** (`meta.required: false`) e **habilitado** (`meta.disabled: false`) — o único modelo opcional deste contrato. Enquanto ninguém cadastrar uma **[Configuração de Extração]({{site.baseurl}}/documentacao/coletor/glossario#configuracao-de-extracao)** para ele, o Coletor não o cobra: não vira pendência, não segura o [status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato) e é pulado pela extração em lote do contrato. Assim que ganha uma configuração, passa a contar como qualquer outro modelo — o contrato volta para *Aguardando Extração* e só fecha quando este modelo for extraído, testado, enviado e aprovado. Para desistir dele, basta remover a(s) configuração(ões) de extração.
 
 ### Resumo do modelo
 
@@ -216,15 +214,15 @@ Além do schema, o modelo declara regras `quality` do tipo `sql`:
 
 ### Exemplos inválidos
 
-| Payload (resumido) | Erro |
-|---|---|
-| `{"cpf": "...", "id_acao_extensao": 1042}` (sem `id_atendido`) | `Required field 'id_atendido' is missing` |
-| `{"id_atendido": 87012, "cpf": "..."}` (sem `id_acao_extensao`) | `Required field 'id_acao_extensao' is missing` |
-| `{"id_atendido": "87012", ...}` (`string` em vez de `integer`) | `Type mismatch on 'id_atendido': expected integer, got string` |
+| Payload (resumido)                                              | Erro                                                           |
+| --------------------------------------------------------------- | -------------------------------------------------------------- |
+| `{"cpf": "...", "id_acao_extensao": 1042}` (sem `id_atendido`)  | `Required field 'id_atendido' is missing`                      |
+| `{"id_atendido": 87012, "cpf": "..."}` (sem `id_acao_extensao`) | `Required field 'id_acao_extensao' is missing`                 |
+| `{"id_atendido": "87012", ...}` (`string` em vez de `integer`)  | `Type mismatch on 'id_atendido': expected integer, got string` |
 
 ## Modelo `pessoas_envolvidas_acoes_extensao`
 
-> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
@@ -277,11 +275,11 @@ Além do schema, o modelo declara regras `quality` do tipo `sql`:
 
 ### Exemplos inválidos
 
-| Payload (resumido) | Erro |
-|---|---|
-| `{"id_envolvido": 50214, "id_acao_extensao": 1042}` (sem `categoria`) | `Required field 'categoria' is missing` |
-| `{..., "categoria": "professor"}` (valor fora do `enum`) | `Value 'professor' for field 'categoria' not in enum [docente, TAE, externo, estudante]` |
-| `{..., "extra_field": "x"}` (coluna não declarada) | `Field 'extra_field' not in schema (additionalFields: false)` |
+| Payload (resumido)                                                    | Erro                                                                                     |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `{"id_envolvido": 50214, "id_acao_extensao": 1042}` (sem `categoria`) | `Required field 'categoria' is missing`                                                  |
+| `{..., "categoria": "professor"}` (valor fora do `enum`)              | `Value 'professor' for field 'categoria' not in enum [docente, TAE, externo, estudante]` |
+| `{..., "extra_field": "x"}` (coluna não declarada)                    | `Field 'extra_field' not in schema (additionalFields: false)`                            |
 
 ## `referencia_pnp` — conferido na extração
 
@@ -297,7 +295,7 @@ Este é o contrato que mais usa a chave `referencia_pnp`, e ela aponta para quat
 | `cpf` | `pessoas_envolvidas_acoes_extensao` | `pessoas` | `chave_simples` | `erro` |
 | `matricula` | `pessoas_envolvidas_acoes_extensao` | `servidores` **ou** `matriculas` | `chave_composta` | `erro` |
 
-Todas declaram `severidade: erro`, menos `area_tematica_cnpq`, que é `aviso` — como também é em [Projetos de Pesquisa]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa) e em [Produção Intelectual]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/producao_intelectual). O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gravar o Parquet, antecipando a checagem que antes só acontecia depois do envio. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+Todas declaram `severidade: erro`, menos `area_tematica_cnpq`, que é `aviso` — como também é em [Projetos de Pesquisa]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/projetos_de_pesquisa) e em [Produção Intelectual]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/producao_intelectual). O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gravar o Parquet, antecipando a checagem que antes só acontecia depois do envio. Ver [Validação referencial]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 ### `matricula` é roteada por `categoria`
 
@@ -811,4 +809,3 @@ models:
             severidade: erro
     additionalFields: false
 ```
-

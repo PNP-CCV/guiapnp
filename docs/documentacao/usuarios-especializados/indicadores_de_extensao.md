@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Indicadores de Extensão"
+title: Indicadores de Extensão
 toc: true
 ---
-
 # {{ page.title }}
 
 * TOC
@@ -278,9 +277,8 @@ Ações que apenas abordam temas relacionados à vulnerabilidade, de forma ampla
 </table>
 <p>&nbsp;</p>
 
-
-
 ### Percentual de pessoas estudantes envolvidas em ações de extensão (EXEAE)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -351,8 +349,6 @@ Ações que apenas abordam temas relacionados à vulnerabilidade, de forma ampla
 </table>
 <p>&nbsp;</p>
 
-
-
 ### Percentual de pessoas estudantes matriculadas por meio de cotas envolvidas em ações de extensão (EXCOT)
 <table>
   <tr>
@@ -362,7 +358,7 @@ Ações que apenas abordam temas relacionados à vulnerabilidade, de forma ampla
   </tr>
   <tr>
     <td colspan="2">
-      <strong>Definição:</strong> Mensura o percentual de estudantes ingressantes por meio de cotas e envolvidos em ações de extensão, independente da modalidade (Projeto, Programa, Evento, Curso e Prestação de Serviço), dentre o total de estudantes envolvidos em ações de extensão.
+      <strong>Definição:</strong> Mensura o percentual de estudantes ingressantes por meio de cotas e envolvidos em ações de extensão, independentemente da modalidade (Projeto, Programa, Evento, Curso e Prestação de Serviço), dentre o total de estudantes envolvidos em ações de extensão.
     </td>
   </tr>
   <tr>
@@ -423,8 +419,6 @@ Ações que apenas abordam temas relacionados à vulnerabilidade, de forma ampla
   </tr>
 </table>
 <p>&nbsp;</p>
-
-
 
 ### Percentual de pessoas servidoras envolvidas em ações de extensão (EXSERV)
 <table>
@@ -501,8 +495,6 @@ Ações que apenas abordam temas relacionados à vulnerabilidade, de forma ampla
   </tr>
 </table>
 <p>&nbsp;</p>
-
-
 
 ### Percentual de recursos financeiros do orçamento anual público aplicados em extensão (EXREC)
 <table>

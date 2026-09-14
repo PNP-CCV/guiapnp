@@ -16,21 +16,21 @@ toc: true
 
 ## Resumo de negócio
 
-Este **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** descreve os **ativos de propriedade intelectual** depositados e concedidos à instituição: patentes, marcas, desenhos industriais, cultivares, topografias de circuitos integrados, programas de computador e organismos geneticamente modificados. Cada registro representa um ativo com processo junto ao **INPI**, sua situação de registro e a eventual transferência, licenciamento ou cessão a terceiros.
+Este **[Contrato de Dados]({{site.baseurl}}/documentacao/coletor/glossario#contrato-de-dados)** descreve os **ativos de propriedade intelectual** depositados e concedidos à instituição: patentes, marcas, desenhos industriais, cultivares, topografias de circuitos integrados, programas de computador e organismos geneticamente modificados. Cada registro representa um ativo com processo junto ao **INPI**, sua situação de registro e a eventual transferência, licenciamento ou cessão a terceiros.
 
-A **[PNP]({{ site.baseurl }}/documentacao/coletor/glossario#pnp)** coleta este contrato para mensurar a **inovação e a transferência de tecnologia** da rede federal — quanto se deposita, quanto se concede e quanto efetivamente chega ao setor produtivo.
+A **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)** coleta este contrato para mensurar a **inovação e a transferência de tecnologia** da rede federal — quanto se deposita, quanto se concede e quanto efetivamente chega ao setor produtivo.
 
-Este contrato é composto por um único **[Modelo de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#modelo-de-dados)**, e ele é obrigatório — diferente de [Acordos de Parceria]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/acordos_de_parceria), cujo modelo único é opcional.
+Este contrato é composto por um único **[Modelo de Dados]({{site.baseurl}}/documentacao/coletor/glossario#modelo-de-dados)**, e ele é obrigatório — diferente de [Acordos de Parceria]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/acordos_de_parceria), cujo modelo único é opcional.
 
 ## Modelos contidos
 
 - **`ativos_pesquisa`** *(obrigatório no fluxo)* — ativos de propriedade intelectual com número de processo no INPI, titularidade, datas de depósito e concessão, validade, situação do registro e totais de contratos de transferência, licenciamento e cessão.
 
-> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** da tabela de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato).
+> ℹ️ **Atenção ao vocabulário:** *obrigatório / opcional / desabilitado* acima é atributo do **modelo**, declarado no bloco `meta` do contrato — não confundir com a coluna **Obrigatório** da tabela de campos, que diz se aquela *coluna* precisa vir preenchida. Ver [Anatomia do YAML]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/anatomia_yaml) e [Status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato).
 
 ## Modelo `ativos_pesquisa`
 
-> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{ site.baseurl }}/documentacao/coletor/status_do_contrato) não avança.
+> ℹ️ **No fluxo do Coletor:** modelo **obrigatório** (`meta.required: true`) e **habilitado** (`meta.disabled: false`). O Coletor cobra a configuração e a extração dele: enquanto isso não acontece, o [status do contrato]({{site.baseurl}}/documentacao/coletor/status_do_contrato) não avança.
 
 ### Resumo do modelo
 
@@ -63,7 +63,7 @@ Propriedade industrial: `Patente de Invenção`, `Patente de Modelo de Utilidade
 
 Demais regimes: `Cultivar`, `Programa de Computador`, `Organismo Geneticamente Modificado`.
 
-> ℹ️ **`referencia_pnp` agora é conferido na extração.** O campo `estrutura` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`, e o Coletor confere esse código contra o espelho local de estruturas antes de gravar o Parquet — a mesma checagem que a PNP faz depois do envio, antecipada. Como a `severidade` declarada é `erro`, um código que não existe no cadastro **reprova o teste do contrato** — a extração conclui, mas o apontamento aparece em **Ver resultados de teste**, com o campo e as linhas envolvidas, e o envio à PNP fica barrado. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+> ℹ️ **`referencia_pnp` agora é conferido na extração.** O campo `estrutura` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`, e o Coletor confere esse código contra o espelho local de estruturas antes de gravar o Parquet — a mesma checagem que a PNP faz depois do envio, antecipada. Como a `severidade` declarada é `erro`, um código que não existe no cadastro **reprova o teste do contrato** — a extração conclui, mas o apontamento aparece em **Ver resultados de teste**, com o campo e as linhas envolvidas, e o envio à PNP fica barrado. Ver [Validação referencial]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
 ### Regras de qualidade
 
@@ -79,7 +79,7 @@ Além do schema (colunas obrigatórias, tipos e rejeição de colunas extras via
 | O prazo de validade, quando informado, deve ser maior que zero | `SELECT COUNT(*) FROM ativos_pesquisa WHERE validade_ativo_pesq <= 0` | `mustBe: 0` |
 | `estrutura` deve vir preenchida com valor não vazio | `SELECT COUNT(*) FROM ativos_pesquisa WHERE NULLIF(TRIM(estrutura), '') IS NULL` | `mustBe: 0` |
 
-São condicionalidades que o schema sozinho não expressa — a principal delas é a coerência entre a indicação de transferência e a contagem de contratos: quem marca `ativo_pesq_transferido: true` precisa declarar pelo menos um contrato nos três totais, e quem marca `false` não pode declarar nenhum. Essas regras rodam uma vez, sobre o contrato inteiro, ao fim da extração ([validação e qualidade]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)) — uma violação **não** reprova a extração deste modelo (o Parquet fica gravado normalmente); ela deixa o contrato em "Qualidade Reprovada" e bloqueia o envio até a linha ser corrigida na origem.
+São condicionalidades que o schema sozinho não expressa — a principal delas é a coerência entre a indicação de transferência e a contagem de contratos: quem marca `ativo_pesq_transferido: true` precisa declarar pelo menos um contrato nos três totais, e quem marca `false` não pode declarar nenhum. Essas regras rodam uma vez, sobre o contrato inteiro, ao fim da extração ([validação e qualidade]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)) — uma violação **não** reprova a extração deste modelo (o Parquet fica gravado normalmente); ela deixa o contrato em "Qualidade Reprovada" e bloqueia o envio até a linha ser corrigida na origem.
 
 ### Exemplo válido
 
@@ -316,6 +316,6 @@ models:
 
 ## Veja também
 
-- [Conceito de Contrato de Dados]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/conceito)
-- [Anatomia do YAML]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml)
-- [Produção Intelectual]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/producao_intelectual) — contrato vizinho, cobre a produção acadêmica e técnica (incluindo `PATENTE`, `MARCA` e `DESENHO-INDUSTRIAL` como classificação de produção)
+- [Conceito de Contrato de Dados]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/conceito)
+- [Anatomia do YAML]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/anatomia_yaml)
+- [Produção Intelectual]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/producao_intelectual) — contrato vizinho, cobre a produção acadêmica e técnica (incluindo `PATENTE`, `MARCA` e `DESENHO-INDUSTRIAL` como classificação de produção)
