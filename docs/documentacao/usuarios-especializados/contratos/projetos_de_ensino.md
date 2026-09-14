@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Projetos de Ensino
+title: "Projetos de Ensino"
 toc: true
 ---
 # Projetos de Ensino
