@@ -14,7 +14,11 @@ GITHUB_CLIENT_ID = "Ov23li1WZoX6xGb1JcK0"
 # falha classico: o login "conclui", o popup fica aberto e o CMS nao sai da tela
 # de login — o navegador descarta a mensagem sem erro. A pagina do popup mostra
 # esta lista e a origem que respondeu quando isso acontece.
-SITE_ORIGIN = "https://pnp-ccv.github.io,http://127.0.0.1:4000,http://localhost:4000"
+# pnp.mec.gov.br e o endereco que os editores usam (proxy Cloudflare na frente
+# do GitHub Pages); pnp-ccv.github.io e o mesmo site pela porta dos fundos.
+# As duas de localhost so servem para testar o backend real do GitHub fora do
+# decap-server — se ninguem fizer isso, remover reduz a superficie.
+SITE_ORIGIN = "https://pnp.mec.gov.br,https://pnp-ccv.github.io,http://127.0.0.1:4000,http://localhost:4000"
 
 # GITHUB_CLIENT_SECRET nao entra aqui. E gravado fora do versionamento com:
 #   npx wrangler secret put GITHUB_CLIENT_SECRET

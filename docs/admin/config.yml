@@ -30,8 +30,11 @@ editor:
 media_folder: docs/assets/img/uploads
 public_folder: /guiapnp/assets/img/uploads
 
-site_url: https://pnp-ccv.github.io/guiapnp
-display_url: https://pnp-ccv.github.io/guiapnp
+# Endereco pelo qual os editores chegam ao site — alimenta o botao "ver no site"
+# e os links de previa. O site tambem responde em pnp-ccv.github.io/guiapnp, mas
+# e o dominio do MEC que aparece para quem edita.
+site_url: https://pnp.mec.gov.br/guiapnp
+display_url: https://pnp.mec.gov.br/guiapnp
 show_preview_links: true
 
 collections:
