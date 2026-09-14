@@ -9,8 +9,8 @@ backend:
   # Sem as duas linhas abaixo preenchidas, o /admin publicado abre mas o login
   # nunca conclui. Elas ficam dentro de `backend:` de proposito — no nivel raiz
   # sao silenciosamente ignoradas.
-  # base_url: https://guiapnp-cms-oauth.SUA-CONTA.workers.dev
-  # auth_endpoint: auth
+  base_url: https://guiapnp-cms-oauth.guiapnp-cms-oauth.workers.dev
+  auth_endpoint: auth
 
 # Permite testar o CMS localmente sem OAuth remoto (so vale em localhost).
 local_backend: true
