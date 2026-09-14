@@ -119,7 +119,7 @@ A porta escolhida **fica salva**: os próximos `coletor up` e `coletor update` c
 | `coletor logs web` | Acompanha um serviço específico |
 | `coletor update` | Baixa a versão mais nova dos componentes e reinicia a aplicação |
 | `coletor down` | Desliga a aplicação, **preservando os dados** |
-| `coletor down --wipe` | Desliga e **apaga o banco de dados** (pede confirmação) |
+| `coletor down --wipe` | Desliga e **apaga o banco e todo o storage do host** (pede confirmação) |
 | `coletor --version` | Mostra a versão do executável |
 
 Em `coletor logs`, `Ctrl + C` para de acompanhar sem desligar a aplicação.
@@ -132,9 +132,15 @@ Em `coletor logs`, `Ctrl + C` para de acompanhar sem desligar a aplicação.
 
 ### Desligar e apagar dados
 
-`coletor down` preserva tudo: um `up` em seguida volta ao estado anterior. Já o `--wipe` remove o banco de dados de forma permanente.
+`coletor down` preserva tudo: um `up` em seguida volta ao estado anterior. Já o `--wipe` deixa o servidor limpo — e isso vai além do banco de dados:
 
-> ⚠️ **`coletor down --wipe` apaga o banco de dados.** Não há como desfazer. O comando pede confirmação antes de apagar. Use apenas para recomeçar uma instalação do zero — e lembre que a instância ativada na PNP está vinculada ao hostname do servidor (ver [Primeiro acesso]({{ site.baseurl }}/documentacao/coletor/primeiro_acesso#secret-casado-com-hostname)).
+- o **banco** (o volume do Postgres);
+- **todo o storage** na pasta de dados do usuário: os arquivos Parquet extraídos, as planilhas enviadas por upload e os logs;
+- as **preferências da instância**, entre elas a porta salva por `--port`. O próximo `coletor up` volta à porta padrão 8000.
+
+> ⚠️ **`coletor down --wipe` apaga o banco *e* os arquivos extraídos.** Não há como desfazer. O comando descreve o que será apagado e pede confirmação (`--yes` pula o prompt em automação). Use apenas para recomeçar uma instalação do zero — e lembre que a instância ativada na PNP está vinculada ao hostname do servidor (ver [Primeiro acesso]({{ site.baseurl }}/documentacao/coletor/primeiro_acesso#secret-casado-com-hostname)).
+
+Para desligar sem perder nada, use `coletor down` puro. Se o objetivo era só liberar espaço dos Parquets antigos, apagá-los à mão na pasta de dados é mais cirúrgico do que o `--wipe`.
 
 ## Instalação sem a CLI
 

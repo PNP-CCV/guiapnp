@@ -90,6 +90,10 @@ itens:
         href: "/documentacao/indicadores/normativos_e_dimensoes"
         icon: "fas fa-border-all"
 
+      - title: "Lista dos indicadores"  
+        href: "/documentacao/indicadores/lista_dos_indicadores"
+        icon: "fas fa-list-ol"
+
       #- title: "Indicadores de Ensino"
       #  href: "/documentacao/indicadores/indicadores_de_ensino"
       #  icon: "fas fa-border-all"
@@ -156,9 +160,7 @@ itens:
         #     href: "#"
         #   - title: "Nível e tipo de curso"
         #     href: "#"
-      - title: "Fichas técnicas dos indicadores"
-        href: "/documentacao/usuarios-especializados/fichas_tecnica_dos_indicadores"
-        icon: "fas fa-list-alt"
+
       - title: "Contratos de Dados"
         icon: "fas fa-file-contract"
         children:
@@ -174,15 +176,12 @@ itens:
           - title: "Validação e qualidade"
             href: "/documentacao/usuarios-especializados/contratos/validacao_e_qualidade"
             icon: "fas fa-check-double"
+          - title: "Validação referencial"
+            href: "/documentacao/usuarios-especializados/contratos/validacao_referencial"
+            icon: "fas fa-link"
           - title: "Sincronização com a PNP"
             href: "/documentacao/usuarios-especializados/contratos/sincronizacao_pnp"
             icon: "fas fa-sync-alt"
-          - title: "Acadêmico"
-            icon: "fas fa-graduation-cap"
-            children:
-            - title: "Acadêmico"
-              href: "/documentacao/usuarios-especializados/contratos/academico"
-              icon: "fas fa-file-contract"
           - title: "Extensão"
             icon: "fas fa-handshake"
             children:
@@ -194,6 +193,9 @@ itens:
             children:
             - title: "Acordos de Parceria"
               href: "/documentacao/usuarios-especializados/contratos/acordos_de_parceria"
+              icon: "fas fa-file-contract"
+            - title: "Ativos de Pesquisa"
+              href: "/documentacao/usuarios-especializados/contratos/ativos_pesquisa"
               icon: "fas fa-file-contract"
             - title: "Produção Intelectual"
               href: "/documentacao/usuarios-especializados/contratos/producao_intelectual"
@@ -228,6 +230,10 @@ itens:
             - title: "Projetos de Desenvolvimento Institucional"
               href: "/documentacao/usuarios-especializados/contratos/projetos_de_desenvolvimento_institucional"
               icon: "fas fa-file-contract"
+
+      - title: "Fichas técnicas dos indicadores"
+        href: "/documentacao/usuarios-especializados/fichas_tecnica_dos_indicadores"
+        icon: "fas fa-list-alt"
       - title: "Indicadores de Ensino"
         href: "/documentacao/usuarios-especializados/indicadores_de_ensino"
         icon: "fas fa-table"
@@ -249,6 +255,9 @@ itens:
       - title: "Indicadores de Gastos"
         href: "/documentacao/usuarios-especializados/indicadores_de_gastos"
         icon: "fas fa-table"
+      - title: "Indicadores de Acompanhamento Legal"
+        href: "/documentacao/usuarios-especializados/indicadores_de_acompanhamento_legal"
+        icon: "fas fa-table"
   - title: "Outros Indicadores"
     icon: "fas fa-poll"
     children:
@@ -261,6 +270,9 @@ itens:
       - title: "Visão geral"
         href: "/documentacao/coletor/visao_geral"
         icon: "fas fa-eye"
+      - title: "Solicitação de Credenciais"
+        href: "/documentacao/coletor/solicitar_credenciais"
+        icon: "fas fa-key"
       - title: "Fluxo de negócio"
         href: "/documentacao/coletor/fluxo_de_negocio"
         icon: "fas fa-stream"

@@ -51,7 +51,7 @@ Duas dicas evitam as falhas mais comuns com planilhas:
   ✅ https://docs.google.com/spreadsheets/d/<ID>/export?format=xlsx
   ```
 
-- **Planilha de exemplo:** `GET /base/planilha_exemplo/` baixa um XLSX com uma aba por modelo cadastrado — slug da aba, colunas do schema e dados fictícios (`?linhas=N` controla o volume). É o jeito mais rápido de montar uma planilha que casa com os contratos importados.
+- **Planilha de exemplo:** Para a versão atual dos contratos, é possível usar uma planilha de exemplo, disponível [aqui]({{ site.baseurl }}/assets/files/template_fornecimento_dados.xlsx). Além disso, ao adicionar um provedor do tipo de dados planilha, o coletor fornece um modelo de exemplo.
 
 ## Passo 3 — Configurar a extração
 
@@ -107,7 +107,7 @@ Enviar **não encerra o fluxo**: o contrato entra em "Aguardando Validação PNP
 
 ## Passo 6 — Aguardar a validação da PNP
 
-A PNP confere cada Parquet recebido por conta própria: além do schema, roda uma **validação referencial** — campus, área temática e município citados no dado precisam existir no cadastro da Rede.
+A PNP confere cada Parquet recebido por conta própria: além do schema, roda uma **validação referencial** — campus, área temática e município citados no dado precisam existir no cadastro da Rede. A mesma conferência hoje também roda **antes do envio**, lá no passo 4, contra os cadastros que o Coletor sincroniza da PNP: ela não bloqueia nada de fábrica, mas antecipa o diagnóstico (ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial)).
 
 ![Modelo validado aguardando aprovação](/guiapnp/assets/img/docs/coletor/23-modelo-detalhe.png)
 

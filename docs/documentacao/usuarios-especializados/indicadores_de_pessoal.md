@@ -11,9 +11,8 @@ toc: true
 
 
 
-<h3 style="color: #004080;">
-Índice de titulação do corpo docente efetivo (PETCD)
-</h3>
+### Índice de titulação do corpo docente efetivo (PETCD)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -37,7 +36,7 @@ toc: true
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação máxima:</strong> Rede Federal.
     </td>
     <td>
       <strong>Agregação Mínima:</strong> Estrutura.
@@ -86,7 +85,7 @@ toc: true
                     </mrow>
                     <mo>)</mo>
                   </mrow>
-                  <mo>&#xD7;</mo>
+                  <mo>+</mo>
                   <mrow>
                     <mo>(</mo>
                     <mrow>
@@ -109,7 +108,7 @@ toc: true
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>[(DG)+(DA x 2)+(DE x 3)+(DM x 4)+(DD x 5) – Docentes efetivos segregados e ponderados considerando a maior titulação.</strong><br/>
+      <strong>[(DG)+(DA x 2)+(DE x 3)+(DM x 4)+(DD x 5)] – Docentes efetivos segregados e ponderados considerando a maior titulação.</strong><br/>
       <strong>Fonte:</strong> PNP (SIAPE / CCV).<br/>
       <strong>Definição:</strong> Número de Docentes efetivos Graduados (DG) multiplicado pelo “peso” 1, somado à quantidade de Docentes efetivos Aperfeiçoados (DA) multiplicado pelo “peso” 2, somado à quantidade Docentes efetivos Especialistas (DE) multiplicado pelo “peso” 3, somado à quantidade Docentes efetivos Mestres (DM) multiplicado pelo “peso” 4, somado à quantidade Docentes efetivos Doutores (DD) multiplicado pelo “peso” 5.
       <br/>&nbsp;<br/>
@@ -119,17 +118,16 @@ toc: true
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de docentes (PEDO)
-</h3>
+
+
+
+### Número de pessoas docentes (PEDO)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Número de docentes (PEDO)
+      Número de pessoas docentes (PEDO)
     </i></strong></th>
   </tr>
   <tr>
@@ -180,17 +178,16 @@ Número de docentes (PEDO)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de docentes efetivos (PEDE)
-</h3>
+
+
+
+### Número de pessoas docentes efetivas (PEDE)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Número de docentes efetivos (PEDE)
+      Número de pessoas docentes efetivas (PEDE)
     </i></strong></th>
   </tr>
   <tr>
@@ -241,17 +238,16 @@ Número de docentes efetivos (PEDE)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de servidores (PES)
-</h3>
+
+
+
+### Número de pessoas servidoras (PES)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Número de servidores (PES)
+      Número de pessoas servidoras (PES)
     </i></strong></th>
   </tr>
   <tr>
@@ -302,13 +298,12 @@ Número de servidores (PES)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de técnicos administrativos em educação (PETAE)
-</h3>
+
+
+
+### Número de pessoas técnico administrativas em educação (PETAE)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>

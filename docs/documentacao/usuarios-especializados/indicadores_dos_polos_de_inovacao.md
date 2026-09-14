@@ -10,75 +10,12 @@ toc: true
 {:toc}
 
 
+### Número de contratos de parcerias e de convênios (POP)
 
-<h3 style="color: #004080;">
-Número de colaboradores externos bolsistas (POCO)
-</h3>
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Número de colaboradores externos bolsistas (POCO)
-    </i></strong></th>
-  </tr>
-  <tr>
-    <td colspan="2">
-      Este indicador quantifica os colaboradores externos ao Instituto Federal de vinculação do Polo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Polaridade:</strong> Quanto maior, melhor.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Unidade Acadêmica.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Modelo matemático:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mi>POCO</mi>
-            <mo>=</mo>
-            <mo>(</mo>
-            <mi>PFSV</mi>
-            <mo>)</mo>
-          </mrow>
-        </math>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>PFSV – Número total de pessoas físicas, sem vínculo com o Instituto Federal de vinculação do Polo, e que participem de projetos iniciados no ano base.</strong><br/>
-      <strong>Fonte:</strong> Integra.<br/>
-      <strong>Definição:</strong> As pessoas físicas atuantes como colaboradores externos devem constar como membros da equipe de projetos de contratos, convênios ou acordos de parceria com estrutura vinculada ao “Polo de Inovação”, em situação “Em execução” ou “Encerrada ”, com data de início do projeto no ano base, e serem classificados como “Acordo de Parceria para PD&I com Aporte de Recurso”; “Acordo de Parceria para PD&I sem Aporte de Recurso”; “Acordo de Parceria Internacional”; “Prestação Institucional de Serviços”; “Atendimento de Prestação de Serviço”; “Convênio”; ou “Contrato – Transferência de Tecnologia”.
-    </td>
-  </tr>
-</table>
-
-
-
-<p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de contratos de parcerias (POP)
-</h3>
-<table>
-  <tr>
-    <th colspan="2"><strong><i>
-      Número de contratos de parcerias (POP)
+      Número de contratos de parcerias e de convênios (POP)
     </i></strong></th>
   </tr>
   <tr>
@@ -98,10 +35,10 @@ Número de contratos de parcerias (POP)
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação máxima:</strong> Rede Federal.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Unidade Acadêmica.
+      <strong>Agregação Mínima:</strong> Estrutura.
     </td>
   </tr>
   <tr>
@@ -129,74 +66,12 @@ Número de contratos de parcerias (POP)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de docentes bolsistas (PODOB)
-</h3>
-<table>
-  <tr>
-    <th colspan="2"><strong><i>
-      Número de docentes bolsistas (PODOB)
-    </i></strong></th>
-  </tr>
-  <tr>
-    <td colspan="2">
-      Este indicador avalia a participação de docentes do Instituto Federal de vinculação do Polo nos projetos de vinculação do Polo, indicando o alinhamento com as atividades de pesquisa e inovação.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Polaridade:</strong> Quanto maior, melhor.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Unidade Acadêmica.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Modelo matemático:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mi>PODOB</mi>
-            <mo>=</mo>
-            <mo>(</mo>
-            <mi>DOB</mi>
-            <mo>)</mo>
-          </mrow>
-        </math>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>DOB – Número total de servidores e servidoras docentes participantes de projetos iniciados no ano base.</strong><br/>
-      <strong>Fonte:</strong> Integra.<br/>
-      <strong>Definição:</strong> Os docentes devem constar como membros da equipe de projetos de contratos, convênios ou acordos de parceria com estrutura vinculada ao “Polo de Inovação”, em situação “Em execução” ou “Encerrada ”, com data de início do projeto no ano base, e serem classificados como “Acordo de Parceria para PD&I com Aporte de Recurso”; “Acordo de Parceria para PD&I sem Aporte de Recurso”; “Acordo de Parceria Internacional”; “Prestação Institucional de Serviços”; “Atendimento de Prestação de Serviço”; “Convênio”; ou “Contrato – Transferência de Tecnologia”.
-    </td>
-  </tr>
-</table>
 
 
 
-<p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de empresas com acordo de parceria (POEMP)
-</h3>
+### Número de empresas com acordo de parceria (POEMP)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -220,10 +95,10 @@ Número de empresas com acordo de parceria (POEMP)
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação máxima:</strong> Rede Federal.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Unidade Acadêmica.
+      <strong>Agregação Mínima:</strong> Estrutura.
     </td>
   </tr>
   <tr>
@@ -251,74 +126,12 @@ Número de empresas com acordo de parceria (POEMP)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de estudantes bolsistas (POEB)
-</h3>
-<table>
-  <tr>
-    <th colspan="2"><strong><i>
-      Número de estudantes bolsistas (POEB)
-    </i></strong></th>
-  </tr>
-  <tr>
-    <td colspan="2">
-      Este indicador reflete o envolvimento de estudantes do Instituto Federal de vinculação do Polo, nos projetos de PD&I, fortalecendo sua formação prática.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Polaridade:</strong> Quanto maior, melhor.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Unidade Acadêmica.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Modelo matemático:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mi>POEB</mi>
-            <mo>=</mo>
-            <mo>(</mo>
-            <mi>EstB</mi>
-            <mo>)</mo>
-          </mrow>
-        </math>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>EstB – Número total de estudantes participantes de projetos iniciados no ano base.</strong><br/>
-      <strong>Fonte:</strong> Integra.<br/>
-      <strong>Definição:</strong> Os estudantes devem constar como membros da equipe de projetos de contratos, convênios ou acordos de parceria com estrutura vinculada ao “Polo de Inovação”, em situação “Em execução” ou “Encerrada ”, com data de início do projeto no ano base, e serem classificados como “Acordo de Parceria para PD&I com Aporte de Recurso”; “Acordo de Parceria para PD&I sem Aporte de Recurso”; “Acordo de Parceria Internacional”; “Prestação Institucional de Serviços”; “Atendimento de Prestação de Serviço”; “Convênio”; ou “Contrato – Transferência de Tecnologia”.
-    </td>
-  </tr>
-</table>
 
 
 
-<p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de eventos e treinamentos realizados (POET)
-</h3>
+### Número de eventos e treinamentos realizados (POET)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -342,10 +155,10 @@ Número de eventos e treinamentos realizados (POET)
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação máxima:</strong> Rede Federal.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Unidade Acadêmica.
+      <strong>Agregação Mínima:</strong> Estrutura.
     </td>
   </tr>
   <tr>
@@ -373,13 +186,198 @@ Número de eventos e treinamentos realizados (POET)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de propriedades intelectuais depositadas (POPID)
-</h3>
+
+
+
+### Número de pessoas colaboradoras externas bolsistas (POCO)
+
+<table>
+  <tr>
+    <th colspan="2"><strong><i>
+      Número de pessoas colaboradoras externas bolsistas (POCO)
+    </i></strong></th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      Este indicador quantifica os colaboradores externos ao Instituto Federal de vinculação do Polo.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Quanto maior, melhor.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação máxima:</strong> Rede Federal.
+    </td>
+    <td>
+      <strong>Agregação Mínima:</strong> Estrutura.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>POCO</mi>
+            <mo>=</mo>
+            <mo>(</mo>
+            <mi>PFSV</mi>
+            <mo>)</mo>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>PFSV – Número total de pessoas físicas, sem vínculo com o Instituto Federal de vinculação do Polo, e que participem de projetos iniciados no ano base.</strong><br/>
+      <strong>Fonte:</strong> Integra.<br/>
+      <strong>Definição:</strong> As pessoas físicas atuantes como colaboradores externos devem constar como membros da equipe de projetos de contratos, convênios ou acordos de parceria com estrutura vinculada ao “Polo de Inovação”, em situação “Em execução” ou “Encerrada ”, com data de início do projeto no ano base, e serem classificados como “Acordo de Parceria para PD&I com Aporte de Recurso”; “Acordo de Parceria para PD&I sem Aporte de Recurso”; “Acordo de Parceria Internacional”; “Prestação Institucional de Serviços”; “Atendimento de Prestação de Serviço”; “Convênio”; ou “Contrato – Transferência de Tecnologia”.
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+
+
+### Número de pessoas estudantes bolsistas (POEB)
+
+<table>
+  <tr>
+    <th colspan="2"><strong><i>
+      Número de pessoas estudantes bolsistas (POEB)
+    </i></strong></th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      Este indicador reflete o envolvimento de estudantes do Instituto Federal de vinculação do Polo, nos projetos de PD&I, fortalecendo sua formação prática.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Quanto maior, melhor.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação máxima:</strong> Rede Federal.
+    </td>
+    <td>
+      <strong>Agregação Mínima:</strong> Estrutura.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>POEB</mi>
+            <mo>=</mo>
+            <mo>(</mo>
+            <mi>EstB</mi>
+            <mo>)</mo>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>EstB – Número total de estudantes participantes de projetos iniciados no ano base.</strong><br/>
+      <strong>Fonte:</strong> Integra.<br/>
+      <strong>Definição:</strong> Os estudantes devem constar como membros da equipe de projetos de contratos, convênios ou acordos de parceria com estrutura vinculada ao “Polo de Inovação”, em situação “Em execução” ou “Encerrada ”, com data de início do projeto no ano base, e serem classificados como “Acordo de Parceria para PD&I com Aporte de Recurso”; “Acordo de Parceria para PD&I sem Aporte de Recurso”; “Acordo de Parceria Internacional”; “Prestação Institucional de Serviços”; “Atendimento de Prestação de Serviço”; “Convênio”; ou “Contrato – Transferência de Tecnologia”.
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+
+
+### Número de pessoas servidoras bolsistas (POSERV)
+
+<table>
+  <tr>
+    <th colspan="2"><strong><i>
+      Número de pessoas servidoras bolsistas (POSERV)
+    </i></strong></th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      Este indicador avalia a participação de docentes e técnicos-administrativos do Instituto Federal de vinculação do Polo nos projetos de vinculação do Polo, indicando o alinhamento com as atividades de pesquisa e inovação.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Quanto maior, melhor.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação máxima:</strong> Rede Federal.
+    </td>
+    <td>
+      <strong>Agregação Mínima:</strong> Estrutura.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>POSERV</mi>
+            <mo>=</mo>
+            <mo>(</mo>
+            <mi>DOB</mi>
+            <mo>+</mo>
+            <mi>TAEB</mi>
+            <mo>)</mo>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>DOB – Número total de servidores e servidoras docentes participantes de projetos iniciados no ano base.</strong><br/>
+      <strong>Fonte:</strong> Integra.<br/>
+      <strong>Definição:</strong> Os docentes devem constar como membros da equipe de projetos de contratos, convênios ou acordos de parceria com estrutura vinculada ao “Polo de Inovação”, em situação “Em execução” ou “Encerrada ”, com data de início do projeto no ano base, e serem classificados como “Acordo de Parceria para PD&I com Aporte de Recurso”; “Acordo de Parceria para PD&I sem Aporte de Recurso”; “Acordo de Parceria Internacional”; “Prestação Institucional de Serviços”; “Atendimento de Prestação de Serviço”; “Convênio”; ou “Contrato – Transferência de Tecnologia”.
+      <br/>&nbsp;<br/>
+      <strong>TAEB – Número total de servidores e servidoras técnico-administrativos participantes de projetos iniciados no ano base.</strong><br/>
+      <strong>Fonte:</strong> Integra.<br/>
+      <strong>Definição:</strong> Os servidores e servidoras técnico-administrativos em educação devem constar como membros da equipe de projetos de contratos, convênios ou acordos de parceria com estrutura vinculada ao “Polo de Inovação”, em situação “Em execução” ou “Encerrada ”, com data de início do projeto no ano base, e serem classificados como “Acordo de Parceria para PD&I com Aporte de Recurso”; “Acordo de Parceria para PD&I sem Aporte de Recurso”; “Acordo de Parceria Internacional”; “Prestação Institucional de Serviços”; “Atendimento de Prestação de Serviço”; “Convênio”; ou “Contrato – Transferência de Tecnologia”.
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+
+
+### Número de propriedades intelectuais depositadas (POPID)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -403,10 +401,10 @@ Número de propriedades intelectuais depositadas (POPID)
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação máxima:</strong> Rede Federal.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Unidade Acadêmica.
+      <strong>Agregação Mínima:</strong> Estrutura.
     </td>
   </tr>
   <tr>
@@ -434,74 +432,12 @@ Número de propriedades intelectuais depositadas (POPID)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de técnicos-administrativos bolsistas (POTAE)
-</h3>
-<table>
-  <tr>
-    <th colspan="2"><strong><i>
-      Número de técnicos-administrativos bolsistas (POTAE)
-    </i></strong></th>
-  </tr>
-  <tr>
-    <td colspan="2">
-      Este indicador avalia a participação de técnicos administrativos do Instituto Federal de vinculação do Polo nos projetos, indicando o alinhamento com as atividades de pesquisa e inovação.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Polaridade:</strong> Quanto maior, melhor.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Unidade Acadêmica.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Modelo matemático:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mi>POTAE</mi>
-            <mo>=</mo>
-            <mo>(</mo>
-            <mi>TAEB</mi>
-            <mo>)</mo>
-          </mrow>
-        </math>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>TAEB – Número total de servidores e servidoras técnico-administrativos participantes de projetos iniciados no ano base.</strong><br/>
-      <strong>Fonte:</strong> Integra.<br/>
-      <strong>Definição:</strong> Os servidores e servidoras técnico-administrativos em educação devem constar como membros da equipe de projetos de contratos, convênios ou acordos de parceria com estrutura vinculada ao “Polo de Inovação”, em situação “Em execução” ou “Encerrada ”, com data de início do projeto no ano base, e serem classificados como “Acordo de Parceria para PD&I com Aporte de Recurso”; “Acordo de Parceria para PD&I sem Aporte de Recurso”; “Acordo de Parceria Internacional”; “Prestação Institucional de Serviços”; “Atendimento de Prestação de Serviço”; “Convênio”; ou “Contrato – Transferência de Tecnologia”.
-    </td>
-  </tr>
-</table>
 
 
 
-<p>&nbsp;</p>
-<h3 style="color: #004080;">
-Número de unidades de pesquisa (POUP)
-</h3>
+### Número de unidades de pesquisa (POUP)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -510,7 +446,7 @@ Número de unidades de pesquisa (POUP)
   </tr>
   <tr>
     <td colspan="2">
-      Este indicador contabiliza a quantidade de unidades de pesquisa da Rede Federal de Educação Profissional, Científica e Tecnológica.
+      Este indicador reflete o somatório do número de polos ou demais estruturas que possuam a finalidade exclusiva de desenvolver projetos de pesquisa, desenvolvimento e inovação.
     </td>
   </tr>
   <tr>
@@ -525,10 +461,10 @@ Número de unidades de pesquisa (POUP)
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação máxima:</strong> Rede Federal.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Instituição.
+      <strong>Agregação Mínima:</strong> Estrutura.
     </td>
   </tr>
   <tr>
@@ -540,8 +476,10 @@ Número de unidades de pesquisa (POUP)
             <mi>POUP</mi>
             <mo>=</mo>
             <mo>∑</mo>
-            <mi>Unidade de pequisa</mi>
-            <mtext>, nos diferentes níveis de agregação</mtext>
+            <mi>PO</mi>
+            <mo>+</mo>
+            <mo>∑</mo>
+            <mi>UI</mi>
           </mrow>
         </math>
       </p>
@@ -550,19 +488,22 @@ Número de unidades de pesquisa (POUP)
   <tr>
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>Unidade de pesquisa.</strong><br/>
+      <strong>PO - Polos de Inovação.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
-      <strong>Definição:</strong> Unidades de pesquisa são as unidades da Rede Federal de Educação Profissional, Científica e Tecnológica que ofertam exclusivamente atividades de pesquisa, inovação e extensão. Não ofertam ensino, logo não possuem matrículas vinculadas.
+      <strong>Definição:</strong> Polos de inovação
+      <br/>&nbsp;<br/>
+      <strong>UI - Unidades de Pesquisa e Inovação.</strong><br/>
+      <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
+      <strong>Definição:</strong> Unidades destinadas exclusivamente para desenvolvimento de projetos de pesquisa e inovação e que não tenham matrículas vinculadas.
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Valor de recurso captado (POREC)
-</h3>
+
+
+
+### Valor de recurso captado (POREC)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
@@ -586,10 +527,10 @@ Valor de recurso captado (POREC)
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação máxima:</strong> Rede Federal.
     </td>
     <td>
-      <strong>Agregação Mínima:</strong> Unidade Acadêmica.
+      <strong>Agregação Mínima:</strong> Estrutura.
     </td>
   </tr>
   <tr>

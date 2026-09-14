@@ -18,7 +18,7 @@ Esta página condensa, em tabelas de consulta, o que o restante do manual explic
 | Comando | O que faz |
 |---|---|
 | `coletor up` | Liga a stack (porta padrão 8000; `--port N` escolhe outra e fica salva) |
-| `coletor down` | Desliga preservando os dados (`--wipe` apaga o banco, com confirmação) |
+| `coletor down` | Desliga preservando os dados (`--wipe` apaga o banco **e** o storage — Parquets, uploads, logs e a porta salva — com confirmação) |
 | `coletor status` | Saúde de cada serviço |
 | `coletor logs [serviço]` | Logs em tempo real (`Ctrl + C` para sair sem desligar) |
 | `coletor update` | Atualiza as imagens e reinicia a stack |

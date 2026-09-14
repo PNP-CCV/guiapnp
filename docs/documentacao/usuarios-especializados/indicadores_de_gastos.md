@@ -10,74 +10,12 @@ toc: true
 {:toc}
 
 
+### Gastos com pessoas inativas e pensionistas (GAIP)
 
-<h3 style="color: #004080;">
-Gasto com precatórios (GPRE)
-</h3>
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Gasto com precatórios (GPRE)
-    </i></strong></th>
-  </tr>
-  <tr>
-    <td colspan="2">
-      Este indicador apresenta o valor de precatórios judiciais durante o ano base. 
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Polaridade:</strong> Quanto menor, melhor.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
-    </td>
-    <td>
-      <strong>Agregação Mínima:</strong> Instituição.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <strong>Modelo matemático:</strong><br/>
-      <p style="text-align:center">
-        <math style="font-size: 1.2rem;" display="block">
-          <mrow>
-            <mi>GPRE</mi>
-            <mo>=</mo>
-            <mo>∑</mo>
-            <mi>GPrec</mi>
-          </mrow>
-        </math>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <p style="text-align:center"><strong>Variáveis</strong></p>
-      <strong>GPrec = Gastos com precatórios.</strong><br/>
-      <strong>Fonte:</strong> SIAFI.<br/>
-      <strong>Definição:</strong> Valor correspondente aos pagamentos de requisições judiciais (precatórios) realizados. Refere-se às liquidações totais (exercício + RAP), cujo elemento de despesa é o código “91” (sentenças judiciais).
-    </td>
-  </tr>
-</table>
-
-
-
-<p>&nbsp;</p>
-<h3 style="color: #004080;">
-Gastos com inativos e pensionistas (GIP)
-</h3>
-<table>
-  <tr>
-    <th colspan="2"><strong><i>
-      Gastos com inativos e pensionistas (GIP)
+      Gastos com pessoas inativas e pensionistas (GAIP)
     </i></strong></th>
   </tr>
   <tr>
@@ -109,7 +47,7 @@ Gastos com inativos e pensionistas (GIP)
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>GIP</mi>
+            <mi>GAIP</mi>
             <mo>=</mo>
             <mo>∑</mo>
             <mi>Inat</mi>
@@ -127,17 +65,73 @@ Gastos com inativos e pensionistas (GIP)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Gastos correntes (GC)
-</h3>
+
+
+### Gasto com precatórios (GAPRE)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Gastos correntes (GC)
+      Gasto com precatórios (GAPRE)
+    </i></strong></th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      Este indicador apresenta o valor de precatórios judiciais durante o ano base. 
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Meta:</strong> Não há meta prevista em instrumento normativo.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Polaridade:</strong> Quanto menor, melhor.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Agregação máxima:</strong> RFEPCT.
+    </td>
+    <td>
+      <strong>Agregação Mínima:</strong> Instituição.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Modelo matemático:</strong><br/>
+      <p style="text-align:center">
+        <math style="font-size: 1.2rem;" display="block">
+          <mrow>
+            <mi>GAPRE</mi>
+            <mo>=</mo>
+            <mo>∑</mo>
+            <mi>GPrec</mi>
+          </mrow>
+        </math>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p style="text-align:center"><strong>Variáveis</strong></p>
+      <strong>GPrec = Gastos com precatórios.</strong><br/>
+      <strong>Fonte:</strong> SIAFI.<br/>
+      <strong>Definição:</strong> Valor correspondente aos pagamentos de requisições judiciais (precatórios) realizados. Refere-se às liquidações totais (exercício + RAP), cujo elemento de despesa é o código “91” (sentenças judiciais).
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+
+### Gastos correntes (GAC)
+
+<table>
+  <tr>
+    <th colspan="2"><strong><i>
+      Gastos correntes (GAC)
     </i></strong></th>
   </tr>
   <tr>
@@ -169,7 +163,7 @@ Gastos correntes (GC)
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>GC</mi>
+            <mi>GAC</mi>
             <mo>=</mo>
             <mo>∑</mo>
             <mi>Gasto corrente</mi>
@@ -191,17 +185,15 @@ Gastos correntes (GC)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Gastos correntes por matrícula equivalente (GCM)
-</h3>
+
+
+### Gastos correntes por matrícula equivalente (GACM)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Gastos correntes por matrícula equivalente (GCM)
+      Gastos correntes por matrícula equivalente (GACM)
     </i></strong></th>
   </tr>
   <tr>
@@ -221,7 +213,7 @@ Gastos correntes por matrícula equivalente (GCM)
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação máxima:</strong> Rede Federal.
     </td>
     <td>
       <strong>Agregação Mínima:</strong> Instituição.
@@ -233,11 +225,11 @@ Gastos correntes por matrícula equivalente (GCM)
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>GCM</mi>
+            <mi>GACM</mi>
             <mo>=</mo>            
             <mfrac>
                 <mi>GC</mi>
-                <mi>ENME</mi>
+                <mi>Meq</mi>
             </mfrac>
           </mrow>
         </math>
@@ -254,23 +246,21 @@ Gastos correntes por matrícula equivalente (GCM)
       <li>Investimentos;</li> 
       <li>Inversões Financeiras; e</li> 
       <li>Precatórios.</li></ul>
-      <strong>ENME - Matrículas Equivalentes.</strong><br/>
+      <strong>Meq - Matrículas Equivalentes.</strong><br/>
       <strong>Fonte:</strong> PNP (SISTEC / CCV).<br/>
       <strong>Definição:</strong> Número de matrículas que estiveram ativas em pelo menos um dia no ano base, ponderada pelos fatores de equivalência previstos, exceto as matrículas das Escolas Técnicas Vinculadas às Universidades Federais.
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Gastos de Pessoal (GPE)
-</h3>
+
+
+### Gastos de Pessoal (GAPE)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Gastos de Pessoal (GPE)
+      Gastos de Pessoal (GAPE)
     </i></strong></th>
   </tr>
   <tr>
@@ -290,7 +280,7 @@ Gastos de Pessoal (GPE)
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação máxima:</strong> Rede Federal.
     </td>
     <td>
       <strong>Agregação Mínima:</strong> Instituição.
@@ -302,7 +292,7 @@ Gastos de Pessoal (GPE)
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>GPE</mi>
+            <mi>GAPE</mi>
             <mo>=</mo>            
             <mo>(</mo>
             <mi>GFP</mi>
@@ -327,17 +317,16 @@ Gastos de Pessoal (GPE)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Gastos totais (GT)
-</h3>
+
+
+
+### Gastos totais (GAT)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Gastos totais (GT)
+      Gastos totais (GAT)
     </i></strong></th>
   </tr>
   <tr>
@@ -369,7 +358,7 @@ Gastos totais (GT)
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>GT</mi>
+            <mi>GAT</mi>
             <mo>=</mo>
             <mo>∑</mo>
             <mi>Gasto totais</mi>
@@ -387,22 +376,20 @@ Gastos totais (GT)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Investimentos e Inversões (GIV)
-</h3>
+
+
+### Investimentos e inversões (GAIV)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Investimentos e Inversões (GIV)
+      Investimentos e inversões (GAIV)
     </i></strong></th>
   </tr>
   <tr>
     <td colspan="2">
-      Este indicador apresenta o valor dos gastos com grupos de natureza de despesa de investimentos e inversões das Instituições. Tais gastos se relacionam com aquisição de máquinas e equipamentos, realização de obras, aquisição de participações acionárias de empresas, aquisição e imóveis e concessão de empréstimos para investimento. Em virtude da impossibilidade de segregar os dados financeiros das Escolas Técnicas Vinculadas às Universidades Federais (ETV-UF), este indicador não considera os dados das ETV-UF. 
+      Este indicador apresenta o valor dos gastos com grupos de natureza de despesa de investimentos e inversões das Instituições. Tais gastos se relacionam com aquisição de máquinas e equipamentos, realização de obras, aquisição de participações acionárias de empresas, aquisição e imóveis e concessão de empréstimos para investimento. Em virtude da impossibilidade de segregar os dados financeiros das Escolas Técnicas Vinculadas às Universidades Federais (ETV-UF), este indicador não considera os dados das ETV-UF.
     </td>
   </tr>
   <tr>
@@ -417,7 +404,7 @@ Investimentos e Inversões (GIV)
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação máxima:</strong> Rede Federal.
     </td>
     <td>
       <strong>Agregação Mínima:</strong> Instituição.
@@ -429,7 +416,7 @@ Investimentos e Inversões (GIV)
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>GIV</mi>
+            <mi>GAIV</mi>
             <mo>=</mo>            
             <mo>(</mo>
             <mi>GInv</mi>
@@ -454,16 +441,16 @@ Investimentos e Inversões (GIV)
     </td>
   </tr>
 </table>
-
-
-
 <p>&nbsp;</p>
-<h3 style="color: #004080;">
-Outros Custeios (GOC)
+
+
+
+### Outros Custeios (GAOC)
+
 <table>
   <tr>
     <th colspan="2"><strong><i>
-      Outros Custeios (GOC)
+      Outros Custeios (GAOC)
     </i></strong></th>
   </tr>
   <tr>
@@ -483,7 +470,7 @@ Outros Custeios (GOC)
   </tr>
   <tr>
     <td>
-      <strong>Agregação máxima:</strong> RFEPCT.
+      <strong>Agregação máxima:</strong> Rede Federal.
     </td>
     <td>
       <strong>Agregação Mínima:</strong> Instituição.
@@ -495,7 +482,7 @@ Outros Custeios (GOC)
       <p style="text-align:center">
         <math style="font-size: 1.2rem;" display="block">
           <mrow>
-            <mi>GOC</mi>
+            <mi>GAOC</mi>
             <mo>=</mo>
             <mo>(</mo>
             <msub>

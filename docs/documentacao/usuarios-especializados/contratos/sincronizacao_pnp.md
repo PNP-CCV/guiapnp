@@ -50,9 +50,13 @@ RECEBIDO / VALIDANDO ──▶ DISPONIVEL ──▶ HOMOLOGADO_AREA ──▶ AP
 | `REJEITADO_AREA` | Rejeitado pela área | sim |
 | `SUPERSEDED` | Substituído | sim |
 
-O acompanhamento é por **consulta**: com o dashboard aberto, o Coletor verifica a cada 2 minutos; sem ninguém olhando, uma tarefa agendada serve de rede de segurança (a cada 30 minutos, por padrão). Uma validação pendente por mais de 24 horas é marcada como tempo esgotado. O botão **"Verificar agora"** força a consulta imediata.
+O acompanhamento é por **consulta**: com o dashboard aberto, o Coletor verifica a cada 2 minutos; sem ninguém olhando, uma tarefa agendada serve de rede de segurança (a cada 30 minutos, por padrão). O botão **"Verificar agora"** força a consulta imediata.
+
+O prazo de uma validação pendente é a **data limite do ciclo do contrato**: o fim da janela de correção ou, quando o ciclo não tem janela de correção, o fim da janela de coleta. Passada essa data, a validação é marcada como tempo esgotado — e faz sentido que seja assim: depois dela o ciclo não aceita mais nada, então uma validação pendente não teria como avançar.
 
 **Homologação da Área e Aprovação do Reitor são ações humanas na PNP.** Não existe botão para elas no Coletor.
+
+> ℹ️ **Homologar não tranca o modelo.** Só a **Aprovação do Reitor** é definitiva. Enquanto o dado está "Aguardando validação", "Validado" ou "Homologado pela área", uma reextração bem-sucedida torna a validação anterior obsoleta e o envio volta a ser oferecido — é a saída para quando a área homologa em cima de dado errado. Depois da aprovação do Reitor a reextração fica bloqueada, e substituir o dado exige um novo [Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta).
 
 > ⚠️ **Reenviar dado idêntico não reseta a validação.** A PNP deduplica dataset por conteúdo (checksum). Reenviar um Parquet idêntico devolve o **identificador do dataset já existente, com o status antigo** — inclusive uma rejeição anterior. Ou seja: re-extrair sem que o dado mude não limpa uma rejeição. Para destravar, o dado na origem precisa efetivamente mudar.
 
@@ -81,7 +85,7 @@ O botão **Sincronizar com a PNP** no dashboard puxa os metadados da PNP para o 
 
 É por aqui que contratos, modelos e ciclos entram no Coletor — **não** há cadastro manual deles no painel.
 
-> ⚠️ **Contrato que não aparece depois de sincronizar.** Um contrato cujos modelos estão **todos desabilitados** não é criado; se já existia, é removido (também por exclusão lógica) e o motivo fica registrado no log. Não é falha de sincronização. Ver [Bloco `meta`]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/anatomia_yaml#bloco-meta) — e, no catálogo, o contrato [Acadêmico]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/academico), que é exatamente esse caso hoje.
+> ⚠️ **Contrato que não aparece depois de sincronizar.** Um contrato cujos modelos estão **todos desabilitados** não é criado; se já existia, é removido (também por exclusão lógica) e o motivo fica registrado no log. Não é falha de sincronização.
 
 > ℹ️ **Depois de atualizar o Coletor, sincronize uma vez.** As marcações de modelo obrigatório/opcional só passam a valer depois de uma sincronização com a PNP. Numa instalação recém-atualizada, e antes dessa sincronização, todos os modelos são tratados como obrigatórios — o comportamento anterior.
 

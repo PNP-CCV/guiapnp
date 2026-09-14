@@ -10,7 +10,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-Esta página descreve como um **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** evolui ao longo do tempo: versionamento, classificação de mudanças como breaking ou não-breaking, relação com o **[Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/glossario#ciclo-de-coleta)** e o que vale fazer durante a janela de correção. Os dez contratos atuais estão em `1.0.0` — esta é a referência para quando alguém propuser a primeira mudança.
+Esta página descreve como um **[Contrato de Dados]({{ site.baseurl }}/documentacao/coletor/glossario#contrato-de-dados)** evolui ao longo do tempo: versionamento, classificação de mudanças como breaking ou não-breaking, relação com o **[Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/glossario#ciclo-de-coleta)** e o que vale fazer durante a janela de correção. Os onze contratos atuais estão em `1.0.0` — esta é a referência para quando alguém propuser a primeira mudança.
 
 ## Versionamento do contrato
 

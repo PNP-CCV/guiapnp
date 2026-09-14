@@ -94,11 +94,23 @@ Validação referencial PNP reprovada — (campi, campo 'estrutura'):
 
 Caso real da coleta 2026: duas abas da planilha haviam sido copiadas do arquivo de outro Instituto, e ninguém trocou o código do campus. O contrato aceitou (o campo é `string` válida), a PNP não. A correção é sempre no **dado de origem** — corrigido lá, o conteúdo muda, e o reenvio segue o fluxo normal.
 
+> 💡 **O Coletor agora aponta isso antes do envio.** A mesma conferência passou a rodar **na extração**, contra os cadastros que o Coletor sincroniza da PNP. Um campus que não existe no cadastro aparece em **Ver resultados de teste**, junto das demais regras do contrato, e **barra o envio** — dá para ver o campus errado no dia da extração, em vez de esperar a fila de validação. A extração em si conclui e o Parquet fica em disco, como em qualquer reprovação de qualidade. Ver [Validação referencial]({{ site.baseurl }}/documentacao/usuarios-especializados/contratos/validacao_referencial).
+
 > ⚠️ **Reenviar dado idêntico não reseta a validação.** A PNP identifica cada dataset pelo **conteúdo** (checksum). Reextrair e reenviar um dado que não mudou faz a PNP devolver o **mesmo dataset, com o status antigo** — inclusive uma rejeição anterior. O sintoma é "reenviei e continua rejeitado". Para mudar o estado na PNP, o dado precisa mudar de verdade.
 
 ## Rejeição pela área (passo 7)
 
 O Gestor de Área Temática pode devolver o dataset com uma justificativa. Aqui não há defeito técnico: é uma discordância sobre o conteúdo. A justificativa fica registrada no Coletor e orienta a correção — que, de novo, é no dado de origem.
+
+## O dado errado já foi homologado pela área
+
+Acontece: a área homologa, e só depois se descobre que o dado estava errado. Esse caso tem saída dentro do Coletor — **só a Aprovação do Reitor é definitiva**.
+
+Corrija na origem e **re-extraia**. Uma reextração bem-sucedida torna obsoleta a validação anterior daquele modelo, seja ela "Aguardando", "Validado" ou "Homologado pela Área", e o botão de envio volta a aparecer. O modelo retoma o fluxo a partir de "Pronto para Sincronizar", e o novo envio recomeça a cadeia de validação na PNP.
+
+A única exceção é o modelo **aprovado pelo Reitor**: aí a reextração continua bloqueada, porque substituir dado oficialmente aceito exige um novo [Ciclo de Coleta]({{ site.baseurl }}/documentacao/coletor/ciclo_de_coleta).
+
+> ℹ️ **O dado precisa mudar de fato.** Vale aqui a mesma regra do bloco acima: a PNP identifica cada dataset pelo conteúdo. Re-extrair sem que o dado tenha mudado devolve o mesmo dataset com o status que ele já tinha — o botão volta, mas o reenvio não muda nada do outro lado.
 
 ## Problemas de infraestrutura
 
