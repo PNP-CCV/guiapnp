@@ -9,7 +9,12 @@ compatibility_date = "2026-09-01"
 # Publicos — podem ficar versionados.
 # GITHUB_CLIENT_ID sai do OAuth App criado em PNP-CCV (veja o README ao lado).
 GITHUB_CLIENT_ID = "Ov23li1WZoX6xGb1JcK0"
-SITE_ORIGIN = "https://pnp-ccv.github.io"
+# Origens de onde o /admin pode pedir login, separadas por virgula. O Worker so
+# entrega o token a uma origem desta lista. Uma origem faltando aqui e o modo de
+# falha classico: o login "conclui", o popup fica aberto e o CMS nao sai da tela
+# de login — o navegador descarta a mensagem sem erro. A pagina do popup mostra
+# esta lista e a origem que respondeu quando isso acontece.
+SITE_ORIGIN = "https://pnp-ccv.github.io,http://127.0.0.1:4000,http://localhost:4000"
 
 # GITHUB_CLIENT_SECRET nao entra aqui. E gravado fora do versionamento com:
 #   npx wrangler secret put GITHUB_CLIENT_SECRET

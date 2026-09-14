@@ -1,0 +1,9 @@
+{
+  "name": "guiapnp-cms-oauth",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node worker.test.mjs",
+    "deploy": "wrangler deploy"
+  }
+}
