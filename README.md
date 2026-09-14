@@ -185,11 +185,45 @@ cd docs
 bundle exec jekyll serve --baseurl "/guiapnp"
 ```
 
-Terminal 2 (proxy local do Decap):
+Terminal 2 (proxy local do Decap) — **na raiz do repositorio, nao em `docs/`**:
 
 ```bash
-npx decap-server
+cd /caminho/para/guiapnp
+MODE=git npx decap-server
 ```
+
+Os dois detalhes desse comando sao os que costumam custar uma tarde:
+
+- **A pasta importa.** Os `folder:` de [docs/admin/config.yml](docs/admin/config.yml)
+  sao relativos a raiz do repositorio (`docs/documentacao/ccv`), e o proxy os
+  resolve a partir do diretorio onde foi iniciado. Rodando de dentro de `docs/`,
+  ele procura `docs/docs/documentacao/ccv`, nao acha nada, e **o CMS abre com as
+  colecoes na barra lateral e nenhum arquivo dentro** — sem mensagem de erro. Para
+  conferir em que pasta o seu proxy esta, pergunte a ele:
+
+  ```bash
+  curl -s -X POST http://localhost:8081/api/v1 \
+    -H 'Content-Type: application/json' -d '{"action":"info","params":{}}'
+  ```
+
+  O campo `repo` traz o nome da pasta em que o proxy foi iniciado — precisa ser a
+  pasta que contem `docs/` e `.github/`. Se vier `"repo":"docs"`, o proxy subiu um
+  nivel abaixo do certo: e essa a causa da lista vazia.
+
+- **`MODE=git` nao e opcional aqui.** Sem ele o proxy roda como `local_fs`, que
+  anuncia `"publish_modes":["simple"]` — ou seja, nao suporta o
+  `editorial_workflow` configurado neste repositorio. Com `MODE=git` a resposta
+  passa a ser `["simple","editorial_workflow"]`.
+
+> **Atencao com `MODE=git`.** Nesse modo o proxy opera no seu checkout de verdade:
+> ele roda `git checkout` na branch do CMS e cria branches `cms/*` localmente. Se
+> houver alteracao nao commitada, ele aborta com "Your local changes would be
+> overwritten". Vale usar um worktree separado so para isso:
+>
+> ```bash
+> git worktree add ../guiapnp-cms editoracao
+> cd ../guiapnp-cms && MODE=git npx decap-server
+> ```
 
 Abra:
 
