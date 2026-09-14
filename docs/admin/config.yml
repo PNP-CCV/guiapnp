@@ -3,10 +3,13 @@ backend:
   repo: PNP-CCV/guiapnp
   branch: editoracao
   # O GitHub Pages e estatico: o login do backend `github` depende de um
-  # provedor OAuth externo que troque o `code` pelo `access_token`. Sem as duas
-  # linhas abaixo preenchidas, o login no /admin publicado nao conclui.
-  # Elas ficam aqui dentro de `backend:` de proposito — no nivel raiz sao ignoradas.
-  # base_url: https://seu-oauth-provider.exemplo.com
+  # provedor OAuth externo que troque o `code` pelo `access_token`. O provedor
+  # deste repositorio esta em ../../oauth-proxy (Cloudflare Worker); o deploy
+  # dele imprime a URL que entra em `base_url`.
+  # Sem as duas linhas abaixo preenchidas, o /admin publicado abre mas o login
+  # nunca conclui. Elas ficam dentro de `backend:` de proposito — no nivel raiz
+  # sao silenciosamente ignoradas.
+  # base_url: https://guiapnp-cms-oauth.SUA-CONTA.workers.dev
   # auth_endpoint: auth
 
 # Permite testar o CMS localmente sem OAuth remoto (so vale em localhost).

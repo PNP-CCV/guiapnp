@@ -156,6 +156,13 @@ conteudo acumulado e revisado antes de ir ao ar:
 4. **Segunda revisao:** um terceiro aprova esse PR.
 5. Apos o merge, a `deploy` e atualizada e o GitHub Pages publica.
 
+> **O botao "Publish" do Decap nao e usado neste fluxo.** Ele tenta fazer o merge
+> do PR pela API, e a protecao da `editoracao` recusa merge sem aprovacao — o
+> editor veria um erro sem explicacao. O correto e o editor mover o rascunho para
+> **"Ready"** e parar ai; a aprovacao e o merge acontecem no GitHub, por outra
+> pessoa. Vale dizer isso aos editores antes do primeiro uso, porque o botao
+> continua visivel na interface.
+
 ### Configuracao de seguranca recomendada no GitHub
 
 Quem pode editar e definido pelo GitHub, nao pelo CMS: o backend `github`

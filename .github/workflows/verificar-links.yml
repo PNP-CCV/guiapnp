@@ -31,6 +31,10 @@ concurrency:
 
 jobs:
   links:
+    # O nome do job e o que aparece como status check no PR — e o que se marca em
+    # "Require status checks to pass" na protecao da branch. Sem esta linha ele
+    # apareceria como "links", que nao diz nada a quem configura a protecao.
+    name: Verificar links internos
     runs-on: ubuntu-latest
     timeout-minutes: 10
 

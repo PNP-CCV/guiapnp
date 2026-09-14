@@ -1,0 +1,15 @@
+# Worker que faz o login do Decap CMS funcionar no GitHub Pages.
+# Deploy: cd oauth-proxy && npx wrangler deploy
+
+name = "guiapnp-cms-oauth"
+main = "src/worker.js"
+compatibility_date = "2026-09-01"
+
+[vars]
+# Publicos — podem ficar versionados.
+# GITHUB_CLIENT_ID sai do OAuth App criado em PNP-CCV (veja o README ao lado).
+GITHUB_CLIENT_ID = "PREENCHER"
+SITE_ORIGIN = "https://pnp-ccv.github.io"
+
+# GITHUB_CLIENT_SECRET nao entra aqui. E gravado fora do versionamento com:
+#   npx wrangler secret put GITHUB_CLIENT_SECRET
