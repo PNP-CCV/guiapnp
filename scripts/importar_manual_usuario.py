@@ -13,7 +13,9 @@ O que muda na conversão:
 - figuras ``../images/...`` viram ``{{site.baseurl}}/assets/img/docs/...``;
 - âncoras citadas ganham ``{#id}`` explícito no título, porque o slug do
   VitePress tira acentos e o do kramdown não garante o mesmo id;
-- containers ``::: danger|warning Título`` viram blockquote.
+- containers ``::: danger|warning Título`` viram blockquote;
+- o item "Manual do Usuário" de ``docs/_data/menu.yml`` é refeito a partir da
+  sidebar de ``.vitepress/config.ts``.
 
 Uso:
     python3 scripts/importar_manual_usuario.py /caminho/para/pnp-ccv-frontend
@@ -43,6 +45,22 @@ RE_TITULO = re.compile(r"^(#{1,6})\s+(.*?)\s*$")
 # O index.md da fonte abre com um aviso para desenvolvedores (pnpm, Docker,
 # CONTRIBUINDO.md) que não faz sentido no Guia.
 RE_AVISO_DEV = re.compile(r"\n> A forma boa de ler este manual.*?\n(?=\n)", re.S)
+
+MENU = RAIZ / "docs" / "_data" / "menu.yml"
+MENU_TITULO = '  - title: "Manual do Usuário"\n'
+# Ícone dos grupos da sidebar; grupo novo na fonte cai no ícone padrão.
+ICONES = {
+    "Por perfil": "fas fa-id-badge",
+    "Alcance nacional": "fas fa-globe-americas",
+    "Alcance da instituição": "fas fa-building",
+    "Alcance da unidade": "fas fa-school",
+    "Inconsistências": "fas fa-exclamation-triangle",
+    "Central de Atividades": "fas fa-tasks",
+    "Dados Institucionais": "fas fa-university",
+    "Cadastros Gerais": "fas fa-cogs",
+    "Microdados": "fas fa-database",
+    "PNP Gestor": "fas fa-newspaper",
+}
 
 
 def slug(texto: str) -> str:
@@ -75,6 +93,55 @@ def converter_containers(texto: str) -> str:
             saida.append(linha)
     assert not dentro, "container ::: sem fechamento"
     return "\n".join(saida)
+
+
+def atualizar_menu(config_ts: Path) -> None:
+    """Refaz o item do manual no menu a partir da sidebar do VitePress.
+
+    ponytail: lê a sidebar por regex (text/link e colchetes de ``items``), não
+    por um parser de TypeScript; basta enquanto ela for um literal sem lógica.
+    """
+    src = config_ts.read_text(encoding="utf-8")
+    src = src[src.index("sidebar:"):]
+    tokens = re.findall(
+        r'text:\s*"([^"]+)"(?:,\s*link:\s*"([^"]+)")?|(items:\s*\[)|(\])', src
+    )
+    bloco = [
+        MENU_TITULO.rstrip("\n"),
+        '    icon: "fas fa-book"',
+        "    children:",
+        '      - title: "Apresentação do manual"',
+        f'        href: "/documentacao/{PASTA}/"',
+        '        icon: "fas fa-book-open"',
+    ]
+    nivel = 0
+    for texto, link, abre, fecha in tokens:
+        if abre:
+            nivel += 1
+            continue
+        if fecha:
+            nivel -= 1
+            if nivel < 0:
+                break
+            continue
+        ind = "      " + "  " * nivel
+        bloco.append(f'{ind}- title: "{texto}"')
+        if link:
+            bloco.append(f'{ind}  href: "/documentacao/{PASTA}{link}"')
+            bloco.append(f'{ind}  icon: "fas fa-file-alt"')
+        else:
+            bloco.append(f'{ind}  icon: "{ICONES.get(texto, "fas fa-folder")}"')
+            bloco.append(f"{ind}  children:")
+    # O include do menu renderiza no máximo 4 níveis (raiz + 3).
+    assert max(len(l) - len(l.lstrip()) for l in bloco) <= 12, "sidebar funda demais para o menu"
+
+    menu = MENU.read_text(encoding="utf-8")
+    assert menu.count(MENU_TITULO) == 1, f"{MENU_TITULO.strip()} não encontrado uma única vez no menu"
+    inicio = menu.index(MENU_TITULO)
+    proximo = re.search(r"^  - title:", menu[inicio + len(MENU_TITULO):], re.M)
+    assert proximo, "item seguinte ao manual não encontrado no menu"
+    fim = inicio + len(MENU_TITULO) + proximo.start()
+    MENU.write_text(menu[:inicio] + "\n".join(bloco) + "\n" + menu[fim:], encoding="utf-8")
 
 
 def main(frontend: Path) -> None:
@@ -154,6 +221,7 @@ def main(frontend: Path) -> None:
         alvo.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(origem, alvo)
 
+    atualizar_menu(fonte / ".vitepress" / "config.ts")
     print(f"{len(convertidos)} páginas e {len(figuras)} figuras em {DESTINO.relative_to(RAIZ)}")
 
 

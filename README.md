@@ -124,6 +124,49 @@ O CI roda as duas em todo pull request que toque `docs/`, e também recusa a
 recriação de `docs/_plugins/` — plugins personalizados fazem o build local
 divergir do site publicado, que foi a origem do problema descrito acima.
 
+## Manual do usuário (importado do pnp-ccv-frontend)
+
+`docs/documentacao/manual-do-usuario/` **não é editado aqui.** A fonte é
+`doc/usuario` no repositório **pnp-ccv-frontend** (VitePress), onde as figuras
+nascem de testes Playwright a cada geração. Este repositório recebe uma cópia
+convertida, feita por `scripts/importar_manual_usuario.py`. Cada importação
+apaga e recria a pasta — edição feita direto aqui (ou pelo Decap CMS, que por
+isso não lista esta pasta) se perde na próxima importação.
+
+Para atualizar:
+
+```bash
+# 1. No pnp-ccv-frontend: gerar as figuras (não são versionadas lá)
+cd /caminho/para/pnp-ccv-frontend
+pnpm docs:shots
+
+# 2. Aqui: importar páginas, figuras e menu
+cd /caminho/para/guiapnp
+python3 scripts/importar_manual_usuario.py /caminho/para/pnp-ccv-frontend
+
+# 3. Conferir e abrir o PR contra a deploy
+python3 scripts/verificar_links.py --fonte
+git add -A docs/documentacao/manual-do-usuario docs/assets/img/docs/manual-do-usuario docs/_data/menu.yml
+```
+
+O script cuida de tudo que difere entre VitePress e Jekyll: links `.md`
+relativos viram `{{site.baseurl}}/...`, figuras vão para
+`docs/assets/img/docs/manual-do-usuario/`, âncoras citadas ganham `{#id}`
+explícito, containers `::: danger|warning` viram blockquote e o item
+**Manual do Usuário** de `docs/_data/menu.yml` é refeito a partir da sidebar
+de `.vitepress/config.ts` — página nova na sidebar aparece no menu sem edição
+manual. Ele para com erro, sem gravar nada, se encontrar link para página
+inexistente, âncora sem título correspondente ou figura que não foi gerada
+(nesse caso, rode o passo 1).
+
+Sem Ruby instalado, dá para construir e servir o site pelo Docker:
+
+```bash
+docker run --rm -p 4000:4000 -v "$PWD/docs:/srv" -w /srv -u "$(id -u):$(id -g)" \
+  -e HOME=/tmp -e BUNDLE_PATH=/tmp/bundle ruby:3.3 \
+  sh -c 'bundle install --quiet && bundle exec jekyll serve --host 0.0.0.0 --baseurl /guiapnp'
+```
+
 ## Estrutura do projeto
 
 ```
