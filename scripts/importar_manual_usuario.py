@@ -14,7 +14,7 @@ O que muda na conversão:
 - âncoras citadas ganham ``{#id}`` explícito no título, porque o slug do
   VitePress tira acentos e o do kramdown não garante o mesmo id;
 - containers ``::: danger|warning Título`` viram blockquote;
-- o item "Manual do Usuário" de ``docs/_data/menu.yml`` é refeito a partir da
+- o item "Manual do Usuário PNP:CCV" de ``docs/_data/menu.yml`` é refeito a partir da
   sidebar de ``.vitepress/config.ts``.
 
 Uso:
@@ -47,7 +47,7 @@ RE_TITULO = re.compile(r"^(#{1,6})\s+(.*?)\s*$")
 RE_AVISO_DEV = re.compile(r"\n> A forma boa de ler este manual.*?\n(?=\n)", re.S)
 
 MENU = RAIZ / "docs" / "_data" / "menu.yml"
-MENU_TITULO = '  - title: "Manual do Usuário"\n'
+MENU_TITULO = '  - title: "Manual do Usuário PNP:CCV"\n'
 # Ícone dos grupos da sidebar; grupo novo na fonte cai no ícone padrão.
 ICONES = {
     "Por perfil": "fas fa-id-badge",

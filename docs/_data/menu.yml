@@ -315,7 +315,7 @@ itens:
       - title: "Glossário do Coletor"
         href: "/documentacao/coletor/glossario"
         icon: "fas fa-sort-alpha-down"
-  - title: "Manual do Usuário"
+  - title: "Manual do Usuário PNP:CCV"
     icon: "fas fa-book"
     children:
       - title: "Apresentação do manual"

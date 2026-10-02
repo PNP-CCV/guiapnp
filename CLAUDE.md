@@ -10,7 +10,7 @@ os pontos abaixo são os que mais quebram o site.
 - Antes do PR: `python3 scripts/verificar_links.py --fonte`. O CI roda também a
   camada `--site` sobre o build.
 - `docs/documentacao/manual-do-usuario/`, as figuras em
-  `docs/assets/img/docs/manual-do-usuario/` e o item "Manual do Usuário" de
+  `docs/assets/img/docs/manual-do-usuario/` e o item "Manual do Usuário PNP:CCV" de
   `docs/_data/menu.yml` são **gerados** por `scripts/importar_manual_usuario.py`
   a partir de `doc/usuario` do pnp-ccv-frontend. Não edite à mão: corrija na
   fonte e reimporte (ver "Manual do usuário" no README).

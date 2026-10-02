@@ -153,7 +153,7 @@ O script cuida de tudo que difere entre VitePress e Jekyll: links `.md`
 relativos viram `{{site.baseurl}}/...`, figuras vão para
 `docs/assets/img/docs/manual-do-usuario/`, âncoras citadas ganham `{#id}`
 explícito, containers `::: danger|warning` viram blockquote e o item
-**Manual do Usuário** de `docs/_data/menu.yml` é refeito a partir da sidebar
+**Manual do Usuário PNP:CCV** de `docs/_data/menu.yml` é refeito a partir da sidebar
 de `.vitepress/config.ts` — página nova na sidebar aparece no menu sem edição
 manual. Ele para com erro, sem gravar nada, se encontrar link para página
 inexistente, âncora sem título correspondente ou figura que não foi gerada
