@@ -23,7 +23,7 @@ A **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)** coleta este con
 
 Diferente de [Ações de Extensão]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/acoes_de_extensao), este contrato **não registra as pessoas envolvidas nem as atendidas**: é uma tabela única sobre o projeto, sem PII.
 
-## Modelos contidos
+## Modelos contidos 
 
 - **`projetos_ensino`** *(opcional no fluxo)* — projetos de ensino, com natureza, vigência, financiamento, orçamento e produto final.
 

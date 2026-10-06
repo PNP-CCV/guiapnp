@@ -22,7 +22,7 @@ Com a stack no ar, acesse `http://<servidor>:8000/painel/`. Enquanto **não exis
 | Campo | O que informar |
 |---|---|
 | Usuário / E-mail / Senha | As credenciais do primeiro administrador do painel |
-| URL da API PNP | URL de Homologação: `https://pnp-homolog.pnp.ifrn.edu.br/api/v2/`|
+| URL da API PNP | URL de Homologação: `https://pnp-homolog.pnp.ifrn.edu.br/api/v2/` URL de Produção `https://pnpccv.mec.gov.br/api/v2/`|
 | Secret da API PNP | O secret de integração fornecido junto com a URL |
 | Hostname da instância | Já vem preenchido e **travado** com o nome da máquina onde o Coletor roda |
 
