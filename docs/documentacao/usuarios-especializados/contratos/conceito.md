@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Conceito de Contrato de Dados
+title: "Conceito de Contrato de Dados"
 toc: true
 ---
 # Conceito de Contrato de Dados
