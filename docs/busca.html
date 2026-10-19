@@ -1,47 +1,9 @@
 ---
 layout: default
+title: Busca
 ---
 {% if site.search_engine == "lunrjs" %}
-
-<div id="lunrsearchresults"></div>
-
+<h1>Busca</h1>
+<div id="lunrsearchresults" aria-live="polite"></div>
 {% include resultados_lunr.html %}
-<script>
-    function getQueryText(variable) {
-        var query = window.location.search.substring(1),
-            vars = query.split("&");
-
-        for (var i = 0; i < vars.length; i++) {
-            var pair = vars[i].split("=");
-
-            if (pair[0] === variable) {
-                return decodeURIComponent(pair[1].replace(/\+/g, '%20')).trim();
-            }
-        }
-    }
-
-    function escapeHTML(str) {
-        return str.replace(/[&<>"'\/]/g, function (char) {
-            switch (char) {
-                case '&':
-                    return '&amp;';
-                case '<':
-                    return '&lt;';
-                case '>':
-                    return '&gt;';
-                case '"':
-                    return '&quot;';
-                case '\\':
-                    return '&#39;';
-                case '/':
-                    return '&#x2F;';
-                default:
-                    return char;
-            }
-        })
-    }
-    var query = escapeHTML(decodeURIComponent((getQueryText("q") || "").replace(/\+/g, "%20")));
-    lunr_search(query);
-</script>
-
 {% endif %}

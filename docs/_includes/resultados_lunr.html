@@ -1,85 +1,29 @@
-<script src="{{ "/assets/js/lunr_2.js" | relative_url }}"></script>
-<script>
-{% assign counter = 0 %}
-var documents = [
-    {% for page in site.pages %}
-      {% if page.url contains '.xml' or page.url contains 'assets' %}
-      {% else %}{
-        "id": {{ counter }},
-        "url": "{{ site.baseurl }}{{ page.url }}",
-        "title": "{{ page.title | default: page.name }}",
-        "body": "{{ page.content | markdownify | replace: '.', '. ' | replace: '</h2>', ': ' | replace: '</h3>', ': ' | replace: '</h4>', ': ' | replace: '</p>', ' ' | strip_html | strip_newlines | replace: '  ', ' ' | replace: '"', ' ' }}"{% assign counter = counter | plus: 1 %}
-      },
-      {% endif %}
-    {% endfor %}
-    {% for page in site.without-plugin %}
+{% assign empty_documents = '' | split: '' %}
+{% assign posts = site.posts.docs | default: empty_documents %}
+{% assign extra_documents = site.without-plugin | default: empty_documents %}
+{% assign search_documents = site.pages | concat: posts | concat: extra_documents %}
+{% capture baseurl_token %}{% raw %}{{site.baseurl}}{% endraw %}{% endcapture %}
+{% capture spaced_baseurl_token %}{% raw %}{{ site.baseurl }}{% endraw %}{% endcapture %}
+{% capture title_token %}{% raw %}{{ page.title }}{% endraw %}{% endcapture %}
+{% capture legacy_baseurl_token %}{% raw %}{{site.baseUrl}}{% endraw %}{% endcapture %}
+{% capture legacy_url_token %}{% raw %}{{baseUrl}}{% endraw %}{% endcapture %}
+<script id="search-documents" type="application/json">
+[
+{% assign separator = "" %}
+{% for document in search_documents %}
+  {% unless document.url contains '.xml' or document.url contains 'assets' or document.url contains 'busca' or document.search == false %}
+    {% if document.layout and document.content != empty %}
+      {{ separator }}
       {
-      "id": {{ counter }},
-      "url": "{{ site.baseurl }}{{ page.url }}",
-      "title": "{{ page.title }}",
-      "body": "{{ page.content | markdownify | replace: '.', '. ' | replace: '</h2>', ': ' | replace: '</h3>', ': ' | replace: '</h4>', ': ' | replace: '</p>', ' ' | strip_html | strip_newlines | replace: '  ', ' ' | replace: '"', ' ' }}"{% assign counter = counter | plus: 1 %}
-      }, 
-    {% endfor %}
-    {% for page in site.posts %}
-      {
-      "id": {{ counter }},
-      "url": "{{ site.baseurl }}{{ page.url }}",
-      "title": "{{ page.title }}",
-      "body": "{{ page.date | date: "%Y/%m/%d" }} - {{ page.content | markdownify | replace: '.', '. ' | replace: '</h2>', ': ' | replace: '</h3>', ': ' | replace: '</h4>', ': ' | replace: '</p>', ' ' | strip_html | strip_newlines | replace: '  ', ' ' | replace: '"', ' ' }}"{% assign counter = counter | plus: 1 %}
+        "url": {{ document.url | relative_url | jsonify }},
+        "title": {{ document.title | default: document.name | jsonify | replace: '<', '\u003c' }},
+        "html": {{ document.content | replace: baseurl_token, site.baseurl | replace: spaced_baseurl_token, site.baseurl | replace: title_token, document.title | replace: legacy_baseurl_token, '' | replace: legacy_url_token, '' | markdownify | jsonify | replace: '<', '\u003c' }}
       }
-      {% if forloop.last %}
-      {% else %},
-      {% endif %}
-    {% endfor %}];
-
-var idx = lunr(function () {
-    this.ref('id')
-    this.field('title')
-    this.field('body')
-
-    documents.forEach(function (doc) {
-        this.add(doc)
-    }, this)
-});
-function lunr_search(term) {
-        document.getElementById('lunrsearchresults').innerHTML = '';
-        if (term) {
-            var results = idx.search(term);
-            if (results.length > 0) {
-                var message = document.createElement("p");
-                message.innerText = "Resultados para a sua pesquisa:";
-                document.getElementById('lunrsearchresults').appendChild(message);
-                for (var i = 0; i < results.length; i++) {
-                    var ref = results[i]['ref'];
-                    var url = documents[ref]['url'];
-                    var title = documents[ref]['title'];
-                    var body = documents[ref]['body'].substring(0, 160) + '...';
-                    var element = document.createElement("div");
-                    element.classList = "br-item";
-                    element.innerHTML = `<div class='row align-items-center'><div class='col'>
-                        <a href='${url}'>${title}</a>
-                        <p>${body}</p>
-                        </div></div>
-                        <span class='br-divider'></span>`;
-                    document.getElementById('lunrsearchresults').appendChild(element);    
-                }
-            } else {
-                not_content("Sem resultados.","Não conseguimos encontrar um resultado correspondente a sua pesquisa, tente um outro termo.");
-            }
-        }else{
-            not_content("Sem termo de busca.","Por favor, forneça uma parâmetro de texto para podermos lhe auxiliar.");
-        }
-        return false;
-    }
-    function not_content(headerMessage,bodyMessage) {
-        var message = document.createElement("div");
-        message.classList = "br-message danger";
-        header = "Sem resultados.";
-        body = "Não conseguimos encontrar um resultado correspondente a sua pesquisa, tente um outro termo."
-        message.innerHTML = `
-            <div class='icon'><i class='fas fa-times-circle fa-lg' aria-hidden='true'></i></div>
-            <div class='content' aria-label='${headerMessage} ${bodyMessage}' role='alert'><span class='message-title'>${headerMessage}</span><span class='message-body'> ${bodyMessage}</span></div>
-            `
-        document.getElementById('lunrsearchresults').appendChild(message);
-    }
+      {% assign separator = "," %}
+    {% endif %}
+  {% endunless %}
+{% endfor %}
+]
 </script>
+<script id="search-menu" type="application/json" data-baseurl="{{ site.baseurl | escape }}">{{ site.data.menu.itens | jsonify | replace: '<', '\u003c' }}</script>
+<script src="{{ '/assets/js/search.js' | relative_url }}" defer></script>
