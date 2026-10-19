@@ -7,6 +7,108 @@
     }
 }
 
+.search-result {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.search-result-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: #f3f6fa;
+    color: #1351b4;
+    cursor: pointer;
+    list-style: none;
+}
+
+.search-result-summary::-webkit-details-marker {
+    display: none;
+}
+
+.search-result-summary::before {
+    content: '+';
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.search-result[open] > .search-result-summary::before {
+    content: '−';
+}
+
+.search-result-summary:hover,
+.search-result[open] > .search-result-summary {
+    background: #e4edf9;
+}
+
+.search-result-summary:focus-visible,
+.search-more-sections > summary:focus-visible {
+    outline: 3px solid #1351b4;
+    outline-offset: -3px;
+}
+
+.search-result-title {
+    flex: 1;
+    font-size: 1.15rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.search-result-count {
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    color: #444;
+}
+
+.search-result-body {
+    padding: 1rem;
+}
+
+.search-section {
+    border-left: 3px solid #ddd;
+    margin: 1rem 0;
+    padding-left: 1rem;
+}
+
+.search-section-content {
+    overflow-x: auto;
+    overflow-wrap: anywhere;
+}
+
+.search-section h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1rem;
+}
+
+.search-more-sections > summary {
+    padding: 0.5rem;
+    color: #1351b4;
+    cursor: pointer;
+}
+
+@media (max-width: 575px) {
+    .search-result-summary {
+        flex-wrap: wrap;
+    }
+
+    .search-result-count {
+        margin-left: 1.5rem;
+    }
+}
+
+#lunrsearchresults mark {
+    background-color: #ffeb3b;
+    color: #111;
+}
+
+.search-section-link {
+    font-weight: 600;
+}
+
 p {
     text-align: justify;
     text-indent: 2em;
