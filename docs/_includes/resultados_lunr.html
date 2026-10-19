@@ -26,4 +26,4 @@
 ]
 </script>
 <script id="search-menu" type="application/json" data-baseurl="{{ site.baseurl | escape }}">{{ site.data.menu.itens | jsonify | replace: '<', '\u003c' }}</script>
-<script src="{{ '/assets/js/search.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/search.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
