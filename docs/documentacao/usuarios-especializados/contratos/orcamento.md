@@ -21,6 +21,36 @@ Este **[Contrato de Dados]({{site.baseurl}}/documentacao/coletor/glossario#contr
 
 A **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)** coleta este contrato para relacionar gasto público executado com a oferta de ensino, pesquisa e extensão — é o insumo dos indicadores de custo por aluno e de aplicação de recursos por finalidade.
 
+
+### Uso do Tesouro Gerencial
+
+Para o contrato, sugere-se que os dados sejam obtidos por meio do Tesouro Gerencial, realizando consulta com os seguintes parâmetros: 
+
+Filtro do relatório: ({Item Informação} = 31:DESPESAS LIQUIDADAS (CONTROLE EMPENHO), 44:RESTOS A PAGAR NAO PROCESSADOS LIQUIDADOS) E ({Órgão UGE} = 26XXX:NOME INSTITUIÇÃO) E ({Ano Lançamento} = 2025) E ({Unidade Orçamentária} = 26XXX:NOME INSTITUIÇÃO)
+
+Template:
+- Órgão UGE - Órgão Superior 
+- Unidade Orçamentária 
+- Ação Governo 
+- PTRES 
+- Resultado Primário Lei
+- Autor Emendas Orçamento
+- PI 
+- Grupo Despesa 
+- Esfera Orçamentária 
+- Fonte Recursos Detalhada 
+- Fonte Recursos Reduzida 
+- Grupo Fonte 
+- Fonte Recursos 
+- UG Executora 
+- UG Responsável 
+- Item Informação 
+
+**Métrica**:
+- Movim. Líquido - R$ (Item Informação) 
+- Valor do Movimento Líquido, em Real. Para uso concomitante com o atributo "Item Informação". 
+- {Movim. Líquido no mês - R$ (Item Informação)} + {Var.Cambial Saldo ant. - R$ (Item Informação)}
+
 ## Modelos contidos
 
 - **`dados_orcamentarios`** *(opcional no fluxo)* — dados orçamentários vinculados à execução financeira institucional.
