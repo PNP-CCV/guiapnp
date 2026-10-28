@@ -16,13 +16,8 @@ name: Verificar links internos
 # perto de travar a fila de revisão.
 on:
   pull_request:
-  # `editoracao` está aqui por causa da proteção de branch: o PR
-  # `editoracao -> deploy` é aberto pelo editoracao-review-gate com o
-  # GITHUB_TOKEN, e PR criado com esse token não dispara workflow nenhum. Como
-  # este check roda no mesmo SHA que vira o head do PR, o resultado do push
-  # satisfaz o required status check — sem precisar de PAT nem GitHub App.
   push:
-    branches: [main, deploy, editoracao]
+    branches: [main, deploy]
   workflow_dispatch:
 
 concurrency:
