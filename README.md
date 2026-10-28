@@ -182,25 +182,23 @@ docs/
 
 ## Fluxo editorial com Decap CMS
 
-Esta configuracao permite que editores alterem conteudo via CMS com commits na branch `editoracao`, e que a publicacao em `deploy` aconteca apenas apos revisao.
+O CMS usa `deploy` como base, incluindo atualizacoes feitas fora do CMS. As edicoes sao salvas em branches de rascunho e enviadas em PRs diretamente para `deploy`, para revisao antes da publicacao.
 
 ### Como o fluxo funciona
 
-O CMS esta em `publish_mode: editorial_workflow`, entao a revisao acontece em
-dois momentos — o rascunho e revisado antes de entrar na `editoracao`, e o
-conteudo acumulado e revisado antes de ir ao ar:
+O CMS esta em `publish_mode: editorial_workflow`:
 
 1. O editor abre uma pagina em `/admin/` e salva. O Decap cria uma branch
-   `cms/<colecao>/<slug>` e abre um PR contra `editoracao`. Enquanto o editor
+   `cms/<colecao>/<slug>` e abre um PR contra `deploy`. Enquanto o editor
    nao mandar para "Ready", aquilo e rascunho.
-2. **Primeira revisao:** um terceiro revisa esse PR e faz o merge na `editoracao`.
-3. O workflow [`editoracao-review-gate.yml`](.github/workflows/editoracao-review-gate.yml)
-   abre (ou reaproveita) o PR `editoracao -> deploy`.
-4. **Segunda revisao:** um terceiro aprova esse PR.
-5. Apos o merge, a `deploy` e atualizada e o GitHub Pages publica.
+2. Um terceiro revisa e aprova esse PR no GitHub.
+3. Apos o merge, a `deploy` e atualizada e o GitHub Pages publica.
+
+PRs e rascunhos existentes contra `editoracao` precisam ser revisados e migrados
+separadamente; mudar a configuracao nao altera suas branches automaticamente.
 
 > **O botao "Publish" do Decap nao e usado neste fluxo.** Ele tenta fazer o merge
-> do PR pela API, e a protecao da `editoracao` recusa merge sem aprovacao — o
+> do PR pela API, e, com a protecao recomendada da `deploy`, o merge sem aprovacao e recusado — o
 > editor veria um erro sem explicacao. O correto e o editor mover o rascunho para
 > **"Ready"** e parar ai; a aprovacao e o merge acontecem no GitHub, por outra
 > pessoa. Vale dizer isso aos editores antes do primeiro uso, porque o botao
@@ -222,7 +220,6 @@ Em `Settings > Branches`:
 	4. Opcional: `Dismiss stale pull request approvals when new commits are pushed`.
 2. Proteger `main` contra push direto, senao o `write` dado aos editores alcanca
    tambem a branch principal.
-3. Opcional: proteger `editoracao` para restringir quem pode editar.
 
 ### Teste local do CMS
 
@@ -271,7 +268,7 @@ Os dois detalhes desse comando sao os que costumam custar uma tarde:
 > overwritten". Vale usar um worktree separado so para isso:
 >
 > ```bash
-> git worktree add ../guiapnp-cms editoracao
+> git worktree add ../guiapnp-cms deploy
 > cd ../guiapnp-cms && MODE=git npx decap-server
 > ```
 
