@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Indicadores de Sustentabilidade"
+title: Indicadores de Sustentabilidade
 toc: true
 ---
 
@@ -761,7 +761,7 @@ toc: true
     <td colspan="2">
       <p style="text-align:center"><strong>Variáveis</strong></p>
       <strong>PSUS - Projetos que abordem a temática da sustentabilidade.</strong><br/>
-      <strong>Fonte:</strong> Rede Integra.<br/>
+      <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
       <strong>Definição:</strong> Projetos que abordem a temática da sustentabilidade, desenvolvidos em uma estrutura da RFEPCT no ano de referência, entendido como o somatório dos:
       <ul>
         <li>PES – projetos de ensino</li>
@@ -769,7 +769,7 @@ toc: true
         <li>PEXS – projetos de extensão</li>
       </ul>
       <strong>PEPE – Projetos em qualquer área do conhecimento.</strong><br/>
-      <strong>Fonte:</strong> Rede Integra.<br/>
+      <strong>Fonte:</strong> Registros realizados pelas instituições.<br/>
       <strong>Definição:</strong> Projetos em qualquer área do conhecimento, inclusive a sustentabilidade, desenvolvidos em uma estrutura da RFEPCT no ano de referência, entendido como o somatório dos:
       <ul>
         <li>PE – projetos de ensino</li>
