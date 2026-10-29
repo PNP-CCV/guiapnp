@@ -170,6 +170,10 @@ def checar_site(site: Path, baseurl: str) -> list[str]:
         return cache_ids[p]
 
     def resolver(destino: str, origem: Path):
+        # A query string controla, por exemplo, a versão de cache de um asset
+        # (``/assets/css/site.css?v=...``), mas não faz parte de seu caminho no
+        # disco. Quem chama ``resolver`` já a remove; esta função recebe somente
+        # o pathname, para não procurar literalmente por ``site.css?v=...``.
         if destino.startswith("/"):
             p = destino.lstrip("/")
             if baseurl and p.startswith(baseurl.lstrip("/")):
@@ -192,7 +196,10 @@ def checar_site(site: Path, baseurl: str) -> list[str]:
             href = bruto.strip()
             if not href or href.startswith(EXTERNOS):
                 continue
-            alvo, _, ancora = href.partition("#")
+            alvo_com_serie, _, ancora = href.partition("#")
+            # Fragmento aponta para uma âncora; query string não altera o
+            # recurso. Ambos precisam ficar fora da resolução no filesystem.
+            alvo, _, _ = alvo_com_serie.partition("?")
             alvo = alvo.strip()
             if alvo in ("", "/", baseurl, baseurl + "/"):
                 continue
@@ -212,10 +219,12 @@ def checar_site(site: Path, baseurl: str) -> list[str]:
             src = bruto.strip()
             if not src or src.startswith(EXTERNOS):
                 continue
-            if src.startswith("/") and baseurl and not src.startswith(baseurl + "/"):
+            caminho_src, _, _ = src.partition("?")
+            caminho_src = caminho_src.strip()
+            if caminho_src.startswith("/") and baseurl and not caminho_src.startswith(baseurl + "/"):
                 problemas.append(f"{rel}: imagem/script sem o prefixo '{baseurl}': {src}")
                 continue
-            if src.startswith("/") and resolver(src, pagina) is None:
+            if caminho_src.startswith("/") and resolver(caminho_src, pagina) is None:
                 problemas.append(f"{rel}: arquivo referenciado não existe: {src}")
 
     return problemas
