@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Indicadores de Sustentabilidade
+title: "Indicadores de Sustentabilidade"
 toc: true
 ---
 
