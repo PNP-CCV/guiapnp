@@ -43,20 +43,20 @@ Tabela única do contrato. Cada linha é uma autoria de uma produção intelectu
 
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
-| `id_producao` | `integer` | sim | `primaryKey` | ID produção |
+| `id_producao` | `integer` | sim | `primaryKey` (composta com `cpf`) | ID produção. Repete-se em cada autoria da mesma produção |
 | `tipo_producao` | `string` | sim | `enum: [Acadêmica, Técnica]` | Tipo de produção |
 | `classificacao_producao` | `string` | sim | `enum` (ver legenda abaixo) | Categoria de produção conforme taxonomia da base Lattes (técnico-tecnológica, artístico-cultural, etc.) |
 | `titulo_producao` | `string` | sim | — | Título da produção |
 | `ano_publicacao` | `integer` | sim | — | Ano de publicação. Formato: `AAAA` |
 | `avaliacao_capes` | `string` | não | `enum: [A1, A2, A3, A4, B1, B2, B3, B4, B5, C, Não classificado]` | Avaliação Capes |
 | `area_tematica_cnpq` | `string` | sim | `referencia_pnp: areas_tematicas_cnpq` (conferido na extração — ver nota) | Área Temática CNPq. Formato: `{codigo}` |
-| `cpf` | `string` | sim | `pii`, `classification: sensitive` | CPF de quem assina a produção |
+| `cpf` | `string` | sim | `primaryKey` (composta com `id_producao`), `pii`, `classification: sensitive` | CPF de quem assina a produção |
 | `categoria` | `string` | sim | `enum: [docente, TAE]` | Tipo de vínculo do autor/co-autor |
 | `matricula` | `string` | sim | `referencia_pnp: servidores`, chave composta `[cpf, matricula]` (conferida na extração — ver nota) | Matrícula SIAPE do autor/co-autor |
 
 #### Valores de `classificacao_producao`
 
-Bibliográfica: `TRABALHO-EM-EVENTOS`, `ARTIGO-PUBLICADO`, `LIVRO-PUBLICADO-OU-ORGANIZADO`, `CAPÍTULO-DE-LIVRO-PUBLICADO`, `TEXTO-EM-JORNAL-OU-REVISTA`, `OUTRA-PRODUCAO-BIBLIOGRAFICA`, `PREFACIO-POSFACIO`, `PARTITURA-MUSICAL`, `TRADUCAO`, `ARTIGO-ACEITO-PARA-PUBLICACAO`.
+Bibliográfica: `TRABALHO-EM-EVENTOS`, `ARTIGO-PUBLICADO`, `LIVRO-PUBLICADO-OU-ORGANIZADO`, `CAPITULO-DE-LIVRO-PUBLICADO`, `TEXTO-EM-JORNAL-OU-REVISTA`, `OUTRA-PRODUCAO-BIBLIOGRAFICA`, `PREFACIO-POSFACIO`, `PARTITURA-MUSICAL`, `TRADUCAO`, `ARTIGO-ACEITO-PARA-PUBLICACAO`.
 
 Técnica: `SOFTWARE`, `PRODUTO-TECNOLOGICO`, `PROCESSOS-OU-TECNICAS`, `TRABALHO-TECNICO`, `APRESENTACAO-DE-TRABALHO`, `CARTA-MAPA-OU-SIMILAR`, `CURSO-DE-CURTA-DURACAO-MINISTRADO`, `DESENVOLVIMENTO-DE-MATERIAL-DIDATICO-OU-INSTRUCIONAL`, `EDITORACAO`, `MANUTENCAO-DE-OBRA-ARTISTICA`, `MAQUETE`, `ORGANIZACAO-DE-EVENTO`, `OUTRA-PRODUCAO-TECNICA`, `PROGRAMA-DE-RADIO-OU-TV`, `RELATORIO-DE-PESQUISA`.
 
@@ -71,8 +71,9 @@ Além do schema (colunas obrigatórias, tipos e rejeição de colunas extras via
 | `titulo_producao` não pode ser texto vazio | `mustBe: 0` |
 | `tipo_producao` tem de ser `Acadêmica` para as classificações bibliográficas e `Técnica` para as demais | `mustBe: 0` |
 | `ano_publicacao` tem de ser o **ano de referência** da coleta | `mustBe: 0` |
+| As linhas de autoria da mesma produção (mesmo `id_producao`) têm de trazer o mesmo `tipo_producao`, `classificacao_producao`, `titulo_producao` e `ano_publicacao` | `mustBe: 0` |
 
-> ℹ️ **Ano de referência.** A última consulta usa o token `#ANO_REFERENCIA#`, substituído pelo Coletor antes de o contrato chegar ao motor: é o **ano-base** da coleta, `ciclo.ano - 1` (o ciclo de 2026 coleta o que foi publicado em 2025). Contrato que usa o token sem ciclo de coleta associado falha com erro explícito, em vez de mandar SQL quebrado ao motor.
+> ℹ️ **Ano de referência.** A regra de `ano_publicacao` usa o token `#ANO_REFERENCIA#`, substituído pelo Coletor antes de o contrato chegar ao motor: é o **ano-base** da coleta, `ciclo.ano - 1` (o ciclo de 2026 coleta o que foi publicado em 2025). Contrato que usa o token sem ciclo de coleta associado falha com erro explícito, em vez de mandar SQL quebrado ao motor.
 
 ### Exemplo válido
 
@@ -179,7 +180,7 @@ models:
             classificacao_producao IN (
               'TRABALHO-EM-EVENTOS', 'ARTIGO-PUBLICADO',
               'LIVRO-PUBLICADO-OU-ORGANIZADO',
-              'CAPÍTULO-DE-LIVRO-PUBLICADO',
+              'CAPITULO-DE-LIVRO-PUBLICADO',
               'TEXTO-EM-JORNAL-OU-REVISTA',
               'OUTRA-PRODUCAO-BIBLIOGRAFICA', 'PREFACIO-POSFACIO',
               'PARTITURA-MUSICAL', 'TRADUCAO',
@@ -191,7 +192,7 @@ models:
             classificacao_producao NOT IN (
               'TRABALHO-EM-EVENTOS', 'ARTIGO-PUBLICADO',
               'LIVRO-PUBLICADO-OU-ORGANIZADO',
-              'CAPÍTULO-DE-LIVRO-PUBLICADO',
+              'CAPITULO-DE-LIVRO-PUBLICADO',
               'TEXTO-EM-JORNAL-OU-REVISTA',
               'OUTRA-PRODUCAO-BIBLIOGRAFICA', 'PREFACIO-POSFACIO',
               'PARTITURA-MUSICAL', 'TRADUCAO',
@@ -206,13 +207,27 @@ models:
           SELECT COUNT(*) FROM producao_intelectual
           WHERE ano_publicacao <> #ANO_REFERENCIA#
         mustBe: 0
+      - type: sql
+        description: "Linhas de autoria da mesma produção devem ter mesmo tipo, classificação, título e ano."
+        query: >
+          SELECT COUNT(*) FROM (
+            SELECT id_producao FROM producao_intelectual
+            GROUP BY id_producao
+            HAVING COUNT(DISTINCT tipo_producao) > 1
+              OR COUNT(DISTINCT classificacao_producao) > 1
+              OR COUNT(DISTINCT UPPER(TRIM(titulo_producao))) > 1
+              OR COUNT(DISTINCT ano_publicacao) > 1
+          ) inconsistentes
+        mustBe: 0
     fields:
       id_producao:
         type: integer
         title: "ID produção"
         primaryKey: true
         required: true
-        description: "Identificador único do registro de produção intelectual."
+        description: >
+          Identificador da produção intelectual. Repete-se em cada autoria da mesma
+          produção: a chave primária é composta (id_producao, cpf).
 
       tipo_producao:
         type: string
@@ -230,7 +245,7 @@ models:
           - "TRABALHO-EM-EVENTOS"
           - "ARTIGO-PUBLICADO"
           - "LIVRO-PUBLICADO-OU-ORGANIZADO"
-          - "CAPÍTULO-DE-LIVRO-PUBLICADO"
+          - "CAPITULO-DE-LIVRO-PUBLICADO"
           - "TEXTO-EM-JORNAL-OU-REVISTA"
           - "OUTRA-PRODUCAO-BIBLIOGRAFICA"
           - "PREFACIO-POSFACIO"
@@ -301,6 +316,7 @@ models:
         type: string
         title: "CPF"
         description: "CPF de autoria/co-autoria da produção intelectual"
+        primaryKey: true
         pii: true
         classification: "sensitive"
         required: true

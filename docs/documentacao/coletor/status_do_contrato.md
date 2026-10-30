@@ -15,7 +15,7 @@ Esta página descreve os estados em que um **[Contrato de Dados]({{site.baseurl}
 
 ## Os estados em uma frase
 
-São **12 códigos de status** e **13 rótulos** — o código `1` cobre dois casos distintos. Os códigos `3` e `4` não existem: eram "Aguardando Testes" e "Testes com Falha", eliminados quando o teste de qualidade passou a rodar dentro da própria extração.
+São **12 códigos de status** e **14 rótulos** — os códigos `1` e `7` cobrem dois casos distintos cada. Os códigos `3` e `4` não existem: eram "Aguardando Testes" e "Testes com Falha", eliminados quando o teste de qualidade passou a rodar dentro da própria extração.
 
 | # | Status | O que significa | O que fazer |
 |---|---|---|---|
@@ -24,7 +24,8 @@ São **12 códigos de status** e **13 rótulos** — o código `1` cobre dois ca
 | 14 | Somente Modelos Opcionais | O contrato tem modelos, mas todos são **[opcionais]({{site.baseurl}}/documentacao/coletor/glossario#modelo-opcional)** e nenhum foi configurado — "não há nada a coletar". Fica **fora** do progresso do wizard. | Nada, se a instituição não vai coletá-los. Para coletar, criar a Configuração de Extração de um deles. |
 | 1 | Modelos Não Configurados | Modelo que conta no fluxo existe, mas sem **[Configuração de Extração]({{site.baseurl}}/documentacao/coletor/glossario#configuracao-de-extracao)**. | Adicionar uma Configuração ligando o modelo a um **[Provedor de Dados]({{site.baseurl}}/documentacao/coletor/glossario#provedor-de-dados)**. |
 | 2 | Aguardando Extração | Tudo configurado, mas a extração nunca foi executada. | Disparar "Extrair Dados". |
-| 7 | Falha na Extração | A última extração registrou erro — inclusive quando o que falhou foi o **teste de qualidade** do contrato, que roda no mesmo run. | Ler o motivo no **[Registro de Extração]({{site.baseurl}}/documentacao/coletor/glossario#registro-de-extracao)**, corrigir e re-extrair. |
+| 7 | Falha na Extração | A última extração de um modelo do contrato terminou em erro real (schema, fonte de dados, conexão). | Ler o motivo no **[Registro de Extração]({{site.baseurl}}/documentacao/coletor/glossario#registro-de-extracao)**, corrigir e re-extrair. |
+| 7 | Qualidade Reprovada | Todos os modelos extraíram com sucesso, mas o **teste do contrato** — que roda uma vez, ao fim da extração, sobre o contrato inteiro — reprovou. Os dados foram extraídos e o Parquet permanece gravado; só o envio fica bloqueado. | Ver o detalhe em *Ver resultados de teste*, corrigir na origem e re-extrair o contrato. |
 | 8 | Reextração Necessária | Modelo ou Configuração foram alterados depois da última extração. | Disparar nova extração. |
 | 5 | Pronto para Sincronizar | Extração e teste passaram, dados aguardam envio à **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)**. | Disparar "Sincronizar com a PNP". |
 | 10 | Aguardando Validação PNP | Enviado; a PNP ainda não validou a estrutura do Parquet. | Nenhuma ação no Coletor — só esperar. |
@@ -89,8 +90,10 @@ O status **9 tem prioridade sobre o 14**: um contrato com o ciclo bloqueado most
 | Aguardando Extração | Somente Modelos Opcionais | Todas as configurações dos modelos opcionais são removidas |
 | Modelos Não Configurados | Aguardando Extração | Operador adiciona a Configuração de Extração |
 | Aguardando Extração | Pronto para Sincronizar | Extração + teste concluídos com sucesso |
-| Aguardando Extração | Falha na Extração | Extração ou teste falhou |
+| Aguardando Extração | Falha na Extração | A extração de algum modelo falhou |
+| Aguardando Extração | Qualidade Reprovada | Extração concluída, mas o teste do contrato reprovou |
 | Falha na Extração | Pronto para Sincronizar | Nova extração bem-sucedida |
+| Qualidade Reprovada | Pronto para Sincronizar | Dado corrigido na origem; nova extração passa no teste |
 | Pronto para Sincronizar | Aguardando Validação PNP | Operador enviou à PNP |
 | Aguardando Validação PNP | Aguardando Homologação da Área | Validação estrutural passou |
 | Aguardando Validação PNP | Validação Rejeitada | PNP rejeitou o parquet |

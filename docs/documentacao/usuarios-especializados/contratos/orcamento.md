@@ -11,7 +11,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-**Slug:** `orcamento` · **Versão:** `1.0.0` · **Owner:** SETEC
+**Slug:** `orcamento` · **Versão:** `1.0.3` · **Owner:** SETEC
 **Status:** `active` · **Spec:** `dataContractSpecification: "1.2.0"`
 **Área Temática:** Orçamento
 
@@ -19,7 +19,7 @@ toc: true
 
 Este **[Contrato de Dados]({{site.baseurl}}/documentacao/coletor/glossario#contrato-de-dados)** descreve o indicador institucional de **orçamento**, a partir do subconjunto mínimo de dados financeiros (Dados Orçamentários). Cada registro é uma linha de execução orçamentária extraída do **Siafi** (via ODI), com a classificação orçamentária completa (órgão, UO, ação, PTRES, fonte, GND) e os valores efetivamente **liquidados** e de **restos a pagar pagos**.
 
-A **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)** coleta este contrato para relacionar gasto público executado com a oferta de ensino, pesquisa e extensão — é o insumo dos indicadores de custo por aluno e de aplicação de recursos por finalidade.
+A **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)** coleta este contrato para conhecer o gasto público executado por estrutura e por classificação orçamentária.
 
 
 ### Uso do Tesouro Gerencial
@@ -74,14 +74,15 @@ Tabela única do contrato. Cada linha é uma combinação de classificação or�
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id_dados_orcamentarios` | `integer` | sim | `primaryKey` | Identificador do registro |
-| `orgao_superior_cod` | `string` | sim | — | Órgão Superior (Cód)(UO). Origem: SIAFI |
+| `ano` | `integer` | sim | — | Ano da execução orçamentária. Formato: `AAAA` |
+| `orgao_superior_cod` | `string` | sim | `enum` (ver legenda) | Órgão Superior (Cód)(UO). Origem: SIAFI |
 | `uo_cod` | `string` | sim | — | Unidade Orçamentária (Cód). Origem: SIAFI |
 | `acao_cod` | `string` | sim | — | Ação (Cód). Origem: SIAFI |
 | `ptres` | `string` | sim | — | Programa de Trabalho Resumido. Origem: SIAFI |
 | `origem_despesa` | `string` | sim | `enum` (ver legenda) | Origem da Despesa. Origem: SIAFI |
 | `emenda_impositiva_tipo` | `string` | não | — | Emenda Impositiva (Tipo). Origem: SIAFI |
 | `emenda_impositiva_numero_ano` | `string` | não | — | Emenda Impositiva (Número/Ano). Origem: SIAFI |
-| `programa_interno_cod` | `string` | sim | `enum` (ver legenda) | Programa Interno (Cód). Origem: SIAFI |
+| `programa_interno_cod` | `string` | sim | `minLength: 11`, `maxLength: 11` | Programa Interno (Cód). Exatamente 11 caracteres. Origem: SIAFI |
 | `programa_interno_desc` | `string` | sim | — | Programa Interno (Desc). Origem: SIAFI |
 | `gnd_cod` | `string` | sim | `enum` (ver legenda) | Grupo de Natureza da Despesa (Cód). Origem: SIAFI |
 | `esfera_cod` | `string` | não | — | Esfera (Cód). Origem: SIAFI |
@@ -108,12 +109,11 @@ Os três campos com `enum` só aceitam os valores abaixo — qualquer outro repr
 | `Emenda` | Dotação originária de emenda parlamentar |
 | `-` | Não aplicável / não informado |
 
-`programa_interno_cod`
+`orgao_superior_cod`
 
 | Valor | Significado |
 |---|---|
-| `20` | Pesquisa |
-| `21` | Extensão |
+| `26000` | Ministério da Educação |
 
 `gnd_cod`
 
@@ -122,8 +122,9 @@ Os três campos com `enum` só aceitam os valores abaixo — qualquer outro repr
 | `1` | Pessoal e encargos sociais |
 | `3` | Outras despesas correntes |
 | `4` | Investimentos |
+| `5` | Inversões financeiras |
 
-> ℹ️ **Códigos são `string`, não número.** `programa_interno_cod` e `gnd_cod` são declarados como `string`; enviar `20` (inteiro) em vez de `"20"` reprova por tipo, antes mesmo da checagem de enum.
+> ℹ️ **Códigos são `string`, não número.** `orgao_superior_cod` e `gnd_cod` são declarados como `string`; enviar `26000` (inteiro) em vez de `"26000"` reprova por tipo, antes mesmo da checagem de enum.
 
 > ℹ️ **`referencia_pnp` agora é conferido na extração.** O campo `estrutura` declara `referencia_pnp: {recurso: campi, tipo: codigo, severidade: erro}`, e o Coletor confere esse código contra o espelho local de estruturas antes de gravar o Parquet — a mesma checagem que a PNP faz depois do envio, antecipada. Como a `severidade` declarada é `erro`, um código que não existe no cadastro **reprova o teste do contrato** — a extração conclui, mas o apontamento aparece em **Ver resultados de teste**, com o campo e as linhas envolvidas, e o envio à PNP fica barrado. Ver [Validação referencial]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_referencial).
 
@@ -135,13 +136,20 @@ Além do schema (campos obrigatórios, tipos, `enum` e rejeição de colunas ext
 |---|---|
 | `orgao_superior_cod`, `uo_cod`, `acao_cod`, `ptres`, `ugr_cod` e `estrutura` não podem ser texto vazio | `mustBe: 0` |
 | `liquidado_valor` e `rp_pago_valor` não podem ser negativos | `mustBe: 0` |
+| `ano` tem de ser o **ano de referência** da coleta | `mustBe: 0` |
+| `uo_cod` tem de ser o **código da instituição** na PNP | `mustBe: 0` |
 | Despesa de `origem_despesa: Emenda` exige `emenda_impositiva_tipo` e `emenda_impositiva_numero_ano` no formato `número/ano`; despesa de outra origem não pode trazer nenhum dos dois | `mustBe: 0` |
+
+> ℹ️ **Ano de referência.** A regra do `ano` usa o token `#ANO_REFERENCIA#`, substituído pelo Coletor antes de o contrato chegar ao motor: é o **ano-base** da coleta, `ciclo.ano - 1` (o ciclo de 2026 coleta a execução de 2025). Contrato que usa o token sem ciclo de coleta associado falha com erro explícito, em vez de mandar SQL quebrado ao motor.
+
+> ℹ️ **Código da instituição.** A regra de `uo_cod` usa o token `#CODIGO_INSTITUICAO#`, substituído pelo Coletor antes de o contrato chegar ao motor: é o código que a PNP devolve para a instituição da instância (IFRN é `26435`). Se a instância ainda não obteve o código, o teste do contrato reprova com erro explícito; salvar as **Configurações** da instância resolve.
 
 ### Exemplo válido
 
 ```json
 {
   "id_dados_orcamentarios": 1042,
+  "ano": 2025,
   "orgao_superior_cod": "26000",
   "uo_cod": "26435",
   "acao_cod": "20RL",
@@ -149,7 +157,7 @@ Além do schema (campos obrigatórios, tipos, `enum` e rejeição de colunas ext
   "origem_despesa": "Proposta do executivo",
   "emenda_impositiva_tipo": null,
   "emenda_impositiva_numero_ano": null,
-  "programa_interno_cod": "20",
+  "programa_interno_cod": "M20RLP0100N",
   "programa_interno_desc": "Pesquisa",
   "gnd_cod": "3",
   "esfera_cod": "1",
@@ -173,6 +181,9 @@ Além do schema (campos obrigatórios, tipos, `enum` e rejeição de colunas ext
 | `{"uo_cod": "26435", ...}` (sem `id_dados_orcamentarios`) | `Required field 'id_dados_orcamentarios' is missing` |
 | `{"id_dados_orcamentarios": 1042, "gnd_cod": "2", ...}` | `Value '2' not in enum for 'gnd_cod'` |
 | `{"id_dados_orcamentarios": 1042, "programa_interno_cod": 20, ...}` (inteiro) | `Type mismatch on 'programa_interno_cod': expected string, got integer` |
+| `{"id_dados_orcamentarios": 1042, "programa_interno_cod": "20", ...}` (menos de 11 caracteres) | `Check that field programa_interno_cod has a min length of 11` |
+| `{"id_dados_orcamentarios": 1042, "ano": 2024, ...}` (ciclo 2026, ano de referência 2025) | `O ano deve ser o ano de referência.: Actual custom_sql(dados_orcamentarios) was 1, expected = 0` |
+| `{"id_dados_orcamentarios": 1042, "ano": "2025", ...}` (`string` em vez de `integer`) | `Type mismatch on 'ano': expected integer, got string` |
 | `{"id_dados_orcamentarios": 1042, "empenhado_valor": 200000, ...}` (coluna não declarada) | `Field 'empenhado_valor' not in schema (additionalFields: false)` |
 | `{..., "origem_despesa": "Emenda", "emenda_impositiva_numero_ano": null}` (emenda sem número/ano) | `Dados de emenda devem ser coerentes com a origem da despesa.: Actual custom_sql(dados_orcamentarios) was 1, expected = 0` |
 
@@ -181,6 +192,9 @@ Além do schema (campos obrigatórios, tipos, `enum` e rejeição de colunas ext
 | Versão | Data | Mudança | Breaking? |
 |---|---|---|---|
 | `1.0.0` | 2026-07-19 | Versão inicial. | — |
+| `1.0.1` | 2026-10-27 | `programa_interno_cod` passa a exigir exatamente 11 caracteres (`minLength`/`maxLength`). | Sim — códigos com outro tamanho são reprovados no teste de qualidade. |
+| `1.0.2` | 2026-10-27 | Novo campo obrigatório `ano` (`integer`), que tem de ser o ano de referência da coleta (`#ANO_REFERENCIA#`). | Sim — extrações sem a coluna `ano` são rejeitadas no schema, e anos diferentes do de referência reprovam o teste de qualidade. |
+| `1.0.3` | 2026-10-27 | Regra `quality` nova: `uo_cod` tem de ser o código da instituição (`#CODIGO_INSTITUICAO#`). | Sim — linhas com UO de outra instituição reprovam o teste de qualidade. |
 
 ## Contrato de Dados - Formato YAML
 
@@ -190,7 +204,7 @@ dataContractSpecification: "1.2.0"
 id: "orcamento"
 info:
   title: "Orçamento"
-  version: "1.0.0"
+  version: "1.0.3"
   status: "active"
   description: >
     Este contrato descreve a estrutura de dados do indicador institucional de orçamento,
@@ -230,6 +244,18 @@ models:
           WHERE liquidado_valor < 0 OR rp_pago_valor < 0
         mustBe: 0
       - type: sql
+        description: "O ano deve ser o ano de referência."
+        query: >
+          SELECT COUNT(*) FROM dados_orcamentarios
+          WHERE ano <> #ANO_REFERENCIA#
+        mustBe: 0
+      - type: sql
+        description: "Todos os códigos UO devem ser da mesma instituição."
+        query: >
+          SELECT COUNT(*) FROM dados_orcamentarios
+          WHERE uo_cod <> '#CODIGO_INSTITUICAO#'
+        mustBe: 0
+      - type: sql
         description: "Dados de emenda devem ser coerentes com a origem da despesa."
         query: >
           SELECT COUNT(*) FROM dados_orcamentarios
@@ -253,11 +279,19 @@ models:
         description: >
           Identificador do registro.
 
+      ano:
+        type: integer
+        required: true
+        title: "Ano"
+        description: "Ano da execução orçamentária. Formato: AAAA"
+
       orgao_superior_cod:
         type: string
+        enum:
+          - "26000" # Ministério da Educação
         required: true
         title: "Órgão Superior (Cód)(UO)"
-        description: "Origem: SIAFI"
+        description: "Origem: SIAFI."
 
       uo_cod:
         type: string
@@ -299,13 +333,12 @@ models:
 
       programa_interno_cod:
         type: string
-        enum:
-          - "20" # pesquisa
-          - "21" # extensão
         title: "Programa Interno (Cód) (1)"
         required: true
+        minLength: 11
+        maxLength: 11
         description: >
-          Origem: SIAFI. Códigos: 20 (Pesquisa) e 21 (Extensão).
+          Origem: SIAFI. Deve ter exatamente 11 caracteres.
 
       programa_interno_desc:
         type: string
@@ -319,9 +352,10 @@ models:
           - "1" # Pessoal e encargos sociais
           - "3" # Outras despesas correntes
           - "4" # Investimentos
+          - "5" # Inversões financeiras
         title: "GND (Cód)"
         required: true
-        description: "Origem: SIAFI. Códigos: 1 (Pessoal e encargos sociais), 3 (Outras despesas correntes) e 4 (Investimentos)."
+        description: "Origem: SIAFI. Códigos: 1 (Pessoal e encargos sociais), 3 (Outras despesas correntes), 4 (Investimentos) e 5 (Inversões financeiras)."
 
       esfera_cod:
         type: string

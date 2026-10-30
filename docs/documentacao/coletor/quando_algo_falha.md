@@ -79,7 +79,9 @@ A remoção é **lógica**: extrações, envios e arquivos Parquet já produzido
 
 ## Teste de qualidade reprovado
 
-Os testes do contrato rodam **dentro** da extração, então uma reprovação também leva o contrato a "Falha na Extração" — não existe um estado separado "Testes com Falha". A diferença está no diagnóstico: o Parquet chegou a ser avaliado e **"Ver resultados de teste"** mostra qual regra reprovou (enum, unicidade, faixa, completude). A correção é no **dado de origem**, seguida de nova extração.
+O teste do contrato roda **uma única vez**, sobre o contrato inteiro, ao fim da extração — depois que todos os modelos extraíram com sucesso. Se alguma regra reprovar, os dados **já foram extraídos** e continuam extraídos: nenhum Parquet é apagado, e o Registro de Extração de cada modelo permanece "Sucesso". O que muda é o status do contrato, que vai para **"Qualidade Reprovada"** — mesmo código de "Falha na Extração", rótulo diferente — e é isso que bloqueia o envio à PNP até a correção.
+
+**"Ver resultados de teste"** mostra qual regra reprovou (enum, unicidade, faixa, completude), com uma amostra das linhas violadas. A correção é sempre no **dado de origem**: ajuste a fonte e re-extraia o **contrato**. Não existe um estado separado "Testes com Falha".
 
 ## Validação rejeitada pela PNP {#validacao-rejeitada-pela-pnp}
 

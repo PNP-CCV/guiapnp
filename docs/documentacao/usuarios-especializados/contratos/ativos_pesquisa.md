@@ -10,7 +10,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-**Slug:** `ativos_pesquisa` · **Versão:** `1.0.0` · **Owner:** SETEC
+**Slug:** `ativos_pesquisa` · **Versão:** `1.1.1` · **Owner:** SETEC
 **Status:** `active` · **Spec:** `dataContractSpecification: "1.2.0"`
 **Área Temática:** Pesquisa e Inovação
 
@@ -43,7 +43,7 @@ Tabela única do contrato. Cada linha é um ativo de propriedade intelectual ide
 | Campo | Tipo | Obrigatório | Constraints | Descrição |
 |---|---|---|---|---|
 | `id_ativo_pesq` | `integer` | sim | `primaryKey` | Identificador único para cada ativo de propriedade intelectual |
-| `num_inpi_ativo_pesq` | `string` | sim | — | Número do processo de registro do ativo junto ao INPI |
+| `num_inpi_ativo_pesq` | `string` | sim | — | Número do processo de registro do ativo junto ao órgão competente |
 | `tipo_ativo_pesq` | `string` | sim | `enum` (8 valores — ver legenda abaixo) | Tipo de propriedade intelectual correspondente ao ativo |
 | `titular_inpi_ativo_pesq` | `boolean` | não | — | A instituição que informa o ativo registrou-se como titular junto ao INPI |
 | `cotitular_inpi_ativo_pesq` | `boolean` | não | — | A instituição que informa o ativo registrou-se como co-titular junto ao INPI |
@@ -72,14 +72,19 @@ Além do schema (colunas obrigatórias, tipos e rejeição de colunas extras via
 | Regra | Consulta | Espera |
 |---|---|---|
 | Os totais de contratos não podem ser negativos | `SELECT COUNT(*) FROM ativos_pesquisa WHERE total_transf_ativo_pesq < 0 OR total_licenc_ativo_pesq < 0 OR total_cessao_ativo_pesq < 0` | `mustBe: 0` |
-| `num_inpi_ativo_pesq` deve ser único e não vazio | `SELECT COUNT(*) FROM (SELECT id_ativo_pesq FROM ativos_pesquisa WHERE NULLIF(TRIM(num_inpi_ativo_pesq), '') IS NULL UNION ALL SELECT MIN(id_ativo_pesq) FROM ativos_pesquisa WHERE NULLIF(TRIM(num_inpi_ativo_pesq), '') IS NOT NULL GROUP BY UPPER(TRIM(num_inpi_ativo_pesq)) HAVING COUNT(*) > 1) violacoes` | `mustBe: 0` |
+| `num_inpi_ativo_pesq` (processo no órgão competente) deve ser único e não vazio | `SELECT COUNT(*) FROM (SELECT id_ativo_pesq FROM ativos_pesquisa WHERE NULLIF(TRIM(num_inpi_ativo_pesq), '') IS NULL UNION ALL SELECT MIN(id_ativo_pesq) FROM ativos_pesquisa WHERE NULLIF(TRIM(num_inpi_ativo_pesq), '') IS NOT NULL GROUP BY UPPER(TRIM(num_inpi_ativo_pesq)) HAVING COUNT(*) > 1) violacoes` | `mustBe: 0` |
 | A concessão não pode anteceder o depósito | `SELECT COUNT(*) FROM ativos_pesquisa WHERE data_concessao_ativo_pesq < data_deposito_ativo_pesq` | `mustBe: 0` |
+| `data_deposito_ativo_pesq`, quando informada, não pode ser posterior ao fim do ano de referência; `data_concessao_ativo_pesq`, quando informada, não pode estar no futuro | `SELECT COUNT(*) FROM ativos_pesquisa WHERE (data_deposito_ativo_pesq IS NOT NULL AND data_deposito_ativo_pesq > DATE '#ANO_REFERENCIA#-12-31') OR (data_concessao_ativo_pesq IS NOT NULL AND data_concessao_ativo_pesq > current_date)` | `mustBe: 0` |
+| Pedidos em análise devem ter concessão e validade vazias | `SELECT COUNT(*) FROM ativos_pesquisa WHERE sit_registro_ativo_pesq = 'Pedido em análise' AND (data_concessao_ativo_pesq IS NOT NULL OR validade_ativo_pesq IS NOT NULL)` | `mustBe: 0` |
+| Registros ativos devem ter data de concessão | `SELECT COUNT(*) FROM ativos_pesquisa WHERE sit_registro_ativo_pesq = 'Ativo' AND data_concessao_ativo_pesq IS NULL` | `mustBe: 0` |
 | `ativo_pesq_transferido` deve ser coerente com a soma dos três totais | `SELECT COUNT(*) FROM ativos_pesquisa WHERE (ativo_pesq_transferido = TRUE AND total_transf_ativo_pesq + total_licenc_ativo_pesq + total_cessao_ativo_pesq = 0) OR (ativo_pesq_transferido = FALSE AND total_transf_ativo_pesq + total_licenc_ativo_pesq + total_cessao_ativo_pesq > 0)` | `mustBe: 0` |
 | A estrutura não pode ser titular e co-titular do mesmo ativo | `SELECT COUNT(*) FROM ativos_pesquisa WHERE titular_inpi_ativo_pesq = TRUE AND cotitular_inpi_ativo_pesq = TRUE` | `mustBe: 0` |
 | O prazo de validade, quando informado, deve ser maior que zero | `SELECT COUNT(*) FROM ativos_pesquisa WHERE validade_ativo_pesq <= 0` | `mustBe: 0` |
 | `estrutura` deve vir preenchida com valor não vazio | `SELECT COUNT(*) FROM ativos_pesquisa WHERE NULLIF(TRIM(estrutura), '') IS NULL` | `mustBe: 0` |
 
-São condicionalidades que o schema sozinho não expressa — a principal delas é a coerência entre a indicação de transferência e a contagem de contratos: quem marca `ativo_pesq_transferido: true` precisa declarar pelo menos um contrato nos três totais, e quem marca `false` não pode declarar nenhum. Essas regras rodam uma vez, sobre o contrato inteiro, ao fim da extração ([validação e qualidade]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)) — uma violação **não** reprova a extração deste modelo (o Parquet fica gravado normalmente); ela deixa o contrato em "Qualidade Reprovada" e bloqueia o envio até a linha ser corrigida na origem.
+São condicionalidades que o schema sozinho não expressa — a principal delas é a coerência entre a indicação de transferência e a contagem de contratos: quem marca `ativo_pesq_transferido: true` precisa declarar pelo menos um contrato nos três totais, e quem marca `false` não pode declarar nenhum. Quando `sit_registro_ativo_pesq` é `Pedido em análise`, `data_concessao_ativo_pesq` e `validade_ativo_pesq` devem ser vazios (`NULL`); quando é `Ativo`, `data_concessao_ativo_pesq` é obrigatória. Um pedido em análise **pode** estar transferido: a LPI permite licenciar e ceder pedido de patente (arts. 58 e 61), então a transferência de pedidos não é restringida. Essas regras rodam uma vez, sobre o contrato inteiro, ao fim da extração ([validação e qualidade]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)) — uma violação **não** reprova a extração deste modelo (o Parquet fica gravado normalmente); ela deixa o contrato em "Qualidade Reprovada" e bloqueia o envio até a linha ser corrigida na origem.
+
+> ℹ️ **Ano de referência.** As datas de depósito e concessão continuam opcionais: a regra só as confere quando vêm preenchidas. O token `#ANO_REFERENCIA#` é substituído pelo Coletor antes de o contrato chegar ao motor: é o **ano-base** da coleta, `ciclo.ano - 1` (o ciclo de 2026 aceita depósitos até 2025-12-31). Já a concessão é comparada com a data corrente (`current_date`), não com o ano de referência.
 
 ### Exemplo válido
 
@@ -112,13 +117,19 @@ São condicionalidades que o schema sozinho não expressa — a principal delas 
 | `{..., "data_deposito_ativo_pesq": "19/06/2023"}` (formato errado, `date` espera ISO 8601) | `Type mismatch on 'data_deposito_ativo_pesq': expected date, got string '19/06/2023'` |
 | `{..., "validade_ativo_pesq": "20 anos"}` (`string` em vez de `integer`) | `Type mismatch on 'validade_ativo_pesq': expected integer, got string` |
 | `{..., "inventor": "Ana Souza"}` (coluna não declarada) | `Field 'inventor' not in schema (additionalFields: false)` |
-| `{..., "ativo_pesq_transferido": true, "total_transf_ativo_pesq": 0, "total_licenc_ativo_pesq": 0, "total_cessao_ativo_pesq": 0}` (transferência declarada sem contrato nenhum) | `A indicação de transferência deve ser coerente com o total de contratos de transferência, licenciamento e cessão.: Actual custom_sql(ativos_pesquisa) was 1, expected = 0` |
+| `{..., "ativo_pesq_transferido": true, "total_transf_ativo_pesq": 0, "total_licenc_ativo_pesq": 0, "total_cessao_ativo_pesq": 0}` (transferência declarada sem contrato nenhum) | `Se o ativo foi transferido, o total de contratos de transferência, licenciamento e cessão, somados, não podem ser zero. Mesma coisa para ativos não transferidos.: Actual custom_sql(ativos_pesquisa) was 1, expected = 0` |
+| `{..., "sit_registro_ativo_pesq": "Pedido em análise", "data_concessao_ativo_pesq": "2025-11-04", "validade_ativo_pesq": null}` | Regra de qualidade violada: pedidos em análise devem ter a data da concessão e o prazo de validade vazios. |
+| `{..., "sit_registro_ativo_pesq": "Pedido em análise", "data_concessao_ativo_pesq": null, "validade_ativo_pesq": 20}` | Regra de qualidade violada: pedidos em análise devem ter a data da concessão e o prazo de validade vazios. |
+| `{..., "sit_registro_ativo_pesq": "Ativo", "data_concessao_ativo_pesq": null}` | Regra de qualidade violada: registro ativo deve ter data de concessão. |
+| `{..., "data_deposito_ativo_pesq": "2026-02-10"}` (ciclo 2026, ano de referência 2025) | Regra de qualidade violada: depósito, quando informado, não pode ser posterior ao ano de referência; concessão, quando informada, não pode ser futura. |
 
 ## Histórico de versões
 
 | Versão | Data | Mudança | Breaking? |
 |---|---|---|---|
 | `1.0.0` | 2026-08-13 | Versão inicial documentada nesta data. | — |
+| `1.1.0` | 2026-10-02 | Pedidos em análise exigem concessão e validade vazias e indicação de transferência igual a `false`. | Sim — registros que violem as novas regras são reprovados no teste de qualidade. |
+| `1.1.1` | 2026-10-29 | Removida a regra que exigia `ativo_pesq_transferido = false` em pedidos em análise — a LPI permite licenciar e ceder pedido de patente (arts. 58 e 61), e a regra induzia a zerar transferências reais, subnotificando o PIPROTR. | Não — só afrouxa a validação. |
 
 ## YAML completo
 
@@ -127,7 +138,7 @@ dataContractSpecification: "1.2.0"
 id: "ativos_pesquisa"
 info:
   title: "Ativos de Pesquisa"
-  version: "1.0.0"
+  version: "1.1.1"
   status: "active"
   description: >
     Este contrato descreve o modelo de dados dos ativos de propriedade intelectual
@@ -160,7 +171,7 @@ models:
              OR total_cessao_ativo_pesq < 0
         mustBe: 0
       - type: sql
-        description: "O número do processo no INPI deve ser único e não vazio."
+        description: "O número do processo no órgão competente deve ser único e não vazio."
         query: >
           SELECT COUNT(*) FROM (
             SELECT id_ativo_pesq FROM ativos_pesquisa
@@ -172,13 +183,41 @@ models:
           ) violacoes
         mustBe: 0
       - type: sql
-        description: "A concessão não pode anteceder o depósito."
+        description: "A data de concessão não pode anteceder a data de depósito."
         query: >
           SELECT COUNT(*) FROM ativos_pesquisa
           WHERE data_concessao_ativo_pesq < data_deposito_ativo_pesq
         mustBe: 0
       - type: sql
-        description: "A indicação de transferência deve ser coerente com o total de contratos de transferência, licenciamento e cessão."
+        description: "Depósito, quando informado, não pode ser posterior ao ano de referência; concessão, quando informada, não pode ser futura."
+        query: >
+          SELECT COUNT(*) FROM ativos_pesquisa
+          WHERE (
+            data_deposito_ativo_pesq IS NOT NULL
+            AND data_deposito_ativo_pesq > DATE '#ANO_REFERENCIA#-12-31'
+          ) OR (
+            data_concessao_ativo_pesq IS NOT NULL
+            AND data_concessao_ativo_pesq > current_date
+          )
+        mustBe: 0
+      - type: sql
+        description: "Pedidos em análise devem ter a data da concessão e o prazo de validade vazios."
+        query: >
+          SELECT COUNT(*) FROM ativos_pesquisa
+          WHERE sit_registro_ativo_pesq = 'Pedido em análise'
+            AND (
+              data_concessao_ativo_pesq IS NOT NULL
+              OR validade_ativo_pesq IS NOT NULL
+            )
+        mustBe: 0
+      - type: sql
+        description: "Registro ativo deve ter data de concessão."
+        query: >
+          SELECT COUNT(*) FROM ativos_pesquisa
+          WHERE sit_registro_ativo_pesq = 'Ativo' AND data_concessao_ativo_pesq IS NULL
+        mustBe: 0
+      - type: sql
+        description: "Se o ativo foi transferido, o total de contratos de transferência, licenciamento e cessão, somados, não podem ser zero. Mesma coisa para ativos não transferidos."
         query: >
           SELECT COUNT(*) FROM ativos_pesquisa
           WHERE (
@@ -190,7 +229,7 @@ models:
           )
         mustBe: 0
       - type: sql
-        description: "A estrutura não pode ser titular e co-titular do mesmo ativo."
+        description: "A estrutura vinculada ao ativo não pode ser titular e co-titular ao mesmo tempo."
         query: >
           SELECT COUNT(*) FROM ativos_pesquisa
           WHERE titular_inpi_ativo_pesq = TRUE AND cotitular_inpi_ativo_pesq = TRUE
@@ -217,9 +256,9 @@ models:
 
       num_inpi_ativo_pesq:
         type: string
-        title: "Número do processo no INPI"
+        title: "Número do processo no órgão competente"
         required: true
-        description: "Número do processo de registro do ativo junto ao INPI."
+        description: "Número do processo de registro do ativo junto ao órgão competente."
 
       tipo_ativo_pesq:
         type: string

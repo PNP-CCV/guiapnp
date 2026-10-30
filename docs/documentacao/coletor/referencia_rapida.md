@@ -63,6 +63,7 @@ O banco Postgres fica no volume Docker `coletorpnp_db-data`.
 | Modelos Não Configurados | Criar a Configuração de Extração do modelo que conta no fluxo |
 | Aguardando Extração | Disparar "Extrair Dados" |
 | Falha na Extração | Ler o motivo no registro, corrigir, re-extrair |
+| Qualidade Reprovada | Ver o detalhe em "Ver resultados de teste", corrigir na origem, re-extrair o contrato |
 | Reextração Necessária | Disparar nova extração |
 | Pronto para Sincronizar | Enviar à PNP |
 | Aguardando Validação PNP | Esperar (ou "Verificar agora") |

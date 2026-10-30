@@ -11,7 +11,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-**Slug:** `projeto_desenvolvimento_institucional` · **Versão:** `2.0.0` · **Owner:** SETEC
+**Slug:** `desenvolvimento_institucional` · **Versão:** `2.0.1` · **Owner:** SETEC
 
 **Status:** `active` · **Spec:** `dataContractSpecification: "1.2.0"`
 
@@ -49,7 +49,7 @@ Tabela única do contrato. Cada linha é um projeto de gestão/desenvolvimento i
 |---|---|---|---|---|
 | `id_projeto_gestao_di` | `integer` | sim | `primaryKey` | ID projeto de gestão institucional |
 | `projeto_gestao_sustentabilidade` | `boolean` | sim | — | O projeto é de gestão institucional da sustentabilidade? |
-| `natureza_projeto_gestao_sustentabilidade` | `array` (de `string`) | não | `enum` (10 valores — ver abaixo) | Naturezas de sustentabilidade cobertas pelo projeto — lista, obrigatória quando `projeto_gestao_sustentabilidade` é `true` e vazia quando é `false` (ver *Regras de qualidade*) |
+| `natureza_projeto_gestao_sustentabilidade` | `array` (de `string`) | não | `enum` (11 valores — ver abaixo) | Naturezas de sustentabilidade cobertas pelo projeto — lista, obrigatória quando `projeto_gestao_sustentabilidade` é `true` e vazia quando é `false` (ver *Regras de qualidade*) |
 | `titulo_projeto` | `string` | sim | — | Título do Projeto |
 | `resumo_projeto` | `string` | não | — | Resumo do Projeto |
 | `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se os projetos. Formato: `{codigo}`, fornecido pelo Coletor PNP |
@@ -73,6 +73,7 @@ Tabela única do contrato. Cada linha é um projeto de gestão/desenvolvimento i
 - `Mitigação e adaptação às mudanças climáticas`
 - `Relação com os Objetivos de Desenvolvimento Sustentável (ODS)`
 - `Respostas institucionais a situações de calamidade pública`
+- `Mapeamento de projetos e ações institucionais de sustentabilidade no âmbito da instituição`
 - `Outro projeto de gestão institucional da sustentabilidade`
 
 #### Valores de `entidade_financiadora`
@@ -95,8 +96,11 @@ Além do schema (colunas obrigatórias, tipos, `enum` e rejeição de colunas ex
 |---|---|
 | `titulo_projeto`, `estrutura` e `nome_coordenador` não podem ser texto vazio | `mustBe: 0` |
 | `data_termino` não pode anteceder `data_inicio`, e projeto `Finalizado`/`Cancelado` precisa de `data_termino` | `mustBe: 0` |
+| O projeto precisa ter estado ativo por pelo menos um dia no **ano de referência** — `data_inicio` não pode ser posterior a 31/12 e `data_termino`, quando informada, não pode ser anterior a 01/01 | `mustBe: 0` |
 | `natureza_projeto_gestao_sustentabilidade` tem de vir preenchida quando `projeto_gestao_sustentabilidade` é `true`, vazia quando é `false`, e sem valores repetidos | `mustBe: 0` |
 | As contrapartidas não podem ser negativas; contrapartida externa maior que zero exige entidade financiadora externa, e entidade financiadora externa exige contrapartida externa maior que zero | `mustBe: 0` |
+
+> ℹ️ **Ano de referência.** A regra de vigência usa o token `#ANO_REFERENCIA#`, substituído pelo Coletor antes de o contrato chegar ao motor: é o **ano-base** da coleta, `ciclo.ano - 1` (o ciclo de 2026 coleta o que aconteceu em 2025). Contrato que usa o token sem ciclo de coleta associado falha com erro explícito, em vez de mandar SQL quebrado ao motor.
 
 > ℹ️ **A sustentabilidade agora se concilia sozinha.** A marcação (`projeto_gestao_sustentabilidade`) e a lista de naturezas passaram a ser cobradas uma pela outra na terceira regra — a combinação incoerente que antes passava batido hoje reprova o teste do contrato.
 
@@ -139,6 +143,7 @@ Além do schema (colunas obrigatórias, tipos, `enum` e rejeição de colunas ex
 |---|---|---|---|
 | `1.0.0` | 2026-07-16 | Versão inicial documentada nesta data. | — |
 | `2.0.0` | 2026-09-01 | `natureza_projeto` + `projeto_gestao_di_sustentavel` viraram `projeto_gestao_sustentabilidade` + `natureza_projeto_gestao_sustentabilidade` (array); `fomento_tipo` removido; `orcamento_projeto` virou o par `contrapartida_financeira_institucional`/`contrapartida_financeira_externa`; `data_termino` deixou de ser obrigatória. | **sim** |
+| `2.0.1` | 2026-10-29 | Nova regra de qualidade: o projeto precisa ter estado ativo por pelo menos um dia no ano de referência (`#ANO_REFERENCIA#`); novo valor `Mapeamento de projetos e ações institucionais de sustentabilidade no âmbito da instituição` no `enum` de `natureza_projeto_gestao_sustentabilidade`. | não (só acrescenta valor ao `enum`), mas reprova projetos fora do ano-base |
 
 ## Contrato de Dados - Formato YAML
 
@@ -148,7 +153,7 @@ dataContractSpecification: "1.2.0"
 id: "desenvolvimento_institucional"
 info:
   title: "Desenvolvimento Institucional"
-  version: "2.0.0"
+  version: "2.0.1"
   status: "active"
   description: >
     Este contrato descreve a estrutura de dados dos projetos de gestão e desenvolvimento
@@ -185,6 +190,13 @@ models:
           SELECT COUNT(*) FROM projetos_gestao_di
           WHERE data_termino < data_inicio
              OR (situacao_projeto IN ('Finalizado', 'Cancelado') AND data_termino IS NULL)
+        mustBe: 0
+      - type: sql
+        description: "O projeto de gestão e desenvolvimento institucional deve ter estado ativo por pelo menos um dia no ano de referência."
+        query: >
+          SELECT COUNT(*) FROM projetos_gestao_di
+          WHERE data_inicio > DATE '#ANO_REFERENCIA#-12-31'
+             OR (data_termino IS NOT NULL AND data_termino < DATE '#ANO_REFERENCIA#-01-01')
         mustBe: 0
       - type: sql
         description: "As naturezas de sustentabilidade devem ser coerentes com a classificação do projeto e não podem se repetir."
@@ -249,6 +261,7 @@ models:
             - "Mitigação e adaptação às mudanças climáticas"
             - "Relação com os Objetivos de Desenvolvimento Sustentável (ODS)"
             - "Respostas institucionais a situações de calamidade pública"
+            - "Mapeamento de projetos e ações institucionais de sustentabilidade no âmbito da instituição"
             - "Outro projeto de gestão institucional da sustentabilidade"
         required: false
 
