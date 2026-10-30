@@ -10,7 +10,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-**Slug:** `acoes_extensao` · **Versão:** `1.0.0` · **Owner:** SETEC
+**Slug:** `acoes_extensao` · **Versão:** `1.0.1` · **Owner:** SETEC
 
 **Status:** `Ativo` · **Spec:** `dataContractSpecification: "1.2.0"`
 
@@ -88,7 +88,7 @@ Tabela principal do contrato. Cada linha é uma ação de extensão única, iden
 |---|---|---|---|---|
 | `id_acao_extensao` | `integer` | sim | `primaryKey` | ID da Ação de Extensão fornecido pela Instituição |
 | `tipo` | `string` | sim | `enum: [Projeto, Curso, Evento, Prestação de serviços]` | Tipo |
-| `programa` | `integer` | não | `references programa.id_programa` | ID do programa de extensão ao qual a ação está vinculada |
+| `programa` | `integer` | não | `references programa.id_programa`; `> 0` quando informado (ver *Regras de qualidade*) | ID do programa de extensão ao qual a ação está vinculada |
 | `titulo_acao` | `string` | sim | — | Título da ação |
 | `resumo_acao` | `string` | não | — | Resumo da ação |
 | `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se as ações de extensão. Formato: `{codigo}`, fornecido pelo Coletor PNP |
@@ -119,7 +119,8 @@ Além do schema (colunas obrigatórias, tipos e rejeição de colunas extras via
 | Regra | Espera |
 |---|---|
 | `titulo_acao`, `estrutura` e `subeixo_tecnologico` não podem ser texto vazio | `mustBe: 0` |
-| `data_termino` e `data_ultima_situacao` têm de ser posteriores a `data_inicio`, e ação `Finalizado`/`Cancelado` precisa de `data_termino` | `mustBe: 0` |
+| `programa`, quando informado, tem de ser maior que zero (nulo continua aceito) | `mustBe: 0` |
+| `data_termino` não pode ser anterior a `data_inicio` (ação de um dia só é aceita), e ação `Finalizado`/`Cancelado` precisa de `data_termino` | `mustBe: 0` |
 | `instrumento_parceria` tem de ser `Nenhum` quando não há parceria, e diferente de `Nenhum` quando há | `mustBe: 0` |
 | `projeto_extensao_sustentavel` só pode ser `true` quando `tipo = Projeto`; `tipo_vulnerabilidade` tem de vir preenchido quando `populacao_vulneravel` é `true` e vazio quando é `false` | `mustBe: 0` |
 | As contrapartidas não podem ser negativas, e contrapartida externa maior que zero exige `entidade_financiadora` preenchida | `mustBe: 0` |
@@ -254,6 +255,7 @@ Além do schema, o modelo declara regras `quality` do tipo `sql`:
 | A mesma pessoa (`cpf`) não pode aparecer duas vezes na mesma ação | `mustBe: 0` |
 | `cpf` deve conter 11 dígitos; `matricula` é exigida para `docente`/`TAE`/`estudante` e tem de vir vazia para `externo` | `mustBe: 0` |
 | `data_saida` e `data_ultima_situacao` têm de ser posteriores a `data_ingresso`; envolvido `Ativo` não pode ter `data_saida` e `Inativo` precisa ter | `mustBe: 0` |
+| A participação precisa ter estado ativa por pelo menos um dia no **ano de referência** — `data_ingresso` não pode ser posterior a 31/12 e `data_saida`, quando informada, não pode ser anterior a 01/01 | `mustBe: 0` |
 | Não pode existir pessoa envolvida sem a ação correspondente em `acoes_extensao` | `mustBe: 0` |
 
 ### Exemplo válido
@@ -327,6 +329,7 @@ Três consequências:
 | Versão | Data | Mudança | Breaking? |
 |---|---|---|---|
 | `1.0.0` | 2025-09-02 | Versão inicial documentada nesta data. | — |
+| `1.0.1` | 2026-10-27 | `pessoas_envolvidas_acoes_extensao` passa a exigir participação ativa em pelo menos um dia do ano de referência (`data_ingresso` até 31/12 e `data_saida` vazia ou a partir de 01/01). | Sim — participações fora do ano de referência são reprovadas no teste de qualidade. |
 
 > ℹ️ **Uma linha só — e é esse o problema.** `info.version` está em `1.0.0` desde o início, mas o contrato mudou depois: `campus_vinculado` virou `estrutura`, `municipios_atendidos` trocou de string para `array` de `bigint`, `area_tematica_cnpq`/`subeixo_tecnologico` perderam o nome e viraram `{codigo}`, e `projeto_extensao_sustentavel` foi acrescentado. Para quem já integrava, as três primeiras são **breaking** — e nenhuma bumpou a versão. A tabela tem uma linha porque o contrato nunca versionou essas mudanças, não porque elas não aconteceram. Esta página foi corrigida em 2026-07-16 para reacompanhar o contrato.
 
@@ -337,7 +340,7 @@ dataContractSpecification: "1.2.0"
 id: "acoes_extensao"
 info:
   title: "Ações de Extensão"
-  version: "1.0.0"
+  version: "1.0.1"
   status: "active"
   description: >
     Este contrato de dados descreve a estrutura das informações relativas às ações de extensão,
@@ -403,11 +406,16 @@ models:
              OR NULLIF(TRIM(subeixo_tecnologico), '') IS NULL
         mustBe: 0
       - type: sql
+        description: "O programa, quando informado, deve ser maior que zero."
+        query: >
+          SELECT COUNT(*) FROM acoes_extensao
+          WHERE programa <= 0
+        mustBe: 0
+      - type: sql
         description: "Datas e situação da ação devem ser coerentes."
         query: >
           SELECT COUNT(*) FROM acoes_extensao
-          WHERE data_termino <= data_inicio
-             OR data_ultima_situacao <= data_inicio
+          WHERE data_termino < data_inicio
              OR (situacao_acao IN ('Finalizado', 'Cancelado') AND data_termino IS NULL)
         mustBe: 0
       - type: sql
@@ -717,10 +725,17 @@ models:
         description: "Datas e situação da participação devem ser coerentes."
         query: >
           SELECT COUNT(*) FROM pessoas_envolvidas_acoes_extensao
-          WHERE data_saida <= data_ingresso
-             OR data_ultima_situacao <= data_ingresso
+          WHERE data_saida < data_ingresso
+             OR data_ultima_situacao < data_ingresso
              OR (situacao_envolvido = 'Ativo' AND data_saida IS NOT NULL)
              OR (situacao_envolvido = 'Inativo' AND data_saida IS NULL)
+        mustBe: 0
+      - type: sql
+        description: "A participação deve ter estado ativa por pelo menos um dia no ano de referência."
+        query: >
+          SELECT COUNT(*) FROM pessoas_envolvidas_acoes_extensao
+          WHERE data_ingresso > DATE '#ANO_REFERENCIA#-12-31'
+             OR (data_saida IS NOT NULL AND data_saida < DATE '#ANO_REFERENCIA#-01-01')
         mustBe: 0
       - type: sql
         description: "Não pode existir pessoas envolvidas sem ação correspondente."

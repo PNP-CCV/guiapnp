@@ -90,7 +90,10 @@ Além do schema (colunas obrigatórias, tipos, `enum` e rejeição de colunas ex
 |---|---|
 | `titulo_projeto`, `estrutura` e `nome_coordenador` não podem ser texto vazio | `mustBe: 0` |
 | `data_termino` não pode anteceder `data_inicio`, e projeto `Finalizado`/`Cancelado` precisa de `data_termino` | `mustBe: 0` |
+| O projeto precisa ter estado ativo por pelo menos um dia no **ano de referência** — `data_inicio` não pode ser posterior a 31/12 e `data_termino`, quando informada, não pode ser anterior a 01/01 | `mustBe: 0` |
 | As contrapartidas não podem ser negativas; contrapartida externa maior que zero exige entidade financiadora externa, e entidade financiadora externa exige contrapartida externa maior que zero | `mustBe: 0` |
+
+> ℹ️ **Ano de referência.** A regra de vigência usa o token `#ANO_REFERENCIA#`, substituído pelo Coletor antes de o contrato chegar ao motor: é o **ano-base** da coleta, `ciclo.ano - 1` (o ciclo de 2026 coleta o que aconteceu em 2025). Contrato que usa o token sem ciclo de coleta associado falha com erro explícito, em vez de mandar SQL quebrado ao motor.
 
 ### Exemplo válido
 
@@ -176,6 +179,13 @@ models:
           SELECT COUNT(*) FROM projetos_ensino
           WHERE data_termino < data_inicio
              OR (situacao_projeto IN ('Finalizado', 'Cancelado') AND data_termino IS NULL)
+        mustBe: 0
+      - type: sql
+        description: "O projeto de ensino deve ter estado ativo por pelo menos um dia no ano de referência."
+        query: >
+          SELECT COUNT(*) FROM projetos_ensino
+          WHERE data_inicio > DATE '#ANO_REFERENCIA#-12-31'
+             OR (data_termino IS NOT NULL AND data_termino < DATE '#ANO_REFERENCIA#-01-01')
         mustBe: 0
       - type: sql
         description: "As contrapartidas financeiras não podem ser negativas e o financiamento externo deve ser coerente com a entidade financiadora."

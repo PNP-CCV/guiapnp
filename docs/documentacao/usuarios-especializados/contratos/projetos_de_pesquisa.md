@@ -11,7 +11,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-**Slug:** `projetos_de_pesquisa` · **Versão:** `2.0.0` · **Owner:** SETEC
+**Slug:** `projetos_de_pesquisa` · **Versão:** `2.0.1` · **Owner:** SETEC
 
 **Status:** `active` · **Spec:** `dataContractSpecification: "1.2.0"`
 
@@ -70,7 +70,10 @@ Além do schema (colunas obrigatórias, tipos e rejeição de colunas extras via
 |---|---|
 | `titulo_projeto`, `estrutura` e `area_tematica_cnpq` não podem ser texto vazio | `mustBe: 0` |
 | `data_termino` não pode anteceder `data_inicio`, e projeto `Finalizado`/`Cancelado` precisa de `data_termino` | `mustBe: 0` |
+| O projeto precisa ter estado ativo por pelo menos um dia no **ano de referência** — `data_inicio` não pode ser posterior a 31/12 e `data_termino`, quando informada, não pode ser anterior a 01/01 | `mustBe: 0` |
 | As contrapartidas não podem ser negativas; contrapartida externa maior que zero exige entidade financiadora externa, e entidade financiadora externa exige contrapartida externa maior que zero | `mustBe: 0` |
+
+> ℹ️ **Ano de referência.** A regra de vigência usa o token `#ANO_REFERENCIA#`, substituído pelo Coletor antes de o contrato chegar ao motor: é o **ano-base** da coleta, `ciclo.ano - 1` (o ciclo de 2026 coleta o que aconteceu em 2025). Contrato que usa o token sem ciclo de coleta associado falha com erro explícito, em vez de mandar SQL quebrado ao motor.
 
 ### Exemplo válido
 
@@ -139,6 +142,7 @@ Além do schema, o modelo declara regras `quality` do tipo `sql`:
 | A mesma pessoa (`cpf`) não pode aparecer duas vezes no mesmo projeto | `mustBe: 0` |
 | `cpf` deve conter 11 dígitos, `nome` não pode ser vazio, e `matricula` é exigida para `docente`/`TAE`/`estudante` e proibida para `externo` | `mustBe: 0` |
 | `data_saida` não pode anteceder `data_ingresso`; envolvido `Ativo` não pode ter `data_saida` e `Inativo` precisa ter | `mustBe: 0` |
+| A participação precisa ter estado ativa por pelo menos um dia no **ano de referência** — `data_ingresso` não pode ser posterior a 31/12 e `data_saida`, quando informada, não pode ser anterior a 01/01 | `mustBe: 0` |
 | Não pode existir pessoa envolvida sem o projeto correspondente em `projetos_pesquisa` | `mustBe: 0` |
 | O período de participação tem de caber na vigência do projeto, e projeto `Finalizado`/`Cancelado` não pode ter participante `Ativo` | `mustBe: 0` |
 
@@ -197,6 +201,7 @@ O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gr
 |---|---|---|---|
 | `1.0.0` | 2025-09-02 | Versão inicial documentada nesta data. | — |
 | `2.0.0` | 2026-09-01 | `orcamento_projeto` virou o par `contrapartida_financeira_institucional`/`contrapartida_financeira_externa`; `data_termino` e `matricula` deixaram de ser obrigatórias; regras `quality` acrescentadas. | **sim** |
+| `2.0.1` | 2026-10-27 | `pessoas_envolvidas_projeto_pesquisa` passa a exigir participação ativa em pelo menos um dia do ano de referência (`data_ingresso` até 31/12 e `data_saida` vazia ou a partir de 01/01). | Sim — participações fora do ano de referência são reprovadas no teste de qualidade. |
 
 > ℹ️ **Uma linha só — e é esse o problema.** `info.version` está em `1.0.0` desde o início, mas o contrato mudou depois: `campus_vinculado` virou `estrutura`, `produto_final` virou `produto`, `area_tematica_cnpq` passou a `{codigo}`, e `projeto_pesquisa_sustentavel` foi acrescentado. As três primeiras são **breaking** para quem já integrava, e nenhuma bumpou a versão. Esta página foi corrigida em 2026-07-16 para reacompanhar o contrato.
 
@@ -208,7 +213,7 @@ dataContractSpecification: "1.2.0"
 id: "projetos_de_pesquisa"
 info:
   title: "Projetos de Pesquisa"
-  version: "2.0.0"
+  version: "2.0.1"
   status: "active"
   description: >
     Este contrato descreve a estrutura de dados dos projetos de pesquisa conduzidos na instituição,
@@ -244,6 +249,13 @@ models:
           SELECT COUNT(*) FROM projetos_pesquisa
           WHERE data_termino < data_inicio
              OR (situacao_projeto IN ('Finalizado', 'Cancelado') AND data_termino IS NULL)
+        mustBe: 0
+      - type: sql
+        description: "O projeto de pesquisa deve ter estado ativo por pelo menos um dia no ano de referência."
+        query: >
+          SELECT COUNT(*) FROM projetos_pesquisa
+          WHERE data_inicio > DATE '#ANO_REFERENCIA#-12-31'
+             OR (data_termino IS NOT NULL AND data_termino < DATE '#ANO_REFERENCIA#-01-01')
         mustBe: 0
       - type: sql
         description: "As contrapartidas financeiras não podem ser negativas e o financiamento externo deve ser coerente com a entidade financiadora."
@@ -399,6 +411,13 @@ models:
           WHERE data_saida < data_ingresso
              OR (situacao_envolvido = 'Ativo' AND data_saida IS NOT NULL)
              OR (situacao_envolvido = 'Inativo' AND data_saida IS NULL)
+        mustBe: 0
+      - type: sql
+        description: "A participação deve ter estado ativa por pelo menos um dia no ano de referência."
+        query: >
+          SELECT COUNT(*) FROM pessoas_envolvidas_projeto_pesquisa
+          WHERE data_ingresso > DATE '#ANO_REFERENCIA#-12-31'
+             OR (data_saida IS NOT NULL AND data_saida < DATE '#ANO_REFERENCIA#-01-01')
         mustBe: 0
       - type: sql
         description: "Não pode existir pessoa envolvida sem projeto correspondente."

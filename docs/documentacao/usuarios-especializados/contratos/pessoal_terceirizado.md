@@ -59,9 +59,9 @@ Além do schema (colunas obrigatórias, tipos, `enum` e rejeição de colunas ex
 | Regra | Espera |
 |---|---|
 | `cpf` deve conter 11 dígitos | `mustBe: 0` |
-| `data_exclusao` não pode anteceder `data_ingresso`; `situacao: Ativo` não pode ter `data_exclusao` e `situacao: Inativo` precisa ter | `mustBe: 0` |
+| `data_exclusao` não pode anteceder `data_ingresso`; `situacao: Ativo` não pode ter `data_exclusao` já passada e `situacao: Inativo` precisa ter `data_exclusao` até hoje | `mustBe: 0` |
 
-> A coerência entre `situacao` e `data_exclusao`, que antes ficava por conta da origem, hoje é cobrada pela segunda regra.
+> A coerência entre `situacao` e `data_exclusao`, que antes ficava por conta da origem, hoje é cobrada pela segunda regra. A comparação é com `current_date`, não com a mera presença da data: sistemas de gestão de contratos costumam preencher o **fim previsto** do contrato, então um terceirizado `Ativo` com `data_exclusao` futura é legítimo. No dia exato da exclusão as duas situações são aceitas.
 
 ### Exemplo válido
 
@@ -84,7 +84,7 @@ Além do schema (colunas obrigatórias, tipos, `enum` e rejeição de colunas ex
 | `{..., "situacao": "Desligado"}` (valor fora do `enum`) | `Value 'Desligado' for field 'situacao' not in enum [Ativo, Inativo]` |
 | `{..., "data_ingresso": "02/05/2024"}` (formato errado, `date` espera ISO 8601) | `Type mismatch on 'data_ingresso': expected date, got string '02/05/2024'` |
 | `{..., "matricula": "1548923"}` (coluna não declarada neste modelo) | `Field 'matricula' not in schema (additionalFields: false)` |
-| `{..., "situacao": "Ativo", "data_exclusao": "2025-01-31"}` (ativo com data de exclusão) | `A situação deve ser coerente com a data de exclusão.: Actual custom_sql(servidor_terceirizado) was 1, expected = 0` |
+| `{..., "situacao": "Ativo", "data_exclusao": "2025-01-31"}` (ativo com data de exclusão já passada) | `A situação deve ser coerente com a data de exclusão (Ativo admite fim de contrato futuro).: Actual custom_sql(servidor_terceirizado) was 1, expected = 0` |
 
 ## `referencia_pnp` — conferido na extração
 
@@ -131,12 +131,12 @@ models:
           WHERE NOT regexp_full_match(cpf, '[0-9]{11}')
         mustBe: 0
       - type: sql
-        description: "A situação deve ser coerente com a data de exclusão."
+        description: "A situação deve ser coerente com a data de exclusão (Ativo admite fim de contrato futuro)."
         query: >
           SELECT COUNT(*) FROM servidor_terceirizado
           WHERE data_exclusao < data_ingresso
-             OR (situacao = 'Ativo' AND data_exclusao IS NOT NULL)
-             OR (situacao = 'Inativo' AND data_exclusao IS NULL)
+             OR (situacao = 'Ativo' AND data_exclusao < current_date)
+             OR (situacao = 'Inativo' AND (data_exclusao IS NULL OR data_exclusao > current_date))
         mustBe: 0
     fields:
       id_servidor_terceirizado:

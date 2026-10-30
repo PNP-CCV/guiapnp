@@ -10,7 +10,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-**Slug:** `sustentabilidade` · **Versão:** `1.0.0` · **Owner:** SETEC
+**Slug:** `sustentabilidade` · **Versão:** `1.0.1` · **Owner:** SETEC
 **Status:** `active` · **Spec:** `dataContractSpecification: "1.2.0"`
 **Área Temática:** Sustentabilidade
 
@@ -103,11 +103,11 @@ Maturidade institucional da política de sustentabilidade por estrutura: que ins
 |---|---|---|---|---|
 | `id_governanca_gestao_sustentabilidade` | `integer` | sim | `primaryKey` | Identificador único do registro |
 | `estrutura` | `string` | sim | `referencia_pnp: campi` (conferido na extração — ver nota) | Estrutura à qual vinculam-se a governança, implantação e divulgação da sustentabilidade. Formato: `{codigo}`, fornecido pelo Coletor PNP |
-| `instancia_governanca` | `array` (de `string`) | sim | `enum` por item (11 códigos — ver legenda) | Instâncias de governança formalmente instituídas para coordenar e/ou executar a política de sustentabilidade institucional |
+| `instancia_governanca` | `array` (de `string`) | sim | `enum` por item (12 códigos — ver legenda) | Instâncias de governança formalmente instituídas para coordenar e/ou executar a política de sustentabilidade institucional |
 | `col_res_solidos` | `boolean` | sim | — | Existência de coletores de resíduos sólidos identificados na estrutura |
 | `sen_com_interna` | `boolean` | sim | — | Realização de ações de sensibilização da comunidade interna sobre a gestão dos resíduos sólidos na estrutura |
 | `par_coop_col_seletiva` | `boolean` | sim | — | Formalização de parceria com cooperativa de coleta seletiva ou comprovação de coleta seletiva pela prefeitura na estrutura |
-| `canais_divulgacao` | `array` (de `string`) | sim | `enum` por item (4 códigos — ver legenda) | Canais de divulgação específicos da política/ações de sustentabilidade institucionais na estrutura |
+| `canais_divulgacao` | `array` (de `string`) | sim | `enum` por item (5 códigos — ver legenda) | Canais de divulgação específicos da política/ações de sustentabilidade institucionais na estrutura |
 
 #### Legenda de `instancia_governanca`
 
@@ -124,6 +124,7 @@ Maturidade institucional da política de sustentabilidade por estrutura: que ins
 | `CON` | conselho |
 | `CMT` | comitê |
 | `OUT` | outra repartição formalmente instituída por ato normativo |
+| `NEN` | nenhuma — não pode ser combinada com outros códigos |
 
 #### Legenda de `canais_divulgacao`
 
@@ -133,6 +134,7 @@ Maturidade institucional da política de sustentabilidade por estrutura: que ins
 | `RS` | redes sociais |
 | `ER` | eventos realizados |
 | `MD` | materiais didáticos |
+| `NEN` | nenhum — não pode ser combinado com outros códigos |
 
 > ℹ️ **As legendas só existem como comentário no YAML.** Os significados acima estão em comentários `#` ao lado de cada valor do `enum` no arquivo de fixture — comentário YAML é invisível para qualquer parser, inclusive o `datacontract-cli`. Do ponto de vista da validação, `COO` e `CMT` são apenas duas strings permitidas. Esta página é o único lugar do projeto onde a legenda é legível por máquina de busca ou por gente.
 
@@ -145,6 +147,8 @@ Além do schema, o modelo declara regras `quality` do tipo `sql`:
 | Regra | Espera |
 |---|---|
 | `instancia_governanca` e `canais_divulgacao` precisam de ao menos um item, e sem valores repetidos | `mustBe: 0` |
+| `instancia_governanca` com `NEN` (nenhuma) não pode ter outros itens | `mustBe: 0` |
+| `canais_divulgacao` com `NEN` (nenhum) não pode ter outros itens | `mustBe: 0` |
 | `estrutura` não pode ser texto vazio | `mustBe: 0` |
 | Cada estrutura só pode ter um registro de governança e gestão da sustentabilidade | `mustBe: 0` |
 
@@ -168,9 +172,9 @@ Além do schema, o modelo declara regras `quality` do tipo `sql`:
 |---|---|
 | `{"estrutura": "12", "instancia_governanca": ["COM"]}` (sem `id_governanca_gestao_sustentabilidade`) | `Required field 'id_governanca_gestao_sustentabilidade' is missing` |
 | `{..., "canais_divulgacao": []}` (array vazio) | `Arrays de governança e divulgação devem possuir ao menos um item e não podem conter valores duplicados.: Actual custom_sql(governanca_gestao_sustentabilidade) was 1, expected = 0` |
-| `{..., "instancia_governanca": ["COMISSAO"]}` (item fora do `enum`) | `Value 'COMISSAO' for field 'instancia_governanca' not in enum [COO, DEP, DIR, PRO, COM, NUC, GT, CAM, CON, CMT, OUT]` |
+| `{..., "instancia_governanca": ["COMISSAO"]}` (item fora do `enum`) | `Value 'COMISSAO' for field 'instancia_governanca' not in enum [COO, DEP, DIR, PRO, COM, NUC, GT, CAM, CON, CMT, OUT, NEN]` |
 | `{..., "instancia_governanca": "COM"}` (`string` em vez de `array`) | `Type mismatch on 'instancia_governanca': expected array, got string` |
-| `{..., "canais_divulgacao": ["PI", "PODCAST"]}` (item fora do `enum`) | `Value 'PODCAST' for field 'canais_divulgacao' not in enum [PI, RS, ER, MD]` |
+| `{..., "canais_divulgacao": ["PI", "PODCAST"]}` (item fora do `enum`) | `Value 'PODCAST' for field 'canais_divulgacao' not in enum [PI, RS, ER, MD, NEN]` |
 | `{..., "col_res_solidos": "sim"}` (`boolean` espera `true`/`false`) | `Type mismatch on 'col_res_solidos': expected boolean, got string 'sim'` |
 
 ## Modelo `compras_contratacoes`
@@ -241,6 +245,7 @@ Os três modelos declaram, no campo `estrutura`, um bloco `referencia_pnp: {recu
 | Versão | Data | Mudança | Breaking? |
 |---|---|---|---|
 | `1.0.0` | 2026-07-16 | Versão inicial documentada nesta data. | — |
+| `1.0.1` | 2026-10-29 | Adicionado o código `NEN` (nenhuma/nenhum) a `instancia_governanca` e `canais_divulgacao`, com regras que impedem combiná-lo com outros códigos. | Não — só acrescenta um valor aceito; as novas regras incidem apenas sobre registros que usem `NEN`. |
 
 ## Contrato de Dados - Formato YAML
 
@@ -249,7 +254,7 @@ dataContractSpecification: "1.2.0"
 id: "sustentabilidade"
 info:
   title: "Sustentabilidade"
-  version: "1.0.0"
+  version: "1.0.1"
   status: "active"
   description: >
     Este contrato descreve a estrutura de dados dos indicadores institucionais de sustentabilidade,
@@ -350,6 +355,20 @@ models:
              OR array_length(canais_divulgacao) <> array_length(array_distinct(canais_divulgacao))
         mustBe: 0
       - type: sql
+        description: "A instância de governança NEN (nenhuma) não pode ser combinada com outras instâncias."
+        query: >
+          SELECT COUNT(*) FROM governanca_gestao_sustentabilidade
+          WHERE list_contains(instancia_governanca, 'NEN')
+            AND len(instancia_governanca) > 1
+        mustBe: 0
+      - type: sql
+        description: "O canal de divulgação NEN (nenhum) não pode ser combinado com outros canais."
+        query: >
+          SELECT COUNT(*) FROM governanca_gestao_sustentabilidade
+          WHERE list_contains(canais_divulgacao, 'NEN')
+            AND len(canais_divulgacao) > 1
+        mustBe: 0
+      - type: sql
         description: "A estrutura deve ser preenchida com um valor não vazio."
         query: >
           SELECT COUNT(*) FROM governanca_gestao_sustentabilidade
@@ -401,10 +420,11 @@ models:
             - "CON" # conselho
             - "CMT" # comitê
             - "OUT" # outra repartição formalmente instituída por ato normativo
+            - "NEN" # nenhuma
         title: "Instâncias de governança formalmente instituídas"
         description: >
           Instâncias de governança formalmente instituídas para coordenar e/ou executar a
-          política de sustentabilidade institucional vinculadas a estrutura. COO = coordenação; DEP = departamento; DIR = diretoria; PRO = pró-reitoria; COM = comissão; NUC = núcleo; GT = grupo de trabalho; CAM = câmara; CON = conselho; CMT = comitê; OUT = outra repartição formalmente instituída por ato normativo.
+          política de sustentabilidade institucional vinculadas a estrutura. COO = coordenação; DEP = departamento; DIR = diretoria; PRO = pró-reitoria; COM = comissão; NUC = núcleo; GT = grupo de trabalho; CAM = câmara; CON = conselho; CMT = comitê; OUT = outra repartição formalmente instituída por ato normativo; NEN = nenhuma.
 
       col_res_solidos:
         type: boolean
@@ -433,11 +453,12 @@ models:
             - "RS" # redes sociais
             - "ER" # eventos realizados
             - "MD" # materiais didáticos
+            - "NEN" # nenhum
         title: "Canais de divulgação específicos da política/ações de sustentabilidade institucionais na estrutura"
         required: true
         description: >
           Canais de divulgação específicos da política/ações de sustentabilidade institucionais
-          na estrutura. PI = páginas na internet; RS = redes sociais; ER = eventos realizados; MD = materiais didáticos.
+          na estrutura. PI = páginas na internet; RS = redes sociais; ER = eventos realizados; MD = materiais didáticos; NEN = nenhum.
     additionalFields: false
 
   compras_contratacoes:

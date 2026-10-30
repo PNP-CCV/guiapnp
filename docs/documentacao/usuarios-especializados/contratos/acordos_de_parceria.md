@@ -67,9 +67,12 @@ Além do schema (colunas obrigatórias, tipos e rejeição de colunas extras via
 |---|---|
 | `numero_acordo` deve ser único, e ele, `instituicao_parceira`, `descricao_objeto` e `estrutura` não podem ser texto vazio | `mustBe: 0` |
 | `data_fim_vigencia` não pode anteceder `data_inicio_vigencia`, e `data_formalizacao` não pode ser posterior ao fim da vigência | `mustBe: 0` |
-| `contrapartida_financeira_externa` não pode ser negativa | `mustBe: 0` |
+| As contrapartidas financeiras (`contrapartida_financeira_institucional` e `contrapartida_financeira_externa`) não podem ser negativas | `mustBe: 0` |
+| `data_formalizacao` não pode ser posterior ao fim do ano de referência (`#ANO_REFERENCIA#-12-31`) — acordo formalizado depois dele fica para o próximo ciclo | `mustBe: 0` |
 
 Essas regras rodam uma vez, sobre o contrato inteiro, ao fim da extração ([validação e qualidade]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/validacao_e_qualidade)) — uma violação **não** reprova a extração (o Parquet fica gravado normalmente); ela deixa o contrato em "Qualidade Reprovada" e bloqueia o envio até a linha ser corrigida na origem.
+
+> ℹ️ **Ano de referência.** A regra da formalização usa o token `#ANO_REFERENCIA#`, substituído pelo Coletor antes de o contrato chegar ao motor: é o **ano-base** da coleta, `ciclo.ano - 1` (o ciclo de 2026 aceita acordos formalizados até 2025-12-31). Contrato que usa o token sem ciclo de coleta associado falha com erro explícito, em vez de mandar SQL quebrado ao motor.
 
 ### Exemplo válido
 
@@ -97,6 +100,7 @@ Essas regras rodam uma vez, sobre o contrato inteiro, ao fim da extração ([val
 | `{"id_acordo": 5021, "data_formalizacao": "2024-08-15"}` (sem `descricao_objeto`) | `Required field 'descricao_objeto' is missing` |
 | `{"id_acordo": 5021, "descricao_objeto": "...", "data_formalizacao": "15/08/2024"}` (formato errado, `date` espera ISO 8601) | `Type mismatch on 'data_formalizacao': expected date, got string '15/08/2024'` |
 | `{..., "data_inicio_vigencia": "2027-01-01", "data_fim_vigencia": "2024-01-01"}` (vigência invertida) | `Vigência e formalização do acordo devem ser cronologicamente coerentes.: Actual custom_sql(acordos_parceria) was 1, expected = 0` |
+| `{..., "data_formalizacao": "2026-02-10"}` (ciclo 2026, ano de referência 2025) | `Acordos formalizados depois do ano de referência não entram neste ciclo.: Actual custom_sql(acordos_parceria) was 1, expected = 0` |
 | `{..., "valor_total": 480000}` (coluna não declarada) | `Field 'valor_total' not in schema (additionalFields: false)` |
 
 ## Histórico de versões
@@ -118,7 +122,7 @@ info:
   status: "active"
   description: >
     Este contrato descreve os acordos e parcerias formais estabelecidos com instituições externas,
-    com foco em projetos de pesquisa. Inclui dados de vigência, contrapartidas e fundações intervenientes.
+    com foco em projetos de extensão. Inclui dados de vigência, contrapartidas e fundações intervenientes.
 
 servers:
   local:
@@ -158,9 +162,17 @@ models:
              OR data_formalizacao > data_fim_vigencia
         mustBe: 0
       - type: sql
-        description: "Contrapartida financeira não pode ser negativa."
+        description: "Contrapartidas financeiras não podem ser negativas."
         query: >
-          SELECT COUNT(*) FROM acordos_parceria WHERE contrapartida_financeira_externa < 0
+          SELECT COUNT(*) FROM acordos_parceria
+          WHERE contrapartida_financeira_externa < 0
+             OR contrapartida_financeira_institucional < 0
+        mustBe: 0
+      - type: sql
+        description: "Acordos formalizados depois do ano de referência não entram neste ciclo."
+        query: >
+          SELECT COUNT(*) FROM acordos_parceria
+          WHERE data_formalizacao > DATE '#ANO_REFERENCIA#-12-31'
         mustBe: 0
     fields:
       id_acordo:
@@ -210,13 +222,13 @@ models:
         type: double
         required: false
         title: "Valor da contrapartida financeira institucional"
-        description: "Valor da contrapartida financeira fornecida pela instituição, em reais. Deve ser 0 se não houver contrapartida."
+        description: "Valor da contrapartida financeira fornecida pela instituição, em reais. Deixe vazio ou 0 se não houver contrapartida."
 
       contrapartida_financeira_externa:
         type: double
         required: false
         title: "Valor da contrapartida financeira externa"
-        description: "Valor da contrapartida financeira fornecida pela instituição parceira, em reais. Deve ser 0 se não houver contrapartida."
+        description: "Valor da contrapartida financeira fornecida pela instituição parceira, em reais. Deixe vazio ou 0 se não houver contrapartida."
 
       estrutura:
         type: string
