@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Orçamento"
+title: Orçamento
 toc: true
 ---
 
@@ -26,7 +26,7 @@ A **[PNP]({{site.baseurl}}/documentacao/coletor/glossario#pnp)** coleta este con
 
 Para o contrato, sugere-se que os dados sejam obtidos por meio do Tesouro Gerencial, realizando consulta com os seguintes parâmetros: 
 
-Filtro do relatório: ({Item Informação} = 31:DESPESAS LIQUIDADAS (CONTROLE EMPENHO), 44:RESTOS A PAGAR NAO PROCESSADOS LIQUIDADOS) E ({Órgão UGE} = 26XXX:NOME INSTITUIÇÃO) E ({Ano Lançamento} = 2025) E ({Unidade Orçamentária} = 26XXX:NOME INSTITUIÇÃO)
+Filtro do relatório: ({Item Informação} = 31:DESPESAS LIQUIDADAS (CONTROLE EMPENHO), 44:RESTOS A PAGAR NAO PROCESSADOS LIQUIDADOS) E ({Ano Lançamento} = 2025) E ({Unidade Orçamentária} = 26XXX:NOME INSTITUIÇÃO)
 
 Template:
 - Órgão UGE - Órgão Superior 
