@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Ações de Extensão
+title: "Ações de Extensão"
 toc: true
 ---
 # Ações de Extensão
 
 * TOC
-  {:toc}
+{:toc}
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
