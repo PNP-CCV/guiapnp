@@ -200,7 +200,7 @@ Ele traz da PNP os ciclos e suas janelas, os contratos, os modelos e o que é ob
 
 ### Onde está o modelo de planilha?
 
-Há duas fontes: a [planilha de exemplo no Guia]({{site.baseurl}}/assets/files/template_fornecimento_dados.xlsx) e o modelo que o Coletor oferece ao cadastrar um provedor do tipo planilha. Quando as duas forem diferentes, vale a do Coletor, que acompanha o contrato em vigor.
+Há duas fontes: a [planilha de exemplo no Guia]({{site.baseurl}}/assets/files/template_fornecimento_dados.xlsx) e o modelo oferecido pelo Coletor ao cadastrar um provedor do tipo planilha. Quando as duas forem diferentes, vale a do Coletor, que acompanha o contrato em vigor. Cabe destacar que o modelo de planilha se comporta como uma referência de quais dados devem ser informados. Porém, esses dados serão analisados com base nas regras constantes no contrato.
 
 *Saiba Mais:* [Operação passo a passo]({{site.baseurl}}/documentacao/coletor/operacao_passo_a_passo) › Passo 2 — Cadastrar os provedores
 
@@ -402,14 +402,15 @@ Os webinars sobre o Coletor não foram gravados, e o conteúdo está no [Manual 
 
 *Saiba Mais:* Ações de Extensão › [Modelo `acoes_extensao`]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/acoes_de_extensao#modelo-acoes_extensao) › Tabela de campos; Regras de qualidade
 
-### Que regras de qualidade mais reprovam?
+### Que regras de qualidade mais reprovam os dados enviados?
 
-- A ação precisa ter acontecido em pelo menos um dia de 2025: início até 31/12 e término, se houver, a partir de 01/01.
-- O término não pode ser anterior ao início. Ação de um dia só é aceita; se o Coletor recusar, sincronize e extraia de novo.
-- Ação "Finalizado" ou "Cancelado" precisa ter data de término.
+- A ação precisa ter ocorrido em pelo menos um dia de 2025: início até 31/12 e término, se houver, a partir de 01/01.
+- O término não pode ser anterior ao início. Ação de um dia só é aceita; se o Coletor recusar, sincronize e extraia novamente.
+- Ação "Finalizado" ou "Cancelado" precisa ter uma data de término.
 - Uma pessoa não pode aparecer duas vezes na mesma ação, e o CPF deve ter 11 dígitos.
+- Para pessoas envolvidas em ações de extensão, sejam alunos, docentes ou TAEs, é necessário informar a matrícula SISTEC para os alunos e a matrícula SIAPE para os servidores. ** O atributo matrícula é opcional apenas para os participantes externos. **
 
-Violar uma regra não perde a extração: o contrato fica em "Qualidade Reprovada" e o envio fica bloqueado até a correção.
+Violar uma regra não resulta em perda da extração: o contrato fica em "Qualidade Reprovada" e o envio fica bloqueado até a correção.
 
 *Saiba Mais:* Ações de Extensão › Regras de qualidade (dos modelos [`acoes_extensao`]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/acoes_de_extensao#modelo-acoes_extensao) , [`pessoas_atendidas_acoes_extensao`]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/acoes_de_extensao#modelo-pessoas_atendidas_acoes_extensao) e [`pessoas_envolvidas_acoes_extensao`]({{site.baseurl}}/documentacao/usuarios-especializados/contratos/acoes_de_extensao#modelo-pessoas_envolvidas_acoes_extensao)
 
