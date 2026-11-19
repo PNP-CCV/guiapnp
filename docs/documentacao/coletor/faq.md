@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Perguntas frequentes
+title: "Perguntas frequentes"
 ---
 
 # Perguntas frequentes
