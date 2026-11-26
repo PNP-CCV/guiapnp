@@ -1,0 +1,37 @@
+name: Solicitar revisao do CMS
+
+on:
+  pull_request:
+    branches: [deploy]
+    types: [opened, reopened, ready_for_review]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  request-review:
+    if: >-
+      startsWith(github.event.pull_request.head.ref, 'cms/') &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # Usa apenas os dados do evento, sem executar conteudo da branch do PR.
+      - name: Solicitar revisão de andrealmeidaa
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          CMS_REVIEWER: andrealmeidaa
+        run: |
+          if [ "${PR_AUTHOR,,}" = "${CMS_REVIEWER,,}" ]; then
+            echo "::notice::O revisor configurado e o autor deste PR. A revisão deve ser feita por outra pessoa."
+            exit 0
+          fi
+
+          jq -n --arg reviewer "$CMS_REVIEWER" '{reviewers: [$reviewer]}' |
+            gh api --method POST \
+              "repos/$GH_REPO/pulls/$PR_NUMBER/requested_reviewers" \
+              --input -

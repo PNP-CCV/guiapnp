@@ -191,7 +191,13 @@ O CMS esta em `publish_mode: editorial_workflow`:
 1. O editor abre uma pagina em `/admin/` e salva. O Decap cria uma branch
    `cms/<colecao>/<slug>` e abre um PR contra `deploy`. Enquanto o editor
    nao mandar para "Ready", aquilo e rascunho.
-2. Um terceiro revisa e aprova esse PR no GitHub.
+2. O workflow `cms-review-request.yml` solicita automaticamente a revisao de
+   `@andrealmeidaa` nos PRs de branches `cms/` do proprio repositorio para
+   `deploy`. Se o PR estiver em modo Draft no GitHub, a solicitacao acontece
+   quando ele for marcado como pronto para revisao. O revisor precisa ter
+   acesso ao repositorio; se ele proprio for o autor do PR, outra pessoa deve
+   revisar, pois o GitHub nao permite solicitar revisao ao autor.
+   A revisao e a aprovacao acontecem no GitHub.
 3. Apos o merge, a `deploy` e atualizada e o GitHub Pages publica.
 
 PRs e rascunhos existentes contra `editoracao` precisam ser revisados e migrados
