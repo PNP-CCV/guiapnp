@@ -10,7 +10,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-**Slug:** `acoes_extensao` · **Versão:** `1.0.1` · **Owner:** SETEC
+**Slug:** `acoes_extensao` · **Versão:** `1.0.3` · **Owner:** SETEC
 
 **Status:** `Ativo` · **Spec:** `dataContractSpecification: "1.2.0"`
 
@@ -104,8 +104,8 @@ Tabela principal do contrato. Cada linha é uma ação de extensão única, iden
 | `entidade_financiadora` | `string` | não | — | Entidade financiadora |
 | `contrapartida_financeira_institucional` | `double` | não | — | Valor da contrapartida financeira institucional em reais (R$). Usar `0` quando não houver |
 | `contrapartida_financeira_externa` | `double` | não | — | Valor da contrapartida financeira externa em reais (R$). Usar `0` quando não houver |
-| `area_tematica_cnpq` | `string` | sim | `referencia_pnp: areas_tematicas_cnpq` (conferido na extração — ver nota) | Área temática CNPq. Formato: `{codigo}` |
-| `subeixo_tecnologico` | `string` | sim | `referencia_pnp: subeixos_tecnologicos` (conferido na extração — ver nota) | Subeixo tecnológico. Formato: `{codigo}` |
+| `area_tematica_cnpq` | `string` | não | `referencia_pnp: areas_tematicas_cnpq` (conferido na extração — ver nota) | Área temática CNPq. Formato: `{codigo}` |
+| `subeixo_tecnologico` | `string` | não | `referencia_pnp: subeixos_tecnologicos` (conferido na extração — ver nota) | Subeixo tecnológico. Formato: `{codigo}` |
 | `populacao_vulneravel` | `boolean` | sim | — | Destinado à população em vulnerabilidade? |
 | `tipo_vulnerabilidade` | `array` (de `string`) | não | `enum: [Socioeconômica, Educacional, Gênero e Raça, Deficiência ou Condição de Saúde, Geracional, Territorial]` | Tipos de vulnerabilidade atendidos — lista, obrigatória quando `populacao_vulneravel` é `true` e vazia quando é `false` (ver *Regras de qualidade*) |
 | `produto` | `string` | não | — | Produto |
@@ -118,7 +118,7 @@ Além do schema (colunas obrigatórias, tipos e rejeição de colunas extras via
 
 | Regra | Espera |
 |---|---|
-| `titulo_acao`, `estrutura` e `subeixo_tecnologico` não podem ser texto vazio | `mustBe: 0` |
+| `titulo_acao`, `estrutura` não podem ser texto vazio | `mustBe: 0` |
 | `programa`, quando informado, tem de ser maior que zero (nulo continua aceito) | `mustBe: 0` |
 | `data_termino` não pode ser anterior a `data_inicio` (ação de um dia só é aceita), e ação `Finalizado`/`Cancelado` precisa de `data_termino` | `mustBe: 0` |
 | `instrumento_parceria` tem de ser `Nenhum` quando não há parceria, e diferente de `Nenhum` quando há | `mustBe: 0` |
@@ -330,6 +330,8 @@ Três consequências:
 |---|---|---|---|
 | `1.0.0` | 2025-09-02 | Versão inicial documentada nesta data. | — |
 | `1.0.1` | 2026-10-27 | `pessoas_envolvidas_acoes_extensao` passa a exigir participação ativa em pelo menos um dia do ano de referência (`data_ingresso` até 31/12 e `data_saida` vazia ou a partir de 01/01). | Sim — participações fora do ano de referência são reprovadas no teste de qualidade. |
+| `1.0.2` | 2026-11-06 | Descrições das regras `quality` reescritas para dizer exatamente o que cada uma confere. As regras não mudaram. | Não |
+| `1.0.3` | 2026-11-24 | `area_tematica_cnpq` e `subeixo_tecnologico` passam a ser opcionais; `subeixo_tecnologico` sai da regra de textos obrigatórios. Quando informados, continuam conferidos contra os espelhos da PNP. | Não — só flexibiliza. |
 
 > ℹ️ **Uma linha só — e é esse o problema.** `info.version` está em `1.0.0` desde o início, mas o contrato mudou depois: `campus_vinculado` virou `estrutura`, `municipios_atendidos` trocou de string para `array` de `bigint`, `area_tematica_cnpq`/`subeixo_tecnologico` perderam o nome e viraram `{codigo}`, e `projeto_extensao_sustentavel` foi acrescentado. Para quem já integrava, as três primeiras são **breaking** — e nenhuma bumpou a versão. A tabela tem uma linha porque o contrato nunca versionou essas mudanças, não porque elas não aconteceram. Esta página foi corrigida em 2026-07-16 para reacompanhar o contrato.
 
@@ -340,7 +342,7 @@ dataContractSpecification: "1.2.0"
 id: "acoes_extensao"
 info:
   title: "Ações de Extensão"
-  version: "1.0.1"
+  version: "1.0.3"
   status: "active"
   description: >
     Este contrato de dados descreve a estrutura das informações relativas às ações de extensão,
@@ -403,7 +405,6 @@ models:
           SELECT COUNT(*) FROM acoes_extensao
           WHERE NULLIF(TRIM(titulo_acao), '') IS NULL
              OR NULLIF(TRIM(estrutura), '') IS NULL
-             OR NULLIF(TRIM(subeixo_tecnologico), '') IS NULL
         mustBe: 0
       - type: sql
         description: "O programa, quando informado, deve ser maior que zero."
@@ -412,21 +413,21 @@ models:
           WHERE programa <= 0
         mustBe: 0
       - type: sql
-        description: "Datas e situação da ação devem ser coerentes."
+        description: "A data de término não pode ser anterior à de início, e ações Finalizadas ou Canceladas devem ter data de término."
         query: >
           SELECT COUNT(*) FROM acoes_extensao
           WHERE data_termino < data_inicio
              OR (situacao_acao IN ('Finalizado', 'Cancelado') AND data_termino IS NULL)
         mustBe: 0
       - type: sql
-        description: "O instrumento deve ser coerente com a existência de parceria."
+        description: "Ações com parceria institucional devem informar um instrumento de parceria diferente de 'Nenhum', e ações sem parceria institucional devem usar 'Nenhum'."
         query: >
           SELECT COUNT(*) FROM acoes_extensao
           WHERE (parceria_institucional = FALSE AND instrumento_parceria <> 'Nenhum')
              OR (parceria_institucional = TRUE AND instrumento_parceria = 'Nenhum')
         mustBe: 0
       - type: sql
-        description: "Sustentabilidade e vulnerabilidade devem respeitar seus campos condicionantes."
+        description: "Só ações do tipo Projeto podem ser marcadas como projeto de extensão sustentável; ação com população vulnerável deve informar ao menos um tipo de vulnerabilidade, e ação sem população vulnerável não pode informar nenhum."
         query: >
           SELECT COUNT(*) FROM acoes_extensao
           WHERE (tipo <> 'Projeto' AND projeto_extensao_sustentavel = TRUE)
@@ -580,7 +581,6 @@ models:
         type: string
         title: "Área temática CNPq"
         description: "Formato: {codigo}. O código da área temática CNPq é fornecido pelo Coletor PNP."
-        required: true
         referencia_pnp:
           recurso: areas_tematicas_cnpq
           tipo: codigo
@@ -590,7 +590,6 @@ models:
         type: string
         title: "Subeixo tecnológico"
         description: "Formato: {codigo}. O código do subeixo tecnológico é fornecido pelo Coletor PNP."
-        required: true
         referencia_pnp:
           recurso: subeixos_tecnologicos
           tipo: codigo
@@ -722,7 +721,7 @@ models:
              OR (categoria = 'externo' AND NULLIF(TRIM(matricula), '') IS NOT NULL)
         mustBe: 0
       - type: sql
-        description: "Datas e situação da participação devem ser coerentes."
+        description: "A data de saída e a data da última situação não podem ser anteriores à data de ingresso. Envolvidos Ativos não podem ter data de saída, e envolvidos Inativos devem ter."
         query: >
           SELECT COUNT(*) FROM pessoas_envolvidas_acoes_extensao
           WHERE data_saida < data_ingresso
@@ -823,4 +822,5 @@ models:
             categorias_validar: ["estudante"]
             severidade: erro
     additionalFields: false
+
 ```
