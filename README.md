@@ -167,6 +167,33 @@ docker run --rm -p 4000:4000 -v "$PWD/docs:/srv" -w /srv -u "$(id -u):$(id -g)" 
   sh -c 'bundle install --quiet && bundle exec jekyll serve --host 0.0.0.0 --baseurl /guiapnp'
 ```
 
+## Planilha de exemplo dos contratos
+
+`docs/assets/files/template_fornecimento_dados.xlsx` (citada na FAQ e na
+Operação passo a passo do Coletor) é **gerada** por
+`scripts/gerar_planilha_contratos.py` a partir do bloco YAML completo de cada
+página em `docs/documentacao/usuarios-especializados/contratos/`. Sempre que um
+contrato mudar, regenere:
+
+```bash
+pip install openpyxl pyyaml   # uma vez
+
+python3 scripts/gerar_planilha_contratos.py              # regrava a planilha
+python3 scripts/gerar_planilha_contratos.py --verificar  # só diz se está desatualizada
+```
+
+O script refaz todas as abas (LEIA-ME, Dicionario, `_listas` e uma aba por
+modelo), com cores, comentários, listas suspensas e destaque de obrigatório
+vazio. Só as **linhas de exemplo** (2 a 5 de cada aba) vêm da planilha atual,
+pelo nome do campo. Para mudar um exemplo, edite a planilha e rode o script de
+novo. Ao final, ele lista os exemplos que ferem o schema (obrigatório vazio,
+valor fora da lista, tipo, tamanho, chave repetida, referência inexistente).
+
+O script para sem gravar nada se a página estiver incoerente com o próprio
+YAML: versão no cabeçalho, modelos, `meta.required` ou, na tabela de campos,
+a lista de campos, o tipo e a coluna Obrigatório. Ao editar um contrato,
+atualize **as duas** coisas, a tabela e o YAML.
+
 ## Estrutura do projeto
 
 ```

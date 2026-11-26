@@ -14,3 +14,7 @@ os pontos abaixo são os que mais quebram o site.
   `docs/_data/menu.yml` são **gerados** por `scripts/importar_manual_usuario.py`
   a partir de `doc/usuario` do pnp-ccv-frontend. Não edite à mão: corrija na
   fonte e reimporte (ver "Manual do usuário" no README).
+- `docs/assets/files/template_fornecimento_dados.xlsx` é **gerada** por
+  `scripts/gerar_planilha_contratos.py` a partir do YAML das páginas de
+  contrato: ao mudar um contrato, rode o script (ver "Planilha de exemplo dos
+  contratos" no README). Só as linhas de exemplo se editam na planilha.
