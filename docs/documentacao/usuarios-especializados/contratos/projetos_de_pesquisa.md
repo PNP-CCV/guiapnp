@@ -11,7 +11,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-**Slug:** `projetos_de_pesquisa` · **Versão:** `2.0.1` · **Owner:** SETEC
+**Slug:** `projetos_de_pesquisa` · **Versão:** `2.0.2` · **Owner:** SETEC
 
 **Status:** `active` · **Spec:** `dataContractSpecification: "1.2.0"`
 
@@ -106,7 +106,7 @@ Além do schema (colunas obrigatórias, tipos e rejeição de colunas extras via
 | `{..., "natureza_projeto": "Experimental"}` (valor fora do `enum`) | `Value 'Experimental' for field 'natureza_projeto' not in enum [Básica, Aplicada]` |
 | `{..., "entidade_financiadora": "FAPESP"}` (valor fora do `enum`) | `Value 'FAPESP' for field 'entidade_financiadora' not in enum [Capes, CNPq, FINEP, sem fomento externo, outras]` |
 | `{..., "contrapartida_financeira_externa": "480000"}` (`string` em vez de `double`) | `Type mismatch on 'contrapartida_financeira_externa': expected double, got string` |
-| `{..., "entidade_financiadora": "CNPq", "contrapartida_financeira_externa": 0}` (fomento externo sem contrapartida externa) | `As contrapartidas financeiras não podem ser negativas e o financiamento externo deve ser coerente com a entidade financiadora.: Actual custom_sql(projetos_pesquisa) was 1, expected = 0` |
+| `{..., "entidade_financiadora": "CNPq", "contrapartida_financeira_externa": 0}` (fomento externo sem contrapartida externa) | `As contrapartidas financeiras não podem ser negativas; contrapartida externa maior que zero exige entidade financiadora preenchida e diferente de 'sem fomento externo', e uma entidade financiadora externa exige contrapartida externa maior que zero.: Actual custom_sql(projetos_pesquisa) was 1, expected = 0` |
 | `{..., "lattes_orientador": "..."}` (coluna não declarada) | `Field 'lattes_orientador' not in schema (additionalFields: false)` |
 
 ## Modelo `pessoas_envolvidas_projeto_pesquisa`
@@ -202,6 +202,7 @@ O Coletor **confere esses valores contra os espelhos locais da PNP** antes de gr
 | `1.0.0` | 2025-09-02 | Versão inicial documentada nesta data. | — |
 | `2.0.0` | 2026-09-01 | `orcamento_projeto` virou o par `contrapartida_financeira_institucional`/`contrapartida_financeira_externa`; `data_termino` e `matricula` deixaram de ser obrigatórias; regras `quality` acrescentadas. | **sim** |
 | `2.0.1` | 2026-10-27 | `pessoas_envolvidas_projeto_pesquisa` passa a exigir participação ativa em pelo menos um dia do ano de referência (`data_ingresso` até 31/12 e `data_saida` vazia ou a partir de 01/01). | Sim — participações fora do ano de referência são reprovadas no teste de qualidade. |
+| `2.0.2` | 2026-11-06 | Descrições das regras `quality` reescritas para dizer o que cada uma confere; as consultas não mudaram. | não |
 
 > ℹ️ **Uma linha só — e é esse o problema.** `info.version` está em `1.0.0` desde o início, mas o contrato mudou depois: `campus_vinculado` virou `estrutura`, `produto_final` virou `produto`, `area_tematica_cnpq` passou a `{codigo}`, e `projeto_pesquisa_sustentavel` foi acrescentado. As três primeiras são **breaking** para quem já integrava, e nenhuma bumpou a versão. Esta página foi corrigida em 2026-07-16 para reacompanhar o contrato.
 
@@ -213,7 +214,7 @@ dataContractSpecification: "1.2.0"
 id: "projetos_de_pesquisa"
 info:
   title: "Projetos de Pesquisa"
-  version: "2.0.1"
+  version: "2.0.2"
   status: "active"
   description: >
     Este contrato descreve a estrutura de dados dos projetos de pesquisa conduzidos na instituição,
@@ -244,7 +245,7 @@ models:
              OR NULLIF(TRIM(area_tematica_cnpq), '') IS NULL
         mustBe: 0
       - type: sql
-        description: "Datas e situação do projeto devem ser coerentes."
+        description: "A data de término não pode ser anterior à de início, e projetos Finalizados ou Cancelados devem ter data de término."
         query: >
           SELECT COUNT(*) FROM projetos_pesquisa
           WHERE data_termino < data_inicio
@@ -258,7 +259,7 @@ models:
              OR (data_termino IS NOT NULL AND data_termino < DATE '#ANO_REFERENCIA#-01-01')
         mustBe: 0
       - type: sql
-        description: "As contrapartidas financeiras não podem ser negativas e o financiamento externo deve ser coerente com a entidade financiadora."
+        description: "As contrapartidas financeiras não podem ser negativas; contrapartida externa maior que zero exige entidade financiadora preenchida e diferente de 'sem fomento externo', e uma entidade financiadora externa exige contrapartida externa maior que zero."
         query: >
           SELECT COUNT(*) FROM projetos_pesquisa
           WHERE contrapartida_financeira_institucional < 0
@@ -405,7 +406,7 @@ models:
              OR (categoria = 'externo' AND NULLIF(TRIM(matricula), '') IS NOT NULL)
         mustBe: 0
       - type: sql
-        description: "Datas e situação da participação devem ser coerentes."
+        description: "A data de saída não pode ser anterior à data de ingresso. Envolvidos Ativos não podem ter data de saída, e envolvidos Inativos devem ter."
         query: >
           SELECT COUNT(*) FROM pessoas_envolvidas_projeto_pesquisa
           WHERE data_saida < data_ingresso

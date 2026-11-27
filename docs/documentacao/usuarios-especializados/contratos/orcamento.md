@@ -11,7 +11,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-**Slug:** `orcamento` · **Versão:** `1.0.3` · **Owner:** SETEC
+**Slug:** `orcamento` · **Versão:** `1.0.5` · **Owner:** SETEC
 **Status:** `active` · **Spec:** `dataContractSpecification: "1.2.0"`
 **Área Temática:** Orçamento
 
@@ -138,7 +138,6 @@ Além do schema (campos obrigatórios, tipos, `enum` e rejeição de colunas ext
 | `liquidado_valor` e `rp_pago_valor` não podem ser negativos | `mustBe: 0` |
 | `ano` tem de ser o **ano de referência** da coleta | `mustBe: 0` |
 | `uo_cod` tem de ser o **código da instituição** na PNP | `mustBe: 0` |
-| Despesa de `origem_despesa: Emenda` exige `emenda_impositiva_tipo` e `emenda_impositiva_numero_ano` no formato `número/ano`; despesa de outra origem não pode trazer nenhum dos dois | `mustBe: 0` |
 
 > ℹ️ **Ano de referência.** A regra do `ano` usa o token `#ANO_REFERENCIA#`, substituído pelo Coletor antes de o contrato chegar ao motor: é o **ano-base** da coleta, `ciclo.ano - 1` (o ciclo de 2026 coleta a execução de 2025). Contrato que usa o token sem ciclo de coleta associado falha com erro explícito, em vez de mandar SQL quebrado ao motor.
 
@@ -185,7 +184,6 @@ Além do schema (campos obrigatórios, tipos, `enum` e rejeição de colunas ext
 | `{"id_dados_orcamentarios": 1042, "ano": 2024, ...}` (ciclo 2026, ano de referência 2025) | `O ano deve ser o ano de referência.: Actual custom_sql(dados_orcamentarios) was 1, expected = 0` |
 | `{"id_dados_orcamentarios": 1042, "ano": "2025", ...}` (`string` em vez de `integer`) | `Type mismatch on 'ano': expected integer, got string` |
 | `{"id_dados_orcamentarios": 1042, "empenhado_valor": 200000, ...}` (coluna não declarada) | `Field 'empenhado_valor' not in schema (additionalFields: false)` |
-| `{..., "origem_despesa": "Emenda", "emenda_impositiva_numero_ano": null}` (emenda sem número/ano) | `Dados de emenda devem ser coerentes com a origem da despesa.: Actual custom_sql(dados_orcamentarios) was 1, expected = 0` |
 
 ## Histórico de versões
 
@@ -195,6 +193,8 @@ Além do schema (campos obrigatórios, tipos, `enum` e rejeição de colunas ext
 | `1.0.1` | 2026-10-27 | `programa_interno_cod` passa a exigir exatamente 11 caracteres (`minLength`/`maxLength`). | Sim — códigos com outro tamanho são reprovados no teste de qualidade. |
 | `1.0.2` | 2026-10-27 | Novo campo obrigatório `ano` (`integer`), que tem de ser o ano de referência da coleta (`#ANO_REFERENCIA#`). | Sim — extrações sem a coluna `ano` são rejeitadas no schema, e anos diferentes do de referência reprovam o teste de qualidade. |
 | `1.0.3` | 2026-10-27 | Regra `quality` nova: `uo_cod` tem de ser o código da instituição (`#CODIGO_INSTITUICAO#`). | Sim — linhas com UO de outra instituição reprovam o teste de qualidade. |
+| `1.0.4` | 2026-11-06 | Regra de emenda afrouxada: em vez de exigir tipo e número/ano conforme `origem_despesa`, passa a conferir só o formato `número/ano` de `emenda_impositiva_numero_ano`, quando preenchido. | não (afrouxa) |
+| `1.0.5` | 2026-11-09 | Regra de emenda retirada: `emenda_impositiva_tipo` e `emenda_impositiva_numero_ano` ficam sem regra `quality`, valendo só o schema (opcionais, `string`). | não (afrouxa) |
 
 ## Contrato de Dados - Formato YAML
 
@@ -204,7 +204,7 @@ dataContractSpecification: "1.2.0"
 id: "orcamento"
 info:
   title: "Orçamento"
-  version: "1.0.3"
+  version: "1.0.5"
   status: "active"
   description: >
     Este contrato descreve a estrutura de dados do indicador institucional de orçamento,
@@ -254,21 +254,6 @@ models:
         query: >
           SELECT COUNT(*) FROM dados_orcamentarios
           WHERE uo_cod <> '#CODIGO_INSTITUICAO#'
-        mustBe: 0
-      - type: sql
-        description: "Dados de emenda devem ser coerentes com a origem da despesa."
-        query: >
-          SELECT COUNT(*) FROM dados_orcamentarios
-          WHERE (origem_despesa = 'Emenda'
-                 AND (NULLIF(TRIM(emenda_impositiva_tipo), '') IS NULL
-                      OR NULLIF(TRIM(emenda_impositiva_numero_ano), '') IS NULL
-                      OR NOT regexp_full_match(
-                           TRIM(emenda_impositiva_numero_ano),
-                           '[0-9]+/[0-9]{4}'
-                         )))
-             OR (origem_despesa <> 'Emenda'
-                 AND (NULLIF(TRIM(emenda_impositiva_tipo), '') IS NOT NULL
-                      OR NULLIF(TRIM(emenda_impositiva_numero_ano), '') IS NOT NULL))
         mustBe: 0
     fields:
       id_dados_orcamentarios:

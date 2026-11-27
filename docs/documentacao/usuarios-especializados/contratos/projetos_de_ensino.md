@@ -11,7 +11,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-**Slug:** `projetos_de_ensino` · **Versão:** `2.0.0` · **Owner:** SETEC
+**Slug:** `projetos_de_ensino` · **Versão:** `2.0.1` · **Owner:** SETEC
 **Status:** `active` · **Spec:** `dataContractSpecification: "1.2.0"`
 **Área Temática:** Ensino (Apoio a Sustentabilidade)
 
@@ -126,7 +126,7 @@ Além do schema (colunas obrigatórias, tipos, `enum` e rejeição de colunas ex
 | `{..., "projeto_ensino_sustentavel": "não"}` (`boolean` espera `true`/`false`) | `Type mismatch on 'projeto_ensino_sustentavel': expected boolean, got string 'não'` |
 | `{..., "data_termino": "11/12/2026"}` (formato errado, `date` espera ISO 8601) | `Type mismatch on 'data_termino': expected date, got string '11/12/2026'` |
 | `{..., "orcamento_projeto": 18000}` (coluna não declarada neste contrato) | `Field 'orcamento_projeto' not in schema (additionalFields: false)` |
-| `{..., "situacao_projeto": "Finalizado", "data_termino": null}` (finalizado sem data de término) | `Datas e situação do projeto devem ser coerentes.: Actual custom_sql(projetos_ensino) was 1, expected = 0` |
+| `{..., "situacao_projeto": "Finalizado", "data_termino": null}` (finalizado sem data de término) | `A data de término não pode ser anterior à de início, e projetos Finalizados ou Cancelados devem ter data de término.: Actual custom_sql(projetos_ensino) was 1, expected = 0` |
 
 ## Histórico de versões
 
@@ -134,6 +134,7 @@ Além do schema (colunas obrigatórias, tipos, `enum` e rejeição de colunas ex
 |---|---|---|---|
 | `1.0.0` | 2026-07-16 | Versão inicial documentada nesta data. | — |
 | `2.0.0` | 2026-09-01 | `orcamento_projeto` virou o par `contrapartida_financeira_institucional`/`contrapartida_financeira_externa`; `data_termino` deixou de ser obrigatória; regras `quality` acrescentadas. | **sim** |
+| `2.0.1` | 2026-11-06 | Descrições das regras `quality` reescritas para dizer o que cada uma confere; as consultas não mudaram. | não |
 
 ## Contrato de Dados - Formato YAML
 
@@ -143,7 +144,7 @@ dataContractSpecification: "1.2.0"
 id: "projetos_de_ensino"
 info:
   title: "Projetos de Ensino"
-  version: "2.0.0"
+  version: "2.0.1"
   status: "active"
   description: >
     Este contrato descreve a estrutura de dados dos projetos de ensino conduzidos na instituição,
@@ -174,7 +175,7 @@ models:
              OR NULLIF(TRIM(nome_coordenador), '') IS NULL
         mustBe: 0
       - type: sql
-        description: "Datas e situação do projeto devem ser coerentes."
+        description: "A data de término não pode ser anterior à de início, e projetos Finalizados ou Cancelados devem ter data de término."
         query: >
           SELECT COUNT(*) FROM projetos_ensino
           WHERE data_termino < data_inicio
@@ -188,7 +189,7 @@ models:
              OR (data_termino IS NOT NULL AND data_termino < DATE '#ANO_REFERENCIA#-01-01')
         mustBe: 0
       - type: sql
-        description: "As contrapartidas financeiras não podem ser negativas e o financiamento externo deve ser coerente com a entidade financiadora."
+        description: "As contrapartidas financeiras não podem ser negativas; contrapartida externa maior que zero exige entidade financiadora preenchida e diferente de 'sem fomento externo (própria instituição)', e uma entidade financiadora externa exige contrapartida externa maior que zero."
         query: >
           SELECT COUNT(*) FROM projetos_ensino
           WHERE contrapartida_financeira_institucional < 0
