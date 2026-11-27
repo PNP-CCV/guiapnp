@@ -11,7 +11,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-**Slug:** `desenvolvimento_institucional` · **Versão:** `2.0.1` · **Owner:** SETEC
+**Slug:** `desenvolvimento_institucional` · **Versão:** `2.0.2` · **Owner:** SETEC
 
 **Status:** `active` · **Spec:** `dataContractSpecification: "1.2.0"`
 
@@ -132,7 +132,7 @@ Além do schema (colunas obrigatórias, tipos, `enum` e rejeição de colunas ex
 | `{"titulo_projeto": "...", "projeto_gestao_sustentabilidade": true}` (sem `id_projeto_gestao_di`) | `Required field 'id_projeto_gestao_di' is missing` |
 | `{"id_projeto_gestao_di": 318, "projeto_gestao_sustentabilidade": true}` (sem `titulo_projeto`) | `Required field 'titulo_projeto' is missing` |
 | `{..., "natureza_projeto_gestao_sustentabilidade": ["Projeto de sustentabilidade"]}` (valor fora do `enum`) | `Value 'Projeto de sustentabilidade' for field 'natureza_projeto_gestao_sustentabilidade' not in enum` |
-| `{..., "projeto_gestao_sustentabilidade": true, "natureza_projeto_gestao_sustentabilidade": []}` (marcação sem natureza) | `As naturezas de sustentabilidade devem ser coerentes com a classificação do projeto e não podem se repetir.: Actual custom_sql(projetos_gestao_di) was 1, expected = 0` |
+| `{..., "projeto_gestao_sustentabilidade": true, "natureza_projeto_gestao_sustentabilidade": []}` (marcação sem natureza) | `Projeto de gestão sustentável deve informar ao menos uma natureza de sustentabilidade, projeto não sustentável não pode informar nenhuma, e as naturezas não podem se repetir.: Actual custom_sql(projetos_gestao_di) was 1, expected = 0` |
 | `{..., "contrapartida_financeira_institucional": "R$ 74.500,00"}` (`double` espera número, não string formatada) | `Type mismatch on 'contrapartida_financeira_institucional': expected double, got string 'R$ 74.500,00'` |
 | `{..., "data_inicio": "02/02/2026"}` (formato errado, `date` espera ISO 8601) | `Type mismatch on 'data_inicio': expected date, got string '02/02/2026'` |
 | `{..., "area_tematica": "Gestão"}` (coluna não declarada) | `Field 'area_tematica' not in schema (additionalFields: false)` |
@@ -144,6 +144,7 @@ Além do schema (colunas obrigatórias, tipos, `enum` e rejeição de colunas ex
 | `1.0.0` | 2026-07-16 | Versão inicial documentada nesta data. | — |
 | `2.0.0` | 2026-09-01 | `natureza_projeto` + `projeto_gestao_di_sustentavel` viraram `projeto_gestao_sustentabilidade` + `natureza_projeto_gestao_sustentabilidade` (array); `fomento_tipo` removido; `orcamento_projeto` virou o par `contrapartida_financeira_institucional`/`contrapartida_financeira_externa`; `data_termino` deixou de ser obrigatória. | **sim** |
 | `2.0.1` | 2026-10-29 | Nova regra de qualidade: o projeto precisa ter estado ativo por pelo menos um dia no ano de referência (`#ANO_REFERENCIA#`); novo valor `Mapeamento de projetos e ações institucionais de sustentabilidade no âmbito da instituição` no `enum` de `natureza_projeto_gestao_sustentabilidade`. | não (só acrescenta valor ao `enum`), mas reprova projetos fora do ano-base |
+| `2.0.2` | 2026-11-06 | Descrições das regras `quality` reescritas para dizer o que cada uma confere; as consultas não mudaram. | não |
 
 ## Contrato de Dados - Formato YAML
 
@@ -153,7 +154,7 @@ dataContractSpecification: "1.2.0"
 id: "desenvolvimento_institucional"
 info:
   title: "Desenvolvimento Institucional"
-  version: "2.0.1"
+  version: "2.0.2"
   status: "active"
   description: >
     Este contrato descreve a estrutura de dados dos projetos de gestão e desenvolvimento
@@ -185,7 +186,7 @@ models:
              OR NULLIF(TRIM(nome_coordenador), '') IS NULL
         mustBe: 0
       - type: sql
-        description: "Datas e situação do projeto devem ser coerentes."
+        description: "A data de término não pode ser anterior à de início, e projetos Finalizados ou Cancelados devem ter data de término."
         query: >
           SELECT COUNT(*) FROM projetos_gestao_di
           WHERE data_termino < data_inicio
@@ -199,7 +200,7 @@ models:
              OR (data_termino IS NOT NULL AND data_termino < DATE '#ANO_REFERENCIA#-01-01')
         mustBe: 0
       - type: sql
-        description: "As naturezas de sustentabilidade devem ser coerentes com a classificação do projeto e não podem se repetir."
+        description: "Projeto de gestão sustentável deve informar ao menos uma natureza de sustentabilidade, projeto não sustentável não pode informar nenhuma, e as naturezas não podem se repetir."
         query: >
           SELECT COUNT(*) FROM projetos_gestao_di
           WHERE (
@@ -214,7 +215,7 @@ models:
           )
         mustBe: 0
       - type: sql
-        description: "As contrapartidas financeiras não podem ser negativas e o financiamento externo deve ser coerente com a entidade financiadora."
+        description: "As contrapartidas financeiras não podem ser negativas; contrapartida externa maior que zero exige entidade financiadora preenchida e diferente de 'sem fomento externo (própria instituição)', e uma entidade financiadora externa exige contrapartida externa maior que zero."
         query: >
           SELECT COUNT(*) FROM projetos_gestao_di
           WHERE contrapartida_financeira_institucional < 0

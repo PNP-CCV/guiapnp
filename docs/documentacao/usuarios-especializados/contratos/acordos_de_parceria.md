@@ -11,7 +11,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-**Slug:** `acordos_parceria` · **Versão:** `1.0.0` · **Owner:** SETEC
+**Slug:** `acordos_parceria` · **Versão:** `1.0.1` · **Owner:** SETEC
 **Status:** `active` · **Spec:** `dataContractSpecification: "1.2.0"`
 **Área Temática:** Pesquisa e Inovação
 
@@ -99,7 +99,7 @@ Essas regras rodam uma vez, sobre o contrato inteiro, ao fim da extração ([val
 | `{"data_formalizacao": "2024-08-15", "descricao_objeto": "..."}` (sem `id_acordo`) | `Required field 'id_acordo' is missing` |
 | `{"id_acordo": 5021, "data_formalizacao": "2024-08-15"}` (sem `descricao_objeto`) | `Required field 'descricao_objeto' is missing` |
 | `{"id_acordo": 5021, "descricao_objeto": "...", "data_formalizacao": "15/08/2024"}` (formato errado, `date` espera ISO 8601) | `Type mismatch on 'data_formalizacao': expected date, got string '15/08/2024'` |
-| `{..., "data_inicio_vigencia": "2027-01-01", "data_fim_vigencia": "2024-01-01"}` (vigência invertida) | `Vigência e formalização do acordo devem ser cronologicamente coerentes.: Actual custom_sql(acordos_parceria) was 1, expected = 0` |
+| `{..., "data_inicio_vigencia": "2027-01-01", "data_fim_vigencia": "2024-01-01"}` (vigência invertida) | `A data de fim da vigência não pode ser anterior à data de início da vigência, e a data de formalização não pode ser posterior à data de fim da vigência.: Actual custom_sql(acordos_parceria) was 1, expected = 0` |
 | `{..., "data_formalizacao": "2026-02-10"}` (ciclo 2026, ano de referência 2025) | `Acordos formalizados depois do ano de referência não entram neste ciclo.: Actual custom_sql(acordos_parceria) was 1, expected = 0` |
 | `{..., "valor_total": 480000}` (coluna não declarada) | `Field 'valor_total' not in schema (additionalFields: false)` |
 
@@ -108,6 +108,7 @@ Essas regras rodam uma vez, sobre o contrato inteiro, ao fim da extração ([val
 | Versão | Data | Mudança | Breaking? |
 |---|---|---|---|
 | `1.0.0` | 2026-01-21 | Versão inicial documentada nesta data. | — |
+| `1.0.1` | 2026-11-06 | Descrições das regras `quality` reescritas para dizer o que cada uma confere; as consultas não mudaram. | não |
 
 > ℹ️ **Uma linha só — e é esse o problema.** `info.version` está em `1.0.0` desde o início, mas `campus_origem_projeto` virou `estrutura` (formato `{id; nome}` → `{codigo}`) depois disso. Para quem já integrava é uma mudança **breaking**, e ela não bumpou a versão. Esta página foi corrigida em 2026-07-16 para reacompanhar o contrato.
 
@@ -118,7 +119,7 @@ dataContractSpecification: "1.2.0"
 id: "acordos_parceria"
 info:
   title: "Acordos de Parceria"
-  version: "1.0.0"
+  version: "1.0.1"
   status: "active"
   description: >
     Este contrato descreve os acordos e parcerias formais estabelecidos com instituições externas,
@@ -155,7 +156,7 @@ models:
           ) violacoes
         mustBe: 0
       - type: sql
-        description: "Vigência e formalização do acordo devem ser cronologicamente coerentes."
+        description: "A data de fim da vigência não pode ser anterior à data de início da vigência, e a data de formalização não pode ser posterior à data de fim da vigência."
         query: >
           SELECT COUNT(*) FROM acordos_parceria
           WHERE data_fim_vigencia < data_inicio_vigencia

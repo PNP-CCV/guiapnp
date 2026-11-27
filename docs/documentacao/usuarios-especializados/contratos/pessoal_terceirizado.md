@@ -11,7 +11,7 @@ toc: true
 
 > **Para quem é:** 🔌 integradores externos · 👔 gestores · 🛠️ desenvolvedores
 
-**Slug:** `pessoal` · **Versão:** `1.0.0` · **Owner:** SETEC
+**Slug:** `pessoal` · **Versão:** `1.0.1` · **Owner:** SETEC
 
 **Status:** `active` · **Spec:** `dataContractSpecification: "1.2.0"`
 
@@ -84,7 +84,7 @@ Além do schema (colunas obrigatórias, tipos, `enum` e rejeição de colunas ex
 | `{..., "situacao": "Desligado"}` (valor fora do `enum`) | `Value 'Desligado' for field 'situacao' not in enum [Ativo, Inativo]` |
 | `{..., "data_ingresso": "02/05/2024"}` (formato errado, `date` espera ISO 8601) | `Type mismatch on 'data_ingresso': expected date, got string '02/05/2024'` |
 | `{..., "matricula": "1548923"}` (coluna não declarada neste modelo) | `Field 'matricula' not in schema (additionalFields: false)` |
-| `{..., "situacao": "Ativo", "data_exclusao": "2025-01-31"}` (ativo com data de exclusão já passada) | `A situação deve ser coerente com a data de exclusão (Ativo admite fim de contrato futuro).: Actual custom_sql(servidor_terceirizado) was 1, expected = 0` |
+| `{..., "situacao": "Ativo", "data_exclusao": "2025-01-31"}` (ativo com data de exclusão já passada) | `A data de exclusão não pode ser anterior à data de ingresso. Terceirizados Ativos não podem ter data de exclusão anterior a hoje, e terceirizados Inativos devem ter data de exclusão igual ou anterior a hoje.: Actual custom_sql(servidor_terceirizado) was 1, expected = 0` |
 
 ## `referencia_pnp` — conferido na extração
 
@@ -96,6 +96,7 @@ O modelo declarado traz, no campo `estrutura`, um bloco `referencia_pnp: {recurs
 |---|---|---|---|
 | `1.0.0` | 2026-07-16 | Versão inicial documentada nesta data. | — |
 | `1.0.0` | 2026-09-01 | Modelos `servidor_nao_docente` e `prof_equivalente` (desabilitados, nunca coletados) removidos do contrato; `id` renomeado para `id_servidor_terceirizado`; regras `quality` acrescentadas. `info.version` não foi bumpada. | **sim** |
+| `1.0.1` | 2026-11-06 | Descrições das regras `quality` reescritas para dizer o que cada uma confere; as consultas não mudaram. | não |
 
 ## Contrato de Dados - Formato YAML
 ```yaml
@@ -103,7 +104,7 @@ dataContractSpecification: "1.2.0"
 id: "pessoal"
 info:
   title: "Pessoal"
-  version: "1.0.0"
+  version: "1.0.1"
   status: "active"
   description: >
     Este contrato descreve a estrutura de dados dos indicadores que necessitam de informações sobre servidores terceirizados.
@@ -131,7 +132,7 @@ models:
           WHERE NOT regexp_full_match(cpf, '[0-9]{11}')
         mustBe: 0
       - type: sql
-        description: "A situação deve ser coerente com a data de exclusão (Ativo admite fim de contrato futuro)."
+        description: "A data de exclusão não pode ser anterior à data de ingresso. Terceirizados Ativos não podem ter data de exclusão anterior a hoje, e terceirizados Inativos devem ter data de exclusão igual ou anterior a hoje."
         query: >
           SELECT COUNT(*) FROM servidor_terceirizado
           WHERE data_exclusao < data_ingresso

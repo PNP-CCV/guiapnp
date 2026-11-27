@@ -515,7 +515,7 @@ O item 31 alimenta `liquidado_valor`, e o item 44 alimenta `rp_pago_valor`.
 | `ano` | Campo obrigatório desde a versão 1.0.2; tem de ser 2025, como número inteiro |
 | `uo_cod` | Tem de ser o código da UO da própria instituição |
 | `orgao_superior_cod`, `gnd_cod` | Vão como texto (`"26000"`, `"3"`), e não como número |
-| `origem_despesa` | "Proposta do executivo", "Emenda" ou "-". Com "Emenda", o tipo e o número/ano da emenda são obrigatórios |
+| `origem_despesa` | "Proposta do executivo", "Emenda" ou "-" |
 | `liquidado_valor`, `rp_pago_valor` | Obrigatórios e não podem ser negativos |
 | Colunas a mais | São rejeitadas. Uma coluna `empenhado_valor`, por exemplo, reprova o envio |
 
